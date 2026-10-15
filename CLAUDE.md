@@ -3,6 +3,10 @@
 Closed-loop distributor-experience POC for Emami, built by KPMG: **nudge + survey → sanity checks → cohort CTAs →
 ASM approval → Day-30 results → persona update → next cycle.** Synthetic data only. Demo-first. **Keep it simple.**
 
+**Start here in a new session:** `docs/logs.md` (where things stand, machine setup, decisions, gotchas, next steps),
+then `docs/PLAN.md` (design + per-phase notes + assumptions). Append a dated entry to `docs/logs.md` at the end of
+every session.
+
 **Before any work, read, in order:** `docs/PROJECT_CONTEXT.md` · `docs/SIMULATION_SPEC.md` · `docs/DATA_DICTIONARY.md` ·
 `backend/app/rules/*.yaml` · every image in `docs/renders/`.
 

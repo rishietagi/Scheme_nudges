@@ -1,6 +1,7 @@
 # PLAN — Emami Distributor Experience Platform (POC)
 
-Status: **Plan written, awaiting approval.** No code yet.
+Status (2026-10-15): **Phases 0–6 done; Phase 7 left.** Partner-review changes pending. See `docs/logs.md` for the
+hand-off log (environment, decisions, gotchas, open questions).
 Source of truth: `PROJECT_CONTEXT.md` > renders. Numbers always come from the simulator.
 
 ---
