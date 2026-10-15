@@ -1,0 +1,91 @@
+# Comment bank for survey Q7 ("Anything else you'd like to tell us?"). Synthetic, hand-written.
+# Each line is tagged with its theme so mock mode can group comments without an LLM (the comment_themes prompt
+# does the same job live). Labels are what the Survey page shows.
+themes:
+  explain_simple:
+    label: Explain it simply or in Bengali
+    en:
+      - Every scheme comes as a long PDF. Just tell me my target.
+      - Please explain the slabs simply, with one example.
+      - Send a short voice note, I don't read long messages.
+      - I didn't understand the slab part. Can someone explain?
+      - Too many rules. Tell me what I earn if I hit the target.
+      - A simple card with my numbers would help.
+    bn:
+      - স্কিমের নিয়ম খুব জটিল, স্ল্যাব বুঝতে পারি না।
+      - একটা ছোট ভয়েস নোট পাঠান, বাংলায় বুঝিয়ে দিন।
+      - লম্বা PDF পড়ার সময় নেই, শুধু আমার টার্গেট বলুন।
+      - একটা উদাহরণ দিয়ে সহজ করে বোঝান।
+      - বাংলায় বললে ভালো হয়।
+      - টার্গেট পূরণ করলে কত পাব, সেটা পরিষ্কার নয়।
+  target_high:
+    label: Target feels high
+    en:
+      - Target is too high for October.
+      - Festive demand is good but this target is a stretch.
+      - Last year's October was weak, the target feels high.
+      - Can the target be a bit lower for small towns?
+      - I can do 80% of this target, not 100%.
+      - Target went up again but my market did not.
+    bn:
+      - অক্টোবরের জন্য টার্গেট অনেক বেশি।
+      - এই টার্গেট আমার পক্ষে কঠিন।
+      - পুজোর পরে বিক্রি কমে যায়, টার্গেট কমানো দরকার।
+      - ছোট শহরে এত টার্গেট পূরণ করা যায় না।
+      - আশি শতাংশ পারব, পুরোটা নয়।
+      - টার্গেট আবার বেড়েছে, কিন্তু বাজার বাড়েনি।
+  payouts_slow:
+    label: Payouts are slow
+    en:
+      - Last scheme's incentive still not received.
+      - Payouts take two months. Please make it faster.
+      - I want to know when the incentive will be paid.
+      - Credit notes come very late.
+      - Pay the last bonus first, then talk about a new scheme.
+      - Please show my pending incentive on WhatsApp.
+    bn:
+      - আমার ইনসেনটিভ এখনও পাইনি।
+      - গত স্কিমের টাকা এখনও আসেনি।
+      - পেমেন্ট আসতে অনেক দেরি হয়।
+      - ক্রেডিট নোট খুব দেরিতে আসে।
+      - আগের বোনাস আগে দিন, তারপর নতুন স্কিম।
+      - আমার বাকি ইনসেনটিভ কত, জানালে ভালো হয়।
+  margin:
+    label: Margins are thin
+    en:
+      - Margin is too thin on focus SKUs.
+      - The scheme is fine, but my margin needs to improve.
+      - Other companies give better margins in my area.
+      - Retailers are asking for more discount.
+    bn:
+      - ফোকাস SKU-তে মার্জিন খুব কম।
+      - স্কিম ঠিক আছে, কিন্তু মার্জিন বাড়ানো দরকার।
+      - আমার এলাকায় অন্য কোম্পানি বেশি মার্জিন দেয়।
+      - দোকানদাররা আরও ছাড় চাইছে।
+  stock:
+    label: Stock arrives late
+    en:
+      - Stock of the 200 ml pack arrives late.
+      - Please make sure festive stock comes on time.
+      - Supply was short last month.
+      - Half my order came, the rest is still pending.
+    bn:
+      - ২০০ মিলি প্যাকের স্টক দেরিতে আসে।
+      - পুজোর আগে স্টক সময়মতো চাই।
+      - গত মাসে সাপ্লাই কম ছিল।
+      - অর্ধেক মাল এসেছে, বাকিটা এখনও আসেনি।
+  positive:
+    label: Happy with the scheme
+    en:
+      - Good scheme, already placed my order.
+      - Clear and simple this time. Thank you.
+      - Happy with the festive offer.
+      - Will push the focus SKUs this month.
+    bn:
+      - ভালো স্কিম, অর্ডার দিয়ে দিয়েছি।
+      - এবার সব পরিষ্কার, ধন্যবাদ।
+      - পুজোর অফারে খুশি।
+      - এই মাসে ফোকাস SKU বেশি চালাব।
+
+# Low-effort replies (feed the JUNK_TEXT sanity check).
+junk: ["ok", "....", "aaa", "ok ok", "-", "hmm", "k", "nnnn"]

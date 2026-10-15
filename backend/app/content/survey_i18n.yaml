@@ -1,0 +1,62 @@
+# Display translations of rules/survey.yaml for the Survey page's language toggle (hand-written, synthetic demo).
+# The data always stores the English labels (the five intents are the same everywhere); this file is display only.
+Bengali:
+  questions:
+    Q1: ফেস্টিভ স্কিম দেখেছেন? আপনি কী করতে চান?
+    Q2: স্কিমটা আপনার কাছে কতটা পরিষ্কার?
+    Q3: এই স্কিম আপনার ব্যবসায় কতটা সাহায্য করবে?
+    Q4: টার্গেট পূরণ করতে পারবেন বলে কতটা নিশ্চিত?
+    Q5: ইনসেনটিভ যেভাবে দেওয়া হয়, তাতে আপনি কতটা খুশি?
+    Q6: এখন কোনটা আপনাকে সবচেয়ে বেশি সাহায্য করবে?
+    Q7: আর কিছু বলতে চান?
+  options:
+    "I've enrolled": আমি যোগ দিয়েছি
+    "I'll enrol": আমি যোগ দেব
+    Explain again: আবার বুঝিয়ে বলুন
+    Explain in Bengali: বাংলায় বুঝিয়ে বলুন
+    Talk to my ASM: আমার ASM-এর সঙ্গে কথা বলব
+    Faster payouts: দ্রুত পেমেন্ট
+    More focus-SKU stock: ফোকাস SKU-র আরও স্টক
+    Higher slab bonus: বেশি স্ল্যাব বোনাস
+    Nothing, all good: কিছু না, সব ঠিক আছে
+    Clear slab examples: স্ল্যাবের সহজ উদাহরণ
+    Stock on time: সময়মতো স্টক
+    Credit support: ক্রেডিট সহায়তা
+    ASM visit: ASM-এর ভিজিট
+    Simpler explanation: আরও সহজ ব্যাখ্যা
+    Explanation in Bengali: বাংলায় ব্যাখ্যা
+    Lower target: কম টার্গেট
+    Better margin: ভালো মার্জিন
+    Credit terms: ক্রেডিটের শর্ত
+    Stock availability: স্টক পাওয়া
+    Call me: আমাকে ফোন করুন
+Hindi:
+  questions:
+    Q1: क्या आपने फेस्टिव स्कीम देखी? आप क्या करना चाहेंगे?
+    Q2: स्कीम आपको कितनी साफ़ समझ आई?
+    Q3: यह स्कीम आपके कारोबार में कितनी मदद करेगी?
+    Q4: टारगेट पूरा करने को लेकर आप कितने आश्वस्त हैं?
+    Q5: इंसेंटिव जिस तरह मिलता है, उससे आप कितने संतुष्ट हैं?
+    Q6: अभी आपको सबसे ज़्यादा किस चीज़ से मदद मिलेगी?
+    Q7: और कुछ बताना चाहेंगे?
+  options:
+    "I've enrolled": जुड़ चुके हैं
+    "I'll enrol": जुड़ना है
+    Explain again: फिर से समझाइए
+    Explain in Bengali: बांग्ला में समझाइए
+    Talk to my ASM: ASM से बात करनी है
+    Faster payouts: जल्दी भुगतान
+    More focus-SKU stock: फोकस SKU का ज़्यादा स्टॉक
+    Higher slab bonus: ज़्यादा स्लैब बोनस
+    Nothing, all good: कुछ नहीं, सब ठीक है
+    Clear slab examples: स्लैब के आसान उदाहरण
+    Stock on time: समय पर स्टॉक
+    Credit support: क्रेडिट सहायता
+    ASM visit: ASM की विज़िट
+    Simpler explanation: आसान समझ
+    Explanation in Bengali: बांग्ला में समझ
+    Lower target: कम टारगेट
+    Better margin: बेहतर मार्जिन
+    Credit terms: क्रेडिट की शर्तें
+    Stock availability: स्टॉक की उपलब्धता
+    Call me: मुझे कॉल करें

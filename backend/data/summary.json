@@ -1,0 +1,295 @@
+{
+  "generated_with_seed": 42,
+  "day0": "2026-10-01",
+  "day7": "2026-10-08",
+  "day30": "2026-10-31",
+  "data_as_of": "2026-09-30",
+  "current_scheme": "SCH-2627-FES",
+  "company": {
+    "distributors": 1104,
+    "territories": 14,
+    "active_skus": 112,
+    "focus_skus": 20,
+    "cohorts": {
+      "Champions": 170,
+      "Growth builders": 305,
+      "Scheme-hesitant": 221,
+      "At-risk": 225,
+      "Dormant": 183
+    },
+    "rule_mismatches_outside_kn_fixed_by_rules": 0
+  },
+  "kolkata_north": {
+    "asm": "Rahul Sen",
+    "distributors": 86,
+    "cohorts": {
+      "Champions": 14,
+      "Growth builders": 22,
+      "Scheme-hesitant": 19,
+      "At-risk": 18,
+      "Dormant": 13
+    },
+    "secondary_fytd_l": 1840.0,
+    "secondary_fytd_display": "₹18.4 Cr",
+    "yoy_growth_pct": 9.2,
+    "focus_share_q2_pct": 31.0,
+    "joined_last_scheme_monsoon": 39,
+    "joined_last_scheme_pct": 45.3,
+    "joined_last_scheme_pct_by_cohort": {
+      "Champions": 93,
+      "Growth builders": 68,
+      "Scheme-hesitant": 21,
+      "At-risk": 39,
+      "Dormant": 0
+    },
+    "festive_baseline_forecast_l": 329.2,
+    "festive_predicted_if_all_enrol_l": 374.0,
+    "sim_expected_response_rate_pct": 70.1,
+    "sim_true_language_bengali": 51,
+    "on_file_language_bengali": 48,
+    "anchors": {
+      "Maa Tara Distributors": {
+        "distributor_id": "DST-0001",
+        "cohort": "Scheme-hesitant",
+        "classification": "A",
+        "fytd_l": 38.2,
+        "qoq": -0.1182,
+        "yoy": 0.0302,
+        "unique_skus_sep": 38,
+        "focus_share_q2": 0.1793,
+        "past_schemes_joined": 1,
+        "festive_target_l": 7.8,
+        "festive_predicted_if_enrolled_l": 7.66,
+        "on_file_language": "Bengali",
+        "script": {
+          "intent": "Explain in Bengali",
+          "response_hours": 3.0,
+          "survey_seconds": 140,
+          "flags": null,
+          "enrol_day": 9,
+          "true_language": "Bengali"
+        }
+      },
+      "Sarkar & Sons": {
+        "distributor_id": "DST-0002",
+        "cohort": "Scheme-hesitant",
+        "classification": "B",
+        "fytd_l": 29.6,
+        "qoq": -0.041,
+        "yoy": 0.0203,
+        "unique_skus_sep": 44,
+        "focus_share_q2": 0.2208,
+        "past_schemes_joined": 1,
+        "festive_target_l": 6.3,
+        "festive_predicted_if_enrolled_l": 6.11,
+        "on_file_language": "Bengali",
+        "script": {
+          "intent": "Explain again",
+          "response_hours": 26.0,
+          "survey_seconds": 165,
+          "flags": null,
+          "enrol_day": 10,
+          "true_language": "Bengali"
+        }
+      },
+      "Ma Kali Enterprises": {
+        "distributor_id": "DST-0003",
+        "cohort": "Scheme-hesitant",
+        "classification": "A",
+        "fytd_l": 33.11,
+        "qoq": -0.0197,
+        "yoy": 0.0409,
+        "unique_skus_sep": 41,
+        "focus_share_q2": 0.2502,
+        "past_schemes_joined": 1,
+        "festive_target_l": 7.0,
+        "festive_predicted_if_enrolled_l": 7.04,
+        "on_file_language": "Bengali",
+        "script": {
+          "intent": "Explain again",
+          "response_hours": 6.0,
+          "survey_seconds": 120,
+          "flags": null,
+          "enrol_day": 12,
+          "true_language": "Bengali"
+        }
+      },
+      "Debnath Agencies": {
+        "distributor_id": "DST-0004",
+        "cohort": "Scheme-hesitant",
+        "classification": "B",
+        "fytd_l": 24.79,
+        "qoq": 0.0105,
+        "yoy": 0.0102,
+        "unique_skus_sep": 36,
+        "focus_share_q2": 0.1902,
+        "past_schemes_joined": 1,
+        "festive_target_l": 5.0,
+        "festive_predicted_if_enrolled_l": 5.42,
+        "on_file_language": "Bengali",
+        "script": {
+          "intent": "I'll enrol",
+          "response_hours": 4.0,
+          "survey_seconds": 95,
+          "flags": null,
+          "enrol_day": 5,
+          "true_language": "Bengali"
+        }
+      },
+      "Pal Brothers": {
+        "distributor_id": "DST-0005",
+        "cohort": "Scheme-hesitant",
+        "classification": "A",
+        "fytd_l": 41.49,
+        "qoq": 0.0298,
+        "yoy": 0.0598,
+        "unique_skus_sep": 52,
+        "focus_share_q2": 0.2703,
+        "past_schemes_joined": 0,
+        "festive_target_l": 9.2,
+        "festive_predicted_if_enrolled_l": 8.9,
+        "on_file_language": "Bengali",
+        "script": {
+          "intent": "Talk to my ASM",
+          "response_hours": 1.5,
+          "survey_seconds": 110,
+          "flags": null,
+          "enrol_day": null,
+          "true_language": "Bengali"
+        }
+      },
+      "Ruplekha Traders": {
+        "distributor_id": "DST-0006",
+        "cohort": "Scheme-hesitant",
+        "classification": "B",
+        "fytd_l": 21.89,
+        "qoq": -0.0611,
+        "yoy": 0.0046,
+        "unique_skus_sep": 33,
+        "focus_share_q2": 0.1604,
+        "past_schemes_joined": 0,
+        "festive_target_l": 4.6,
+        "festive_predicted_if_enrolled_l": 4.61,
+        "on_file_language": "Bengali",
+        "script": {
+          "intent": "I've enrolled",
+          "response_hours": 0.2,
+          "survey_seconds": 19,
+          "flags": "TOO_FAST|STRAIGHT_LINE|CONTRADICTION",
+          "enrol_day": 15,
+          "true_language": "Bengali"
+        }
+      },
+      "Annapurna Distributors": {
+        "distributor_id": "DST-0007",
+        "cohort": "Scheme-hesitant",
+        "classification": "B",
+        "fytd_l": 27.4,
+        "qoq": 0.0206,
+        "yoy": 0.0301,
+        "unique_skus_sep": 39,
+        "focus_share_q2": 0.2399,
+        "past_schemes_joined": 1,
+        "festive_target_l": 6.0,
+        "festive_predicted_if_enrolled_l": 5.89,
+        "on_file_language": "English",
+        "script": {
+          "intent": "Explain in Bengali",
+          "response_hours": 7.0,
+          "survey_seconds": 130,
+          "flags": null,
+          "enrol_day": 9,
+          "true_language": "Bengali"
+        }
+      },
+      "Shree Durga Agencies": {
+        "distributor_id": "DST-0008",
+        "cohort": "Growth builders",
+        "classification": "A",
+        "fytd_l": 52.69,
+        "qoq": 0.1401,
+        "yoy": 0.0797,
+        "unique_skus_sep": 61,
+        "focus_share_q2": 0.3099,
+        "past_schemes_joined": 3,
+        "festive_target_l": 12.3,
+        "festive_predicted_if_enrolled_l": 11.42,
+        "on_file_language": "English",
+        "script": {
+          "intent": "I've enrolled",
+          "response_hours": 0.7,
+          "survey_seconds": 85,
+          "flags": null,
+          "enrol_day": 0,
+          "true_language": "English"
+        }
+      },
+      "Bose Distribution": {
+        "distributor_id": "DST-0009",
+        "cohort": "Champions",
+        "classification": "A",
+        "fytd_l": 58.41,
+        "qoq": 0.2201,
+        "yoy": 0.2401,
+        "unique_skus_sep": 72,
+        "focus_share_q2": 0.4598,
+        "past_schemes_joined": 3,
+        "festive_target_l": 14.0,
+        "festive_predicted_if_enrolled_l": 12.91,
+        "on_file_language": "English",
+        "script": {
+          "intent": "I've enrolled",
+          "response_hours": 0.4,
+          "survey_seconds": 70,
+          "flags": null,
+          "enrol_day": 0,
+          "true_language": "English"
+        }
+      },
+      "Ganguly Traders": {
+        "distributor_id": "DST-0010",
+        "cohort": "At-risk",
+        "classification": "B",
+        "fytd_l": 26.21,
+        "qoq": -0.2097,
+        "yoy": -0.1199,
+        "unique_skus_sep": 34,
+        "focus_share_q2": 0.21,
+        "past_schemes_joined": 2,
+        "festive_target_l": 4.9,
+        "festive_predicted_if_enrolled_l": 4.54,
+        "on_file_language": "Bengali",
+        "script": {
+          "intent": null,
+          "response_hours": null,
+          "survey_seconds": null,
+          "flags": null,
+          "enrol_day": null,
+          "true_language": "Bengali"
+        }
+      },
+      "Nabadiganta Enterprises": {
+        "distributor_id": "DST-0011",
+        "cohort": "Dormant",
+        "classification": "C",
+        "fytd_l": 8.87,
+        "qoq": -0.5339,
+        "yoy": -0.3497,
+        "unique_skus_sep": 0,
+        "focus_share_q2": 0.1702,
+        "past_schemes_joined": 1,
+        "festive_target_l": 0.9,
+        "festive_predicted_if_enrolled_l": 0.86,
+        "on_file_language": "Bengali",
+        "script": {
+          "intent": null,
+          "response_hours": null,
+          "survey_seconds": null,
+          "flags": null,
+          "enrol_day": null,
+          "true_language": "Bengali"
+        }
+      }
+    }
+  }
+}

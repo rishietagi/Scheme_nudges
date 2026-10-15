@@ -1,0 +1,5 @@
+scheme_id,name,type,start_date,end_date,rules_text,status,is_current
+SCH-2526-YE,Year-end Push · Mar 2026,Target,2026-03-01,2026-03-31,Single-month target on total purchases; 2% back on achievement.,Closed,0
+SCH-2627-SUM,Summer Cool Scheme · Apr–Jun 2026,Slab,2026-04-01,2026-06-30,"Personal purchase target for the period. Hit the target: +3% margin on focus SKUs. Beat it by 25%: +4% margin and a ₹10,000 bonus.",Closed,0
+SCH-2627-MON,Monsoon Loyalty · Jul–Sep 2026,Loyalty,2026-07-01,2026-09-30,Earn points on every focus-SKU purchase; tier bonus paid at quarter end if 80% of the quarterly target is met.,Closed,0
+SCH-2627-FES,Festive Scheme · Oct 2026,Slab,2026-10-01,2026-10-31,"Personal purchase target for the period. Hit the target: +3% margin on focus SKUs. Beat it by 25%: +4% margin and a ₹10,000 bonus.",Live · communicated to all distributors on 1 Oct,1

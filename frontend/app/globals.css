@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* Design tokens from the renders (CLAUDE.md). Light theme only, as in the comps. */
+:root {
+  --emami-blue: #005da0;
+  --navy-900: #0a2647;
+  --navy-800: #0b3b70;
+  --navy-700: #12315a;
+  --orange: #f4751a;
+  --orange-light: #ffb067;
+  --orange-soft: #feebdd;
+  --cyan: #2e9bd6;
+  --red: #e8452c;
+  --red-soft: #fde8e4;
+  --amber: #c2560f;
+  --amber-soft: #feebdd;
+  --grey-cohort: #94a3b8;
+  --green-text: #0b6b4e;
+  --green-soft: #e3f4ec;
+  --blue-soft: #e6f0f8;
+  --ink: #13232a;
+  --muted: #5b6672;
+  --bg: #f4f6fa;
+  --card-border: #e3e8ec;
+  --track: #e9edf2;
+}
+
+@theme inline {
+  --color-emami-blue: var(--emami-blue);
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-navy-700: var(--navy-700);
+  --color-orange: var(--orange);
+  --color-orange-light: var(--orange-light);
+  --color-orange-soft: var(--orange-soft);
+  --color-cyan: var(--cyan);
+  --color-red: var(--red);
+  --color-red-soft: var(--red-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-grey-cohort: var(--grey-cohort);
+  --color-green-text: var(--green-text);
+  --color-green-soft: var(--green-soft);
+  --color-blue-soft: var(--blue-soft);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-bg: var(--bg);
+  --color-card-border: var(--card-border);
+  --color-track: var(--track);
+
+  /* Latin first; Bengali/Devanagari glyphs fall through to Noto. */
+  --font-sans: var(--font-instrument), var(--font-bengali), var(--font-devanagari), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-bengali), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 16px;
+  --shadow-card: 0 1px 2px rgb(16 35 60 / 0.04), 0 4px 16px -6px rgb(16 35 60 / 0.08);
+  --shadow-lift: 0 2px 4px rgb(16 35 60 / 0.05), 0 12px 28px -10px rgb(16 35 60 / 0.16);
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible, consistent focus for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--emami-blue);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+backend/data/runs.sqlite*
+node_modules/
+frontend/.next/

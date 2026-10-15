@@ -1,0 +1,27 @@
+# Day-7 call-to-action catalogue. The CTA engine picks ONE per cohort (everyone in a cohort gets the same CTA),
+# plus personal CTAs for the "Individual attention" list. The LLM writes the wording; it never invents a CTA type.
+# Every CTA is delivered in the distributor's preferred language from the persona.
+send_day: 8
+ctas:
+  SLAB_PROGRESS:   {label: "Show how close they are to the next slab", for: enrolled}
+  QUICK_REMINDER:  {label: "3-line reminder with their personal target", for: "said I'll enrol / understood but not enrolled"}
+  EXPLAIN_SIMPLE:  {label: "Simple explainer card with an earnings example", for: "said Explain again / low clarity"}
+  VOICE_EXPLAINER: {label: "Voice note + simple card, in their language", for: "asked Explain in Bengali / Explain again, or persona prefers voice"}
+  ASM_CALL:        {label: "ASM calls within 48 hours", for: "asked for ASM, At-risk, key accounts"}
+  RE_NUDGE:        {label: "Short re-send at their usual reply time", for: no response}
+
+# How the cohort CTA is chosen (code, not LLM):
+#   1. Take the cohort's members who are NOT enrolled on Day 7.
+#   2. Map each member to the CTA its intent points to (no response -> RE_NUDGE; Explain in Bengali -> VOICE_EXPLAINER; Explain again -> EXPLAIN_SIMPLE or VOICE_EXPLAINER; ...).
+#   3. The cohort CTA = the most common one. Confidence = share of not-enrolled members pointing to it
+#      x share of the cohort's responses that passed sanity checks.
+#   4. Members whose need differs AND who match an individual-attention rule get a personal CTA instead.
+individual_attention:            # anyone matching one of these leaves the cohort CTA and gets a personal one
+  - Asked "Talk to my ASM"
+  - Key account (classification A) and not enrolled by Day 7
+  - Response red-flagged by sanity checks
+  - At-risk and no response by Day 7
+priority:                        # shown as High / Medium / Low
+  High: revenue at stake (sum of predicted uplift of not-enrolled members) in the top third of rows
+  Medium: middle third
+  Low: bottom third

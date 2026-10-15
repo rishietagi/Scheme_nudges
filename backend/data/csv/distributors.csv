@@ -1,0 +1,1105 @@
+distributor_id,name,owner_name,town,territory_id,asm_id,partner_since,preferred_language,reply_window,phone_masked,channel,classification
+DST-0001,Maa Tara Distributors,Biswajit Das,Barasat,TER-01,ASM-01,2017,Bengali,10:00–12:00,+91 95xxx xx344,Urban GT,A
+DST-0002,Sarkar & Sons,Subhas Sarkar,Belgharia,TER-01,ASM-01,2012,Bengali,18:00–20:00,+91 92xxx xx787,Urban GT,B
+DST-0003,Ma Kali Enterprises,Gopal Kundu,Madhyamgram,TER-01,ASM-01,2015,Bengali,11:00–13:00,+91 97xxx xx423,Semi-urban GT,A
+DST-0004,Debnath Agencies,Uttam Debnath,Khardah,TER-01,ASM-01,2019,Bengali,17:00–19:00,+91 91xxx xx109,Urban GT,B
+DST-0005,Pal Brothers,Tapan Pal,Agarpara,TER-01,ASM-01,2010,Bengali,10:00–12:00,+91 99xxx xx202,Urban GT,A
+DST-0006,Ruplekha Traders,Rina Saha,Titagarh,TER-01,ASM-01,2020,Bengali,12:00–14:00,+91 93xxx xx618,Urban GT,B
+DST-0007,Annapurna Distributors,Sankar Mitra,Birati,TER-01,ASM-01,2016,English,09:00–11:00,+91 95xxx xx170,Semi-urban GT,B
+DST-0008,Shree Durga Agencies,Amit Ghosh,Shyambazar,TER-01,ASM-01,2011,English,09:00–11:00,+91 95xxx xx391,Urban GT,A
+DST-0009,Bose Distribution,Partha Bose,Sodepur,TER-01,ASM-01,2008,English,10:00–12:00,+91 98xxx xx820,Urban GT,A
+DST-0010,Ganguly Traders,Prasenjit Ganguly,Dum Dum,TER-01,ASM-01,2013,Bengali,16:00–18:00,+91 98xxx xx108,Urban GT,B
+DST-0011,Nabadiganta Enterprises,Shyamal Halder,Baranagar,TER-01,ASM-01,2018,Bengali,11:00–13:00,+91 98xxx xx406,Semi-urban GT,C
+DST-0012,Tapan Distribution,Rina Barman,Belgharia,TER-01,ASM-01,2008,Bengali,18:00–20:00,+91 93xxx xx834,Urban GT,A
+DST-0013,Aalo Stores,Gopal Sen,Naihati,TER-01,ASM-01,2006,English,11:00–13:00,+91 90xxx xx103,Urban GT,C
+DST-0014,Aalo Enterprises,Uttam Shaw,Baranagar,TER-01,ASM-01,2021,Bengali,09:00–11:00,+91 92xxx xx658,Urban GT,B
+DST-0015,Purbasha Trading Co.,Sukanta Dey,Barrackpore,TER-01,ASM-01,2005,English,10:00–12:00,+91 93xxx xx782,Urban GT,C
+DST-0016,Tarun Enterprises,Partha Chatterjee,Kestopur,TER-01,ASM-01,2009,English,09:00–11:00,+91 92xxx xx854,Semi-urban GT,B
+DST-0017,Cossipore Agencies,Raju Dutta,Cossipore,TER-01,ASM-01,2016,English,17:00–19:00,+91 93xxx xx304,Semi-urban GT,B
+DST-0018,Radha Krishna Trading Co.,Nimai Saha,Sinthee,TER-01,ASM-01,2012,Bengali,18:00–20:00,+91 96xxx xx795,Semi-urban GT,C
+DST-0019,Ghosh Brothers,Moumita Banerjee,Kestopur,TER-01,ASM-01,2022,Hindi,11:00–13:00,+91 90xxx xx211,Urban GT,C
+DST-0020,Barrackpore Marketing,Manas Mondal,Barrackpore,TER-01,ASM-01,2016,English,10:00–12:00,+91 94xxx xx145,Semi-urban GT,B
+DST-0021,Adhikari Agencies,Amit Bhattacharya,Barasat,TER-01,ASM-01,2023,Bengali,09:00–11:00,+91 94xxx xx619,Urban GT,C
+DST-0022,Mitra Brothers,Ashok Basak,Cossipore,TER-01,ASM-01,2016,English,10:00–12:00,+91 99xxx xx682,Urban GT,B
+DST-0023,Kestopur Distribution,Tarun Chakraborty,Kestopur,TER-01,ASM-01,2018,Bengali,10:00–12:00,+91 98xxx xx584,Semi-urban GT,B
+DST-0024,Milan Stores,Bikash Bhattacharya,Sodepur,TER-01,ASM-01,2006,English,10:00–12:00,+91 94xxx xx330,Semi-urban GT,A
+DST-0025,Bhagabati Associates,Debabrata Saha,Baranagar,TER-01,ASM-01,2018,Bengali,18:00–20:00,+91 93xxx xx835,Urban GT,B
+DST-0026,Sarkar Distributors,Nimai Dutta,Ultadanga,TER-01,ASM-01,2017,Bengali,18:00–20:00,+91 97xxx xx151,Urban GT,B
+DST-0027,Maity Stores,Bikash Chakraborty,Belgharia,TER-01,ASM-01,2018,Bengali,18:00–20:00,+91 96xxx xx950,Semi-urban GT,C
+DST-0028,Anirban Associates,Debabrata Kundu,Sinthee,TER-01,ASM-01,2012,English,18:00–20:00,+91 97xxx xx741,Urban GT,B
+DST-0029,Joy Guru Agencies,Ranjit Adhikari,Sinthee,TER-01,ASM-01,2006,Bengali,10:00–12:00,+91 96xxx xx810,Urban GT,A
+DST-0030,Bishwakarma Marketing,Tarun Sen,Madhyamgram,TER-01,ASM-01,2010,English,17:00–19:00,+91 99xxx xx812,Urban GT,B
+DST-0031,Das Marketing,Shyamal Basak,Baguiati,TER-01,ASM-01,2021,English,18:00–20:00,+91 99xxx xx325,Urban GT,C
+DST-0032,Ghosh Trading Co.,Niladri Sinha,Titagarh,TER-01,ASM-01,2009,English,10:00–12:00,+91 99xxx xx646,Urban GT,B
+DST-0033,Swarnali Distributors,Sutapa Roy,Bagbazar,TER-01,ASM-01,2018,Bengali,11:00–13:00,+91 96xxx xx435,Urban GT,C
+DST-0034,Paul Brothers,Haradhan Basak,Agarpara,TER-01,ASM-01,2012,English,17:00–19:00,+91 90xxx xx867,Urban GT,C
+DST-0035,Saha & Sons,Arup Bose,Barrackpore,TER-01,ASM-01,2004,Hindi,10:00–12:00,+91 90xxx xx736,Urban GT,C
+DST-0036,Mondal Agencies,Gautam Dey,Baranagar,TER-01,ASM-01,2009,Bengali,09:00–11:00,+91 92xxx xx418,Urban GT,B
+DST-0037,Swapan Trading Co.,Sudip Mukherjee,Barasat,TER-01,ASM-01,2006,Bengali,10:00–12:00,+91 91xxx xx813,Semi-urban GT,A
+DST-0038,Nabajiban Distributors,Tarun Dey,Naihati,TER-01,ASM-01,2006,Bengali,11:00–13:00,+91 90xxx xx969,Urban GT,C
+DST-0039,Saraswati Associates,Tarun Banerjee,Ultadanga,TER-01,ASM-01,2020,Hindi,11:00–13:00,+91 99xxx xx927,Semi-urban GT,B
+DST-0040,Halder Marketing,Haradhan Pal,Ultadanga,TER-01,ASM-01,2012,English,10:00–12:00,+91 97xxx xx683,Urban GT,B
+DST-0041,Bag Brothers,Sanjay Bag,Bagbazar,TER-01,ASM-01,2010,Bengali,11:00–13:00,+91 95xxx xx386,Semi-urban GT,B
+DST-0042,Uttam Distributors,Ashok Pal,Shyamnagar,TER-01,ASM-01,2011,English,17:00–19:00,+91 98xxx xx876,Urban GT,B
+DST-0043,Ujjwal Associates,Amit Mitra,Ultadanga,TER-01,ASM-01,2011,Bengali,10:00–12:00,+91 94xxx xx779,Urban GT,C
+DST-0044,Ganguly Trading Co.,Uttam Bhattacharya,Ultadanga,TER-01,ASM-01,2015,English,11:00–13:00,+91 94xxx xx357,Urban GT,C
+DST-0045,Adhikari Brothers,Sudip Banerjee,Madhyamgram,TER-01,ASM-01,2010,Bengali,17:00–19:00,+91 94xxx xx841,Urban GT,C
+DST-0046,Nabajiban Agencies,Dipankar Banerjee,Lake Town,TER-01,ASM-01,2013,Bengali,18:00–20:00,+91 92xxx xx380,Urban GT,B
+DST-0047,Roy Associates,Mita Mitra,Dum Dum,TER-01,ASM-01,2019,Bengali,11:00–13:00,+91 92xxx xx152,Urban GT,C
+DST-0048,Loknath Trading Co.,Swapan Sen,Ultadanga,TER-01,ASM-01,2008,Bengali,18:00–20:00,+91 94xxx xx187,Semi-urban GT,C
+DST-0049,Basak Agencies,Shyamal Jana,Belgharia,TER-01,ASM-01,2018,Bengali,18:00–20:00,+91 96xxx xx412,Urban GT,B
+DST-0050,Bhorer Aalo Traders,Ashok Biswas,Dum Dum,TER-01,ASM-01,2012,English,10:00–12:00,+91 93xxx xx277,Urban GT,A
+DST-0051,Maa Sarada Associates,Partha Mitra,Sodepur,TER-01,ASM-01,2013,English,17:00–19:00,+91 91xxx xx803,Urban GT,A
+DST-0052,Titagarh Agencies,Uttam Debnath,Titagarh,TER-01,ASM-01,2008,English,10:00–12:00,+91 91xxx xx161,Urban GT,B
+DST-0053,Dishari Distribution,Prasenjit Majumdar,Birati,TER-01,ASM-01,2016,Hindi,18:00–20:00,+91 98xxx xx605,Urban GT,C
+DST-0054,Uttaran Traders,Niladri Ghosh,Dunlop,TER-01,ASM-01,2012,Bengali,10:00–12:00,+91 97xxx xx631,Urban GT,C
+DST-0055,Shaw & Sons,Kalyan Pal,Titagarh,TER-01,ASM-01,2019,Bengali,11:00–13:00,+91 95xxx xx786,Urban GT,C
+DST-0056,Sinha Brothers,Uttam Bose,Sodepur,TER-01,ASM-01,2018,Bengali,11:00–13:00,+91 95xxx xx218,Semi-urban GT,B
+DST-0057,Haradhan Distributors,Uttam Maity,Bagbazar,TER-01,ASM-01,2017,Bengali,18:00–20:00,+91 95xxx xx737,Semi-urban GT,C
+DST-0058,Sen Agencies,Tapan Mitra,Panihati,TER-01,ASM-01,2018,English,17:00–19:00,+91 91xxx xx129,Semi-urban GT,B
+DST-0059,Dunlop Enterprises,Biswajit Barman,Dunlop,TER-01,ASM-01,2017,Bengali,09:00–11:00,+91 97xxx xx220,Urban GT,C
+DST-0060,Mitra Stores,Tarun Pramanik,Baranagar,TER-01,ASM-01,2019,Bengali,18:00–20:00,+91 92xxx xx492,Urban GT,A
+DST-0061,Roy Traders,Raju Basak,Dunlop,TER-01,ASM-01,2014,Hindi,18:00–20:00,+91 94xxx xx940,Urban GT,A
+DST-0062,Birati Associates,Prasenjit Adhikari,Birati,TER-01,ASM-01,2019,Bengali,18:00–20:00,+91 98xxx xx486,Urban GT,C
+DST-0063,Sudip Agencies,Partha Basak,Agarpara,TER-01,ASM-01,2005,Bengali,17:00–19:00,+91 96xxx xx495,Semi-urban GT,B
+DST-0064,Kalyan Distributors,Swapan Bhattacharya,Panihati,TER-01,ASM-01,2007,English,17:00–19:00,+91 91xxx xx638,Semi-urban GT,B
+DST-0065,Barasat Trading Co.,Tapan Saha,Barasat,TER-01,ASM-01,2019,English,11:00–13:00,+91 95xxx xx738,Urban GT,A
+DST-0066,Ramakrishna Stores,Ranjit Bag,Panihati,TER-01,ASM-01,2021,Bengali,09:00–11:00,+91 93xxx xx746,Urban GT,B
+DST-0067,Anirban Traders,Pradip Dutta,Birati,TER-01,ASM-01,2018,Bengali,11:00–13:00,+91 90xxx xx147,Urban GT,C
+DST-0068,Dey Brothers,Partha Karmakar,Dum Dum,TER-01,ASM-01,2017,Bengali,10:00–12:00,+91 92xxx xx279,Urban GT,C
+DST-0069,Prantik Associates,Tapan Debnath,Bagbazar,TER-01,ASM-01,2018,English,17:00–19:00,+91 94xxx xx782,Urban GT,B
+DST-0070,Niladri Stores,Prasenjit Ganguly,Sinthee,TER-01,ASM-01,2022,Bengali,17:00–19:00,+91 94xxx xx567,Semi-urban GT,C
+DST-0071,Nimai Associates,Sutapa Ganguly,Madhyamgram,TER-01,ASM-01,2022,Bengali,11:00–13:00,+91 90xxx xx949,Urban GT,C
+DST-0072,Jagannath Associates,Gopal Mitra,Titagarh,TER-01,ASM-01,2011,Bengali,11:00–13:00,+91 93xxx xx751,Urban GT,B
+DST-0073,Bhorer Aalo Enterprises,Gopal Bose,Titagarh,TER-01,ASM-01,2013,English,09:00–11:00,+91 99xxx xx473,Semi-urban GT,A
+DST-0074,Ranjit Trading Co.,Tapan Adhikari,Shyambazar,TER-01,ASM-01,2015,Bengali,11:00–13:00,+91 92xxx xx363,Semi-urban GT,B
+DST-0075,Sukanta Marketing,Prasenjit Saha,Ultadanga,TER-01,ASM-01,2008,English,10:00–12:00,+91 96xxx xx966,Semi-urban GT,A
+DST-0076,Sri Sai Distributors,Pradip Maity,Barrackpore,TER-01,ASM-01,2015,English,11:00–13:00,+91 99xxx xx490,Semi-urban GT,C
+DST-0077,Gouranga Marketing,Partha Saha,Barrackpore,TER-01,ASM-01,2018,English,11:00–13:00,+91 96xxx xx219,Urban GT,C
+DST-0078,Bhagabati Stores,Prasenjit Dey,Dum Dum,TER-01,ASM-01,2021,Bengali,10:00–12:00,+91 96xxx xx770,Urban GT,C
+DST-0079,Aalo Distributors,Ashok Jana,Ultadanga,TER-01,ASM-01,2018,Hindi,11:00–13:00,+91 91xxx xx802,Urban GT,B
+DST-0080,Sinha Distribution,Pradip Maity,Panihati,TER-01,ASM-01,2006,English,18:00–20:00,+91 90xxx xx151,Semi-urban GT,C
+DST-0081,Raju Agencies,Kakali Biswas,Khardah,TER-01,ASM-01,2022,Bengali,10:00–12:00,+91 95xxx xx892,Urban GT,A
+DST-0082,Ganesh Enterprises,Raju Banerjee,Dunlop,TER-01,ASM-01,2007,English,09:00–11:00,+91 92xxx xx115,Urban GT,B
+DST-0083,Uttaran Enterprises,Tapan Basak,Khardah,TER-01,ASM-01,2020,Bengali,09:00–11:00,+91 97xxx xx559,Semi-urban GT,C
+DST-0084,Bandhan Stores,Bikash Bose,Lake Town,TER-01,ASM-01,2020,Bengali,09:00–11:00,+91 90xxx xx590,Semi-urban GT,A
+DST-0085,Loknath Marketing,Amit Roy,Cossipore,TER-01,ASM-01,2012,English,18:00–20:00,+91 98xxx xx829,Urban GT,C
+DST-0086,Nabajiban Traders,Arup Barman,Dunlop,TER-01,ASM-01,2010,Bengali,10:00–12:00,+91 96xxx xx447,Semi-urban GT,C
+DST-0087,Arup Associates,Swapan Jana,Jadavpur,TER-02,ASM-02,2022,English,18:00–20:00,+91 95xxx xx984,Rural GT,C
+DST-0088,Loknath Associates,Sukanta Halder,Ballygunge,TER-02,ASM-02,2022,Bengali,18:00–20:00,+91 91xxx xx417,Urban GT,B
+DST-0089,Joy Guru Traders,Nimai Pal,Behala,TER-02,ASM-02,2023,Bengali,17:00–19:00,+91 97xxx xx694,Semi-urban GT,A
+DST-0090,Mukherjee Marketing,Manas Sarkar,Behala,TER-02,ASM-02,2005,Bengali,11:00–13:00,+91 91xxx xx616,Semi-urban GT,B
+DST-0091,Jana & Sons,Manas Karmakar,Behala,TER-02,ASM-02,2023,Bengali,11:00–13:00,+91 94xxx xx496,Urban GT,B
+DST-0092,Prabhat Marketing,Rina Barman,Ballygunge,TER-02,ASM-02,2016,Bengali,18:00–20:00,+91 92xxx xx441,Urban GT,C
+DST-0093,Sukanta Trading Co.,Sudip Pal,Jadavpur,TER-02,ASM-02,2013,Bengali,11:00–13:00,+91 92xxx xx786,Semi-urban GT,C
+DST-0094,Bishwakarma Stores,Dipankar Majumdar,Joka,TER-02,ASM-02,2009,Hindi,11:00–13:00,+91 97xxx xx296,Urban GT,A
+DST-0095,Adhikari Stores,Sharmila Roy,Jadavpur,TER-02,ASM-02,2023,Bengali,10:00–12:00,+91 92xxx xx951,Semi-urban GT,B
+DST-0096,Jadavpur Distributors,Niladri Kundu,Jadavpur,TER-02,ASM-02,2018,Bengali,17:00–19:00,+91 93xxx xx646,Urban GT,B
+DST-0097,Ashok Marketing,Swapan Jana,Thakurpukur,TER-02,ASM-02,2018,English,17:00–19:00,+91 98xxx xx640,Urban GT,C
+DST-0098,Jadavpur Enterprises,Subhas Pramanik,Jadavpur,TER-02,ASM-02,2015,Bengali,09:00–11:00,+91 98xxx xx971,Urban GT,B
+DST-0099,Tollygunge Distribution,Manas Sarkar,Tollygunge,TER-02,ASM-02,2017,Bengali,10:00–12:00,+91 97xxx xx457,Rural GT,A
+DST-0100,Kamakhya Marketing,Amit Dey,Bhowanipore,TER-02,ASM-02,2011,Bengali,09:00–11:00,+91 95xxx xx910,Urban GT,B
+DST-0101,Pramanik Brothers,Tapan Pramanik,Behala,TER-02,ASM-02,2018,Bengali,09:00–11:00,+91 90xxx xx362,Urban GT,A
+DST-0102,Karmakar Trading Co.,Moumita Kundu,Jadavpur,TER-02,ASM-02,2013,Bengali,10:00–12:00,+91 96xxx xx754,Semi-urban GT,B
+DST-0103,Bhabani Stores,Kakali Kundu,Thakurpukur,TER-02,ASM-02,2008,Bengali,09:00–11:00,+91 99xxx xx461,Urban GT,B
+DST-0104,Pal & Sons,Dipankar Saha,Bhowanipore,TER-02,ASM-02,2020,Bengali,18:00–20:00,+91 98xxx xx120,Urban GT,B
+DST-0105,Sri Sai Marketing,Biswajit Ganguly,Thakurpukur,TER-02,ASM-02,2006,Bengali,09:00–11:00,+91 99xxx xx852,Semi-urban GT,C
+DST-0106,Jadavpur Associates,Kalyan Banerjee,Jadavpur,TER-02,ASM-02,2008,Bengali,17:00–19:00,+91 90xxx xx400,Urban GT,B
+DST-0107,Ranjit Distribution,Haradhan Adhikari,Garia,TER-02,ASM-02,2019,Bengali,10:00–12:00,+91 94xxx xx465,Rural GT,C
+DST-0108,Saraswati Trading Co.,Anirban Jana,Behala,TER-02,ASM-02,2016,Bengali,10:00–12:00,+91 97xxx xx808,Urban GT,A
+DST-0109,Joka Traders,Haradhan Banerjee,Joka,TER-02,ASM-02,2021,Bengali,09:00–11:00,+91 91xxx xx435,Semi-urban GT,A
+DST-0110,Shaw Enterprises,Dipankar Jana,Kasba,TER-02,ASM-02,2005,English,11:00–13:00,+91 99xxx xx545,Urban GT,C
+DST-0111,Chatterjee Distributors,Bikash Jana,Behala,TER-02,ASM-02,2005,Bengali,10:00–12:00,+91 95xxx xx470,Urban GT,A
+DST-0112,Swarnali Associates,Dipankar Jana,Behala,TER-02,ASM-02,2006,Bengali,18:00–20:00,+91 95xxx xx507,Urban GT,C
+DST-0113,Mondal & Sons,Sima Bag,Kasba,TER-02,ASM-02,2020,Bengali,18:00–20:00,+91 91xxx xx368,Semi-urban GT,C
+DST-0114,Mitra & Sons,Kalyan Mukherjee,Thakurpukur,TER-02,ASM-02,2007,Bengali,09:00–11:00,+91 97xxx xx276,Rural GT,A
+DST-0115,Raju Marketing,Sudip Saha,Thakurpukur,TER-02,ASM-02,2021,Bengali,11:00–13:00,+91 92xxx xx828,Semi-urban GT,B
+DST-0116,Jadavpur Stores,Ashok Roy,Jadavpur,TER-02,ASM-02,2011,English,09:00–11:00,+91 95xxx xx667,Semi-urban GT,A
+DST-0117,Thakurpukur Stores,Gopal Pal,Thakurpukur,TER-02,ASM-02,2006,Bengali,17:00–19:00,+91 98xxx xx520,Semi-urban GT,C
+DST-0118,Ramakrishna Traders,Niladri Karmakar,Tollygunge,TER-02,ASM-02,2015,Bengali,18:00–20:00,+91 99xxx xx286,Semi-urban GT,B
+DST-0119,Sen Traders,Sukanta Chatterjee,Jadavpur,TER-02,ASM-02,2009,Bengali,10:00–12:00,+91 95xxx xx631,Rural GT,C
+DST-0120,Barman & Sons,Arup Majumdar,Tollygunge,TER-02,ASM-02,2023,Bengali,18:00–20:00,+91 92xxx xx706,Rural GT,A
+DST-0121,Ramakrishna Distributors,Biswajit Pal,Jadavpur,TER-02,ASM-02,2005,Hindi,18:00–20:00,+91 94xxx xx766,Urban GT,B
+DST-0122,Uttaran Associates,Uttam Mitra,Bhowanipore,TER-02,ASM-02,2013,Bengali,17:00–19:00,+91 94xxx xx564,Urban GT,C
+DST-0123,Bishwakarma Associates,Ranjit Sarkar,Behala,TER-02,ASM-02,2014,English,11:00–13:00,+91 95xxx xx508,Urban GT,B
+DST-0124,Dutta Marketing,Pradip Halder,Ballygunge,TER-02,ASM-02,2018,Bengali,09:00–11:00,+91 90xxx xx397,Rural GT,C
+DST-0125,Chatterjee & Sons,Sankar Chakraborty,Bhowanipore,TER-02,ASM-02,2010,English,17:00–19:00,+91 98xxx xx578,Urban GT,A
+DST-0126,Pal Trading Co.,Partha Biswas,Kasba,TER-02,ASM-02,2022,Bengali,09:00–11:00,+91 94xxx xx606,Semi-urban GT,B
+DST-0127,Das Brothers,Tarun Roy,Thakurpukur,TER-02,ASM-02,2012,English,17:00–19:00,+91 95xxx xx146,Urban GT,C
+DST-0128,Barman Distribution,Bikash Mondal,Joka,TER-02,ASM-02,2008,Hindi,17:00–19:00,+91 95xxx xx913,Rural GT,B
+DST-0129,Debabrata Enterprises,Manas Sinha,Joka,TER-02,ASM-02,2020,Bengali,09:00–11:00,+91 92xxx xx830,Urban GT,B
+DST-0130,Sarkar Stores,Sankar Chakraborty,Thakurpukur,TER-02,ASM-02,2009,Bengali,18:00–20:00,+91 94xxx xx707,Urban GT,B
+DST-0131,Majumdar Associates,Dipankar Bhattacharya,Joka,TER-02,ASM-02,2007,Hindi,18:00–20:00,+91 94xxx xx915,Rural GT,A
+DST-0132,Aalo Agencies,Swapan Pramanik,Behala,TER-02,ASM-02,2009,Bengali,18:00–20:00,+91 96xxx xx251,Rural GT,C
+DST-0133,Tarakeswar Agencies,Sharmila Basak,Garia,TER-02,ASM-02,2008,Bengali,10:00–12:00,+91 96xxx xx613,Semi-urban GT,C
+DST-0134,Anirban Distributors,Manas Biswas,Thakurpukur,TER-02,ASM-02,2021,Bengali,17:00–19:00,+91 98xxx xx485,Urban GT,C
+DST-0135,Adhikari Marketing,Niladri Nandi,Jadavpur,TER-02,ASM-02,2023,Bengali,10:00–12:00,+91 94xxx xx671,Urban GT,B
+DST-0136,Kasba Agencies,Kalyan Chakraborty,Kasba,TER-02,ASM-02,2019,Bengali,11:00–13:00,+91 94xxx xx224,Semi-urban GT,C
+DST-0137,Sinha Marketing,Raju Sarkar,Joka,TER-02,ASM-02,2013,Bengali,09:00–11:00,+91 95xxx xx552,Semi-urban GT,B
+DST-0138,Adhikari & Sons,Uttam Halder,Thakurpukur,TER-02,ASM-02,2008,Bengali,18:00–20:00,+91 93xxx xx348,Urban GT,A
+DST-0139,Debnath & Sons,Sutapa Bhattacharya,Joka,TER-02,ASM-02,2019,Bengali,10:00–12:00,+91 90xxx xx663,Rural GT,B
+DST-0140,Pramanik Associates,Debabrata Mitra,Jadavpur,TER-02,ASM-02,2014,Bengali,09:00–11:00,+91 91xxx xx767,Semi-urban GT,B
+DST-0141,Joka Distributors,Sanjay Basak,Joka,TER-02,ASM-02,2009,Hindi,09:00–11:00,+91 96xxx xx906,Urban GT,C
+DST-0142,Biswajit Distribution,Pradip Bhattacharya,Kasba,TER-02,ASM-02,2013,Bengali,18:00–20:00,+91 98xxx xx605,Rural GT,B
+DST-0143,Prasenjit Distribution,Pradip Bhattacharya,Jadavpur,TER-02,ASM-02,2009,English,11:00–13:00,+91 92xxx xx114,Semi-urban GT,B
+DST-0144,Sagar Enterprises,Arup Sinha,Kasba,TER-02,ASM-02,2017,Bengali,09:00–11:00,+91 96xxx xx785,Urban GT,B
+DST-0145,Kundu Distributors,Partha Jana,Jadavpur,TER-02,ASM-02,2012,Hindi,11:00–13:00,+91 99xxx xx840,Semi-urban GT,C
+DST-0146,Tirtha Agencies,Rina Maity,Kasba,TER-02,ASM-02,2013,Bengali,18:00–20:00,+91 94xxx xx806,Urban GT,C
+DST-0147,Kalyan Enterprises,Bikash Dey,Kasba,TER-02,ASM-02,2017,English,17:00–19:00,+91 98xxx xx921,Semi-urban GT,B
+DST-0148,Garia Traders,Manas Dey,Garia,TER-02,ASM-02,2006,English,09:00–11:00,+91 90xxx xx948,Semi-urban GT,C
+DST-0149,Biswas Associates,Kakali Jana,Joka,TER-02,ASM-02,2005,Bengali,18:00–20:00,+91 96xxx xx567,Semi-urban GT,C
+DST-0150,Majumdar Distributors,Haradhan Das,Joka,TER-02,ASM-02,2010,Bengali,09:00–11:00,+91 96xxx xx452,Semi-urban GT,B
+DST-0151,Sankar Traders,Kalyan Bose,Joka,TER-02,ASM-02,2013,Bengali,10:00–12:00,+91 96xxx xx483,Rural GT,A
+DST-0152,Paul Trading Co.,Kakali Roy,Bhowanipore,TER-02,ASM-02,2015,Bengali,18:00–20:00,+91 96xxx xx641,Urban GT,A
+DST-0153,Garia Distributors,Prasenjit Adhikari,Garia,TER-02,ASM-02,2017,Bengali,10:00–12:00,+91 93xxx xx571,Urban GT,B
+DST-0154,Bishwakarma Distributors,Amit Dutta,Kasba,TER-02,ASM-02,2023,Bengali,18:00–20:00,+91 90xxx xx350,Semi-urban GT,B
+DST-0155,Bhowanipore Distributors,Sukanta Debnath,Bhowanipore,TER-02,ASM-02,2022,Bengali,18:00–20:00,+91 95xxx xx342,Urban GT,C
+DST-0156,Manas Agencies,Gautam Sen,Jadavpur,TER-02,ASM-02,2021,Hindi,10:00–12:00,+91 96xxx xx669,Urban GT,C
+DST-0157,Niladri Trading Co.,Ranjit Basak,Ballygunge,TER-02,ASM-02,2017,Bengali,17:00–19:00,+91 92xxx xx872,Semi-urban GT,C
+DST-0158,Sukanta Enterprises,Sankar Sen,Garia,TER-02,ASM-02,2021,Bengali,17:00–19:00,+91 98xxx xx642,Urban GT,C
+DST-0159,Bhattacharya & Sons,Sankar Jana,Garia,TER-02,ASM-02,2015,Bengali,10:00–12:00,+91 90xxx xx374,Urban GT,C
+DST-0160,Ashok Stores,Ashok Bhattacharya,Behala,TER-02,ASM-02,2013,Hindi,09:00–11:00,+91 93xxx xx294,Rural GT,A
+DST-0161,Tollygunge Associates,Sudip Biswas,Tollygunge,TER-02,ASM-02,2016,English,18:00–20:00,+91 95xxx xx894,Urban GT,C
+DST-0162,Ganguly Distribution,Manas Bag,Thakurpukur,TER-02,ASM-02,2018,Bengali,17:00–19:00,+91 95xxx xx308,Urban GT,B
+DST-0163,Bhagabati Enterprises,Kakali Basak,Bhowanipore,TER-02,ASM-02,2013,Bengali,11:00–13:00,+91 93xxx xx488,Semi-urban GT,B
+DST-0164,Bhattacharya Distribution,Kalyan Bag,Garia,TER-02,ASM-02,2018,Bengali,11:00–13:00,+91 92xxx xx243,Semi-urban GT,C
+DST-0165,Subhas Stores,Rina Sen,Thakurpukur,TER-02,ASM-02,2004,Bengali,10:00–12:00,+91 91xxx xx824,Urban GT,C
+DST-0166,Dey Distributors,Niladri Pramanik,Garia,TER-02,ASM-02,2019,Bengali,18:00–20:00,+91 98xxx xx521,Urban GT,C
+DST-0167,Joka Stores,Biswajit Mallick,Joka,TER-02,ASM-02,2017,English,10:00–12:00,+91 91xxx xx198,Semi-urban GT,B
+DST-0168,Karmakar & Sons,Dipankar Halder,Garia,TER-02,ASM-02,2016,Bengali,17:00–19:00,+91 97xxx xx678,Urban GT,A
+DST-0169,Mohona Distributors,Sutapa Paul,Garia,TER-02,ASM-02,2021,Bengali,09:00–11:00,+91 92xxx xx184,Urban GT,B
+DST-0170,Sristi Traders,Sankar Bose,Bhowanipore,TER-02,ASM-02,2011,Bengali,18:00–20:00,+91 97xxx xx377,Urban GT,C
+DST-0171,Esplanade Trading Co.,Jhuma Pramanik,Esplanade,TER-03,ASM-03,2022,Bengali,18:00–20:00,+91 96xxx xx656,Urban GT,C
+DST-0172,Bowbazar Stores,Sankar Pal,Bowbazar,TER-03,ASM-03,2007,English,11:00–13:00,+91 92xxx xx762,Semi-urban GT,C
+DST-0173,Tarakeswar Distribution,Anirban Karmakar,Beliaghata,TER-03,ASM-03,2021,Bengali,18:00–20:00,+91 93xxx xx556,Urban GT,C
+DST-0174,Salt Lake Stores,Biswajit Pramanik,Salt Lake,TER-03,ASM-03,2007,Bengali,09:00–11:00,+91 91xxx xx951,Rural GT,C
+DST-0175,Bhattacharya Associates,Manas Pramanik,Esplanade,TER-03,ASM-03,2015,Bengali,17:00–19:00,+91 97xxx xx426,Urban GT,B
+DST-0176,Burrabazar Traders,Sharmila Dutta,Burrabazar,TER-03,ASM-03,2009,Hindi,10:00–12:00,+91 98xxx xx278,Semi-urban GT,B
+DST-0177,Maity Agencies,Arup Banerjee,Bowbazar,TER-03,ASM-03,2009,English,17:00–19:00,+91 96xxx xx129,Semi-urban GT,B
+DST-0178,Shaw Trading Co.,Tanushree Biswas,Park Circus,TER-03,ASM-03,2012,English,09:00–11:00,+91 99xxx xx204,Semi-urban GT,C
+DST-0179,Mukherjee Associates,Rupa Karmakar,Esplanade,TER-03,ASM-03,2014,Bengali,18:00–20:00,+91 96xxx xx701,Urban GT,C
+DST-0180,Bikash Enterprises,Sudip Majumdar,Bowbazar,TER-03,ASM-03,2023,Bengali,10:00–12:00,+91 95xxx xx220,Urban GT,B
+DST-0181,Basak Enterprises,Tarun Banerjee,Sealdah,TER-03,ASM-03,2019,English,10:00–12:00,+91 98xxx xx270,Urban GT,B
+DST-0182,Disha Distributors,Ashok Paul,Esplanade,TER-03,ASM-03,2021,Bengali,17:00–19:00,+91 96xxx xx801,Urban GT,C
+DST-0183,Pal Distributors,Partha Mitra,Salt Lake,TER-03,ASM-03,2005,Bengali,18:00–20:00,+91 94xxx xx272,Semi-urban GT,B
+DST-0184,Mondal Traders,Uttam Dey,Salt Lake,TER-03,ASM-03,2021,English,09:00–11:00,+91 97xxx xx659,Urban GT,C
+DST-0185,Bhagabati Distribution,Subhas Jana,Beliaghata,TER-03,ASM-03,2012,Bengali,09:00–11:00,+91 97xxx xx986,Rural GT,B
+DST-0186,Ganguly & Sons,Bikash Shaw,Park Circus,TER-03,ASM-03,2009,Bengali,10:00–12:00,+91 93xxx xx924,Urban GT,B
+DST-0187,Adhikari Enterprises,Sudip Mitra,Bowbazar,TER-03,ASM-03,2013,Bengali,18:00–20:00,+91 91xxx xx238,Rural GT,C
+DST-0188,Gautam Enterprises,Tapan Kundu,Beliaghata,TER-03,ASM-03,2008,English,10:00–12:00,+91 96xxx xx601,Urban GT,C
+DST-0189,Pragati Associates,Rina Sinha,Entally,TER-03,ASM-03,2020,English,11:00–13:00,+91 97xxx xx599,Urban GT,B
+DST-0190,Nimai Traders,Prasenjit Ganguly,Burrabazar,TER-03,ASM-03,2006,English,17:00–19:00,+91 93xxx xx539,Rural GT,B
+DST-0191,Roy Brothers,Kalyan Bhattacharya,Salt Lake,TER-03,ASM-03,2005,Bengali,17:00–19:00,+91 90xxx xx227,Rural GT,B
+DST-0192,Das Trading Co.,Sudip Roy,Esplanade,TER-03,ASM-03,2013,Bengali,11:00–13:00,+91 91xxx xx770,Urban GT,B
+DST-0193,Majumdar Agencies,Amit Dutta,Sealdah,TER-03,ASM-03,2004,Bengali,09:00–11:00,+91 92xxx xx707,Urban GT,A
+DST-0194,Debnath Trading Co.,Rina Dutta,Salt Lake,TER-03,ASM-03,2014,Bengali,11:00–13:00,+91 92xxx xx491,Semi-urban GT,C
+DST-0195,Swarnali Enterprises,Jhuma Das,Esplanade,TER-03,ASM-03,2023,English,17:00–19:00,+91 95xxx xx839,Urban GT,C
+DST-0196,Bikash Associates,Amit Dutta,Esplanade,TER-03,ASM-03,2008,English,18:00–20:00,+91 96xxx xx459,Rural GT,A
+DST-0197,Bowbazar Agencies,Amit Kundu,Bowbazar,TER-03,ASM-03,2021,Bengali,18:00–20:00,+91 94xxx xx897,Rural GT,C
+DST-0198,Niladri Distribution,Bikash Mallick,Burrabazar,TER-03,ASM-03,2010,English,11:00–13:00,+91 90xxx xx902,Rural GT,C
+DST-0199,Saha Stores,Biswajit Dey,Park Circus,TER-03,ASM-03,2014,Bengali,18:00–20:00,+91 96xxx xx474,Semi-urban GT,A
+DST-0200,Esplanade Traders,Rina Das,Esplanade,TER-03,ASM-03,2012,Bengali,09:00–11:00,+91 96xxx xx618,Urban GT,B
+DST-0201,Sinha Traders,Uttam Sarkar,Beliaghata,TER-03,ASM-03,2012,Bengali,09:00–11:00,+91 98xxx xx308,Rural GT,B
+DST-0202,Shaw Brothers,Nimai Kundu,Esplanade,TER-03,ASM-03,2005,Bengali,17:00–19:00,+91 91xxx xx564,Semi-urban GT,A
+DST-0203,Banerjee Brothers,Sima Das,Burrabazar,TER-03,ASM-03,2009,Bengali,11:00–13:00,+91 98xxx xx629,Semi-urban GT,A
+DST-0204,Ganesh Distribution,Pradip Ghosh,Entally,TER-03,ASM-03,2014,English,11:00–13:00,+91 98xxx xx165,Urban GT,B
+DST-0205,Mallick Marketing,Jhuma Chatterjee,Sealdah,TER-03,ASM-03,2015,Bengali,09:00–11:00,+91 99xxx xx790,Semi-urban GT,B
+DST-0206,Park Circus Distributors,Mita Kundu,Park Circus,TER-03,ASM-03,2005,Bengali,17:00–19:00,+91 92xxx xx283,Rural GT,B
+DST-0207,Basak Brothers,Ranjit Halder,Burrabazar,TER-03,ASM-03,2006,Bengali,09:00–11:00,+91 98xxx xx789,Rural GT,C
+DST-0208,Shyamal Traders,Nimai Mitra,Esplanade,TER-03,ASM-03,2013,Bengali,18:00–20:00,+91 97xxx xx108,Urban GT,B
+DST-0209,Milan Agencies,Swapan Bag,Entally,TER-03,ASM-03,2010,English,18:00–20:00,+91 93xxx xx254,Urban GT,A
+DST-0210,Tirtha Distributors,Biswajit Paul,Beliaghata,TER-03,ASM-03,2013,Bengali,18:00–20:00,+91 93xxx xx529,Urban GT,A
+DST-0211,Dey Associates,Amit Dutta,Burrabazar,TER-03,ASM-03,2020,Bengali,17:00–19:00,+91 91xxx xx706,Semi-urban GT,B
+DST-0212,Purbasha Agencies,Nimai Chakraborty,Beliaghata,TER-03,ASM-03,2016,English,11:00–13:00,+91 95xxx xx563,Urban GT,C
+DST-0213,Tapan Traders,Sanjay Jana,Sealdah,TER-03,ASM-03,2018,Bengali,09:00–11:00,+91 98xxx xx466,Rural GT,C
+DST-0214,Maity Distribution,Amit Chatterjee,Park Circus,TER-03,ASM-03,2013,English,18:00–20:00,+91 90xxx xx320,Rural GT,B
+DST-0215,Bhagabati Marketing,Subhas Majumdar,Bowbazar,TER-03,ASM-03,2012,English,10:00–12:00,+91 90xxx xx514,Rural GT,B
+DST-0216,Tarakeswar Enterprises,Subhas Debnath,Park Circus,TER-03,ASM-03,2008,Bengali,17:00–19:00,+91 95xxx xx802,Semi-urban GT,A
+DST-0217,Aalo Traders,Rina Mukherjee,Sealdah,TER-03,ASM-03,2018,English,09:00–11:00,+91 95xxx xx225,Urban GT,B
+DST-0218,Bishwakarma Trading Co.,Shyamal Shaw,Salt Lake,TER-03,ASM-03,2009,Bengali,10:00–12:00,+91 94xxx xx386,Urban GT,B
+DST-0219,Barman Associates,Moumita Paul,Esplanade,TER-03,ASM-03,2008,Bengali,18:00–20:00,+91 93xxx xx745,Rural GT,C
+DST-0220,Bag Marketing,Manas Chakraborty,Burrabazar,TER-03,ASM-03,2016,Bengali,09:00–11:00,+91 95xxx xx711,Urban GT,B
+DST-0221,Debnath Enterprises,Tanushree Halder,Entally,TER-03,ASM-03,2021,English,09:00–11:00,+91 93xxx xx689,Rural GT,C
+DST-0222,Banerjee Enterprises,Ranjit Ganguly,Beliaghata,TER-03,ASM-03,2022,Bengali,11:00–13:00,+91 99xxx xx677,Urban GT,A
+DST-0223,Park Circus Associates,Sanjay Bag,Park Circus,TER-03,ASM-03,2005,Bengali,10:00–12:00,+91 99xxx xx324,Urban GT,A
+DST-0224,Radha Krishna Enterprises,Sanjay Chakraborty,Salt Lake,TER-03,ASM-03,2005,Bengali,18:00–20:00,+91 92xxx xx892,Urban GT,B
+DST-0225,Dipankar Trading Co.,Ranjit Majumdar,Bowbazar,TER-03,ASM-03,2014,Bengali,10:00–12:00,+91 96xxx xx910,Semi-urban GT,C
+DST-0226,Ananda Stores,Sankar Ganguly,Salt Lake,TER-03,ASM-03,2011,English,10:00–12:00,+91 96xxx xx414,Semi-urban GT,C
+DST-0227,Maa Durga Trading Co.,Debabrata Bose,Entally,TER-03,ASM-03,2009,Bengali,18:00–20:00,+91 93xxx xx754,Semi-urban GT,C
+DST-0228,Loknath Agencies,Ranjit Chatterjee,Salt Lake,TER-03,ASM-03,2006,English,11:00–13:00,+91 97xxx xx111,Urban GT,A
+DST-0229,Disha Distribution,Anirban Das,Park Circus,TER-03,ASM-03,2005,Bengali,17:00–19:00,+91 92xxx xx523,Urban GT,C
+DST-0230,Paul Traders,Raju Debnath,Beliaghata,TER-03,ASM-03,2009,Bengali,09:00–11:00,+91 94xxx xx120,Urban GT,C
+DST-0231,Shree Ram Trading Co.,Amit Barman,Sealdah,TER-03,ASM-03,2006,Bengali,18:00–20:00,+91 97xxx xx821,Urban GT,A
+DST-0232,Sathi Enterprises,Sharmila Biswas,Esplanade,TER-03,ASM-03,2010,Bengali,18:00–20:00,+91 98xxx xx371,Semi-urban GT,C
+DST-0233,Sen & Sons,Uttam Bag,Entally,TER-03,ASM-03,2008,Bengali,09:00–11:00,+91 96xxx xx189,Urban GT,B
+DST-0234,Ghosh & Sons,Arup Mitra,Salt Lake,TER-03,ASM-03,2006,Bengali,09:00–11:00,+91 94xxx xx903,Urban GT,B
+DST-0235,Gautam Traders,Shyamal Banerjee,Salt Lake,TER-03,ASM-03,2015,English,11:00–13:00,+91 92xxx xx556,Urban GT,C
+DST-0236,Debnath Distribution,Tapan Dutta,Salt Lake,TER-03,ASM-03,2006,English,18:00–20:00,+91 96xxx xx874,Semi-urban GT,A
+DST-0237,Haradhan Stores,Uttam Pramanik,Burrabazar,TER-03,ASM-03,2022,English,17:00–19:00,+91 94xxx xx180,Urban GT,B
+DST-0238,Karmakar Enterprises,Debabrata Jana,Burrabazar,TER-03,ASM-03,2009,Hindi,10:00–12:00,+91 93xxx xx927,Urban GT,A
+DST-0239,Shaw Agencies,Arup Sarkar,Burrabazar,TER-03,ASM-03,2023,Bengali,09:00–11:00,+91 91xxx xx497,Semi-urban GT,B
+DST-0240,Manas Associates,Biswajit Karmakar,Bowbazar,TER-03,ASM-03,2017,Bengali,10:00–12:00,+91 92xxx xx680,Semi-urban GT,A
+DST-0241,Swapan Traders,Nimai Adhikari,Sealdah,TER-03,ASM-03,2015,English,11:00–13:00,+91 96xxx xx770,Urban GT,C
+DST-0242,Shiv Shakti Trading Co.,Bikash Sinha,Salt Lake,TER-03,ASM-03,2005,Bengali,11:00–13:00,+91 93xxx xx150,Semi-urban GT,C
+DST-0243,Biswajit Marketing,Sukanta Majumdar,Entally,TER-03,ASM-03,2012,English,09:00–11:00,+91 93xxx xx237,Urban GT,C
+DST-0244,Salt Lake Marketing,Tarun Pal,Salt Lake,TER-03,ASM-03,2010,Bengali,17:00–19:00,+91 97xxx xx877,Semi-urban GT,C
+DST-0245,Bowbazar Traders,Manas Sinha,Bowbazar,TER-03,ASM-03,2008,English,18:00–20:00,+91 99xxx xx129,Urban GT,B
+DST-0246,Park Circus Agencies,Mita Dey,Park Circus,TER-03,ASM-03,2010,Bengali,17:00–19:00,+91 98xxx xx506,Semi-urban GT,A
+DST-0247,Prantik Marketing,Prasenjit Banerjee,Sealdah,TER-03,ASM-03,2019,Bengali,11:00–13:00,+91 95xxx xx267,Rural GT,B
+DST-0248,Entally Traders,Shyamal Sen,Entally,TER-03,ASM-03,2009,English,10:00–12:00,+91 93xxx xx762,Urban GT,C
+DST-0249,Roy Marketing,Kalyan Ganguly,Uluberia,TER-04,ASM-04,2010,Bengali,17:00–19:00,+91 90xxx xx333,Urban GT,B
+DST-0250,Ananda Traders,Arup Bose,Bally,TER-04,ASM-04,2016,English,11:00–13:00,+91 98xxx xx738,Urban GT,B
+DST-0251,Tarakeswar Trading Co.,Pradip Barman,Howrah Maidan,TER-04,ASM-04,2012,Bengali,10:00–12:00,+91 93xxx xx811,Semi-urban GT,A
+DST-0252,Dutta Brothers,Gautam Roy,Howrah Maidan,TER-04,ASM-04,2017,English,09:00–11:00,+91 98xxx xx836,Semi-urban GT,B
+DST-0253,Tarakeswar Associates,Ashok Nandi,Santragachi,TER-04,ASM-04,2020,Hindi,11:00–13:00,+91 96xxx xx402,Urban GT,A
+DST-0254,Sudip Associates,Biswajit Das,Andul,TER-04,ASM-04,2006,English,18:00–20:00,+91 97xxx xx252,Rural GT,B
+DST-0255,Shibpur Traders,Arup Debnath,Shibpur,TER-04,ASM-04,2018,Hindi,11:00–13:00,+91 94xxx xx575,Urban GT,B
+DST-0256,Nimai Distribution,Niladri Chakraborty,Bally,TER-04,ASM-04,2017,English,09:00–11:00,+91 90xxx xx109,Rural GT,C
+DST-0257,Jana Brothers,Gautam Pal,Bally,TER-04,ASM-04,2015,English,10:00–12:00,+91 91xxx xx510,Urban GT,B
+DST-0258,Paul & Sons,Kalyan Basak,Andul,TER-04,ASM-04,2009,Bengali,09:00–11:00,+91 92xxx xx206,Urban GT,C
+DST-0259,Andul Associates,Shyamal Ganguly,Andul,TER-04,ASM-04,2023,Bengali,10:00–12:00,+91 97xxx xx599,Urban GT,C
+DST-0260,Saha Distribution,Biswajit Karmakar,Domjur,TER-04,ASM-04,2022,English,10:00–12:00,+91 95xxx xx631,Semi-urban GT,C
+DST-0261,Kundu Associates,Niladri Paul,Shibpur,TER-04,ASM-04,2008,English,18:00–20:00,+91 99xxx xx155,Urban GT,A
+DST-0262,Amit Associates,Ranjit Halder,Bally,TER-04,ASM-04,2005,Bengali,18:00–20:00,+91 96xxx xx512,Rural GT,B
+DST-0263,Jana Traders,Prasenjit Chakraborty,Shibpur,TER-04,ASM-04,2007,Hindi,09:00–11:00,+91 91xxx xx513,Urban GT,A
+DST-0264,Howrah Maidan Distribution,Uttam Biswas,Howrah Maidan,TER-04,ASM-04,2018,Hindi,11:00–13:00,+91 90xxx xx936,Urban GT,A
+DST-0265,Andul Marketing,Pradip Dutta,Andul,TER-04,ASM-04,2011,Bengali,11:00–13:00,+91 94xxx xx660,Semi-urban GT,B
+DST-0266,Shree Ram Associates,Sudip Basak,Shibpur,TER-04,ASM-04,2007,Bengali,10:00–12:00,+91 93xxx xx223,Rural GT,B
+DST-0267,Mukherjee & Sons,Pradip Basak,Domjur,TER-04,ASM-04,2005,Hindi,18:00–20:00,+91 91xxx xx890,Rural GT,B
+DST-0268,Barnali Enterprises,Biswajit Karmakar,Andul,TER-04,ASM-04,2005,Bengali,17:00–19:00,+91 99xxx xx594,Rural GT,C
+DST-0269,Ananda Enterprises,Jhuma Chakraborty,Bally,TER-04,ASM-04,2020,English,17:00–19:00,+91 99xxx xx809,Semi-urban GT,C
+DST-0270,Roy Enterprises,Sudip Mallick,Santragachi,TER-04,ASM-04,2013,English,18:00–20:00,+91 95xxx xx828,Semi-urban GT,C
+DST-0271,Arup Enterprises,Sudip Chakraborty,Liluah,TER-04,ASM-04,2007,English,18:00–20:00,+91 97xxx xx696,Semi-urban GT,C
+DST-0272,Agami Distribution,Tarun Das,Domjur,TER-04,ASM-04,2020,Bengali,17:00–19:00,+91 92xxx xx154,Semi-urban GT,B
+DST-0273,Jagannath Distribution,Uttam Bose,Liluah,TER-04,ASM-04,2015,English,09:00–11:00,+91 99xxx xx988,Semi-urban GT,C
+DST-0274,Liluah Stores,Manas Mitra,Liluah,TER-04,ASM-04,2005,Hindi,17:00–19:00,+91 96xxx xx907,Rural GT,C
+DST-0275,Subhas Distributors,Ashok Jana,Uluberia,TER-04,ASM-04,2011,English,11:00–13:00,+91 99xxx xx659,Semi-urban GT,B
+DST-0276,Liluah Agencies,Sanjay Saha,Liluah,TER-04,ASM-04,2009,Hindi,18:00–20:00,+91 91xxx xx486,Urban GT,A
+DST-0277,Sarkar Brothers,Sharmila Sen,Santragachi,TER-04,ASM-04,2023,English,11:00–13:00,+91 97xxx xx908,Semi-urban GT,B
+DST-0278,Banerjee & Sons,Raju Mallick,Uluberia,TER-04,ASM-04,2009,Bengali,18:00–20:00,+91 96xxx xx194,Urban GT,C
+DST-0279,Sristi Marketing,Debabrata Karmakar,Liluah,TER-04,ASM-04,2019,Hindi,09:00–11:00,+91 91xxx xx784,Urban GT,C
+DST-0280,Bikash Agencies,Niladri Chakraborty,Liluah,TER-04,ASM-04,2016,English,09:00–11:00,+91 96xxx xx362,Semi-urban GT,B
+DST-0281,Mallick Associates,Sukanta Mukherjee,Santragachi,TER-04,ASM-04,2014,Bengali,09:00–11:00,+91 92xxx xx891,Semi-urban GT,B
+DST-0282,Sagar Agencies,Tarun Dutta,Howrah Maidan,TER-04,ASM-04,2010,Bengali,17:00–19:00,+91 91xxx xx864,Semi-urban GT,A
+DST-0283,Bhattacharya Distributors,Mita Banerjee,Howrah Maidan,TER-04,ASM-04,2012,Bengali,18:00–20:00,+91 93xxx xx364,Urban GT,B
+DST-0284,Sathi Marketing,Rina Adhikari,Andul,TER-04,ASM-04,2004,English,18:00–20:00,+91 91xxx xx874,Semi-urban GT,B
+DST-0285,Howrah Maidan Traders,Manas Dutta,Howrah Maidan,TER-04,ASM-04,2013,English,11:00–13:00,+91 99xxx xx188,Urban GT,A
+DST-0286,Ghosh Associates,Partha Roy,Andul,TER-04,ASM-04,2016,English,18:00–20:00,+91 94xxx xx749,Urban GT,A
+DST-0287,Biswajit Stores,Tapan Mondal,Uluberia,TER-04,ASM-04,2005,Bengali,18:00–20:00,+91 96xxx xx650,Semi-urban GT,B
+DST-0288,Ganguly Brothers,Gopal Mallick,Shibpur,TER-04,ASM-04,2008,Bengali,10:00–12:00,+91 99xxx xx954,Urban GT,B
+DST-0289,Sankar Stores,Uttam Saha,Shibpur,TER-04,ASM-04,2013,English,11:00–13:00,+91 91xxx xx302,Semi-urban GT,C
+DST-0290,Dipankar Enterprises,Partha Dutta,Andul,TER-04,ASM-04,2013,Bengali,10:00–12:00,+91 95xxx xx597,Urban GT,B
+DST-0291,Purbasha Marketing,Tarun Chatterjee,Santragachi,TER-04,ASM-04,2004,Bengali,10:00–12:00,+91 96xxx xx383,Rural GT,A
+DST-0292,Sristi Associates,Dipankar Majumdar,Bally,TER-04,ASM-04,2019,Bengali,10:00–12:00,+91 99xxx xx183,Rural GT,C
+DST-0293,Ashok Distribution,Arup Saha,Bally,TER-04,ASM-04,2006,English,18:00–20:00,+91 90xxx xx932,Semi-urban GT,C
+DST-0294,Domjur Agencies,Uttam Nandi,Domjur,TER-04,ASM-04,2021,English,18:00–20:00,+91 97xxx xx769,Semi-urban GT,C
+DST-0295,Mitra Enterprises,Manas Pal,Uluberia,TER-04,ASM-04,2016,Bengali,09:00–11:00,+91 93xxx xx968,Rural GT,B
+DST-0296,Bally Enterprises,Sanjay Sarkar,Bally,TER-04,ASM-04,2019,Hindi,09:00–11:00,+91 93xxx xx879,Urban GT,A
+DST-0297,Radha Krishna Stores,Dipankar Paul,Shibpur,TER-04,ASM-04,2019,English,09:00–11:00,+91 90xxx xx764,Urban GT,C
+DST-0298,Santragachi Distribution,Swapan Banerjee,Santragachi,TER-04,ASM-04,2016,English,11:00–13:00,+91 99xxx xx769,Rural GT,C
+DST-0299,Paul Agencies,Dipankar Ganguly,Shibpur,TER-04,ASM-04,2019,English,18:00–20:00,+91 90xxx xx613,Rural GT,C
+DST-0300,Loknath Stores,Ashok Sarkar,Andul,TER-04,ASM-04,2009,Bengali,18:00–20:00,+91 91xxx xx776,Urban GT,A
+DST-0301,Uluberia Associates,Kalyan Biswas,Uluberia,TER-04,ASM-04,2022,Bengali,17:00–19:00,+91 90xxx xx349,Urban GT,B
+DST-0302,Kamakhya Distributors,Tapan Sen,Bally,TER-04,ASM-04,2009,Bengali,10:00–12:00,+91 98xxx xx515,Semi-urban GT,C
+DST-0303,Anirban Distribution,Ashok Jana,Howrah Maidan,TER-04,ASM-04,2023,Hindi,17:00–19:00,+91 92xxx xx324,Rural GT,B
+DST-0304,Barnali Distribution,Niladri Bhattacharya,Bally,TER-04,ASM-04,2018,Bengali,09:00–11:00,+91 93xxx xx487,Urban GT,C
+DST-0305,Kamakhya Stores,Haradhan Sarkar,Shibpur,TER-04,ASM-04,2023,Bengali,17:00–19:00,+91 99xxx xx714,Urban GT,C
+DST-0306,Ganesh Stores,Gopal Shaw,Shibpur,TER-04,ASM-04,2020,Bengali,09:00–11:00,+91 98xxx xx539,Urban GT,B
+DST-0307,Andul Trading Co.,Raju Dutta,Andul,TER-04,ASM-04,2017,Bengali,17:00–19:00,+91 93xxx xx979,Urban GT,A
+DST-0308,Das & Sons,Raju Das,Domjur,TER-04,ASM-04,2022,Bengali,18:00–20:00,+91 90xxx xx484,Semi-urban GT,C
+DST-0309,Dutta Enterprises,Swapan Nandi,Uluberia,TER-04,ASM-04,2012,English,17:00–19:00,+91 99xxx xx474,Semi-urban GT,B
+DST-0310,Domjur Trading Co.,Uttam Pramanik,Domjur,TER-04,ASM-04,2009,Bengali,18:00–20:00,+91 97xxx xx359,Rural GT,C
+DST-0311,Uluberia Trading Co.,Nimai Mondal,Uluberia,TER-04,ASM-04,2011,Bengali,10:00–12:00,+91 91xxx xx319,Semi-urban GT,B
+DST-0312,Uluberia Distributors,Arup Das,Uluberia,TER-04,ASM-04,2006,English,17:00–19:00,+91 99xxx xx545,Urban GT,A
+DST-0313,Bhorer Aalo Trading Co.,Shyamal Karmakar,Santragachi,TER-04,ASM-04,2013,English,18:00–20:00,+91 90xxx xx892,Rural GT,C
+DST-0314,Mukherjee Stores,Subhas Mallick,Andul,TER-04,ASM-04,2020,English,18:00–20:00,+91 92xxx xx790,Urban GT,C
+DST-0315,Debabrata Trading Co.,Shyamal Sinha,Liluah,TER-04,ASM-04,2022,Bengali,09:00–11:00,+91 91xxx xx192,Semi-urban GT,C
+DST-0316,Halder Agencies,Ashok Maity,Uluberia,TER-04,ASM-04,2016,Bengali,11:00–13:00,+91 92xxx xx516,Semi-urban GT,B
+DST-0317,Bhattacharya Traders,Gautam Adhikari,Shibpur,TER-04,ASM-04,2022,Bengali,17:00–19:00,+91 96xxx xx676,Urban GT,C
+DST-0318,Liluah Associates,Gopal Ghosh,Liluah,TER-04,ASM-04,2019,Bengali,09:00–11:00,+91 96xxx xx748,Semi-urban GT,C
+DST-0319,Ganguly Stores,Sudip Nandi,Liluah,TER-04,ASM-04,2011,Bengali,17:00–19:00,+91 95xxx xx177,Semi-urban GT,A
+DST-0320,Ganguly Agencies,Gautam Banerjee,Bally,TER-04,ASM-04,2010,Bengali,10:00–12:00,+91 93xxx xx853,Urban GT,B
+DST-0321,Santragachi Marketing,Pradip Mondal,Santragachi,TER-04,ASM-04,2006,English,17:00–19:00,+91 99xxx xx106,Semi-urban GT,B
+DST-0322,Dipankar Marketing,Gopal Halder,Howrah Maidan,TER-04,ASM-04,2019,Bengali,18:00–20:00,+91 94xxx xx507,Urban GT,C
+DST-0323,Banerjee Associates,Sudip Karmakar,Bally,TER-04,ASM-04,2018,Bengali,09:00–11:00,+91 90xxx xx790,Urban GT,C
+DST-0324,Nandi Brothers,Gautam Kundu,Shibpur,TER-04,ASM-04,2012,Bengali,18:00–20:00,+91 95xxx xx474,Urban GT,B
+DST-0325,Dey & Sons,Shyamal Halder,Domjur,TER-04,ASM-04,2018,Bengali,10:00–12:00,+91 99xxx xx802,Urban GT,B
+DST-0326,Shibpur Agencies,Nimai Paul,Shibpur,TER-04,ASM-04,2010,Bengali,10:00–12:00,+91 97xxx xx925,Urban GT,B
+DST-0327,Karmakar Stores,Raju Bag,Domjur,TER-04,ASM-04,2013,Bengali,18:00–20:00,+91 90xxx xx507,Urban GT,C
+DST-0328,Shiv Shakti Associates,Pradip Jana,Bally,TER-04,ASM-04,2014,Bengali,11:00–13:00,+91 98xxx xx670,Rural GT,A
+DST-0329,Basak Traders,Niladri Mukherjee,Santragachi,TER-04,ASM-04,2022,Bengali,18:00–20:00,+91 92xxx xx899,Urban GT,A
+DST-0330,Shyamal Distribution,Tapan Chatterjee,Uluberia,TER-04,ASM-04,2014,Bengali,18:00–20:00,+91 99xxx xx514,Rural GT,B
+DST-0331,Tarakeswar Distributors,Debabrata Kundu,Tarakeswar,TER-05,ASM-05,2016,English,17:00–19:00,+91 93xxx xx855,Rural GT,C
+DST-0332,Dutta Stores,Ashok Pramanik,Arambagh,TER-05,ASM-05,2016,English,11:00–13:00,+91 95xxx xx262,Semi-urban GT,B
+DST-0333,Chinsurah Stores,Gautam Pramanik,Chinsurah,TER-05,ASM-05,2013,Bengali,09:00–11:00,+91 93xxx xx215,Urban GT,A
+DST-0334,Chatterjee Brothers,Swapan Mondal,Bandel,TER-05,ASM-05,2016,English,09:00–11:00,+91 90xxx xx695,Semi-urban GT,C
+DST-0335,Singur Agencies,Amit Bhattacharya,Singur,TER-05,ASM-05,2005,Bengali,10:00–12:00,+91 98xxx xx910,Urban GT,C
+DST-0336,Singur Marketing,Prasenjit Mukherjee,Singur,TER-05,ASM-05,2004,English,11:00–13:00,+91 92xxx xx356,Rural GT,A
+DST-0337,Singur Stores,Sudip Bag,Singur,TER-05,ASM-05,2010,Bengali,18:00–20:00,+91 95xxx xx431,Semi-urban GT,C
+DST-0338,Bikash Stores,Manas Sarkar,Tarakeswar,TER-05,ASM-05,2018,Bengali,11:00–13:00,+91 98xxx xx475,Urban GT,B
+DST-0339,Bandel Distributors,Dipankar Kundu,Bandel,TER-05,ASM-05,2014,English,18:00–20:00,+91 96xxx xx294,Semi-urban GT,A
+DST-0340,Singur Enterprises,Ranjit Basak,Singur,TER-05,ASM-05,2014,Bengali,18:00–20:00,+91 91xxx xx144,Rural GT,B
+DST-0341,Jagannath Agencies,Tanushree Dutta,Chandannagar,TER-05,ASM-05,2005,Bengali,17:00–19:00,+91 97xxx xx638,Semi-urban GT,B
+DST-0342,Bhagabati Traders,Tanushree Bag,Tarakeswar,TER-05,ASM-05,2006,Bengali,09:00–11:00,+91 95xxx xx671,Semi-urban GT,C
+DST-0343,Bandel Distribution,Anirban Saha,Bandel,TER-05,ASM-05,2013,Bengali,10:00–12:00,+91 98xxx xx199,Urban GT,C
+DST-0344,Mukherjee Agencies,Partha Banerjee,Arambagh,TER-05,ASM-05,2021,English,17:00–19:00,+91 91xxx xx884,Semi-urban GT,B
+DST-0345,Tirtha Trading Co.,Sanjay Banerjee,Uttarpara,TER-05,ASM-05,2021,Bengali,11:00–13:00,+91 92xxx xx646,Rural GT,C
+DST-0346,Gopal Marketing,Ranjit Dey,Singur,TER-05,ASM-05,2017,English,17:00–19:00,+91 95xxx xx723,Urban GT,C
+DST-0347,Jana Associates,Biswajit Bose,Arambagh,TER-05,ASM-05,2013,Bengali,18:00–20:00,+91 92xxx xx409,Urban GT,C
+DST-0348,Chakraborty & Sons,Moumita Barman,Arambagh,TER-05,ASM-05,2020,Bengali,18:00–20:00,+91 92xxx xx196,Urban GT,B
+DST-0349,Shiv Shakti Marketing,Partha Debnath,Uttarpara,TER-05,ASM-05,2012,English,09:00–11:00,+91 99xxx xx509,Semi-urban GT,B
+DST-0350,Arambagh Marketing,Sanjay Bag,Arambagh,TER-05,ASM-05,2022,English,09:00–11:00,+91 99xxx xx757,Urban GT,A
+DST-0351,Jagannath Marketing,Haradhan Shaw,Bandel,TER-05,ASM-05,2017,Hindi,09:00–11:00,+91 93xxx xx865,Semi-urban GT,C
+DST-0352,Mohona Trading Co.,Kakali Bose,Chinsurah,TER-05,ASM-05,2014,Bengali,10:00–12:00,+91 95xxx xx614,Semi-urban GT,A
+DST-0353,Sri Sai Associates,Swapan Mallick,Chandannagar,TER-05,ASM-05,2006,Bengali,11:00–13:00,+91 96xxx xx251,Urban GT,C
+DST-0354,Sen Stores,Amit Sinha,Serampore,TER-05,ASM-05,2020,Bengali,10:00–12:00,+91 92xxx xx592,Semi-urban GT,C
+DST-0355,Bhorer Aalo Stores,Amit Halder,Singur,TER-05,ASM-05,2017,Bengali,18:00–20:00,+91 91xxx xx215,Semi-urban GT,B
+DST-0356,Ghosh Distribution,Dipankar Jana,Bandel,TER-05,ASM-05,2023,Bengali,09:00–11:00,+91 93xxx xx304,Semi-urban GT,A
+DST-0357,Chandannagar Traders,Mita Kundu,Chandannagar,TER-05,ASM-05,2023,Hindi,11:00–13:00,+91 90xxx xx451,Semi-urban GT,A
+DST-0358,Nandi Stores,Anirban Sarkar,Serampore,TER-05,ASM-05,2004,Bengali,18:00–20:00,+91 90xxx xx361,Urban GT,A
+DST-0359,Halder & Sons,Mita Saha,Tarakeswar,TER-05,ASM-05,2016,English,11:00–13:00,+91 91xxx xx119,Urban GT,A
+DST-0360,Adhikari Traders,Manas Maity,Bandel,TER-05,ASM-05,2021,Hindi,09:00–11:00,+91 90xxx xx353,Rural GT,A
+DST-0361,Ganguly Marketing,Partha Mallick,Tarakeswar,TER-05,ASM-05,2012,English,11:00–13:00,+91 96xxx xx934,Rural GT,A
+DST-0362,Niladri Enterprises,Sutapa Karmakar,Tarakeswar,TER-05,ASM-05,2023,English,10:00–12:00,+91 96xxx xx346,Semi-urban GT,C
+DST-0363,Sankar Marketing,Tapan Biswas,Bandel,TER-05,ASM-05,2008,Bengali,10:00–12:00,+91 92xxx xx416,Semi-urban GT,A
+DST-0364,Sarkar Enterprises,Uttam Adhikari,Chandannagar,TER-05,ASM-05,2007,Bengali,10:00–12:00,+91 90xxx xx883,Urban GT,C
+DST-0365,Sukanta Associates,Haradhan Halder,Bandel,TER-05,ASM-05,2008,English,09:00–11:00,+91 92xxx xx289,Urban GT,B
+DST-0366,Anjali Agencies,Partha Ghosh,Tarakeswar,TER-05,ASM-05,2015,Bengali,17:00–19:00,+91 92xxx xx614,Rural GT,B
+DST-0367,Bose & Sons,Biswajit Halder,Singur,TER-05,ASM-05,2017,Bengali,10:00–12:00,+91 93xxx xx167,Urban GT,A
+DST-0368,Kalyan Marketing,Gopal Kundu,Singur,TER-05,ASM-05,2017,Bengali,09:00–11:00,+91 99xxx xx852,Rural GT,B
+DST-0369,Uttarpara Distributors,Partha Karmakar,Uttarpara,TER-05,ASM-05,2021,Bengali,09:00–11:00,+91 98xxx xx496,Semi-urban GT,C
+DST-0370,Majumdar Distribution,Tarun Mitra,Chinsurah,TER-05,ASM-05,2023,English,18:00–20:00,+91 92xxx xx574,Rural GT,C
+DST-0371,Kamakhya Traders,Swapan Adhikari,Singur,TER-05,ASM-05,2008,Bengali,11:00–13:00,+91 97xxx xx125,Urban GT,C
+DST-0372,Amit Distribution,Arup Chatterjee,Arambagh,TER-05,ASM-05,2007,Bengali,17:00–19:00,+91 95xxx xx187,Semi-urban GT,B
+DST-0373,Bandel Stores,Sanjay Paul,Bandel,TER-05,ASM-05,2021,Bengali,10:00–12:00,+91 95xxx xx679,Rural GT,C
+DST-0374,Chandannagar Distributors,Sukanta Jana,Chandannagar,TER-05,ASM-05,2013,English,09:00–11:00,+91 92xxx xx307,Urban GT,C
+DST-0375,Bhabani Associates,Biswajit Bag,Tarakeswar,TER-05,ASM-05,2011,Bengali,17:00–19:00,+91 97xxx xx519,Urban GT,C
+DST-0376,Chinsurah Agencies,Sima Sen,Chinsurah,TER-05,ASM-05,2015,Bengali,09:00–11:00,+91 99xxx xx958,Semi-urban GT,A
+DST-0377,Subhas Traders,Sanjay Chatterjee,Uttarpara,TER-05,ASM-05,2013,Bengali,18:00–20:00,+91 99xxx xx906,Semi-urban GT,B
+DST-0378,Singur Trading Co.,Amit Mitra,Singur,TER-05,ASM-05,2019,Bengali,11:00–13:00,+91 95xxx xx639,Urban GT,C
+DST-0379,Anjali Distributors,Kakali Pal,Arambagh,TER-05,ASM-05,2019,English,18:00–20:00,+91 94xxx xx537,Semi-urban GT,B
+DST-0380,Bag Associates,Gopal Debnath,Uttarpara,TER-05,ASM-05,2013,Hindi,09:00–11:00,+91 91xxx xx124,Urban GT,B
+DST-0381,Serampore Agencies,Tarun Basak,Serampore,TER-05,ASM-05,2005,Bengali,18:00–20:00,+91 93xxx xx111,Semi-urban GT,B
+DST-0382,Mallick Brothers,Debabrata Das,Tarakeswar,TER-05,ASM-05,2007,English,11:00–13:00,+91 96xxx xx841,Semi-urban GT,C
+DST-0383,Bhattacharya Brothers,Kalyan Pramanik,Chinsurah,TER-05,ASM-05,2005,English,17:00–19:00,+91 92xxx xx742,Urban GT,B
+DST-0384,Basak Distributors,Sukanta Chakraborty,Uttarpara,TER-05,ASM-05,2021,Bengali,10:00–12:00,+91 99xxx xx801,Urban GT,B
+DST-0385,Ananda Trading Co.,Pradip Majumdar,Uttarpara,TER-05,ASM-05,2014,English,11:00–13:00,+91 96xxx xx188,Urban GT,B
+DST-0386,Banerjee Traders,Subhas Mukherjee,Arambagh,TER-05,ASM-05,2006,Bengali,09:00–11:00,+91 97xxx xx612,Urban GT,B
+DST-0387,Anirban Stores,Ranjit Sarkar,Uttarpara,TER-05,ASM-05,2007,English,18:00–20:00,+91 92xxx xx310,Semi-urban GT,C
+DST-0388,Karmakar Traders,Mita Pal,Singur,TER-05,ASM-05,2014,Bengali,09:00–11:00,+91 91xxx xx633,Semi-urban GT,B
+DST-0389,Mukherjee Brothers,Uttam Chakraborty,Tarakeswar,TER-05,ASM-05,2018,English,11:00–13:00,+91 92xxx xx261,Urban GT,C
+DST-0390,Uttam Stores,Kakali Ganguly,Chinsurah,TER-05,ASM-05,2021,Bengali,10:00–12:00,+91 94xxx xx687,Urban GT,A
+DST-0391,Sen Enterprises,Mita Dutta,Serampore,TER-05,ASM-05,2016,Bengali,17:00–19:00,+91 96xxx xx283,Semi-urban GT,B
+DST-0392,Milan Marketing,Sudip Adhikari,Singur,TER-05,ASM-05,2006,Hindi,17:00–19:00,+91 99xxx xx234,Urban GT,B
+DST-0393,Joy Guru Associates,Partha Sarkar,Singur,TER-05,ASM-05,2023,Bengali,11:00–13:00,+91 96xxx xx287,Semi-urban GT,B
+DST-0394,Uttarpara Marketing,Biswajit Saha,Uttarpara,TER-05,ASM-05,2019,Bengali,17:00–19:00,+91 97xxx xx966,Urban GT,A
+DST-0395,Purbasha Stores,Rina Chakraborty,Uttarpara,TER-05,ASM-05,2021,English,11:00–13:00,+91 98xxx xx572,Urban GT,B
+DST-0396,Kundu & Sons,Kalyan Paul,Bandel,TER-05,ASM-05,2006,Bengali,18:00–20:00,+91 96xxx xx903,Rural GT,B
+DST-0397,Kundu Enterprises,Amit Bag,Uttarpara,TER-05,ASM-05,2007,Bengali,17:00–19:00,+91 95xxx xx668,Urban GT,C
+DST-0398,Sri Sai Traders,Niladri Paul,Singur,TER-05,ASM-05,2014,Bengali,09:00–11:00,+91 91xxx xx322,Rural GT,B
+DST-0399,Chinsurah Enterprises,Sukanta Paul,Chinsurah,TER-05,ASM-05,2023,Bengali,10:00–12:00,+91 93xxx xx797,Rural GT,C
+DST-0400,Swarnali Distribution,Sankar Shaw,Tarakeswar,TER-05,ASM-05,2015,Hindi,18:00–20:00,+91 90xxx xx726,Rural GT,C
+DST-0401,Gouranga Distributors,Kakali Ganguly,Bandel,TER-05,ASM-05,2007,English,09:00–11:00,+91 93xxx xx542,Semi-urban GT,B
+DST-0402,Shaw Stores,Sanjay Pramanik,Bandel,TER-05,ASM-05,2008,Bengali,17:00–19:00,+91 95xxx xx960,Urban GT,C
+DST-0403,Loknath Distributors,Gopal Bag,Tarakeswar,TER-05,ASM-05,2017,Hindi,10:00–12:00,+91 91xxx xx240,Semi-urban GT,B
+DST-0404,Gopal Trading Co.,Prasenjit Mallick,Bandel,TER-05,ASM-05,2017,Bengali,17:00–19:00,+91 96xxx xx463,Urban GT,B
+DST-0405,Dishari Associates,Partha Mallick,Bandel,TER-05,ASM-05,2012,Bengali,18:00–20:00,+91 99xxx xx475,Urban GT,C
+DST-0406,Tirtha Marketing,Rupa Pal,Chinsurah,TER-05,ASM-05,2008,English,18:00–20:00,+91 94xxx xx576,Semi-urban GT,B
+DST-0407,Sristi Stores,Kalyan Maity,Serampore,TER-05,ASM-05,2020,English,18:00–20:00,+91 95xxx xx531,Urban GT,B
+DST-0408,Bose Brothers,Bikash Majumdar,Tarakeswar,TER-05,ASM-05,2022,Bengali,17:00–19:00,+91 99xxx xx273,Semi-urban GT,C
+DST-0409,Loknath Distribution,Bikash Halder,Tarakeswar,TER-05,ASM-05,2012,English,09:00–11:00,+91 91xxx xx718,Urban GT,C
+DST-0410,Disha Enterprises,Sudip Kundu,Chandannagar,TER-05,ASM-05,2019,Bengali,18:00–20:00,+91 90xxx xx451,Rural GT,C
+DST-0411,Kakdwip Associates,Uttam Ganguly,Kakdwip,TER-06,ASM-06,2014,English,17:00–19:00,+91 90xxx xx747,Rural GT,C
+DST-0412,Maa Sarada Distribution,Sanjay Barman,Kakdwip,TER-06,ASM-06,2005,Hindi,10:00–12:00,+91 94xxx xx812,Urban GT,C
+DST-0413,Disha Associates,Rupa Mukherjee,Baruipur,TER-06,ASM-06,2008,Bengali,09:00–11:00,+91 99xxx xx344,Urban GT,C
+DST-0414,Baruipur Distribution,Haradhan Jana,Baruipur,TER-06,ASM-06,2004,Bengali,09:00–11:00,+91 95xxx xx906,Semi-urban GT,B
+DST-0415,Kamakhya Associates,Nimai Adhikari,Canning,TER-06,ASM-06,2008,English,10:00–12:00,+91 91xxx xx137,Semi-urban GT,B
+DST-0416,Ujjwal Distributors,Arup Roy,Canning,TER-06,ASM-06,2004,Bengali,09:00–11:00,+91 94xxx xx940,Semi-urban GT,C
+DST-0417,Dishari Traders,Pradip Mondal,Canning,TER-06,ASM-06,2019,Bengali,18:00–20:00,+91 93xxx xx164,Rural GT,C
+DST-0418,Radha Krishna Distributors,Ranjit Saha,Canning,TER-06,ASM-06,2007,Bengali,17:00–19:00,+91 92xxx xx813,Urban GT,C
+DST-0419,Bose Enterprises,Jhuma Paul,Diamond Harbour,TER-06,ASM-06,2009,Bengali,17:00–19:00,+91 91xxx xx106,Urban GT,C
+DST-0420,Pramanik Enterprises,Arup Halder,Baruipur,TER-06,ASM-06,2020,Bengali,10:00–12:00,+91 92xxx xx725,Semi-urban GT,B
+DST-0421,Bag & Sons,Amit Majumdar,Budge Budge,TER-06,ASM-06,2015,Bengali,18:00–20:00,+91 93xxx xx296,Urban GT,C
+DST-0422,Bikash Marketing,Uttam Mallick,Budge Budge,TER-06,ASM-06,2011,Bengali,10:00–12:00,+91 94xxx xx154,Urban GT,B
+DST-0423,Jagannath Distributors,Sukanta Biswas,Joynagar,TER-06,ASM-06,2017,Bengali,18:00–20:00,+91 97xxx xx144,Urban GT,A
+DST-0424,Sanjay Enterprises,Kalyan Mallick,Baruipur,TER-06,ASM-06,2007,Bengali,10:00–12:00,+91 97xxx xx706,Semi-urban GT,B
+DST-0425,Basak & Sons,Shyamal Debnath,Canning,TER-06,ASM-06,2006,Bengali,17:00–19:00,+91 90xxx xx546,Urban GT,C
+DST-0426,Paul Marketing,Anirban Mukherjee,Budge Budge,TER-06,ASM-06,2015,Hindi,10:00–12:00,+91 95xxx xx230,Urban GT,A
+DST-0427,Ganesh Traders,Prasenjit Basak,Budge Budge,TER-06,ASM-06,2009,English,10:00–12:00,+91 94xxx xx718,Urban GT,B
+DST-0428,Anjali Enterprises,Uttam Debnath,Joynagar,TER-06,ASM-06,2006,Bengali,18:00–20:00,+91 97xxx xx982,Rural GT,A
+DST-0429,Bishwakarma Agencies,Tarun Debnath,Budge Budge,TER-06,ASM-06,2022,Hindi,18:00–20:00,+91 90xxx xx527,Rural GT,C
+DST-0430,Kamakhya Trading Co.,Raju Dutta,Baruipur,TER-06,ASM-06,2018,Bengali,09:00–11:00,+91 98xxx xx871,Urban GT,A
+DST-0431,Biswas Enterprises,Partha Pal,Kakdwip,TER-06,ASM-06,2004,Bengali,11:00–13:00,+91 92xxx xx820,Urban GT,A
+DST-0432,Budge Budge Distributors,Prasenjit Roy,Budge Budge,TER-06,ASM-06,2016,Bengali,11:00–13:00,+91 97xxx xx820,Semi-urban GT,C
+DST-0433,Pragati Marketing,Sukanta Shaw,Joynagar,TER-06,ASM-06,2012,English,18:00–20:00,+91 98xxx xx689,Semi-urban GT,A
+DST-0434,Anjali Marketing,Subhas Mallick,Joynagar,TER-06,ASM-06,2015,English,09:00–11:00,+91 96xxx xx474,Urban GT,C
+DST-0435,Banerjee Stores,Uttam Biswas,Baruipur,TER-06,ASM-06,2008,Hindi,10:00–12:00,+91 98xxx xx216,Semi-urban GT,B
+DST-0436,Swapan Agencies,Debabrata Debnath,Kakdwip,TER-06,ASM-06,2014,Bengali,11:00–13:00,+91 98xxx xx796,Urban GT,B
+DST-0437,Prasenjit Marketing,Sudip Saha,Baruipur,TER-06,ASM-06,2010,English,17:00–19:00,+91 91xxx xx182,Urban GT,C
+DST-0438,Saha Brothers,Moumita Mondal,Diamond Harbour,TER-06,ASM-06,2008,Bengali,10:00–12:00,+91 98xxx xx742,Urban GT,C
+DST-0439,Uttam Enterprises,Tarun Jana,Canning,TER-06,ASM-06,2004,Bengali,09:00–11:00,+91 90xxx xx992,Rural GT,C
+DST-0440,Arup Marketing,Ranjit Chakraborty,Joynagar,TER-06,ASM-06,2019,Bengali,18:00–20:00,+91 98xxx xx555,Urban GT,B
+DST-0441,Joy Guru Enterprises,Partha Pramanik,Budge Budge,TER-06,ASM-06,2015,Hindi,09:00–11:00,+91 92xxx xx461,Urban GT,A
+DST-0442,Diamond Harbour Enterprises,Pradip Bose,Diamond Harbour,TER-06,ASM-06,2014,Bengali,17:00–19:00,+91 94xxx xx478,Urban GT,B
+DST-0443,Budge Budge Marketing,Tapan Dey,Budge Budge,TER-06,ASM-06,2018,Bengali,10:00–12:00,+91 98xxx xx408,Urban GT,B
+DST-0444,Bag Enterprises,Sankar Chakraborty,Baruipur,TER-06,ASM-06,2008,Bengali,18:00–20:00,+91 98xxx xx439,Semi-urban GT,C
+DST-0445,Sonarpur Associates,Pradip Pramanik,Sonarpur,TER-06,ASM-06,2005,Bengali,18:00–20:00,+91 91xxx xx415,Urban GT,C
+DST-0446,Prantik Distribution,Amit Adhikari,Budge Budge,TER-06,ASM-06,2018,English,09:00–11:00,+91 98xxx xx503,Urban GT,C
+DST-0447,Barnali Distributors,Dipankar Sinha,Sonarpur,TER-06,ASM-06,2008,English,17:00–19:00,+91 95xxx xx495,Urban GT,C
+DST-0448,Amit Agencies,Prasenjit Basak,Sonarpur,TER-06,ASM-06,2018,Bengali,17:00–19:00,+91 96xxx xx242,Rural GT,B
+DST-0449,Radha Krishna Distribution,Nimai Karmakar,Budge Budge,TER-06,ASM-06,2014,Bengali,18:00–20:00,+91 96xxx xx190,Urban GT,C
+DST-0450,Roy Agencies,Shyamal Mitra,Kakdwip,TER-06,ASM-06,2021,Bengali,11:00–13:00,+91 99xxx xx411,Urban GT,A
+DST-0451,Ghosh Distributors,Sukanta Pramanik,Kakdwip,TER-06,ASM-06,2007,English,11:00–13:00,+91 96xxx xx283,Urban GT,C
+DST-0452,Amit Marketing,Swapan Shaw,Kakdwip,TER-06,ASM-06,2012,English,17:00–19:00,+91 91xxx xx482,Semi-urban GT,B
+DST-0453,Shiv Shakti Enterprises,Tapan Chakraborty,Budge Budge,TER-06,ASM-06,2018,English,10:00–12:00,+91 95xxx xx267,Urban GT,C
+DST-0454,Ganguly Distributors,Manas Saha,Sonarpur,TER-06,ASM-06,2020,Bengali,10:00–12:00,+91 91xxx xx713,Semi-urban GT,B
+DST-0455,Chakraborty Brothers,Niladri Majumdar,Budge Budge,TER-06,ASM-06,2012,English,11:00–13:00,+91 91xxx xx647,Semi-urban GT,B
+DST-0456,Chatterjee Traders,Manas Debnath,Joynagar,TER-06,ASM-06,2010,English,18:00–20:00,+91 99xxx xx806,Rural GT,A
+DST-0457,Sudip Stores,Raju Mondal,Budge Budge,TER-06,ASM-06,2017,Bengali,09:00–11:00,+91 91xxx xx938,Urban GT,A
+DST-0458,Majumdar Marketing,Prasenjit Karmakar,Baruipur,TER-06,ASM-06,2014,Bengali,11:00–13:00,+91 90xxx xx862,Rural GT,C
+DST-0459,Ganesh Agencies,Ashok Roy,Diamond Harbour,TER-06,ASM-06,2006,Bengali,09:00–11:00,+91 91xxx xx119,Semi-urban GT,B
+DST-0460,Mukherjee Traders,Kakali Sen,Joynagar,TER-06,ASM-06,2019,Bengali,11:00–13:00,+91 90xxx xx167,Urban GT,B
+DST-0461,Baruipur Traders,Ashok Mukherjee,Baruipur,TER-06,ASM-06,2009,English,09:00–11:00,+91 91xxx xx249,Rural GT,C
+DST-0462,Kamakhya Agencies,Amit Dutta,Sonarpur,TER-06,ASM-06,2022,English,18:00–20:00,+91 93xxx xx832,Urban GT,A
+DST-0463,Pradip Agencies,Nimai Pramanik,Sonarpur,TER-06,ASM-06,2015,English,10:00–12:00,+91 97xxx xx789,Rural GT,A
+DST-0464,Diamond Harbour Trading Co.,Manas Debnath,Diamond Harbour,TER-06,ASM-06,2017,Bengali,11:00–13:00,+91 91xxx xx577,Urban GT,A
+DST-0465,Dey Distribution,Subhas Pal,Diamond Harbour,TER-06,ASM-06,2014,Bengali,17:00–19:00,+91 94xxx xx567,Semi-urban GT,B
+DST-0466,Bandhan Agencies,Sukanta Shaw,Sonarpur,TER-06,ASM-06,2010,English,17:00–19:00,+91 95xxx xx283,Urban GT,B
+DST-0467,Dutta Trading Co.,Niladri Pal,Kakdwip,TER-06,ASM-06,2007,Bengali,17:00–19:00,+91 99xxx xx204,Semi-urban GT,C
+DST-0468,Radha Krishna Marketing,Nimai Sinha,Diamond Harbour,TER-06,ASM-06,2007,Bengali,17:00–19:00,+91 97xxx xx385,Semi-urban GT,A
+DST-0469,Aalo Trading Co.,Niladri Sinha,Joynagar,TER-06,ASM-06,2019,Bengali,10:00–12:00,+91 97xxx xx210,Urban GT,B
+DST-0470,Roy Distributors,Mita Saha,Canning,TER-06,ASM-06,2019,English,10:00–12:00,+91 96xxx xx719,Semi-urban GT,A
+DST-0471,Diamond Harbour Stores,Raju Maity,Diamond Harbour,TER-06,ASM-06,2010,Bengali,17:00–19:00,+91 97xxx xx616,Urban GT,B
+DST-0472,Sonarpur Stores,Debabrata Bose,Sonarpur,TER-06,ASM-06,2017,English,09:00–11:00,+91 96xxx xx560,Urban GT,B
+DST-0473,Bose Distributors,Niladri Majumdar,Canning,TER-06,ASM-06,2009,Bengali,10:00–12:00,+91 94xxx xx832,Urban GT,B
+DST-0474,Chatterjee Stores,Moumita Bag,Joynagar,TER-06,ASM-06,2022,Hindi,18:00–20:00,+91 95xxx xx884,Rural GT,C
+DST-0475,Jagannath Enterprises,Dipankar Ghosh,Sonarpur,TER-06,ASM-06,2014,Bengali,17:00–19:00,+91 95xxx xx465,Urban GT,B
+DST-0476,Prantik Agencies,Swapan Pal,Baruipur,TER-06,ASM-06,2006,English,09:00–11:00,+91 95xxx xx273,Urban GT,B
+DST-0477,Gautam Distributors,Swapan Ghosh,Sonarpur,TER-06,ASM-06,2014,Bengali,17:00–19:00,+91 95xxx xx686,Urban GT,B
+DST-0478,Bhattacharya Enterprises,Dipankar Shaw,Canning,TER-06,ASM-06,2010,Bengali,09:00–11:00,+91 98xxx xx319,Urban GT,B
+DST-0479,Barnali Associates,Dipankar Saha,Baruipur,TER-06,ASM-06,2013,Bengali,11:00–13:00,+91 96xxx xx779,Semi-urban GT,C
+DST-0480,Barman Enterprises,Arup Karmakar,Diamond Harbour,TER-06,ASM-06,2009,Bengali,10:00–12:00,+91 97xxx xx374,Rural GT,A
+DST-0481,Budge Budge Trading Co.,Anirban Sen,Budge Budge,TER-06,ASM-06,2020,Bengali,17:00–19:00,+91 92xxx xx346,Urban GT,C
+DST-0482,Kakdwip Trading Co.,Nimai Saha,Kakdwip,TER-06,ASM-06,2010,English,11:00–13:00,+91 94xxx xx761,Urban GT,B
+DST-0483,Pragati Agencies,Tanushree Ghosh,Kakdwip,TER-06,ASM-06,2011,English,11:00–13:00,+91 97xxx xx597,Semi-urban GT,C
+DST-0484,Bose Agencies,Tapan Ghosh,Canning,TER-06,ASM-06,2012,English,11:00–13:00,+91 98xxx xx280,Semi-urban GT,C
+DST-0485,Sonar Bangla Trading Co.,Niladri Pal,Baruipur,TER-06,ASM-06,2016,Hindi,10:00–12:00,+91 93xxx xx214,Semi-urban GT,B
+DST-0486,Manas Stores,Gopal Pal,Budge Budge,TER-06,ASM-06,2011,Bengali,11:00–13:00,+91 95xxx xx952,Semi-urban GT,B
+DST-0487,Haradhan Distribution,Kalyan Paul,Ranaghat,TER-07,ASM-07,2008,Bengali,10:00–12:00,+91 99xxx xx320,Rural GT,C
+DST-0488,Kalyani Agencies,Tarun Sarkar,Kalyani,TER-07,ASM-07,2004,Bengali,11:00–13:00,+91 93xxx xx732,Urban GT,A
+DST-0489,Maity Traders,Sima Chakraborty,Ranaghat,TER-07,ASM-07,2016,English,17:00–19:00,+91 96xxx xx853,Semi-urban GT,A
+DST-0490,Kundu Brothers,Dipankar Bose,Krishnanagar,TER-07,ASM-07,2004,Bengali,18:00–20:00,+91 96xxx xx409,Rural GT,C
+DST-0491,Barman Distributors,Gautam Chatterjee,Chakdaha,TER-07,ASM-07,2020,Bengali,11:00–13:00,+91 97xxx xx235,Urban GT,B
+DST-0492,Sarkar Distribution,Mita Roy,Chakdaha,TER-07,ASM-07,2019,English,11:00–13:00,+91 95xxx xx540,Urban GT,A
+DST-0493,Kalyani Enterprises,Sankar Jana,Kalyani,TER-07,ASM-07,2005,Bengali,09:00–11:00,+91 93xxx xx287,Urban GT,A
+DST-0494,Maa Sarada Trading Co.,Rupa Bose,Kalyani,TER-07,ASM-07,2018,Bengali,18:00–20:00,+91 97xxx xx568,Urban GT,C
+DST-0495,Tehatta Enterprises,Amit Biswas,Tehatta,TER-07,ASM-07,2013,Bengali,10:00–12:00,+91 98xxx xx942,Urban GT,B
+DST-0496,Dishari Distributors,Swapan Banerjee,Chakdaha,TER-07,ASM-07,2017,Hindi,10:00–12:00,+91 97xxx xx793,Urban GT,C
+DST-0497,Kalyani Associates,Gautam Das,Kalyani,TER-07,ASM-07,2014,Hindi,18:00–20:00,+91 97xxx xx432,Rural GT,A
+DST-0498,Raju Enterprises,Subhas Mitra,Chakdaha,TER-07,ASM-07,2014,English,09:00–11:00,+91 98xxx xx716,Urban GT,A
+DST-0499,Nimai Trading Co.,Tanushree Chatterjee,Nabadwip,TER-07,ASM-07,2016,English,11:00–13:00,+91 92xxx xx223,Urban GT,C
+DST-0500,Majumdar Enterprises,Pradip Dey,Tehatta,TER-07,ASM-07,2020,Bengali,17:00–19:00,+91 96xxx xx587,Urban GT,B
+DST-0501,Shaw Marketing,Tarun Shaw,Santipur,TER-07,ASM-07,2006,Bengali,11:00–13:00,+91 97xxx xx792,Urban GT,B
+DST-0502,Chakdaha Associates,Arup Karmakar,Chakdaha,TER-07,ASM-07,2006,Bengali,17:00–19:00,+91 91xxx xx920,Urban GT,B
+DST-0503,Manas Trading Co.,Subhas Barman,Ranaghat,TER-07,ASM-07,2006,English,18:00–20:00,+91 91xxx xx622,Urban GT,A
+DST-0504,Nandi Marketing,Amit Mallick,Krishnanagar,TER-07,ASM-07,2004,Bengali,17:00–19:00,+91 92xxx xx905,Urban GT,B
+DST-0505,Bishwakarma Distribution,Anirban Maity,Nabadwip,TER-07,ASM-07,2018,English,11:00–13:00,+91 95xxx xx992,Rural GT,B
+DST-0506,Nandi & Sons,Pradip Shaw,Ranaghat,TER-07,ASM-07,2021,Bengali,17:00–19:00,+91 91xxx xx113,Urban GT,B
+DST-0507,Sinha Associates,Haradhan Dey,Nabadwip,TER-07,ASM-07,2016,English,09:00–11:00,+91 92xxx xx238,Urban GT,A
+DST-0508,Krishnanagar Agencies,Ashok Pramanik,Krishnanagar,TER-07,ASM-07,2008,English,17:00–19:00,+91 98xxx xx295,Urban GT,C
+DST-0509,Pramanik Trading Co.,Sima Sarkar,Tehatta,TER-07,ASM-07,2018,Hindi,17:00–19:00,+91 90xxx xx980,Urban GT,B
+DST-0510,Sinha & Sons,Mita Dutta,Ranaghat,TER-07,ASM-07,2017,Hindi,17:00–19:00,+91 99xxx xx710,Semi-urban GT,B
+DST-0511,Bag Agencies,Manas Ghosh,Kalyani,TER-07,ASM-07,2017,Bengali,18:00–20:00,+91 91xxx xx374,Rural GT,B
+DST-0512,Pradip Associates,Arup Ganguly,Nabadwip,TER-07,ASM-07,2018,English,09:00–11:00,+91 92xxx xx394,Semi-urban GT,C
+DST-0513,Debnath Stores,Sankar Bhattacharya,Nabadwip,TER-07,ASM-07,2023,English,17:00–19:00,+91 92xxx xx400,Semi-urban GT,B
+DST-0514,Haradhan Marketing,Raju Chatterjee,Nabadwip,TER-07,ASM-07,2023,Bengali,09:00–11:00,+91 97xxx xx232,Urban GT,C
+DST-0515,Nabajiban Trading Co.,Kalyan Majumdar,Ranaghat,TER-07,ASM-07,2011,Bengali,09:00–11:00,+91 90xxx xx467,Rural GT,C
+DST-0516,Debnath Traders,Kalyan Nandi,Kalyani,TER-07,ASM-07,2014,English,09:00–11:00,+91 98xxx xx373,Rural GT,C
+DST-0517,Barnali Traders,Sankar Jana,Tehatta,TER-07,ASM-07,2018,Hindi,09:00–11:00,+91 91xxx xx900,Semi-urban GT,A
+DST-0518,Pradip Stores,Rina Chatterjee,Tehatta,TER-07,ASM-07,2007,English,11:00–13:00,+91 92xxx xx845,Urban GT,B
+DST-0519,Nabadwip Associates,Pradip Sarkar,Nabadwip,TER-07,ASM-07,2015,Bengali,10:00–12:00,+91 91xxx xx968,Urban GT,C
+DST-0520,Nabadwip Distributors,Raju Pramanik,Nabadwip,TER-07,ASM-07,2014,Bengali,10:00–12:00,+91 91xxx xx372,Urban GT,B
+DST-0521,Tehatta Stores,Partha Roy,Tehatta,TER-07,ASM-07,2017,Bengali,17:00–19:00,+91 97xxx xx972,Semi-urban GT,B
+DST-0522,Maa Durga Stores,Amit Bhattacharya,Chakdaha,TER-07,ASM-07,2014,Bengali,10:00–12:00,+91 96xxx xx162,Urban GT,A
+DST-0523,Mohona Enterprises,Subhas Karmakar,Krishnanagar,TER-07,ASM-07,2013,Bengali,18:00–20:00,+91 94xxx xx838,Semi-urban GT,A
+DST-0524,Shiv Shakti Stores,Tapan Sinha,Kalyani,TER-07,ASM-07,2018,English,18:00–20:00,+91 99xxx xx907,Semi-urban GT,B
+DST-0525,Nabadwip Distribution,Kakali Bhattacharya,Nabadwip,TER-07,ASM-07,2016,English,10:00–12:00,+91 98xxx xx653,Urban GT,B
+DST-0526,Majumdar Stores,Arup Chatterjee,Krishnanagar,TER-07,ASM-07,2004,Bengali,18:00–20:00,+91 99xxx xx364,Urban GT,C
+DST-0527,Pradip Distributors,Gautam Mallick,Tehatta,TER-07,ASM-07,2015,Bengali,09:00–11:00,+91 97xxx xx405,Semi-urban GT,C
+DST-0528,Kundu Stores,Partha Ganguly,Krishnanagar,TER-07,ASM-07,2013,Bengali,18:00–20:00,+91 92xxx xx831,Urban GT,A
+DST-0529,Sarkar Trading Co.,Amit Pal,Chakdaha,TER-07,ASM-07,2005,Bengali,10:00–12:00,+91 97xxx xx319,Urban GT,C
+DST-0530,Pragati Stores,Shyamal Nandi,Kalyani,TER-07,ASM-07,2022,Bengali,17:00–19:00,+91 97xxx xx805,Rural GT,B
+DST-0531,Nabadwip Trading Co.,Tapan Mallick,Nabadwip,TER-07,ASM-07,2008,Bengali,17:00–19:00,+91 92xxx xx821,Semi-urban GT,B
+DST-0532,Radha Krishna Associates,Anirban Chatterjee,Santipur,TER-07,ASM-07,2021,Bengali,09:00–11:00,+91 99xxx xx972,Urban GT,C
+DST-0533,Mitra Distributors,Pradip Dey,Krishnanagar,TER-07,ASM-07,2013,Hindi,11:00–13:00,+91 94xxx xx597,Urban GT,C
+DST-0534,Sukanta Distribution,Haradhan Bag,Ranaghat,TER-07,ASM-07,2004,Bengali,11:00–13:00,+91 91xxx xx991,Urban GT,B
+DST-0535,Raju Trading Co.,Anirban Roy,Nabadwip,TER-07,ASM-07,2008,Bengali,17:00–19:00,+91 97xxx xx783,Urban GT,B
+DST-0536,Tehatta Traders,Niladri Basak,Tehatta,TER-07,ASM-07,2016,Bengali,17:00–19:00,+91 95xxx xx653,Urban GT,B
+DST-0537,Ananda Distributors,Raju Majumdar,Chakdaha,TER-07,ASM-07,2021,English,18:00–20:00,+91 91xxx xx297,Rural GT,B
+DST-0538,Prabhat Stores,Kalyan Mallick,Santipur,TER-07,ASM-07,2004,Bengali,18:00–20:00,+91 92xxx xx119,Urban GT,B
+DST-0539,Bose Associates,Biswajit Bhattacharya,Ranaghat,TER-07,ASM-07,2017,Bengali,09:00–11:00,+91 98xxx xx424,Urban GT,A
+DST-0540,Tarakeswar Stores,Tapan Banerjee,Krishnanagar,TER-07,ASM-07,2012,English,10:00–12:00,+91 94xxx xx517,Semi-urban GT,C
+DST-0541,Sristi Enterprises,Mita Majumdar,Krishnanagar,TER-07,ASM-07,2016,Bengali,10:00–12:00,+91 96xxx xx431,Urban GT,B
+DST-0542,Subhas Agencies,Bikash Kundu,Tehatta,TER-07,ASM-07,2019,Bengali,18:00–20:00,+91 96xxx xx217,Urban GT,C
+DST-0543,Dutta Agencies,Arup Roy,Kalyani,TER-07,ASM-07,2013,Bengali,17:00–19:00,+91 91xxx xx966,Semi-urban GT,C
+DST-0544,Ranaghat Enterprises,Sanjay Kundu,Ranaghat,TER-07,ASM-07,2021,Hindi,18:00–20:00,+91 97xxx xx142,Urban GT,C
+DST-0545,Bikash Distribution,Sanjay Das,Nabadwip,TER-07,ASM-07,2005,Hindi,17:00–19:00,+91 94xxx xx712,Urban GT,C
+DST-0546,Gouranga Traders,Shyamal Mondal,Chakdaha,TER-07,ASM-07,2008,English,11:00–13:00,+91 96xxx xx315,Semi-urban GT,C
+DST-0547,Tirtha Associates,Niladri Chakraborty,Tehatta,TER-07,ASM-07,2014,Bengali,18:00–20:00,+91 95xxx xx116,Rural GT,A
+DST-0548,Maa Durga Enterprises,Gopal Bag,Ranaghat,TER-07,ASM-07,2016,Bengali,09:00–11:00,+91 98xxx xx131,Rural GT,C
+DST-0549,Swarnali Traders,Haradhan Paul,Tehatta,TER-07,ASM-07,2023,Bengali,10:00–12:00,+91 90xxx xx227,Urban GT,B
+DST-0550,Debnath Distributors,Niladri Ganguly,Ranaghat,TER-07,ASM-07,2010,Bengali,18:00–20:00,+91 94xxx xx927,Semi-urban GT,B
+DST-0551,Dipankar Distributors,Gopal Biswas,Ranaghat,TER-07,ASM-07,2004,Bengali,17:00–19:00,+91 91xxx xx990,Urban GT,C
+DST-0552,Barman Agencies,Swapan Banerjee,Santipur,TER-07,ASM-07,2006,Bengali,09:00–11:00,+91 92xxx xx365,Rural GT,B
+DST-0553,Tehatta Distribution,Niladri Ghosh,Tehatta,TER-07,ASM-07,2021,Bengali,18:00–20:00,+91 97xxx xx102,Rural GT,C
+DST-0554,Tarun Distribution,Manas Maity,Chakdaha,TER-07,ASM-07,2019,Bengali,09:00–11:00,+91 93xxx xx148,Urban GT,A
+DST-0555,Chakraborty Distributors,Ranjit Pal,Nabadwip,TER-07,ASM-07,2022,English,10:00–12:00,+91 96xxx xx176,Rural GT,C
+DST-0556,Ghosh Marketing,Partha Dutta,Ranaghat,TER-07,ASM-07,2019,Bengali,11:00–13:00,+91 90xxx xx941,Urban GT,C
+DST-0557,Tehatta Associates,Arup Jana,Tehatta,TER-07,ASM-07,2022,Bengali,09:00–11:00,+91 90xxx xx486,Urban GT,B
+DST-0558,Purbasha Distributors,Prasenjit Sen,Tehatta,TER-07,ASM-07,2013,Bengali,17:00–19:00,+91 91xxx xx204,Semi-urban GT,C
+DST-0559,Sri Sai Trading Co.,Sutapa Debnath,Santipur,TER-07,ASM-07,2023,English,18:00–20:00,+91 90xxx xx564,Urban GT,B
+DST-0560,Bhattacharya Agencies,Mita Saha,Tehatta,TER-07,ASM-07,2022,English,10:00–12:00,+91 99xxx xx229,Semi-urban GT,C
+DST-0561,Paul Enterprises,Dipankar Nandi,Katwa,TER-08,ASM-08,2021,Bengali,09:00–11:00,+91 94xxx xx555,Semi-urban GT,B
+DST-0562,Sathi Associates,Tarun Dey,Kalna,TER-08,ASM-08,2019,Bengali,17:00–19:00,+91 90xxx xx283,Urban GT,C
+DST-0563,Disha Traders,Manas Mallick,Katwa,TER-08,ASM-08,2021,English,11:00–13:00,+91 93xxx xx200,Urban GT,C
+DST-0564,Roy & Sons,Debabrata Adhikari,Katwa,TER-08,ASM-08,2012,Bengali,11:00–13:00,+91 94xxx xx942,Urban GT,B
+DST-0565,Mallick Enterprises,Partha Debnath,Memari,TER-08,ASM-08,2010,Bengali,18:00–20:00,+91 99xxx xx904,Semi-urban GT,C
+DST-0566,Memari Associates,Amit Chakraborty,Memari,TER-08,ASM-08,2010,Bengali,17:00–19:00,+91 93xxx xx549,Urban GT,C
+DST-0567,Prabhat Enterprises,Ranjit Sinha,Guskara,TER-08,ASM-08,2016,Bengali,17:00–19:00,+91 91xxx xx647,Urban GT,C
+DST-0568,Bhabani Distributors,Amit Paul,Memari,TER-08,ASM-08,2013,Bengali,11:00–13:00,+91 98xxx xx171,Urban GT,A
+DST-0569,Chatterjee Marketing,Tarun Sinha,Katwa,TER-08,ASM-08,2009,Hindi,10:00–12:00,+91 98xxx xx528,Urban GT,A
+DST-0570,Bardhaman Associates,Swapan Majumdar,Bardhaman,TER-08,ASM-08,2022,Bengali,17:00–19:00,+91 94xxx xx306,Urban GT,C
+DST-0571,Sinha Agencies,Sankar Bag,Kalna,TER-08,ASM-08,2018,Bengali,09:00–11:00,+91 91xxx xx394,Semi-urban GT,A
+DST-0572,Majumdar Trading Co.,Raju Banerjee,Memari,TER-08,ASM-08,2017,Bengali,18:00–20:00,+91 96xxx xx568,Urban GT,A
+DST-0573,Dutta & Sons,Subhas Kundu,Bhatar,TER-08,ASM-08,2009,Bengali,18:00–20:00,+91 94xxx xx782,Rural GT,C
+DST-0574,Bhatar Agencies,Tarun Barman,Bhatar,TER-08,ASM-08,2007,Hindi,09:00–11:00,+91 91xxx xx616,Semi-urban GT,B
+DST-0575,Chatterjee Distribution,Subhas Maity,Katwa,TER-08,ASM-08,2004,Bengali,17:00–19:00,+91 96xxx xx451,Semi-urban GT,B
+DST-0576,Maity Brothers,Amit Pal,Jamalpur,TER-08,ASM-08,2021,English,17:00–19:00,+91 92xxx xx582,Rural GT,B
+DST-0577,Maa Durga Traders,Pradip Adhikari,Jamalpur,TER-08,ASM-08,2016,Bengali,09:00–11:00,+91 94xxx xx257,Urban GT,C
+DST-0578,Uttam Agencies,Subhas Karmakar,Kalna,TER-08,ASM-08,2007,Bengali,11:00–13:00,+91 97xxx xx153,Semi-urban GT,B
+DST-0579,Bardhaman Agencies,Dipankar Kundu,Bardhaman,TER-08,ASM-08,2010,Bengali,17:00–19:00,+91 90xxx xx114,Urban GT,C
+DST-0580,Sonar Bangla Agencies,Pradip Chatterjee,Kalna,TER-08,ASM-08,2009,Bengali,18:00–20:00,+91 91xxx xx935,Urban GT,A
+DST-0581,Shyamal Trading Co.,Ashok Dutta,Guskara,TER-08,ASM-08,2015,Bengali,09:00–11:00,+91 96xxx xx769,Urban GT,B
+DST-0582,Memari Enterprises,Pradip Chakraborty,Memari,TER-08,ASM-08,2016,English,10:00–12:00,+91 95xxx xx279,Semi-urban GT,A
+DST-0583,Maa Durga Associates,Arup Debnath,Bhatar,TER-08,ASM-08,2020,Bengali,09:00–11:00,+91 93xxx xx121,Semi-urban GT,B
+DST-0584,Bardhaman Traders,Sharmila Bag,Bardhaman,TER-08,ASM-08,2013,Bengali,17:00–19:00,+91 93xxx xx757,Urban GT,C
+DST-0585,Bandhan Marketing,Ranjit Bose,Bhatar,TER-08,ASM-08,2020,English,17:00–19:00,+91 94xxx xx868,Urban GT,A
+DST-0586,Jamalpur Marketing,Uttam Sen,Jamalpur,TER-08,ASM-08,2011,English,10:00–12:00,+91 99xxx xx993,Urban GT,C
+DST-0587,Bhabani Traders,Subhas Sarkar,Katwa,TER-08,ASM-08,2010,Bengali,10:00–12:00,+91 99xxx xx662,Rural GT,C
+DST-0588,Radha Krishna Agencies,Bikash Kundu,Kalna,TER-08,ASM-08,2013,Bengali,17:00–19:00,+91 93xxx xx378,Rural GT,C
+DST-0589,Debabrata Distribution,Tapan Barman,Memari,TER-08,ASM-08,2009,Bengali,17:00–19:00,+91 94xxx xx564,Urban GT,A
+DST-0590,Sonar Bangla Marketing,Kalyan Mukherjee,Guskara,TER-08,ASM-08,2008,English,09:00–11:00,+91 90xxx xx982,Semi-urban GT,B
+DST-0591,Sinha Trading Co.,Anirban Dey,Bhatar,TER-08,ASM-08,2016,Bengali,18:00–20:00,+91 91xxx xx518,Rural GT,C
+DST-0592,Chatterjee Agencies,Gautam Ganguly,Bardhaman,TER-08,ASM-08,2020,English,11:00–13:00,+91 90xxx xx766,Urban GT,C
+DST-0593,Memari Agencies,Sankar Dey,Memari,TER-08,ASM-08,2004,English,10:00–12:00,+91 94xxx xx719,Urban GT,B
+DST-0594,Pal Stores,Gopal Shaw,Bhatar,TER-08,ASM-08,2009,English,11:00–13:00,+91 94xxx xx612,Rural GT,B
+DST-0595,Swapan Distribution,Debabrata Pal,Bhatar,TER-08,ASM-08,2007,English,11:00–13:00,+91 92xxx xx375,Semi-urban GT,B
+DST-0596,Haradhan Associates,Rina Basak,Bhatar,TER-08,ASM-08,2020,Bengali,11:00–13:00,+91 96xxx xx274,Urban GT,B
+DST-0597,Kalna Agencies,Manas Mondal,Kalna,TER-08,ASM-08,2018,Bengali,10:00–12:00,+91 92xxx xx305,Urban GT,C
+DST-0598,Dutta Distributors,Mita Bose,Kalna,TER-08,ASM-08,2007,Bengali,09:00–11:00,+91 96xxx xx717,Semi-urban GT,A
+DST-0599,Bhattacharya Trading Co.,Niladri Bhattacharya,Jamalpur,TER-08,ASM-08,2014,English,11:00–13:00,+91 96xxx xx487,Semi-urban GT,A
+DST-0600,Raju Traders,Sutapa Roy,Katwa,TER-08,ASM-08,2004,Bengali,18:00–20:00,+91 94xxx xx816,Semi-urban GT,B
+DST-0601,Pramanik Stores,Ashok Das,Kalna,TER-08,ASM-08,2014,Bengali,11:00–13:00,+91 90xxx xx926,Semi-urban GT,B
+DST-0602,Bag Trading Co.,Raju Pal,Bhatar,TER-08,ASM-08,2015,Bengali,17:00–19:00,+91 91xxx xx851,Urban GT,C
+DST-0603,Gopal Stores,Rupa Pal,Guskara,TER-08,ASM-08,2013,English,18:00–20:00,+91 97xxx xx272,Rural GT,C
+DST-0604,Niladri Traders,Sankar Adhikari,Bardhaman,TER-08,ASM-08,2019,Bengali,11:00–13:00,+91 93xxx xx689,Semi-urban GT,C
+DST-0605,Ramakrishna Trading Co.,Anirban Paul,Guskara,TER-08,ASM-08,2021,Hindi,17:00–19:00,+91 93xxx xx328,Urban GT,C
+DST-0606,Katwa Agencies,Pradip Dey,Katwa,TER-08,ASM-08,2008,English,17:00–19:00,+91 99xxx xx854,Urban GT,C
+DST-0607,Sagar Trading Co.,Ranjit Dey,Bardhaman,TER-08,ASM-08,2008,Bengali,18:00–20:00,+91 99xxx xx327,Urban GT,A
+DST-0608,Maity Marketing,Sukanta Debnath,Bardhaman,TER-08,ASM-08,2019,English,10:00–12:00,+91 99xxx xx390,Urban GT,C
+DST-0609,Pradip Distribution,Sudip Pramanik,Bhatar,TER-08,ASM-08,2010,Bengali,17:00–19:00,+91 90xxx xx929,Urban GT,A
+DST-0610,Jamalpur Agencies,Subhas Banerjee,Jamalpur,TER-08,ASM-08,2019,English,11:00–13:00,+91 92xxx xx122,Semi-urban GT,B
+DST-0611,Pramanik Marketing,Shyamal Saha,Katwa,TER-08,ASM-08,2020,English,11:00–13:00,+91 93xxx xx817,Rural GT,C
+DST-0612,Sudip Distribution,Sanjay Roy,Memari,TER-08,ASM-08,2018,English,11:00–13:00,+91 92xxx xx314,Urban GT,B
+DST-0613,Pradip Marketing,Sanjay Sen,Bhatar,TER-08,ASM-08,2007,Hindi,11:00–13:00,+91 99xxx xx544,Rural GT,A
+DST-0614,Bhagabati Trading Co.,Sudip Banerjee,Bhatar,TER-08,ASM-08,2016,English,09:00–11:00,+91 97xxx xx985,Rural GT,B
+DST-0615,Pramanik & Sons,Anirban Dutta,Memari,TER-08,ASM-08,2022,Bengali,17:00–19:00,+91 96xxx xx405,Semi-urban GT,C
+DST-0616,Gopal Traders,Bikash Banerjee,Bardhaman,TER-08,ASM-08,2004,Bengali,11:00–13:00,+91 91xxx xx140,Urban GT,B
+DST-0617,Sonar Bangla Stores,Debabrata Bose,Kalna,TER-08,ASM-08,2006,Hindi,18:00–20:00,+91 94xxx xx472,Rural GT,C
+DST-0618,Das Agencies,Manas Mitra,Kalna,TER-08,ASM-08,2021,Bengali,18:00–20:00,+91 97xxx xx811,Urban GT,B
+DST-0619,Barnali Agencies,Niladri Bose,Katwa,TER-08,ASM-08,2011,Bengali,10:00–12:00,+91 94xxx xx976,Rural GT,C
+DST-0620,Sagar Marketing,Anirban Shaw,Kalna,TER-08,ASM-08,2006,Bengali,11:00–13:00,+91 96xxx xx765,Rural GT,C
+DST-0621,Nandi Trading Co.,Tapan Adhikari,Memari,TER-08,ASM-08,2010,Bengali,11:00–13:00,+91 93xxx xx831,Urban GT,B
+DST-0622,Sarkar Marketing,Tarun Paul,Bhatar,TER-08,ASM-08,2004,Hindi,10:00–12:00,+91 91xxx xx376,Urban GT,C
+DST-0623,Sathi Traders,Amit Dey,Bardhaman,TER-08,ASM-08,2014,English,10:00–12:00,+91 93xxx xx380,Urban GT,B
+DST-0624,Partha Trading Co.,Raju Mondal,Memari,TER-08,ASM-08,2009,Bengali,11:00–13:00,+91 99xxx xx941,Rural GT,B
+DST-0625,Sanjay Marketing,Shyamal Banerjee,Bardhaman,TER-08,ASM-08,2015,English,18:00–20:00,+91 98xxx xx708,Rural GT,B
+DST-0626,Roy Distribution,Kakali Sarkar,Memari,TER-08,ASM-08,2008,Bengali,18:00–20:00,+91 94xxx xx154,Rural GT,C
+DST-0627,Bhatar Stores,Tarun Karmakar,Bhatar,TER-08,ASM-08,2011,Bengali,09:00–11:00,+91 94xxx xx516,Semi-urban GT,C
+DST-0628,Loknath Traders,Amit Chatterjee,Jamalpur,TER-08,ASM-08,2022,Bengali,11:00–13:00,+91 98xxx xx604,Rural GT,B
+DST-0629,Tarun Stores,Tapan Pramanik,Bardhaman,TER-08,ASM-08,2019,Bengali,18:00–20:00,+91 91xxx xx515,Urban GT,B
+DST-0630,Kalna Stores,Partha Karmakar,Kalna,TER-08,ASM-08,2023,Bengali,17:00–19:00,+91 92xxx xx790,Rural GT,A
+DST-0631,Sen Trading Co.,Sanjay Dey,Jamalpur,TER-08,ASM-08,2007,Bengali,10:00–12:00,+91 98xxx xx971,Semi-urban GT,B
+DST-0632,Biswas Brothers,Jhuma Sinha,Bardhaman,TER-08,ASM-08,2010,Hindi,18:00–20:00,+91 90xxx xx574,Rural GT,B
+DST-0633,Sristi Distribution,Biswajit Ganguly,Jamalpur,TER-08,ASM-08,2009,Bengali,09:00–11:00,+91 91xxx xx541,Urban GT,C
+DST-0634,Shiv Shakti Agencies,Dipankar Majumdar,Bardhaman,TER-08,ASM-08,2015,Bengali,10:00–12:00,+91 98xxx xx931,Urban GT,B
+DST-0635,Bandhan Enterprises,Anirban Shaw,Memari,TER-08,ASM-08,2004,Bengali,10:00–12:00,+91 91xxx xx294,Urban GT,B
+DST-0636,Kalna Enterprises,Debabrata Sinha,Kalna,TER-08,ASM-08,2020,English,17:00–19:00,+91 92xxx xx212,Rural GT,A
+DST-0637,Ganesh Marketing,Debabrata Kundu,Jamalpur,TER-08,ASM-08,2005,English,11:00–13:00,+91 96xxx xx711,Semi-urban GT,A
+DST-0638,Mitra Associates,Sutapa Kundu,Memari,TER-08,ASM-08,2023,Bengali,18:00–20:00,+91 92xxx xx355,Urban GT,B
+DST-0639,Sathi Agencies,Raju Dutta,Bardhaman,TER-08,ASM-08,2020,Bengali,10:00–12:00,+91 99xxx xx744,Semi-urban GT,B
+DST-0640,Mohona Marketing,Sudip Barman,Asansol,TER-09,ASM-09,2012,English,17:00–19:00,+91 99xxx xx401,Urban GT,C
+DST-0641,Uttaran Marketing,Gautam Banerjee,Asansol,TER-09,ASM-09,2012,Hindi,18:00–20:00,+91 99xxx xx208,Semi-urban GT,B
+DST-0642,Pramanik Traders,Prasenjit Banerjee,Andal,TER-09,ASM-09,2009,Bengali,17:00–19:00,+91 92xxx xx763,Urban GT,B
+DST-0643,Sagar Traders,Tarun Kundu,Raniganj,TER-09,ASM-09,2018,English,17:00–19:00,+91 91xxx xx841,Semi-urban GT,C
+DST-0644,Andal Distributors,Shyamal Paul,Andal,TER-09,ASM-09,2004,Bengali,09:00–11:00,+91 90xxx xx235,Urban GT,A
+DST-0645,Asansol Distributors,Pradip Adhikari,Asansol,TER-09,ASM-09,2014,English,09:00–11:00,+91 93xxx xx242,Urban GT,B
+DST-0646,Haradhan Enterprises,Kalyan Sarkar,Jamuria,TER-09,ASM-09,2011,Bengali,11:00–13:00,+91 98xxx xx226,Urban GT,A
+DST-0647,Bhagabati Distributors,Shyamal Sarkar,Asansol,TER-09,ASM-09,2015,English,10:00–12:00,+91 96xxx xx803,Rural GT,B
+DST-0648,Partha Traders,Sukanta Ganguly,Panagarh,TER-09,ASM-09,2006,Bengali,09:00–11:00,+91 95xxx xx186,Rural GT,C
+DST-0649,Purbasha Distribution,Sukanta Ganguly,Jamuria,TER-09,ASM-09,2007,Bengali,17:00–19:00,+91 95xxx xx371,Rural GT,C
+DST-0650,Tapan Enterprises,Shyamal Jana,Andal,TER-09,ASM-09,2019,English,09:00–11:00,+91 99xxx xx537,Rural GT,B
+DST-0651,Ramakrishna Enterprises,Shyamal Ganguly,Raniganj,TER-09,ASM-09,2014,Bengali,17:00–19:00,+91 96xxx xx716,Semi-urban GT,A
+DST-0652,Bag Stores,Uttam Adhikari,Raniganj,TER-09,ASM-09,2011,Bengali,18:00–20:00,+91 96xxx xx639,Semi-urban GT,B
+DST-0653,Andal Agencies,Partha Dey,Andal,TER-09,ASM-09,2004,Bengali,09:00–11:00,+91 95xxx xx671,Urban GT,B
+DST-0654,Subhas Marketing,Nimai Roy,Durgapur,TER-09,ASM-09,2013,Bengali,18:00–20:00,+91 96xxx xx348,Urban GT,B
+DST-0655,Sudip Enterprises,Biswajit Shaw,Durgapur,TER-09,ASM-09,2015,Bengali,09:00–11:00,+91 99xxx xx175,Urban GT,B
+DST-0656,Biswajit Enterprises,Amit Kundu,Jamuria,TER-09,ASM-09,2006,Bengali,17:00–19:00,+91 92xxx xx883,Urban GT,B
+DST-0657,Kamakhya Distribution,Anirban Bhattacharya,Andal,TER-09,ASM-09,2018,English,09:00–11:00,+91 94xxx xx213,Urban GT,B
+DST-0658,Shree Ram Stores,Shyamal Shaw,Andal,TER-09,ASM-09,2018,Bengali,11:00–13:00,+91 99xxx xx613,Urban GT,B
+DST-0659,Tapan Agencies,Subhas Debnath,Durgapur,TER-09,ASM-09,2016,Bengali,18:00–20:00,+91 99xxx xx961,Urban GT,A
+DST-0660,Chakraborty Trading Co.,Sanjay Sen,Andal,TER-09,ASM-09,2015,English,10:00–12:00,+91 94xxx xx211,Urban GT,B
+DST-0661,Sristi Distributors,Sanjay Adhikari,Raniganj,TER-09,ASM-09,2007,Bengali,18:00–20:00,+91 90xxx xx874,Rural GT,A
+DST-0662,Saraswati Distribution,Manas Mukherjee,Durgapur,TER-09,ASM-09,2014,English,11:00–13:00,+91 92xxx xx819,Semi-urban GT,A
+DST-0663,Mallick Traders,Debabrata Sarkar,Raniganj,TER-09,ASM-09,2004,Bengali,17:00–19:00,+91 97xxx xx700,Rural GT,C
+DST-0664,Sonar Bangla Traders,Partha Biswas,Asansol,TER-09,ASM-09,2008,English,10:00–12:00,+91 98xxx xx628,Rural GT,B
+DST-0665,Jamuria Marketing,Bikash Shaw,Jamuria,TER-09,ASM-09,2005,English,17:00–19:00,+91 93xxx xx313,Rural GT,C
+DST-0666,Ganesh Associates,Mita Sarkar,Jamuria,TER-09,ASM-09,2013,Bengali,09:00–11:00,+91 97xxx xx196,Urban GT,A
+DST-0667,Sanjay Traders,Dipankar Ganguly,Durgapur,TER-09,ASM-09,2006,Bengali,17:00–19:00,+91 94xxx xx584,Rural GT,C
+DST-0668,Swapan Associates,Moumita Sinha,Panagarh,TER-09,ASM-09,2017,English,10:00–12:00,+91 97xxx xx475,Semi-urban GT,B
+DST-0669,Dipankar Traders,Manas Jana,Jamuria,TER-09,ASM-09,2012,English,09:00–11:00,+91 99xxx xx759,Urban GT,B
+DST-0670,Maity & Sons,Dipankar Maity,Panagarh,TER-09,ASM-09,2018,English,17:00–19:00,+91 91xxx xx187,Urban GT,C
+DST-0671,Sankar Trading Co.,Ashok Sinha,Asansol,TER-09,ASM-09,2014,Bengali,11:00–13:00,+91 99xxx xx597,Urban GT,C
+DST-0672,Halder Associates,Sima Pramanik,Andal,TER-09,ASM-09,2008,English,11:00–13:00,+91 99xxx xx132,Rural GT,C
+DST-0673,Dey Trading Co.,Ashok Sen,Panagarh,TER-09,ASM-09,2010,English,17:00–19:00,+91 94xxx xx358,Semi-urban GT,B
+DST-0674,Nandi Enterprises,Amit Shaw,Asansol,TER-09,ASM-09,2014,Hindi,11:00–13:00,+91 92xxx xx303,Urban GT,C
+DST-0675,Tarun Marketing,Swapan Paul,Kulti,TER-09,ASM-09,2004,Bengali,18:00–20:00,+91 93xxx xx179,Semi-urban GT,C
+DST-0676,Maa Sarada Enterprises,Ranjit Mondal,Jamuria,TER-09,ASM-09,2017,Bengali,09:00–11:00,+91 97xxx xx952,Rural GT,A
+DST-0677,Swapan Distributors,Dipankar Ghosh,Andal,TER-09,ASM-09,2013,English,18:00–20:00,+91 91xxx xx816,Urban GT,B
+DST-0678,Kulti Trading Co.,Debabrata Bhattacharya,Kulti,TER-09,ASM-09,2007,Hindi,17:00–19:00,+91 96xxx xx482,Urban GT,B
+DST-0679,Tirtha Traders,Raju Dutta,Jamuria,TER-09,ASM-09,2006,English,18:00–20:00,+91 96xxx xx206,Urban GT,B
+DST-0680,Agami Traders,Manas Bose,Panagarh,TER-09,ASM-09,2013,English,10:00–12:00,+91 93xxx xx895,Urban GT,A
+DST-0681,Maity Trading Co.,Arup Sinha,Kulti,TER-09,ASM-09,2004,Hindi,10:00–12:00,+91 98xxx xx390,Urban GT,B
+DST-0682,Uttaran Trading Co.,Mita Sarkar,Andal,TER-09,ASM-09,2015,English,18:00–20:00,+91 99xxx xx425,Urban GT,C
+DST-0683,Partha Stores,Ashok Sinha,Jamuria,TER-09,ASM-09,2005,English,18:00–20:00,+91 96xxx xx231,Rural GT,C
+DST-0684,Sanjay Trading Co.,Manas Chatterjee,Kulti,TER-09,ASM-09,2017,Bengali,10:00–12:00,+91 98xxx xx221,Semi-urban GT,C
+DST-0685,Ramakrishna Agencies,Mita Shaw,Panagarh,TER-09,ASM-09,2004,English,18:00–20:00,+91 92xxx xx128,Semi-urban GT,C
+DST-0686,Amit Trading Co.,Sima Maity,Jamuria,TER-09,ASM-09,2015,Bengali,10:00–12:00,+91 94xxx xx298,Semi-urban GT,B
+DST-0687,Durgapur Trading Co.,Niladri Sen,Durgapur,TER-09,ASM-09,2012,Bengali,10:00–12:00,+91 90xxx xx753,Rural GT,C
+DST-0688,Maa Sarada Traders,Moumita Nandi,Panagarh,TER-09,ASM-09,2009,Bengali,17:00–19:00,+91 95xxx xx958,Urban GT,B
+DST-0689,Ramakrishna Marketing,Bikash Adhikari,Asansol,TER-09,ASM-09,2004,Bengali,11:00–13:00,+91 91xxx xx297,Semi-urban GT,C
+DST-0690,Kamakhya Enterprises,Dipankar Mondal,Jamuria,TER-09,ASM-09,2010,Bengali,10:00–12:00,+91 93xxx xx185,Semi-urban GT,A
+DST-0691,Tirtha Distribution,Pradip Majumdar,Durgapur,TER-09,ASM-09,2009,English,17:00–19:00,+91 96xxx xx556,Urban GT,C
+DST-0692,Anjali Trading Co.,Swapan Ganguly,Andal,TER-09,ASM-09,2015,English,09:00–11:00,+91 97xxx xx271,Rural GT,C
+DST-0693,Karmakar Brothers,Biswajit Mondal,Jamuria,TER-09,ASM-09,2009,English,17:00–19:00,+91 92xxx xx466,Urban GT,C
+DST-0694,Durgapur Traders,Mita Bhattacharya,Durgapur,TER-09,ASM-09,2010,Bengali,11:00–13:00,+91 93xxx xx675,Urban GT,C
+DST-0695,Shiv Shakti Traders,Arup Basak,Raniganj,TER-09,ASM-09,2017,Bengali,11:00–13:00,+91 93xxx xx301,Urban GT,A
+DST-0696,Halder Trading Co.,Rupa Chatterjee,Kulti,TER-09,ASM-09,2023,Bengali,17:00–19:00,+91 93xxx xx690,Urban GT,C
+DST-0697,Shyamal Distributors,Sankar Karmakar,Asansol,TER-09,ASM-09,2005,Bengali,09:00–11:00,+91 91xxx xx581,Urban GT,B
+DST-0698,Barman Marketing,Subhas Sinha,Panagarh,TER-09,ASM-09,2013,English,17:00–19:00,+91 97xxx xx969,Semi-urban GT,A
+DST-0699,Bikash Traders,Mita Das,Asansol,TER-09,ASM-09,2008,Bengali,11:00–13:00,+91 96xxx xx331,Urban GT,B
+DST-0700,Durgapur Marketing,Uttam Das,Durgapur,TER-09,ASM-09,2005,Bengali,09:00–11:00,+91 91xxx xx149,Rural GT,B
+DST-0701,Asansol Trading Co.,Niladri Mondal,Asansol,TER-09,ASM-09,2020,Bengali,18:00–20:00,+91 97xxx xx777,Urban GT,C
+DST-0702,Raniganj Traders,Haradhan Kundu,Raniganj,TER-09,ASM-09,2010,English,09:00–11:00,+91 97xxx xx161,Urban GT,A
+DST-0703,Andal Enterprises,Pradip Roy,Andal,TER-09,ASM-09,2011,English,17:00–19:00,+91 97xxx xx988,Semi-urban GT,A
+DST-0704,Durgapur Agencies,Sutapa Chatterjee,Durgapur,TER-09,ASM-09,2013,Hindi,18:00–20:00,+91 91xxx xx250,Urban GT,C
+DST-0705,Asansol Agencies,Rupa Banerjee,Asansol,TER-09,ASM-09,2012,Bengali,18:00–20:00,+91 97xxx xx460,Urban GT,C
+DST-0706,Sen Associates,Pradip Sen,Jamuria,TER-09,ASM-09,2016,English,17:00–19:00,+91 93xxx xx401,Urban GT,B
+DST-0707,Durgapur Distribution,Sanjay Biswas,Durgapur,TER-09,ASM-09,2015,English,18:00–20:00,+91 94xxx xx851,Urban GT,C
+DST-0708,Pramanik Distribution,Sudip Kundu,Durgapur,TER-09,ASM-09,2009,Bengali,09:00–11:00,+91 92xxx xx291,Urban GT,B
+DST-0709,Ghosh Enterprises,Gopal Saha,Kulti,TER-09,ASM-09,2009,English,09:00–11:00,+91 99xxx xx460,Rural GT,C
+DST-0710,Maa Durga Distribution,Manas Mallick,Jamuria,TER-09,ASM-09,2009,English,09:00–11:00,+91 91xxx xx411,Rural GT,A
+DST-0711,Raniganj Stores,Nimai Pramanik,Raniganj,TER-09,ASM-09,2007,Bengali,18:00–20:00,+91 90xxx xx251,Rural GT,B
+DST-0712,Prabhat Traders,Niladri Mallick,Keshiary,TER-10,ASM-10,2005,English,18:00–20:00,+91 92xxx xx675,Semi-urban GT,C
+DST-0713,Bhorer Aalo Distributors,Bikash Mukherjee,Daspur,TER-10,ASM-10,2007,Bengali,10:00–12:00,+91 99xxx xx223,Semi-urban GT,C
+DST-0714,Mondal Distribution,Sanjay Kundu,Kharagpur,TER-10,ASM-10,2021,Bengali,18:00–20:00,+91 97xxx xx979,Semi-urban GT,B
+DST-0715,Mitra Distribution,Swapan Bag,Midnapore,TER-10,ASM-10,2015,English,17:00–19:00,+91 96xxx xx814,Semi-urban GT,C
+DST-0716,Uttaran Distribution,Jhuma Jana,Daspur,TER-10,ASM-10,2005,English,11:00–13:00,+91 92xxx xx579,Rural GT,C
+DST-0717,Mallick Agencies,Sudip Karmakar,Daspur,TER-10,ASM-10,2016,Bengali,10:00–12:00,+91 92xxx xx460,Semi-urban GT,A
+DST-0718,Majumdar & Sons,Amit Pramanik,Debra,TER-10,ASM-10,2016,Hindi,18:00–20:00,+91 92xxx xx689,Semi-urban GT,C
+DST-0719,Debra Stores,Sudip Chakraborty,Debra,TER-10,ASM-10,2022,Hindi,11:00–13:00,+91 99xxx xx732,Rural GT,B
+DST-0720,Shree Ram Agencies,Rina Bag,Midnapore,TER-10,ASM-10,2019,Bengali,10:00–12:00,+91 93xxx xx207,Rural GT,A
+DST-0721,Kharagpur Trading Co.,Tarun Saha,Kharagpur,TER-10,ASM-10,2005,Bengali,09:00–11:00,+91 90xxx xx967,Semi-urban GT,B
+DST-0722,Daspur Distributors,Ranjit Dutta,Daspur,TER-10,ASM-10,2018,Bengali,18:00–20:00,+91 98xxx xx304,Urban GT,C
+DST-0723,Mitra Agencies,Sanjay Shaw,Daspur,TER-10,ASM-10,2020,English,10:00–12:00,+91 91xxx xx696,Urban GT,B
+DST-0724,Mondal Brothers,Subhas Adhikari,Salboni,TER-10,ASM-10,2014,Bengali,11:00–13:00,+91 94xxx xx499,Semi-urban GT,C
+DST-0725,Sanjay Distribution,Jhuma Kundu,Midnapore,TER-10,ASM-10,2020,Hindi,18:00–20:00,+91 94xxx xx508,Semi-urban GT,C
+DST-0726,Nabajiban Associates,Gautam Ghosh,Debra,TER-10,ASM-10,2005,Bengali,11:00–13:00,+91 93xxx xx442,Rural GT,A
+DST-0727,Niladri Distributors,Amit Bose,Midnapore,TER-10,ASM-10,2015,Hindi,17:00–19:00,+91 99xxx xx857,Semi-urban GT,C
+DST-0728,Midnapore Agencies,Nimai Paul,Midnapore,TER-10,ASM-10,2004,Bengali,09:00–11:00,+91 96xxx xx884,Urban GT,C
+DST-0729,Partha Agencies,Mita Debnath,Kharagpur,TER-10,ASM-10,2017,English,18:00–20:00,+91 99xxx xx146,Rural GT,B
+DST-0730,Partha Distributors,Sima Jana,Midnapore,TER-10,ASM-10,2009,Bengali,11:00–13:00,+91 95xxx xx716,Semi-urban GT,B
+DST-0731,Tapan Trading Co.,Pradip Saha,Kharagpur,TER-10,ASM-10,2006,Bengali,18:00–20:00,+91 93xxx xx606,Semi-urban GT,C
+DST-0732,Debnath Associates,Dipankar Barman,Keshiary,TER-10,ASM-10,2013,English,10:00–12:00,+91 98xxx xx373,Urban GT,A
+DST-0733,Sen Marketing,Sudip Bag,Debra,TER-10,ASM-10,2012,Bengali,10:00–12:00,+91 98xxx xx336,Urban GT,B
+DST-0734,Debra Enterprises,Tanushree Jana,Debra,TER-10,ASM-10,2018,Hindi,09:00–11:00,+91 97xxx xx956,Urban GT,B
+DST-0735,Milan Traders,Jhuma Paul,Ghatal,TER-10,ASM-10,2019,Bengali,17:00–19:00,+91 96xxx xx554,Urban GT,B
+DST-0736,Joy Guru Distributors,Dipankar Ghosh,Kharagpur,TER-10,ASM-10,2023,English,11:00–13:00,+91 94xxx xx929,Semi-urban GT,B
+DST-0737,Kharagpur Marketing,Bikash Shaw,Kharagpur,TER-10,ASM-10,2017,English,09:00–11:00,+91 91xxx xx666,Urban GT,C
+DST-0738,Sukanta Stores,Swapan Karmakar,Salboni,TER-10,ASM-10,2012,Bengali,17:00–19:00,+91 97xxx xx863,Rural GT,C
+DST-0739,Kharagpur Distribution,Tanushree Adhikari,Kharagpur,TER-10,ASM-10,2013,Bengali,17:00–19:00,+91 90xxx xx730,Urban GT,B
+DST-0740,Ramakrishna Distribution,Prasenjit Maity,Ghatal,TER-10,ASM-10,2004,Bengali,17:00–19:00,+91 90xxx xx467,Urban GT,B
+DST-0741,Sonar Bangla Distribution,Uttam Chakraborty,Keshiary,TER-10,ASM-10,2006,Bengali,11:00–13:00,+91 94xxx xx365,Rural GT,B
+DST-0742,Gautam Distribution,Sharmila Adhikari,Kharagpur,TER-10,ASM-10,2005,Bengali,11:00–13:00,+91 91xxx xx179,Semi-urban GT,C
+DST-0743,Kundu Agencies,Dipankar Basak,Midnapore,TER-10,ASM-10,2006,English,11:00–13:00,+91 92xxx xx125,Urban GT,C
+DST-0744,Basak Marketing,Sukanta Ghosh,Keshiary,TER-10,ASM-10,2009,Bengali,11:00–13:00,+91 92xxx xx705,Urban GT,A
+DST-0745,Debra Traders,Sankar Debnath,Debra,TER-10,ASM-10,2022,Bengali,18:00–20:00,+91 98xxx xx851,Urban GT,B
+DST-0746,Swarnali Stores,Ranjit Halder,Salboni,TER-10,ASM-10,2010,English,11:00–13:00,+91 93xxx xx436,Urban GT,C
+DST-0747,Partha Associates,Pradip Kundu,Keshiary,TER-10,ASM-10,2018,English,17:00–19:00,+91 95xxx xx181,Urban GT,C
+DST-0748,Bandhan Trading Co.,Haradhan Roy,Debra,TER-10,ASM-10,2021,Bengali,17:00–19:00,+91 99xxx xx781,Urban GT,B
+DST-0749,Ghatal Marketing,Amit Basak,Ghatal,TER-10,ASM-10,2017,Bengali,10:00–12:00,+91 99xxx xx606,Semi-urban GT,C
+DST-0750,Keshiary Associates,Tapan Bose,Keshiary,TER-10,ASM-10,2017,Bengali,10:00–12:00,+91 91xxx xx235,Semi-urban GT,A
+DST-0751,Sinha Stores,Sukanta Mondal,Debra,TER-10,ASM-10,2014,English,11:00–13:00,+91 99xxx xx723,Semi-urban GT,C
+DST-0752,Salboni Trading Co.,Kalyan Roy,Salboni,TER-10,ASM-10,2009,English,18:00–20:00,+91 98xxx xx185,Urban GT,B
+DST-0753,Jana Enterprises,Swapan Halder,Midnapore,TER-10,ASM-10,2007,Bengali,17:00–19:00,+91 95xxx xx149,Semi-urban GT,A
+DST-0754,Sathi Distribution,Ranjit Banerjee,Debra,TER-10,ASM-10,2008,Bengali,10:00–12:00,+91 96xxx xx631,Urban GT,B
+DST-0755,Jagannath Stores,Ashok Das,Debra,TER-10,ASM-10,2019,English,09:00–11:00,+91 95xxx xx308,Urban GT,C
+DST-0756,Jana Stores,Prasenjit Mitra,Debra,TER-10,ASM-10,2007,English,09:00–11:00,+91 97xxx xx542,Urban GT,C
+DST-0757,Midnapore Marketing,Ranjit Halder,Midnapore,TER-10,ASM-10,2018,English,18:00–20:00,+91 91xxx xx823,Semi-urban GT,A
+DST-0758,Karmakar Marketing,Uttam Bose,Midnapore,TER-10,ASM-10,2004,Bengali,18:00–20:00,+91 96xxx xx993,Rural GT,B
+DST-0759,Anirban Agencies,Rina Bag,Salboni,TER-10,ASM-10,2021,Bengali,10:00–12:00,+91 90xxx xx528,Semi-urban GT,B
+DST-0760,Kundu Marketing,Niladri Banerjee,Debra,TER-10,ASM-10,2013,English,11:00–13:00,+91 97xxx xx601,Semi-urban GT,B
+DST-0761,Agami Associates,Partha Mondal,Daspur,TER-10,ASM-10,2013,Bengali,17:00–19:00,+91 95xxx xx353,Semi-urban GT,B
+DST-0762,Sinha Enterprises,Kalyan Bag,Midnapore,TER-10,ASM-10,2023,Bengali,10:00–12:00,+91 90xxx xx397,Urban GT,B
+DST-0763,Sathi Trading Co.,Tarun Sinha,Kharagpur,TER-10,ASM-10,2012,English,11:00–13:00,+91 97xxx xx845,Urban GT,C
+DST-0764,Salboni Distribution,Partha Chatterjee,Salboni,TER-10,ASM-10,2021,Bengali,09:00–11:00,+91 99xxx xx725,Urban GT,C
+DST-0765,Debra Trading Co.,Partha Mitra,Debra,TER-10,ASM-10,2009,English,11:00–13:00,+91 96xxx xx320,Semi-urban GT,A
+DST-0766,Kharagpur Stores,Sutapa Bag,Kharagpur,TER-10,ASM-10,2005,Bengali,11:00–13:00,+91 90xxx xx335,Semi-urban GT,C
+DST-0767,Amit Traders,Sudip Basak,Salboni,TER-10,ASM-10,2004,Bengali,18:00–20:00,+91 99xxx xx255,Urban GT,C
+DST-0768,Debra Agencies,Nimai Majumdar,Debra,TER-10,ASM-10,2014,Bengali,09:00–11:00,+91 94xxx xx380,Urban GT,A
+DST-0769,Shaw Traders,Tarun Barman,Midnapore,TER-10,ASM-10,2012,Bengali,18:00–20:00,+91 98xxx xx350,Urban GT,A
+DST-0770,Daspur Marketing,Sudip Dutta,Daspur,TER-10,ASM-10,2018,Bengali,09:00–11:00,+91 96xxx xx889,Urban GT,C
+DST-0771,Dutta Distribution,Raju Pal,Ghatal,TER-10,ASM-10,2007,Bengali,10:00–12:00,+91 97xxx xx707,Urban GT,C
+DST-0772,Kharagpur Agencies,Rupa Nandi,Kharagpur,TER-10,ASM-10,2017,Bengali,11:00–13:00,+91 92xxx xx137,Urban GT,A
+DST-0773,Chakraborty Agencies,Sudip Pramanik,Debra,TER-10,ASM-10,2020,Bengali,09:00–11:00,+91 91xxx xx535,Semi-urban GT,B
+DST-0774,Mondal Enterprises,Nimai Mondal,Daspur,TER-10,ASM-10,2005,English,17:00–19:00,+91 92xxx xx741,Rural GT,C
+DST-0775,Gouranga Trading Co.,Sukanta Mondal,Daspur,TER-10,ASM-10,2017,Hindi,11:00–13:00,+91 98xxx xx430,Semi-urban GT,A
+DST-0776,Nandi Associates,Sankar Bhattacharya,Ghatal,TER-10,ASM-10,2008,Bengali,17:00–19:00,+91 90xxx xx425,Urban GT,A
+DST-0777,Das Distribution,Ashok Dutta,Kharagpur,TER-10,ASM-10,2021,Bengali,09:00–11:00,+91 90xxx xx739,Urban GT,B
+DST-0778,Gouranga Agencies,Biswajit Mukherjee,Kharagpur,TER-10,ASM-10,2012,Bengali,17:00–19:00,+91 99xxx xx846,Urban GT,B
+DST-0779,Debra Distribution,Arup Mukherjee,Debra,TER-10,ASM-10,2006,Bengali,09:00–11:00,+91 93xxx xx386,Urban GT,B
+DST-0780,Halder Brothers,Anirban Pramanik,Debra,TER-10,ASM-10,2010,Bengali,10:00–12:00,+91 93xxx xx193,Rural GT,C
+DST-0781,Ranjit Traders,Subhas Roy,Debra,TER-10,ASM-10,2020,English,17:00–19:00,+91 97xxx xx434,Urban GT,B
+DST-0782,Paul Associates,Haradhan Karmakar,Keshiary,TER-10,ASM-10,2014,Bengali,18:00–20:00,+91 93xxx xx270,Rural GT,C
+DST-0783,Keshiary Stores,Sudip Nandi,Keshiary,TER-10,ASM-10,2007,Bengali,17:00–19:00,+91 95xxx xx282,Urban GT,B
+DST-0784,Debabrata Marketing,Ashok Barman,Ghatal,TER-10,ASM-10,2010,Bengali,10:00–12:00,+91 90xxx xx300,Urban GT,B
+DST-0785,Manas Distributors,Subhas Halder,Debra,TER-10,ASM-10,2019,Bengali,11:00–13:00,+91 94xxx xx740,Urban GT,B
+DST-0786,Debra Associates,Arup Maity,Debra,TER-10,ASM-10,2019,Bengali,18:00–20:00,+91 91xxx xx139,Urban GT,A
+DST-0787,Mondal Distributors,Sudip Sen,Debra,TER-10,ASM-10,2014,Bengali,18:00–20:00,+91 94xxx xx973,Urban GT,A
+DST-0788,Debra Marketing,Nimai Chakraborty,Debra,TER-10,ASM-10,2009,English,18:00–20:00,+91 95xxx xx628,Urban GT,B
+DST-0789,Lalbagh Associates,Prasenjit Das,Lalbagh,TER-11,ASM-11,2008,Bengali,10:00–12:00,+91 94xxx xx414,Urban GT,B
+DST-0790,Tarun Traders,Tapan Barman,Jangipur,TER-11,ASM-11,2015,Bengali,10:00–12:00,+91 95xxx xx202,Urban GT,C
+DST-0791,Beldanga Traders,Ranjit Roy,Beldanga,TER-11,ASM-11,2016,English,11:00–13:00,+91 96xxx xx711,Urban GT,B
+DST-0792,Ghosh Agencies,Sanjay Kundu,Berhampore,TER-11,ASM-11,2015,Bengali,18:00–20:00,+91 90xxx xx725,Semi-urban GT,B
+DST-0793,Arup Agencies,Ashok Bose,Kandi,TER-11,ASM-11,2010,Bengali,09:00–11:00,+91 95xxx xx493,Semi-urban GT,B
+DST-0794,Joy Guru Trading Co.,Kalyan Bose,Kandi,TER-11,ASM-11,2012,Hindi,17:00–19:00,+91 92xxx xx267,Urban GT,B
+DST-0795,Domkal Associates,Dipankar Dutta,Domkal,TER-11,ASM-11,2016,English,09:00–11:00,+91 92xxx xx426,Urban GT,B
+DST-0796,Maity Distributors,Niladri Sinha,Domkal,TER-11,ASM-11,2017,English,11:00–13:00,+91 96xxx xx364,Semi-urban GT,A
+DST-0797,Berhampore Trading Co.,Shyamal Pal,Berhampore,TER-11,ASM-11,2008,Bengali,18:00–20:00,+91 94xxx xx302,Semi-urban GT,B
+DST-0798,Banerjee Distribution,Biswajit Jana,Domkal,TER-11,ASM-11,2014,Bengali,09:00–11:00,+91 99xxx xx214,Urban GT,B
+DST-0799,Pal Marketing,Anirban Majumdar,Berhampore,TER-11,ASM-11,2017,Bengali,10:00–12:00,+91 94xxx xx838,Semi-urban GT,C
+DST-0800,Pramanik Agencies,Tarun Halder,Berhampore,TER-11,ASM-11,2009,Bengali,09:00–11:00,+91 99xxx xx508,Rural GT,C
+DST-0801,Aalo Distribution,Raju Chakraborty,Beldanga,TER-11,ASM-11,2007,Bengali,09:00–11:00,+91 95xxx xx326,Urban GT,A
+DST-0802,Chatterjee Trading Co.,Subhas Pal,Lalbagh,TER-11,ASM-11,2019,Bengali,11:00–13:00,+91 91xxx xx312,Semi-urban GT,C
+DST-0803,Mitra Marketing,Prasenjit Ghosh,Domkal,TER-11,ASM-11,2008,English,10:00–12:00,+91 99xxx xx460,Semi-urban GT,C
+DST-0804,Biswas Traders,Sanjay Chatterjee,Kandi,TER-11,ASM-11,2016,Bengali,11:00–13:00,+91 93xxx xx528,Rural GT,C
+DST-0805,Swarnali Marketing,Uttam Sinha,Lalbagh,TER-11,ASM-11,2011,English,17:00–19:00,+91 97xxx xx393,Rural GT,B
+DST-0806,Kandi Associates,Niladri Dutta,Kandi,TER-11,ASM-11,2016,Bengali,17:00–19:00,+91 96xxx xx520,Urban GT,B
+DST-0807,Bikash Trading Co.,Ranjit Kundu,Berhampore,TER-11,ASM-11,2009,Bengali,17:00–19:00,+91 91xxx xx479,Urban GT,C
+DST-0808,Arup Trading Co.,Nimai Mukherjee,Domkal,TER-11,ASM-11,2009,Bengali,10:00–12:00,+91 92xxx xx583,Rural GT,C
+DST-0809,Maa Durga Agencies,Prasenjit Kundu,Jangipur,TER-11,ASM-11,2023,Bengali,10:00–12:00,+91 92xxx xx572,Semi-urban GT,C
+DST-0810,Berhampore Marketing,Sankar Chatterjee,Berhampore,TER-11,ASM-11,2011,Bengali,09:00–11:00,+91 90xxx xx866,Urban GT,C
+DST-0811,Karmakar Associates,Amit Basak,Beldanga,TER-11,ASM-11,2012,English,18:00–20:00,+91 91xxx xx832,Semi-urban GT,A
+DST-0812,Sudip Distributors,Haradhan Sen,Beldanga,TER-11,ASM-11,2013,English,09:00–11:00,+91 95xxx xx509,Semi-urban GT,C
+DST-0813,Domkal Traders,Gautam Mondal,Domkal,TER-11,ASM-11,2009,Bengali,11:00–13:00,+91 92xxx xx348,Semi-urban GT,B
+DST-0814,Sonar Bangla Associates,Kalyan Kundu,Jangipur,TER-11,ASM-11,2012,Bengali,17:00–19:00,+91 95xxx xx906,Urban GT,C
+DST-0815,Lalbagh Enterprises,Biswajit Debnath,Lalbagh,TER-11,ASM-11,2015,Bengali,11:00–13:00,+91 94xxx xx833,Urban GT,C
+DST-0816,Purbasha Enterprises,Sukanta Paul,Beldanga,TER-11,ASM-11,2012,English,09:00–11:00,+91 93xxx xx697,Urban GT,B
+DST-0817,Saraswati Stores,Manas Sinha,Domkal,TER-11,ASM-11,2019,Bengali,10:00–12:00,+91 95xxx xx759,Urban GT,C
+DST-0818,Paul Distributors,Amit Bhattacharya,Jiaganj,TER-11,ASM-11,2011,Bengali,10:00–12:00,+91 92xxx xx384,Semi-urban GT,A
+DST-0819,Beldanga Agencies,Prasenjit Das,Beldanga,TER-11,ASM-11,2020,English,10:00–12:00,+91 95xxx xx780,Urban GT,B
+DST-0820,Gouranga Stores,Uttam Pal,Beldanga,TER-11,ASM-11,2005,Bengali,18:00–20:00,+91 93xxx xx350,Urban GT,B
+DST-0821,Tapan Stores,Ashok Debnath,Beldanga,TER-11,ASM-11,2011,Bengali,18:00–20:00,+91 97xxx xx575,Urban GT,A
+DST-0822,Anjali Associates,Biswajit Shaw,Jiaganj,TER-11,ASM-11,2007,English,17:00–19:00,+91 93xxx xx703,Rural GT,C
+DST-0823,Domkal Distributors,Tarun Halder,Domkal,TER-11,ASM-11,2019,English,11:00–13:00,+91 98xxx xx594,Semi-urban GT,C
+DST-0824,Nabajiban Enterprises,Ranjit Mallick,Beldanga,TER-11,ASM-11,2019,Bengali,10:00–12:00,+91 91xxx xx878,Urban GT,B
+DST-0825,Maa Sarada Marketing,Uttam Banerjee,Lalbagh,TER-11,ASM-11,2010,English,10:00–12:00,+91 93xxx xx414,Semi-urban GT,B
+DST-0826,Sri Sai Enterprises,Bikash Chatterjee,Lalbagh,TER-11,ASM-11,2014,Hindi,17:00–19:00,+91 99xxx xx907,Urban GT,C
+DST-0827,Beldanga Marketing,Tarun Sinha,Beldanga,TER-11,ASM-11,2017,Bengali,17:00–19:00,+91 90xxx xx518,Urban GT,C
+DST-0828,Jiaganj Distributors,Raju Paul,Jiaganj,TER-11,ASM-11,2014,Bengali,10:00–12:00,+91 93xxx xx732,Semi-urban GT,C
+DST-0829,Jiaganj Associates,Subhas Paul,Jiaganj,TER-11,ASM-11,2019,Bengali,18:00–20:00,+91 99xxx xx484,Urban GT,B
+DST-0830,Mitra Traders,Gopal Saha,Berhampore,TER-11,ASM-11,2014,Hindi,17:00–19:00,+91 92xxx xx994,Urban GT,B
+DST-0831,Chakraborty Stores,Gautam Barman,Lalbagh,TER-11,ASM-11,2020,English,09:00–11:00,+91 92xxx xx890,Semi-urban GT,B
+DST-0832,Jiaganj Marketing,Dipankar Jana,Jiaganj,TER-11,ASM-11,2010,Bengali,17:00–19:00,+91 93xxx xx571,Urban GT,A
+DST-0833,Bag Distributors,Subhas Mallick,Jangipur,TER-11,ASM-11,2015,Bengali,17:00–19:00,+91 90xxx xx616,Rural GT,B
+DST-0834,Lalbagh Trading Co.,Prasenjit Jana,Lalbagh,TER-11,ASM-11,2008,English,09:00–11:00,+91 92xxx xx763,Semi-urban GT,B
+DST-0835,Shaw Distributors,Sukanta Das,Kandi,TER-11,ASM-11,2023,English,09:00–11:00,+91 90xxx xx330,Urban GT,B
+DST-0836,Jangipur Stores,Amit Chakraborty,Jangipur,TER-11,ASM-11,2014,Hindi,10:00–12:00,+91 93xxx xx410,Urban GT,A
+DST-0837,Biswas & Sons,Biswajit Roy,Lalbagh,TER-11,ASM-11,2018,Bengali,17:00–19:00,+91 90xxx xx554,Rural GT,C
+DST-0838,Jiaganj Trading Co.,Rupa Sinha,Jiaganj,TER-11,ASM-11,2010,Bengali,17:00–19:00,+91 99xxx xx934,Urban GT,A
+DST-0839,Radha Krishna Traders,Anirban Ganguly,Jangipur,TER-11,ASM-11,2014,Bengali,10:00–12:00,+91 91xxx xx918,Semi-urban GT,B
+DST-0840,Biswajit Distributors,Tarun Sinha,Kandi,TER-11,ASM-11,2007,Bengali,11:00–13:00,+91 91xxx xx544,Rural GT,A
+DST-0841,Anirban Enterprises,Sankar Mondal,Beldanga,TER-11,ASM-11,2009,Bengali,10:00–12:00,+91 94xxx xx513,Semi-urban GT,C
+DST-0842,Maa Durga Marketing,Rupa Bose,Jiaganj,TER-11,ASM-11,2008,English,09:00–11:00,+91 98xxx xx486,Semi-urban GT,C
+DST-0843,Saha Traders,Prasenjit Basak,Beldanga,TER-11,ASM-11,2021,Bengali,18:00–20:00,+91 90xxx xx418,Urban GT,A
+DST-0844,Mukherjee Enterprises,Tapan Sarkar,Lalbagh,TER-11,ASM-11,2011,English,09:00–11:00,+91 96xxx xx389,Rural GT,B
+DST-0845,Barnali Stores,Gopal Halder,Berhampore,TER-11,ASM-11,2008,Bengali,11:00–13:00,+91 92xxx xx693,Semi-urban GT,C
+DST-0846,Jiaganj Enterprises,Mita Kundu,Jiaganj,TER-11,ASM-11,2009,Bengali,09:00–11:00,+91 99xxx xx592,Urban GT,A
+DST-0847,Ranjit Enterprises,Raju Bag,Lalbagh,TER-11,ASM-11,2021,Bengali,09:00–11:00,+91 95xxx xx881,Semi-urban GT,A
+DST-0848,Agami Enterprises,Rupa Mondal,Berhampore,TER-11,ASM-11,2007,Bengali,11:00–13:00,+91 92xxx xx994,Urban GT,C
+DST-0849,Mallick & Sons,Haradhan Debnath,Kandi,TER-11,ASM-11,2004,Bengali,11:00–13:00,+91 98xxx xx715,Semi-urban GT,C
+DST-0850,Domkal Marketing,Sudip Karmakar,Domkal,TER-11,ASM-11,2009,Bengali,09:00–11:00,+91 92xxx xx750,Semi-urban GT,A
+DST-0851,Gopal Associates,Tapan Majumdar,Domkal,TER-11,ASM-11,2004,Bengali,18:00–20:00,+91 94xxx xx313,Rural GT,B
+DST-0852,Sonar Bangla Distributors,Tapan Sarkar,Domkal,TER-11,ASM-11,2019,English,10:00–12:00,+91 96xxx xx905,Urban GT,C
+DST-0853,Kandi Traders,Gautam Roy,Kandi,TER-11,ASM-11,2016,Bengali,18:00–20:00,+91 92xxx xx310,Urban GT,A
+DST-0854,Beldanga Associates,Prasenjit Majumdar,Beldanga,TER-11,ASM-11,2007,Bengali,18:00–20:00,+91 97xxx xx257,Urban GT,C
+DST-0855,Subhas Trading Co.,Gautam Mondal,Jiaganj,TER-11,ASM-11,2018,Bengali,10:00–12:00,+91 97xxx xx876,Urban GT,B
+DST-0856,Saraswati Agencies,Niladri Bag,Domkal,TER-11,ASM-11,2017,Bengali,09:00–11:00,+91 94xxx xx962,Semi-urban GT,B
+DST-0857,Arup Stores,Niladri Nandi,Lalbagh,TER-11,ASM-11,2015,Bengali,09:00–11:00,+91 97xxx xx348,Semi-urban GT,B
+DST-0858,Dishari Trading Co.,Nimai Paul,Jangipur,TER-11,ASM-11,2005,Bengali,18:00–20:00,+91 91xxx xx689,Urban GT,B
+DST-0859,Haradhan Trading Co.,Biswajit Biswas,Jiaganj,TER-11,ASM-11,2022,Bengali,11:00–13:00,+91 91xxx xx399,Rural GT,C
+DST-0860,Partha Distribution,Subhas Chakraborty,Jiaganj,TER-11,ASM-11,2018,English,11:00–13:00,+91 92xxx xx314,Semi-urban GT,A
+DST-0861,Jiaganj Agencies,Sukanta Dutta,Jiaganj,TER-11,ASM-11,2006,English,11:00–13:00,+91 99xxx xx609,Semi-urban GT,C
+DST-0862,Jana Marketing,Sanjay Chakraborty,Jiaganj,TER-11,ASM-11,2004,Bengali,18:00–20:00,+91 94xxx xx618,Semi-urban GT,B
+DST-0863,Barman Brothers,Shyamal Saha,Domkal,TER-11,ASM-11,2010,Bengali,18:00–20:00,+91 96xxx xx972,Urban GT,C
+DST-0864,English Bazar Trading Co.,Tapan Bhattacharya,English Bazar,TER-12,ASM-12,2009,Bengali,11:00–13:00,+91 92xxx xx824,Urban GT,C
+DST-0865,Debnath Marketing,Arup Pal,Chanchal,TER-12,ASM-12,2014,Bengali,09:00–11:00,+91 98xxx xx363,Urban GT,B
+DST-0866,Sri Sai Distribution,Jhuma Dey,Harishchandrapur,TER-12,ASM-12,2006,Hindi,10:00–12:00,+91 99xxx xx610,Urban GT,C
+DST-0867,Pradip Enterprises,Swapan Banerjee,Old Malda,TER-12,ASM-12,2018,English,10:00–12:00,+91 98xxx xx252,Rural GT,B
+DST-0868,Gazole Distribution,Pradip Ganguly,Gazole,TER-12,ASM-12,2009,Bengali,10:00–12:00,+91 91xxx xx609,Urban GT,C
+DST-0869,Old Malda Associates,Niladri Barman,Old Malda,TER-12,ASM-12,2006,Bengali,11:00–13:00,+91 92xxx xx345,Rural GT,C
+DST-0870,Gazole Traders,Amit Chakraborty,Gazole,TER-12,ASM-12,2020,Bengali,18:00–20:00,+91 98xxx xx503,Semi-urban GT,B
+DST-0871,Tarun Trading Co.,Amit Bag,Manikchak,TER-12,ASM-12,2004,Bengali,11:00–13:00,+91 98xxx xx595,Semi-urban GT,B
+DST-0872,Sen Distribution,Dipankar Adhikari,Chanchal,TER-12,ASM-12,2005,English,17:00–19:00,+91 98xxx xx636,Rural GT,B
+DST-0873,Harishchandrapur Traders,Kalyan Biswas,Harishchandrapur,TER-12,ASM-12,2022,English,09:00–11:00,+91 90xxx xx490,Urban GT,A
+DST-0874,Niladri Marketing,Shyamal Debnath,Manikchak,TER-12,ASM-12,2015,English,17:00–19:00,+91 90xxx xx259,Urban GT,B
+DST-0875,Old Malda Trading Co.,Gopal Mukherjee,Old Malda,TER-12,ASM-12,2019,Bengali,09:00–11:00,+91 96xxx xx142,Semi-urban GT,C
+DST-0876,Kalyan Traders,Ranjit Chatterjee,Gazole,TER-12,ASM-12,2012,Hindi,17:00–19:00,+91 94xxx xx649,Urban GT,C
+DST-0877,Harishchandrapur Associates,Subhas Mallick,Harishchandrapur,TER-12,ASM-12,2010,English,11:00–13:00,+91 90xxx xx682,Urban GT,C
+DST-0878,Mukherjee Distributors,Tapan Mitra,Old Malda,TER-12,ASM-12,2020,Bengali,10:00–12:00,+91 93xxx xx443,Semi-urban GT,A
+DST-0879,Gazole Marketing,Tapan Dutta,Gazole,TER-12,ASM-12,2011,Bengali,09:00–11:00,+91 99xxx xx159,Rural GT,A
+DST-0880,Ujjwal Trading Co.,Bikash Paul,Harishchandrapur,TER-12,ASM-12,2018,English,10:00–12:00,+91 97xxx xx727,Urban GT,B
+DST-0881,Sarkar Associates,Dipankar Debnath,Manikchak,TER-12,ASM-12,2008,Bengali,10:00–12:00,+91 96xxx xx363,Rural GT,B
+DST-0882,Chanchal Trading Co.,Tapan Bose,Chanchal,TER-12,ASM-12,2018,Bengali,18:00–20:00,+91 93xxx xx511,Urban GT,B
+DST-0883,Prasenjit Associates,Shyamal Maity,Manikchak,TER-12,ASM-12,2015,Bengali,17:00–19:00,+91 92xxx xx840,Semi-urban GT,C
+DST-0884,Bhorer Aalo Marketing,Uttam Basak,Old Malda,TER-12,ASM-12,2015,English,10:00–12:00,+91 96xxx xx244,Urban GT,A
+DST-0885,Milan Trading Co.,Tanushree Bhattacharya,Harishchandrapur,TER-12,ASM-12,2021,English,17:00–19:00,+91 98xxx xx542,Urban GT,C
+DST-0886,Ananda Distribution,Niladri Sarkar,Gazole,TER-12,ASM-12,2016,Bengali,10:00–12:00,+91 92xxx xx521,Urban GT,B
+DST-0887,Tapan Associates,Sankar Karmakar,Old Malda,TER-12,ASM-12,2005,English,09:00–11:00,+91 91xxx xx121,Urban GT,B
+DST-0888,Sukanta Traders,Sankar Chakraborty,English Bazar,TER-12,ASM-12,2022,English,17:00–19:00,+91 97xxx xx446,Semi-urban GT,C
+DST-0889,Adhikari Trading Co.,Uttam Pramanik,Chanchal,TER-12,ASM-12,2012,English,10:00–12:00,+91 91xxx xx779,Rural GT,B
+DST-0890,Kalyan Trading Co.,Debabrata Ghosh,Gazole,TER-12,ASM-12,2022,English,11:00–13:00,+91 97xxx xx698,Semi-urban GT,C
+DST-0891,Purbasha Traders,Raju Mukherjee,Gazole,TER-12,ASM-12,2014,Bengali,09:00–11:00,+91 95xxx xx717,Rural GT,A
+DST-0892,Bishwakarma Enterprises,Gautam Mukherjee,Gazole,TER-12,ASM-12,2020,Bengali,18:00–20:00,+91 90xxx xx601,Urban GT,C
+DST-0893,Maa Durga Distributors,Ashok Pramanik,Old Malda,TER-12,ASM-12,2016,Bengali,11:00–13:00,+91 96xxx xx443,Urban GT,A
+DST-0894,Bag Distribution,Sankar Jana,Harishchandrapur,TER-12,ASM-12,2006,English,11:00–13:00,+91 98xxx xx216,Urban GT,C
+DST-0895,Old Malda Traders,Sanjay Dey,Old Malda,TER-12,ASM-12,2006,Bengali,10:00–12:00,+91 91xxx xx984,Urban GT,A
+DST-0896,Manikchak Traders,Subhas Roy,Manikchak,TER-12,ASM-12,2010,English,09:00–11:00,+91 92xxx xx193,Semi-urban GT,A
+DST-0897,Bhagabati Agencies,Rina Paul,English Bazar,TER-12,ASM-12,2014,English,10:00–12:00,+91 97xxx xx937,Urban GT,B
+DST-0898,Ananda Associates,Niladri Sen,Gazole,TER-12,ASM-12,2018,Bengali,09:00–11:00,+91 91xxx xx280,Rural GT,C
+DST-0899,Chanchal Agencies,Arup Mitra,Chanchal,TER-12,ASM-12,2023,Bengali,11:00–13:00,+91 93xxx xx536,Urban GT,C
+DST-0900,Chanchal Stores,Moumita Mitra,Chanchal,TER-12,ASM-12,2009,Bengali,09:00–11:00,+91 97xxx xx452,Rural GT,B
+DST-0901,Maity Associates,Anirban Paul,English Bazar,TER-12,ASM-12,2017,Hindi,10:00–12:00,+91 95xxx xx490,Rural GT,C
+DST-0902,Saraswati Distributors,Haradhan Banerjee,Manikchak,TER-12,ASM-12,2008,Bengali,10:00–12:00,+91 93xxx xx197,Urban GT,A
+DST-0903,Chatterjee Associates,Subhas Ganguly,Gazole,TER-12,ASM-12,2007,Bengali,11:00–13:00,+91 97xxx xx722,Urban GT,B
+DST-0904,Dey Enterprises,Kalyan Saha,Old Malda,TER-12,ASM-12,2004,Bengali,17:00–19:00,+91 93xxx xx314,Rural GT,A
+DST-0905,Ujjwal Distribution,Swapan Bhattacharya,Manikchak,TER-12,ASM-12,2010,English,11:00–13:00,+91 99xxx xx334,Semi-urban GT,C
+DST-0906,Pramanik Distributors,Gopal Dutta,Harishchandrapur,TER-12,ASM-12,2016,English,18:00–20:00,+91 95xxx xx183,Semi-urban GT,B
+DST-0907,Bhorer Aalo Distribution,Sutapa Mukherjee,Gazole,TER-12,ASM-12,2012,English,11:00–13:00,+91 90xxx xx585,Urban GT,B
+DST-0908,Aalo Marketing,Ranjit Adhikari,Manikchak,TER-12,ASM-12,2010,English,10:00–12:00,+91 99xxx xx719,Urban GT,C
+DST-0909,Manikchak Distribution,Shyamal Shaw,Manikchak,TER-12,ASM-12,2004,Bengali,10:00–12:00,+91 92xxx xx403,Urban GT,B
+DST-0910,Manikchak Trading Co.,Arup Shaw,Manikchak,TER-12,ASM-12,2014,Bengali,11:00–13:00,+91 99xxx xx956,Semi-urban GT,A
+DST-0911,Subhas Enterprises,Sankar Saha,Manikchak,TER-12,ASM-12,2008,Bengali,18:00–20:00,+91 92xxx xx830,Urban GT,B
+DST-0912,Saha Associates,Subhas Karmakar,Chanchal,TER-12,ASM-12,2017,English,17:00–19:00,+91 92xxx xx661,Rural GT,C
+DST-0913,Agami Distributors,Tanushree Pramanik,Old Malda,TER-12,ASM-12,2005,Bengali,10:00–12:00,+91 92xxx xx991,Urban GT,B
+DST-0914,Joy Guru Distribution,Manas Paul,Chanchal,TER-12,ASM-12,2009,English,18:00–20:00,+91 94xxx xx442,Urban GT,C
+DST-0915,Ashok Associates,Shyamal Chakraborty,Chanchal,TER-12,ASM-12,2018,Hindi,18:00–20:00,+91 92xxx xx603,Urban GT,B
+DST-0916,Bikash Distributors,Gautam Das,Harishchandrapur,TER-12,ASM-12,2013,Bengali,18:00–20:00,+91 92xxx xx199,Urban GT,A
+DST-0917,Tarakeswar Traders,Prasenjit Barman,Old Malda,TER-12,ASM-12,2012,Bengali,18:00–20:00,+91 97xxx xx164,Semi-urban GT,B
+DST-0918,Uttaran Distributors,Haradhan Maity,Old Malda,TER-12,ASM-12,2017,Bengali,09:00–11:00,+91 99xxx xx145,Semi-urban GT,C
+DST-0919,Chanchal Associates,Gautam Ghosh,Chanchal,TER-12,ASM-12,2012,Hindi,10:00–12:00,+91 93xxx xx806,Urban GT,C
+DST-0920,English Bazar Distributors,Amit Dey,English Bazar,TER-12,ASM-12,2018,English,18:00–20:00,+91 92xxx xx482,Semi-urban GT,C
+DST-0921,Ranjit Stores,Arup Sarkar,Chanchal,TER-12,ASM-12,2023,Bengali,10:00–12:00,+91 99xxx xx242,Rural GT,A
+DST-0922,Bishwakarma Traders,Uttam Bose,Old Malda,TER-12,ASM-12,2020,Bengali,09:00–11:00,+91 94xxx xx663,Semi-urban GT,C
+DST-0923,Old Malda Marketing,Ranjit Dey,Old Malda,TER-12,ASM-12,2021,Hindi,18:00–20:00,+91 96xxx xx324,Semi-urban GT,B
+DST-0924,Manikchak Agencies,Gopal Mallick,Manikchak,TER-12,ASM-12,2007,Bengali,09:00–11:00,+91 94xxx xx347,Semi-urban GT,C
+DST-0925,Sagar Distributors,Moumita Mondal,Chanchal,TER-12,ASM-12,2010,Bengali,09:00–11:00,+91 91xxx xx359,Urban GT,B
+DST-0926,Joy Guru Marketing,Ashok Majumdar,English Bazar,TER-12,ASM-12,2017,Bengali,17:00–19:00,+91 99xxx xx707,Urban GT,B
+DST-0927,Shyamal Stores,Tarun Ganguly,Gazole,TER-12,ASM-12,2019,Hindi,17:00–19:00,+91 90xxx xx599,Semi-urban GT,B
+DST-0928,English Bazar Associates,Tarun Dutta,English Bazar,TER-12,ASM-12,2004,English,18:00–20:00,+91 90xxx xx618,Urban GT,B
+DST-0929,Prabhat Distribution,Sudip Karmakar,Harishchandrapur,TER-12,ASM-12,2019,Bengali,17:00–19:00,+91 94xxx xx974,Urban GT,A
+DST-0930,Banerjee Trading Co.,Sima Debnath,Chanchal,TER-12,ASM-12,2014,English,18:00–20:00,+91 97xxx xx334,Semi-urban GT,B
+DST-0931,Pradip Traders,Tapan Ghosh,Manikchak,TER-12,ASM-12,2018,Bengali,17:00–19:00,+91 90xxx xx825,Semi-urban GT,C
+DST-0932,Gopal Enterprises,Sanjay Pal,Manikchak,TER-12,ASM-12,2022,Bengali,10:00–12:00,+91 97xxx xx775,Rural GT,C
+DST-0933,Nabajiban Stores,Tanushree Sarkar,Chanchal,TER-12,ASM-12,2013,Bengali,17:00–19:00,+91 90xxx xx480,Urban GT,C
+DST-0934,Sagar Distribution,Sutapa Bag,Phansidewa,TER-13,ASM-13,2023,Bengali,17:00–19:00,+91 96xxx xx420,Urban GT,A
+DST-0935,Halder Enterprises,Sankar Shaw,Matigara,TER-13,ASM-13,2010,Bengali,18:00–20:00,+91 90xxx xx110,Urban GT,C
+DST-0936,Phansidewa Distribution,Partha Debnath,Phansidewa,TER-13,ASM-13,2023,Bengali,11:00–13:00,+91 98xxx xx462,Rural GT,A
+DST-0937,Sri Sai Agencies,Biswajit Chatterjee,Matigara,TER-13,ASM-13,2006,Bengali,18:00–20:00,+91 94xxx xx928,Urban GT,B
+DST-0938,Ananda Agencies,Biswajit Kundu,Siliguri,TER-13,ASM-13,2013,Bengali,18:00–20:00,+91 96xxx xx556,Urban GT,A
+DST-0939,Tarun Associates,Anirban Paul,Siliguri,TER-13,ASM-13,2023,English,09:00–11:00,+91 98xxx xx883,Urban GT,B
+DST-0940,Kurseong Trading Co.,Shyamal Biswas,Kurseong,TER-13,ASM-13,2010,Bengali,17:00–19:00,+91 94xxx xx354,Semi-urban GT,A
+DST-0941,Dishari Agencies,Amit Jana,Matigara,TER-13,ASM-13,2004,Bengali,11:00–13:00,+91 95xxx xx490,Urban GT,B
+DST-0942,Naxalbari Trading Co.,Moumita Ganguly,Naxalbari,TER-13,ASM-13,2011,Bengali,11:00–13:00,+91 97xxx xx261,Urban GT,C
+DST-0943,Darjeeling Distributors,Dipankar Sen,Darjeeling,TER-13,ASM-13,2011,Bengali,10:00–12:00,+91 91xxx xx730,Semi-urban GT,A
+DST-0944,Prasenjit Enterprises,Nimai Shaw,Siliguri,TER-13,ASM-13,2012,English,10:00–12:00,+91 93xxx xx519,Urban GT,C
+DST-0945,Phansidewa Enterprises,Debabrata Maity,Phansidewa,TER-13,ASM-13,2021,English,10:00–12:00,+91 92xxx xx646,Rural GT,C
+DST-0946,Matigara Marketing,Debabrata Halder,Matigara,TER-13,ASM-13,2020,English,18:00–20:00,+91 98xxx xx158,Urban GT,A
+DST-0947,Aalo Associates,Sanjay Mondal,Matigara,TER-13,ASM-13,2011,Bengali,18:00–20:00,+91 90xxx xx168,Rural GT,A
+DST-0948,Maa Sarada Stores,Niladri Sinha,Matigara,TER-13,ASM-13,2021,Bengali,17:00–19:00,+91 98xxx xx577,Rural GT,A
+DST-0949,Phansidewa Agencies,Sharmila Majumdar,Phansidewa,TER-13,ASM-13,2007,Bengali,17:00–19:00,+91 96xxx xx484,Urban GT,A
+DST-0950,Siliguri Agencies,Arup Sarkar,Siliguri,TER-13,ASM-13,2018,English,10:00–12:00,+91 94xxx xx505,Urban GT,A
+DST-0951,Sen Brothers,Sankar Paul,Siliguri,TER-13,ASM-13,2017,Bengali,11:00–13:00,+91 95xxx xx940,Semi-urban GT,C
+DST-0952,Mukherjee Distribution,Sanjay Das,Naxalbari,TER-13,ASM-13,2007,Bengali,18:00–20:00,+91 94xxx xx161,Urban GT,C
+DST-0953,Chakraborty Distribution,Raju Karmakar,Matigara,TER-13,ASM-13,2022,Bengali,17:00–19:00,+91 97xxx xx543,Semi-urban GT,A
+DST-0954,Agami Stores,Sima Paul,Siliguri,TER-13,ASM-13,2014,English,17:00–19:00,+91 94xxx xx247,Urban GT,B
+DST-0955,Nandi Agencies,Rina Chatterjee,Matigara,TER-13,ASM-13,2005,Bengali,17:00–19:00,+91 91xxx xx324,Urban GT,B
+DST-0956,Gautam Stores,Gopal Bhattacharya,Matigara,TER-13,ASM-13,2014,Bengali,18:00–20:00,+91 98xxx xx798,Urban GT,C
+DST-0957,Barnali Marketing,Shyamal Basak,Phansidewa,TER-13,ASM-13,2022,Bengali,09:00–11:00,+91 93xxx xx266,Semi-urban GT,C
+DST-0958,Shyamal Agencies,Nimai Kundu,Kurseong,TER-13,ASM-13,2013,Bengali,10:00–12:00,+91 95xxx xx263,Semi-urban GT,B
+DST-0959,Pal Traders,Mita Sarkar,Phansidewa,TER-13,ASM-13,2021,Bengali,09:00–11:00,+91 92xxx xx152,Urban GT,C
+DST-0960,Joy Guru Stores,Jhuma Mitra,Matigara,TER-13,ASM-13,2008,Bengali,18:00–20:00,+91 94xxx xx261,Semi-urban GT,B
+DST-0961,Prabhat Trading Co.,Niladri Chatterjee,Kurseong,TER-13,ASM-13,2019,English,11:00–13:00,+91 98xxx xx413,Urban GT,A
+DST-0962,Kurseong Agencies,Nimai Majumdar,Kurseong,TER-13,ASM-13,2014,Bengali,17:00–19:00,+91 92xxx xx820,Urban GT,C
+DST-0963,Siliguri Marketing,Sudip Pramanik,Siliguri,TER-13,ASM-13,2017,Bengali,18:00–20:00,+91 99xxx xx409,Rural GT,B
+DST-0964,Arup Distributors,Shyamal Mukherjee,Matigara,TER-13,ASM-13,2015,Bengali,09:00–11:00,+91 94xxx xx498,Urban GT,B
+DST-0965,Dishari Enterprises,Sima Nandi,Naxalbari,TER-13,ASM-13,2017,Bengali,11:00–13:00,+91 92xxx xx143,Rural GT,B
+DST-0966,Swapan Stores,Debabrata Maity,Matigara,TER-13,ASM-13,2005,Bengali,09:00–11:00,+91 96xxx xx703,Semi-urban GT,C
+DST-0967,Haradhan Agencies,Sukanta Bose,Darjeeling,TER-13,ASM-13,2011,English,18:00–20:00,+91 94xxx xx504,Urban GT,C
+DST-0968,Prasenjit Agencies,Tarun Sen,Phansidewa,TER-13,ASM-13,2006,English,11:00–13:00,+91 98xxx xx933,Rural GT,C
+DST-0969,Biswas Stores,Sukanta Mondal,Naxalbari,TER-13,ASM-13,2011,Hindi,17:00–19:00,+91 98xxx xx843,Urban GT,B
+DST-0970,Phansidewa Marketing,Moumita Majumdar,Phansidewa,TER-13,ASM-13,2021,English,09:00–11:00,+91 91xxx xx259,Rural GT,B
+DST-0971,Darjeeling Distribution,Pradip Jana,Darjeeling,TER-13,ASM-13,2014,Bengali,18:00–20:00,+91 97xxx xx623,Urban GT,B
+DST-0972,Kurseong Marketing,Raju Mukherjee,Kurseong,TER-13,ASM-13,2021,Hindi,09:00–11:00,+91 99xxx xx923,Rural GT,C
+DST-0973,Loknath Enterprises,Sanjay Karmakar,Darjeeling,TER-13,ASM-13,2021,Bengali,11:00–13:00,+91 90xxx xx448,Rural GT,B
+DST-0974,Darjeeling Traders,Debabrata Sinha,Darjeeling,TER-13,ASM-13,2010,Bengali,18:00–20:00,+91 97xxx xx892,Semi-urban GT,A
+DST-0975,Sathi Distributors,Nimai Maity,Kurseong,TER-13,ASM-13,2006,Bengali,09:00–11:00,+91 99xxx xx633,Semi-urban GT,B
+DST-0976,Siliguri Distribution,Rina Sen,Siliguri,TER-13,ASM-13,2013,English,10:00–12:00,+91 94xxx xx935,Urban GT,A
+DST-0977,Manas Marketing,Moumita Majumdar,Matigara,TER-13,ASM-13,2017,Bengali,11:00–13:00,+91 95xxx xx289,Semi-urban GT,B
+DST-0978,Darjeeling Marketing,Sanjay Biswas,Darjeeling,TER-13,ASM-13,2022,English,10:00–12:00,+91 90xxx xx383,Urban GT,B
+DST-0979,Darjeeling Stores,Nimai Adhikari,Darjeeling,TER-13,ASM-13,2013,English,11:00–13:00,+91 91xxx xx513,Semi-urban GT,B
+DST-0980,Siliguri Enterprises,Jhuma Das,Siliguri,TER-13,ASM-13,2007,English,09:00–11:00,+91 97xxx xx928,Urban GT,B
+DST-0981,Mohona Traders,Partha Roy,Phansidewa,TER-13,ASM-13,2005,Bengali,10:00–12:00,+91 90xxx xx848,Urban GT,B
+DST-0982,Naxalbari Distributors,Ranjit Biswas,Naxalbari,TER-13,ASM-13,2018,Bengali,09:00–11:00,+91 95xxx xx432,Rural GT,C
+DST-0983,Sen Distributors,Manas Mitra,Naxalbari,TER-13,ASM-13,2010,Bengali,11:00–13:00,+91 92xxx xx390,Urban GT,C
+DST-0984,Naxalbari Associates,Manas Saha,Naxalbari,TER-13,ASM-13,2022,Bengali,11:00–13:00,+91 93xxx xx560,Urban GT,C
+DST-0985,Barman Stores,Tapan Mondal,Darjeeling,TER-13,ASM-13,2012,English,18:00–20:00,+91 94xxx xx806,Urban GT,B
+DST-0986,Gautam Agencies,Niladri Barman,Darjeeling,TER-13,ASM-13,2023,Bengali,18:00–20:00,+91 92xxx xx742,Urban GT,C
+DST-0987,Phansidewa Stores,Ranjit Das,Phansidewa,TER-13,ASM-13,2019,Bengali,09:00–11:00,+91 94xxx xx838,Semi-urban GT,B
+DST-0988,Bhabani Agencies,Ranjit Bose,Bagdogra,TER-13,ASM-13,2014,Bengali,10:00–12:00,+91 98xxx xx441,Urban GT,C
+DST-0989,Biswajit Traders,Sima Debnath,Naxalbari,TER-13,ASM-13,2017,English,10:00–12:00,+91 97xxx xx522,Semi-urban GT,C
+DST-0990,Gouranga Associates,Partha Biswas,Kurseong,TER-13,ASM-13,2010,Bengali,09:00–11:00,+91 94xxx xx111,Rural GT,C
+DST-0991,Naxalbari Agencies,Moumita Adhikari,Naxalbari,TER-13,ASM-13,2009,English,09:00–11:00,+91 97xxx xx936,Rural GT,C
+DST-0992,Saraswati Marketing,Uttam Chatterjee,Darjeeling,TER-13,ASM-13,2004,English,18:00–20:00,+91 90xxx xx783,Urban GT,B
+DST-0993,Matigara Agencies,Anirban Banerjee,Matigara,TER-13,ASM-13,2010,English,10:00–12:00,+91 92xxx xx402,Urban GT,C
+DST-0994,Das Enterprises,Uttam Banerjee,Kurseong,TER-13,ASM-13,2017,Bengali,10:00–12:00,+91 93xxx xx174,Urban GT,B
+DST-0995,Siliguri Stores,Manas Bhattacharya,Siliguri,TER-13,ASM-13,2018,Bengali,18:00–20:00,+91 98xxx xx776,Semi-urban GT,C
+DST-0996,Jana Distribution,Bikash Biswas,Naxalbari,TER-13,ASM-13,2004,Bengali,11:00–13:00,+91 96xxx xx891,Semi-urban GT,B
+DST-0997,Bhattacharya Stores,Gautam Nandi,Siliguri,TER-13,ASM-13,2014,Bengali,10:00–12:00,+91 90xxx xx537,Urban GT,B
+DST-0998,Shree Ram Traders,Tanushree Pramanik,Darjeeling,TER-13,ASM-13,2007,Bengali,18:00–20:00,+91 95xxx xx158,Semi-urban GT,C
+DST-0999,Kurseong Distribution,Uttam Sarkar,Kurseong,TER-13,ASM-13,2023,English,18:00–20:00,+91 97xxx xx394,Urban GT,C
+DST-1000,Shree Ram Distribution,Raju Bose,Darjeeling,TER-13,ASM-13,2014,Bengali,09:00–11:00,+91 98xxx xx545,Urban GT,C
+DST-1001,Shyamal Marketing,Amit Dey,Siliguri,TER-13,ASM-13,2020,Bengali,10:00–12:00,+91 96xxx xx486,Semi-urban GT,B
+DST-1002,Halder Stores,Ranjit Dey,Matigara,TER-13,ASM-13,2005,Bengali,10:00–12:00,+91 99xxx xx484,Semi-urban GT,C
+DST-1003,Phansidewa Associates,Tanushree Kundu,Phansidewa,TER-13,ASM-13,2017,Bengali,18:00–20:00,+91 98xxx xx571,Semi-urban GT,C
+DST-1004,Debabrata Stores,Amit Sen,Darjeeling,TER-13,ASM-13,2012,English,09:00–11:00,+91 96xxx xx358,Rural GT,B
+DST-1005,Saha Trading Co.,Tapan Saha,Siliguri,TER-13,ASM-13,2008,English,18:00–20:00,+91 94xxx xx843,Urban GT,A
+DST-1006,Bose Trading Co.,Arup Paul,Phansidewa,TER-13,ASM-13,2009,Bengali,11:00–13:00,+91 94xxx xx987,Rural GT,A
+DST-1007,Matigara Enterprises,Haradhan Sen,Matigara,TER-13,ASM-13,2014,Bengali,09:00–11:00,+91 94xxx xx344,Urban GT,B
+DST-1008,Pradip Trading Co.,Raju Sarkar,Matigara,TER-13,ASM-13,2007,Bengali,18:00–20:00,+91 97xxx xx638,Urban GT,C
+DST-1009,Sagar Associates,Shyamal Chakraborty,Darjeeling,TER-13,ASM-13,2011,Bengali,17:00–19:00,+91 90xxx xx840,Urban GT,B
+DST-1010,Siliguri Traders,Sankar Basak,Siliguri,TER-13,ASM-13,2004,English,10:00–12:00,+91 96xxx xx476,Semi-urban GT,C
+DST-1011,Jagannath Traders,Amit Mondal,Bagdogra,TER-13,ASM-13,2020,English,18:00–20:00,+91 94xxx xx211,Semi-urban GT,B
+DST-1012,Matigara Trading Co.,Haradhan Chatterjee,Matigara,TER-13,ASM-13,2010,Bengali,18:00–20:00,+91 92xxx xx175,Urban GT,B
+DST-1013,Shiv Shakti Distributors,Nimai Mitra,Bagdogra,TER-13,ASM-13,2008,Bengali,17:00–19:00,+91 90xxx xx949,Urban GT,A
+DST-1014,Bose Stores,Pradip Roy,Siliguri,TER-13,ASM-13,2017,English,09:00–11:00,+91 90xxx xx297,Rural GT,C
+DST-1015,Alipurduar Trading Co.,Partha Majumdar,Alipurduar,TER-14,ASM-14,2020,Bengali,09:00–11:00,+91 90xxx xx952,Rural GT,A
+DST-1016,Mainaguri Distributors,Kakali Shaw,Mainaguri,TER-14,ASM-14,2023,Bengali,17:00–19:00,+91 91xxx xx156,Urban GT,A
+DST-1017,Mathabhanga Distributors,Rina Paul,Mathabhanga,TER-14,ASM-14,2020,Bengali,11:00–13:00,+91 91xxx xx400,Semi-urban GT,B
+DST-1018,Ranjit Distributors,Debabrata Banerjee,Jalpaiguri,TER-14,ASM-14,2020,Bengali,18:00–20:00,+91 97xxx xx757,Urban GT,C
+DST-1019,Pragati Enterprises,Rupa Roy,Cooch Behar,TER-14,ASM-14,2016,English,17:00–19:00,+91 92xxx xx710,Urban GT,B
+DST-1020,Pal Associates,Haradhan Pramanik,Jalpaiguri,TER-14,ASM-14,2016,Hindi,10:00–12:00,+91 99xxx xx816,Rural GT,C
+DST-1021,Jalpaiguri Distribution,Kakali Adhikari,Jalpaiguri,TER-14,ASM-14,2012,Bengali,10:00–12:00,+91 93xxx xx307,Urban GT,C
+DST-1022,Shree Ram Distributors,Partha Shaw,Jalpaiguri,TER-14,ASM-14,2011,English,11:00–13:00,+91 92xxx xx578,Urban GT,A
+DST-1023,Gouranga Distribution,Swapan Sen,Alipurduar,TER-14,ASM-14,2009,English,11:00–13:00,+91 90xxx xx244,Rural GT,B
+DST-1024,Dhupguri Traders,Gautam Karmakar,Dhupguri,TER-14,ASM-14,2017,Bengali,18:00–20:00,+91 95xxx xx852,Rural GT,A
+DST-1025,Mathabhanga Associates,Tarun Debnath,Mathabhanga,TER-14,ASM-14,2021,Bengali,09:00–11:00,+91 98xxx xx281,Semi-urban GT,C
+DST-1026,Bandhan Distributors,Sudip Adhikari,Dhupguri,TER-14,ASM-14,2017,Bengali,09:00–11:00,+91 97xxx xx589,Semi-urban GT,A
+DST-1027,Kalyan Agencies,Manas Sarkar,Mainaguri,TER-14,ASM-14,2004,Bengali,09:00–11:00,+91 96xxx xx653,Urban GT,A
+DST-1028,Sanjay Agencies,Ranjit Chatterjee,Dinhata,TER-14,ASM-14,2006,Hindi,11:00–13:00,+91 90xxx xx895,Urban GT,C
+DST-1029,Sarkar Traders,Debabrata Banerjee,Mainaguri,TER-14,ASM-14,2006,Hindi,10:00–12:00,+91 95xxx xx681,Urban GT,C
+DST-1030,Adhikari Distribution,Bikash Adhikari,Mainaguri,TER-14,ASM-14,2013,English,09:00–11:00,+91 92xxx xx229,Rural GT,C
+DST-1031,Raju Distributors,Sudip Debnath,Jalpaiguri,TER-14,ASM-14,2021,Bengali,18:00–20:00,+91 94xxx xx619,Rural GT,B
+DST-1032,Debabrata Distributors,Prasenjit Pal,Dinhata,TER-14,ASM-14,2015,Hindi,10:00–12:00,+91 98xxx xx511,Urban GT,B
+DST-1033,Mainaguri Associates,Uttam Bag,Mainaguri,TER-14,ASM-14,2016,Bengali,18:00–20:00,+91 99xxx xx546,Semi-urban GT,A
+DST-1034,Halder Distributors,Nimai Dey,Dinhata,TER-14,ASM-14,2016,Bengali,18:00–20:00,+91 95xxx xx802,Urban GT,B
+DST-1035,Shyamal Associates,Ashok Roy,Jalpaiguri,TER-14,ASM-14,2015,English,18:00–20:00,+91 94xxx xx290,Semi-urban GT,B
+DST-1036,Dinhata Distribution,Haradhan Debnath,Dinhata,TER-14,ASM-14,2010,Bengali,18:00–20:00,+91 91xxx xx448,Urban GT,B
+DST-1037,Dey Traders,Manas Dutta,Dhupguri,TER-14,ASM-14,2021,English,11:00–13:00,+91 95xxx xx126,Rural GT,B
+DST-1038,Paul Stores,Bikash Chakraborty,Mainaguri,TER-14,ASM-14,2019,English,11:00–13:00,+91 94xxx xx329,Urban GT,B
+DST-1039,Dhupguri Marketing,Ashok Basak,Dhupguri,TER-14,ASM-14,2019,English,18:00–20:00,+91 91xxx xx343,Semi-urban GT,A
+DST-1040,Saraswati Enterprises,Bikash Karmakar,Mainaguri,TER-14,ASM-14,2007,English,18:00–20:00,+91 97xxx xx674,Urban GT,B
+DST-1041,Dinhata Associates,Sharmila Roy,Dinhata,TER-14,ASM-14,2011,English,18:00–20:00,+91 98xxx xx977,Semi-urban GT,B
+DST-1042,Mainaguri Distribution,Tapan Majumdar,Mainaguri,TER-14,ASM-14,2023,English,09:00–11:00,+91 96xxx xx440,Urban GT,B
+DST-1043,Nabajiban Marketing,Amit Biswas,Mathabhanga,TER-14,ASM-14,2004,Bengali,17:00–19:00,+91 90xxx xx634,Urban GT,B
+DST-1044,Sukanta Agencies,Amit Karmakar,Dinhata,TER-14,ASM-14,2010,English,10:00–12:00,+91 98xxx xx927,Rural GT,C
+DST-1045,Anjali Traders,Mita Pal,Dinhata,TER-14,ASM-14,2020,Bengali,11:00–13:00,+91 97xxx xx263,Urban GT,C
+DST-1046,Ghosh Stores,Kalyan Sinha,Alipurduar,TER-14,ASM-14,2020,English,17:00–19:00,+91 92xxx xx905,Urban GT,A
+DST-1047,Ganesh Distributors,Bikash Pal,Dhupguri,TER-14,ASM-14,2020,English,17:00–19:00,+91 96xxx xx773,Semi-urban GT,C
+DST-1048,Maa Sarada Agencies,Raju Biswas,Dinhata,TER-14,ASM-14,2022,English,10:00–12:00,+91 90xxx xx433,Urban GT,B
+DST-1049,Cooch Behar Enterprises,Anirban Shaw,Cooch Behar,TER-14,ASM-14,2014,English,18:00–20:00,+91 91xxx xx755,Urban GT,C
+DST-1050,Alipurduar Agencies,Nimai Adhikari,Alipurduar,TER-14,ASM-14,2010,Bengali,11:00–13:00,+91 94xxx xx527,Urban GT,A
+DST-1051,Bhorer Aalo Associates,Raju Sinha,Dinhata,TER-14,ASM-14,2013,Bengali,09:00–11:00,+91 99xxx xx440,Urban GT,B
+DST-1052,Ujjwal Traders,Prasenjit Jana,Dhupguri,TER-14,ASM-14,2004,Bengali,10:00–12:00,+91 97xxx xx171,Urban GT,B
+DST-1053,Dhupguri Associates,Ashok Bag,Dhupguri,TER-14,ASM-14,2014,Bengali,18:00–20:00,+91 98xxx xx348,Urban GT,B
+DST-1054,Jalpaiguri Traders,Dipankar Sinha,Jalpaiguri,TER-14,ASM-14,2005,Bengali,10:00–12:00,+91 90xxx xx145,Urban GT,A
+DST-1055,Dishari Marketing,Rina Ganguly,Alipurduar,TER-14,ASM-14,2009,Hindi,18:00–20:00,+91 91xxx xx123,Semi-urban GT,C
+DST-1056,Sankar Associates,Debabrata Roy,Dinhata,TER-14,ASM-14,2005,Bengali,09:00–11:00,+91 91xxx xx215,Urban GT,C
+DST-1057,Jalpaiguri Agencies,Bikash Biswas,Jalpaiguri,TER-14,ASM-14,2005,Bengali,10:00–12:00,+91 96xxx xx489,Urban GT,C
+DST-1058,Alipurduar Traders,Raju Mitra,Alipurduar,TER-14,ASM-14,2009,Bengali,11:00–13:00,+91 90xxx xx908,Semi-urban GT,B
+DST-1059,Swapan Marketing,Tapan Mitra,Mainaguri,TER-14,ASM-14,2016,Bengali,18:00–20:00,+91 93xxx xx817,Rural GT,B
+DST-1060,Dhupguri Distributors,Ashok Ganguly,Dhupguri,TER-14,ASM-14,2008,English,18:00–20:00,+91 97xxx xx943,Urban GT,C
+DST-1061,Prabhat Associates,Amit Shaw,Jalpaiguri,TER-14,ASM-14,2017,English,09:00–11:00,+91 96xxx xx333,Urban GT,C
+DST-1062,Majumdar Traders,Swapan Ganguly,Mathabhanga,TER-14,ASM-14,2015,Bengali,10:00–12:00,+91 93xxx xx357,Urban GT,C
+DST-1063,Mondal Stores,Ashok Ghosh,Jalpaiguri,TER-14,ASM-14,2017,Bengali,09:00–11:00,+91 97xxx xx508,Urban GT,B
+DST-1064,Jalpaiguri Marketing,Mita Mitra,Jalpaiguri,TER-14,ASM-14,2015,Hindi,11:00–13:00,+91 97xxx xx407,Urban GT,C
+DST-1065,Shaw Distribution,Ashok Mondal,Mainaguri,TER-14,ASM-14,2021,Bengali,10:00–12:00,+91 93xxx xx721,Urban GT,C
+DST-1066,Mathabhanga Traders,Jhuma Bag,Mathabhanga,TER-14,ASM-14,2018,Bengali,11:00–13:00,+91 90xxx xx120,Semi-urban GT,A
+DST-1067,Dhupguri Distribution,Bikash Bag,Dhupguri,TER-14,ASM-14,2016,English,18:00–20:00,+91 97xxx xx754,Urban GT,B
+DST-1068,Bhabani Distribution,Kalyan Pramanik,Jalpaiguri,TER-14,ASM-14,2022,Bengali,10:00–12:00,+91 92xxx xx880,Urban GT,B
+DST-1069,Anjali Distribution,Sankar Mondal,Cooch Behar,TER-14,ASM-14,2023,Bengali,09:00–11:00,+91 91xxx xx828,Rural GT,C
+DST-1070,Maa Sarada Distributors,Haradhan Adhikari,Dhupguri,TER-14,ASM-14,2009,Bengali,17:00–19:00,+91 90xxx xx961,Urban GT,B
+DST-1071,Mohona Distribution,Kakali Pal,Dinhata,TER-14,ASM-14,2011,Bengali,18:00–20:00,+91 99xxx xx625,Semi-urban GT,A
+DST-1072,Mathabhanga Stores,Swapan Mitra,Mathabhanga,TER-14,ASM-14,2020,Bengali,09:00–11:00,+91 98xxx xx508,Rural GT,B
+DST-1073,Dipankar Associates,Uttam Banerjee,Dhupguri,TER-14,ASM-14,2005,English,11:00–13:00,+91 98xxx xx147,Urban GT,C
+DST-1074,Pal Enterprises,Shyamal Pal,Dhupguri,TER-14,ASM-14,2013,Bengali,09:00–11:00,+91 91xxx xx261,Semi-urban GT,B
+DST-1075,Mainaguri Trading Co.,Manas Sarkar,Mainaguri,TER-14,ASM-14,2018,English,17:00–19:00,+91 99xxx xx786,Rural GT,C
+DST-1076,Kundu Distribution,Tarun Ghosh,Mainaguri,TER-14,ASM-14,2012,Bengali,11:00–13:00,+91 92xxx xx166,Urban GT,A
+DST-1077,Cooch Behar Trading Co.,Uttam Roy,Cooch Behar,TER-14,ASM-14,2004,Bengali,18:00–20:00,+91 93xxx xx372,Semi-urban GT,B
+DST-1078,Prantik Distributors,Tapan Nandi,Alipurduar,TER-14,ASM-14,2016,Bengali,18:00–20:00,+91 97xxx xx716,Semi-urban GT,C
+DST-1079,Mainaguri Traders,Kalyan Basak,Mainaguri,TER-14,ASM-14,2004,Bengali,10:00–12:00,+91 90xxx xx360,Urban GT,C
+DST-1080,Dipankar Distribution,Kalyan Sarkar,Alipurduar,TER-14,ASM-14,2012,Bengali,09:00–11:00,+91 96xxx xx425,Semi-urban GT,B
+DST-1081,Mathabhanga Enterprises,Bikash Adhikari,Mathabhanga,TER-14,ASM-14,2022,English,09:00–11:00,+91 98xxx xx654,Rural GT,B
+DST-1082,Dinhata Enterprises,Rina Jana,Dinhata,TER-14,ASM-14,2012,Bengali,09:00–11:00,+91 93xxx xx959,Urban GT,B
+DST-1083,Uttam Trading Co.,Uttam Kundu,Cooch Behar,TER-14,ASM-14,2022,Bengali,18:00–20:00,+91 98xxx xx550,Urban GT,C
+DST-1084,Bhabani Marketing,Sankar Paul,Alipurduar,TER-14,ASM-14,2005,Bengali,09:00–11:00,+91 97xxx xx180,Urban GT,A
+DST-1085,Dinhata Agencies,Partha Basak,Dinhata,TER-14,ASM-14,2008,Bengali,18:00–20:00,+91 94xxx xx435,Urban GT,C
+DST-1086,Das Distributors,Jhuma Majumdar,Jalpaiguri,TER-14,ASM-14,2008,Bengali,18:00–20:00,+91 94xxx xx283,Urban GT,B
+DST-1087,Mainaguri Stores,Tarun Bag,Mainaguri,TER-14,ASM-14,2017,Bengali,17:00–19:00,+91 94xxx xx265,Urban GT,A
+DST-1088,Kalyan Associates,Gopal Ghosh,Mathabhanga,TER-14,ASM-14,2022,Bengali,11:00–13:00,+91 95xxx xx326,Urban GT,C
+DST-1089,Alipurduar Distributors,Partha Dey,Alipurduar,TER-14,ASM-14,2012,English,17:00–19:00,+91 92xxx xx974,Semi-urban GT,C
+DST-1090,Dutta Traders,Sudip Dutta,Mathabhanga,TER-14,ASM-14,2006,Bengali,18:00–20:00,+91 94xxx xx646,Semi-urban GT,C
+DST-1091,Dinhata Stores,Rupa Karmakar,Dinhata,TER-14,ASM-14,2016,Bengali,17:00–19:00,+91 98xxx xx230,Urban GT,A
+DST-1092,Gopal Distributors,Gautam Jana,Jalpaiguri,TER-14,ASM-14,2008,Hindi,17:00–19:00,+91 94xxx xx973,Urban GT,C
+DST-1093,Ganguly Enterprises,Gautam Mallick,Mathabhanga,TER-14,ASM-14,2009,Bengali,09:00–11:00,+91 98xxx xx811,Semi-urban GT,C
+DST-1094,Alipurduar Associates,Bikash Pal,Alipurduar,TER-14,ASM-14,2018,Bengali,17:00–19:00,+91 93xxx xx348,Semi-urban GT,B
+DST-1095,Gopal Distribution,Rina Mallick,Dinhata,TER-14,ASM-14,2006,English,17:00–19:00,+91 97xxx xx585,Semi-urban GT,B
+DST-1096,Alipurduar Marketing,Kalyan Biswas,Alipurduar,TER-14,ASM-14,2018,English,18:00–20:00,+91 91xxx xx115,Semi-urban GT,C
+DST-1097,Dinhata Marketing,Bikash Mondal,Dinhata,TER-14,ASM-14,2008,Bengali,18:00–20:00,+91 98xxx xx776,Urban GT,B
+DST-1098,Alipurduar Enterprises,Gopal Biswas,Alipurduar,TER-14,ASM-14,2021,English,18:00–20:00,+91 97xxx xx266,Semi-urban GT,C
+DST-1099,Niladri Associates,Pradip Das,Cooch Behar,TER-14,ASM-14,2021,Bengali,11:00–13:00,+91 93xxx xx481,Urban GT,C
+DST-1100,Saha Marketing,Mita Shaw,Jalpaiguri,TER-14,ASM-14,2017,Hindi,17:00–19:00,+91 96xxx xx375,Urban GT,B
+DST-1101,Biswajit Associates,Pradip Sinha,Jalpaiguri,TER-14,ASM-14,2023,English,18:00–20:00,+91 94xxx xx890,Semi-urban GT,B
+DST-1102,Bag Traders,Dipankar Shaw,Jalpaiguri,TER-14,ASM-14,2009,Bengali,09:00–11:00,+91 99xxx xx565,Rural GT,A
+DST-1103,Prantik Enterprises,Rina Roy,Jalpaiguri,TER-14,ASM-14,2017,English,11:00–13:00,+91 97xxx xx969,Rural GT,C
+DST-1104,Purbasha Associates,Bikash Banerjee,Alipurduar,TER-14,ASM-14,2006,Bengali,18:00–20:00,+91 92xxx xx387,Urban GT,C

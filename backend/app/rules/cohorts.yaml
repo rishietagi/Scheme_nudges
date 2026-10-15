@@ -1,0 +1,29 @@
+# Cohort rules — evaluated in order, first match wins. Computed AS OF DAY 0 (1 Oct 2026), before the nudge,
+# so a cohort never depends on how a distributor reacts to the current scheme.
+# Mirrors Gen.apply_rules() in backend/scripts/generate_data.py; tests re-apply these to all 1,104 distributors.
+# Thresholds are placeholders until Emami confirms the criteria — keep them config, not code.
+version: v2.0
+as_of: "2026-10-01"
+features:
+  yoy_growth: secondary Apr–Sep 2026 vs Apr–Sep 2025
+  consecutive_down_months: trailing months (from Sep 2026 backwards) where secondary < previous month
+  sku_range_delta_qoq: avg unique SKUs billed Jul–Sep minus Apr–Jun
+  focus_share_q2: focus-SKU revenue / secondary revenue, Jul–Sep 2026
+  days_since_last_invoice: Day 0 minus last invoice date
+  past_schemes_joined: how many of the last 3 schemes (Year-end Mar, Summer Apr–Jun, Monsoon Jul–Sep) they joined
+cohorts:
+  - name: Dormant
+    tag: Re-engage
+    when: days_since_last_invoice > 30
+  - name: At-risk
+    tag: Rescue
+    when: consecutive_down_months >= 2 OR sku_range_delta_qoq <= -5
+  - name: Champions
+    tag: Reward
+    when: yoy_growth > 0.10 AND focus_share_q2 > 0.35
+  - name: Scheme-hesitant
+    tag: Explain
+    when: yoy_growth >= 0 AND past_schemes_joined <= 1
+  - name: Growth builders
+    tag: Stretch
+    when: otherwise          # healthy and a regular scheme joiner

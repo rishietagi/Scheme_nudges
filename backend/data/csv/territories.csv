@@ -1,0 +1,15 @@
+territory_id,name,zone_id,asm_id,distributor_count
+TER-01,Kolkata North,ZON-01,ASM-01,86
+TER-02,Kolkata South,ZON-01,ASM-02,84
+TER-03,Kolkata Central,ZON-01,ASM-03,78
+TER-04,Howrah,ZON-03,ASM-04,82
+TER-05,Hooghly,ZON-03,ASM-05,80
+TER-06,South 24 Parganas,ZON-03,ASM-06,76
+TER-07,Nadia,ZON-03,ASM-07,74
+TER-08,Purba Bardhaman,ZON-03,ASM-08,79
+TER-09,Paschim Bardhaman,ZON-03,ASM-09,72
+TER-10,Paschim Medinipur,ZON-03,ASM-10,77
+TER-11,Murshidabad,ZON-02,ASM-11,75
+TER-12,Malda,ZON-02,ASM-12,70
+TER-13,Siliguri,ZON-02,ASM-13,81
+TER-14,Jalpaiguri & Cooch Behar,ZON-02,ASM-14,90

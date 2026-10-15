@@ -1,0 +1,13 @@
+[project]
+name = "emami-dx-backend"
+version = "0.1.0"
+requires-python = ">=3.11"
+# Installed in the conda env `pmo-intel-engine`; listed here for anyone setting up fresh.
+dependencies = [
+  "fastapi>=0.115", "uvicorn>=0.30", "pydantic>=2.7", "python-dotenv>=1.0", "pyyaml>=6.0",
+  "langgraph>=0.2", "google-genai>=1.0", "openai>=1.40", "httpx>=0.27", "pytest>=8",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

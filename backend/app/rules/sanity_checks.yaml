@@ -1,0 +1,30 @@
+# Survey sanity checks — run on every submitted survey before it counts in any number.
+# red   = excluded from all metrics until the ASM reviews it (keep / drop)
+# amber = counted, but shown in the "Needs a look" list
+# A response with any red flag is "Flagged"; amber only is "Check"; none is "Clean".
+checks:
+  - code: TOO_FAST
+    severity: red
+    rule: survey_seconds < 30
+    label: Filled in under 30 seconds
+  - code: STRAIGHT_LINE
+    severity: red
+    rule: Q2..Q5 all answered and all the same value
+    label: Same rating for every question
+  - code: INCOMPLETE
+    severity: red
+    rule: fewer than 3 of Q1..Q6 answered
+    label: Answered fewer than 3 questions
+  - code: CONTRADICTION
+    severity: amber
+    rule: (Q1 == "I've enrolled" AND not enrolled in DMS at submit time) OR (Q2 >= 4 AND Q1 == "Explain again")
+    label: Answers don't match (e.g. says enrolled but isn't)
+  - code: DUPLICATE
+    severity: amber
+    rule: more than one submission from the same distributor; keep the latest
+    label: Submitted twice
+  - code: JUNK_TEXT
+    severity: amber
+    rule: Q7 present and (< 3 letters, or repeated characters, or copied from the question)
+    label: Comment looks like junk
+asm_actions: [Keep, Drop]        # Keep moves a red response back into the numbers; Drop removes it for good

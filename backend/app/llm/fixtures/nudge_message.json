@@ -1,0 +1,59 @@
+{
+  "Champions|English": {
+    "text": "Thank you, {owner_first}! You've been one of our best this year. Festive Scheme: your October target is {target}. Reach {stretch} for +4% margin and a ₹10,000 bonus. Tap below to tell us your plan."
+  },
+  "Champions|Bengali": {
+    "text": "ধন্যবাদ {owner_first}! এ বছর আপনি আমাদের সেরাদের একজন। ফেস্টিভ স্কিম: অক্টোবরের টার্গেট {target}। {stretch} ছুঁলে +৪% মার্জিন আর ₹১০,০০০ বোনাস। নিচে ট্যাপ করে আপনার পরিকল্পনা জানান।"
+  },
+  "Champions|Hindi": {
+    "text": "धन्यवाद {owner_first} जी! इस साल आप हमारे सबसे अच्छे साथियों में हैं। फेस्टिव स्कीम: अक्टूबर का टारगेट {target}। {stretch} पर +4% मार्जिन और ₹10,000 बोनस। नीचे टैप करके अपना प्लान बताइए।"
+  },
+  "Growth builders|English": {
+    "text": "Namaskar {owner_first}! Your Festive Scheme target for October is {target}. Hit it: +3% margin on focus SKUs. Reach {stretch}: +4% and ₹10,000. What would you like to do?"
+  },
+  "Growth builders|Bengali": {
+    "text": "নমস্কার {owner_first}! অক্টোবরের ফেস্টিভ স্কিমে আপনার টার্গেট {target}। টার্গেট পূরণ করলে ফোকাস SKU-তে +৩% মার্জিন। {stretch} হলে +৪% আর ₹১০,০০০। আপনি কী করতে চান?"
+  },
+  "Growth builders|Hindi": {
+    "text": "नमस्ते {owner_first} जी! अक्टूबर की फेस्टिव स्कीम में आपका टारगेट {target} है। टारगेट पूरा करने पर फोकस SKU पर +3% मार्जिन। {stretch} पर +4% और ₹10,000। आप क्या करना चाहेंगे?"
+  },
+  "Scheme-hesitant|English": {
+    "text": "Namaskar {owner_first}! The Festive Scheme in 3 lines: your October target is {target} · hit it for +3% margin · beat it by 25% for +4% and ₹10,000. Reply to hear it in Bengali or talk to {asm}."
+  },
+  "Scheme-hesitant|Bengali": {
+    "text": "নমস্কার {owner_first}! তিন লাইনে ফেস্টিভ স্কিম: অক্টোবরের টার্গেট {target} · পূরণ করলে +৩% মার্জিন · ২৫% বেশি করলে +৪% আর ₹১০,০০০। বাংলায় শুনতে চাইলে বা {asm}-এর সঙ্গে কথা বলতে উত্তর দিন।"
+  },
+  "Scheme-hesitant|Hindi": {
+    "text": "नमस्ते {owner_first} जी! तीन लाइन में फेस्टिव स्कीम: अक्टूबर का टारगेट {target} · पूरा करने पर +3% मार्जिन · 25% ज़्यादा पर +4% और ₹10,000। बांग्ला में सुनना हो या {asm} से बात करनी हो तो जवाब दीजिए।"
+  },
+  "At-risk|English": {
+    "text": "Namaskar {owner_first}, how is business this month? {asm} is happy to call and help with stock or credit. The Festive Scheme is also open: your October target is {target}, with +3% margin when you hit it."
+  },
+  "At-risk|Bengali": {
+    "text": "নমস্কার {owner_first}, এ মাসে ব্যবসা কেমন চলছে? স্টক বা ক্রেডিট নিয়ে সাহায্যের জন্য {asm} ফোন করতে পারেন। ফেস্টিভ স্কিমও চালু আছে: অক্টোবরের টার্গেট {target}, পূরণ করলে +৩% মার্জিন।"
+  },
+  "At-risk|Hindi": {
+    "text": "नमस्ते {owner_first} जी, इस महीने कारोबार कैसा चल रहा है? स्टॉक या क्रेडिट में मदद के लिए {asm} कॉल कर सकते हैं। फेस्टिव स्कीम भी चालू है: अक्टूबर का टारगेट {target}, पूरा करने पर +3% मार्जिन।"
+  },
+  "Dormant|English": {
+    "text": "Namaskar {owner_first}, we haven't seen an order from you in a while — all well? The Festive Scheme is live this month. Tap once to talk to {asm}."
+  },
+  "Dormant|Bengali": {
+    "text": "নমস্কার {owner_first}, অনেকদিন আপনার অর্ডার পাইনি — সব ঠিক আছে তো? এ মাসে ফেস্টিভ স্কিম চালু। {asm}-এর সঙ্গে কথা বলতে একবার ট্যাপ করুন।"
+  },
+  "Dormant|Hindi": {
+    "text": "नमस्ते {owner_first} जी, काफ़ी समय से आपका ऑर्डर नहीं आया — सब ठीक है? इस महीने फेस्टिव स्कीम चालू है। {asm} से बात करने के लिए एक बार टैप करें।"
+  },
+  "reminder|English": {
+    "text": "Just a reminder, {owner_first}: your Festive Scheme target is {target}. Tap a reply below — it takes a minute."
+  },
+  "reminder|Bengali": {
+    "text": "মনে করিয়ে দিচ্ছি, {owner_first}: ফেস্টিভ স্কিমে আপনার টার্গেট {target}। নিচে একটা উত্তর ট্যাপ করুন — এক মিনিট লাগবে।"
+  },
+  "reminder|Hindi": {
+    "text": "याद दिला दें, {owner_first} जी: फेस्टिव स्कीम में आपका टारगेट {target} है। नीचे एक जवाब टैप करें — एक मिनट लगेगा।"
+  },
+  "default": {
+    "text": "Namaskar {owner_first}! Your Festive Scheme target for October is {target}. Hit it: +3% margin on focus SKUs. Reach {stretch}: +4% and ₹10,000. What would you like to do?"
+  }
+}

@@ -1,0 +1,54 @@
+# Day-0 nudge + survey, sent on WhatsApp the day the scheme goes live.
+# One message per cohort (the LLM writes the wording from `nudge_brief`, in the distributor's language).
+# Q1 is the quick-reply "intent" that drives the CTA plan; Q2–Q5 are the experience ratings; Q6 differs by cohort.
+scheme_id: SCH-2627-FES
+send_day: 0
+close_day: 7
+
+nudge_brief:                     # tone + angle per cohort; the Message agent turns this into EN/BN/HI text
+  Champions: Thank them, show the stretch slab and the bonus. Short.
+  Growth builders: Show their personal target and what they earn at slab 1 and slab 2.
+  Scheme-hesitant: Explain the scheme in 3 lines with their own target. No PDF. Offer Bengali and ASM.
+  At-risk: Lead with help, not targets. Offer an ASM call first.
+  Dormant: Short check-in. One line on the scheme, one tap to talk to the ASM.
+
+questions:
+  - id: Q1
+    type: quick_reply
+    text: Have you seen the Festive Scheme? What would you like to do?
+    options:                     # these five labels are the INTENTS used everywhere (CTA rules, dashboards, persona)
+      - I've enrolled
+      - I'll enrol
+      - Explain again
+      - Explain in Bengali
+      - Talk to my ASM
+  - id: Q2
+    type: rating_1_5
+    text: How clear is the scheme to you?
+  - id: Q3
+    type: rating_1_5
+    text: How much will this scheme help your business?
+  - id: Q4
+    type: rating_1_5
+    text: How confident are you of reaching your target?
+  - id: Q5
+    type: rating_1_5
+    text: How happy are you with how incentives are paid?
+  - id: Q6
+    type: single_choice
+    text: What would help you most right now?
+    options_by_cohort:
+      Champions: [Faster payouts, More focus-SKU stock, Higher slab bonus, Nothing, all good]
+      Growth builders: [Clear slab examples, Stock on time, Credit support, ASM visit]
+      Scheme-hesitant: [Simpler explanation, Explanation in Bengali, Lower target, Better margin]
+      At-risk: [ASM visit, Credit support, Faster payouts, Better margin]
+      Dormant: [Better margin, Credit terms, Stock availability, Call me]
+  - id: Q7
+    type: open_text
+    optional: true
+    text: Anything else you'd like to tell us?
+
+response_window_days: 7
+reminder:                        # one automatic reminder to non-responders
+  day: 3
+  at: distributor's active window from the persona (default 10:00)
