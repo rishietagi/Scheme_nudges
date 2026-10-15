@@ -90,6 +90,8 @@ export type TerritorySummary = {
 };
 
 export type CohortCard = {
+  joined_festive: number;
+  replied: number;
   name: CohortName;
   tag: string;
   description: string;
@@ -102,6 +104,11 @@ export type CohortList = { day: number; rule_version: string; cohorts: CohortCar
 
 export type DistributorRow = {
   distributor_id: string;
+  intent: string | null;
+  flagged: boolean;
+  joined_day: number | null;
+  language_now: string | null;
+  language_changed: boolean;
   name: string;
   owner_name: string;
   town: string;
@@ -136,6 +143,76 @@ export type Distributor360 = DistributorRow & {
   reward_text: string;
   billing: { month: string; secondary_l: number }[];
   history: { scheme: string; enrolled: boolean; achieved: boolean }[];
+  festive_joined: boolean;
+  festive_join_label: string | null;
+  this_cycle: string | null;
+  milestones: { day_label: string; time_label: string | null; text: string }[];
+  persona: PersonaView | null;
+};
+
+export type PersonaView = {
+  language: string;
+  language_on_file: string;
+  language_changed: boolean;
+  best_time: string | null;
+  replies: string;
+  prefers: string | null;
+  what_worked: string | null;
+  next_time: string | null;
+};
+
+export type Message = {
+  id: string;
+  sender: "desk" | "distributor" | "system";
+  kind: "nudge" | "quick_replies" | "text" | "survey" | "voice" | "call" | "enrolled";
+  sim_day: number;
+  day_label: string;
+  time_label: string;
+  text: string;
+  language?: string | null;
+  card?: { target: string; hit: string; stretch: string; beat: string } | null;
+  options?: string[] | null;
+  answers?: { q: string; a: string }[] | null;
+  seconds?: number | null;
+  tapped?: boolean | null;
+  cta?: string | null;
+  note?: string | null;
+  live?: boolean | null;
+};
+
+export type JourneyItem = { type: string; agent: string; sim_day: number; day_label: string; time_label: string; text: string };
+
+export type ChatView = {
+  day: number;
+  distributor_id: string;
+  name: string;
+  owner_name: string;
+  town: string;
+  initials: string;
+  cohort: CohortName;
+  key_account: boolean;
+  language: string;
+  language_changed: boolean;
+  billing_fytd: string;
+  best_time: string;
+  best_time_learned: boolean;
+  this_cycle: string;
+  messages: Message[];
+  journey: JourneyItem[];
+};
+
+export type Scenario = { distributor_id: string; title: string; subtitle: string; icon: "bengali" | "flag" | "call" };
+
+export type CommandView = {
+  day: number;
+  day_label: string;
+  greeting: string;
+  eyebrow: string;
+  tiles: { key: "replied" | "joined" | "waiting" | "individual"; label: string; value: number; sub: string }[];
+  needs: { tone: "orange" | "red" | "blue"; title: string; sub: string; href: string; action: string }[];
+  summary_label: string;
+  summary: { text: string; bold: boolean }[];
+  cohorts: { name: CohortName; color: CohortColor; distributors: number; replied: number; joined: number }[];
 };
 
 export type Language = "English" | "Bengali" | "Hindi";
@@ -213,6 +290,39 @@ export type PlanView = {
 
 export type Candidate = { distributor_id: string; name: string; town: string; cohort: CohortName; intent: string | null; in_group: string | null };
 
+export type ResultsData = {
+  joined: number;
+  total: number;
+  last_scheme_joined: number;
+  joined_by_cohort: { cohort: CohortName; joined: number; total: number; color: CohortColor }[];
+  beat_prediction: number;
+  fell_short: number;
+  sales_lift_joined: number | null;
+  sales_lift_not_joined: number | null;
+  speed: Record<"Same day" | "First week" | "After follow-up" | "Never", number>;
+  median_first_reply_hours: number | null;
+  median_join_days_after_follow_up: number | null;
+  asked: Record<string, number>;
+  follow_ups: { cta_code: string; label: string; received: number; joined: number; rate: number }[];
+};
+
+export type ResultsView = {
+  day: number;
+  day_label: string;
+  ready: boolean;
+  results_day_label: string;
+  joined_so_far: number;
+  total: number;
+  headline: string | null;
+  results: ResultsData | null;
+  learned: { text: string; bold: boolean }[];
+  chips: { value: number; label: string }[];
+  applied: boolean;
+  applied_at: string | null;
+};
+
+export type AppliedProfile = { distributor_id: string; name: string; cohort: string; language: string; prefers: string; next_time: string };
+
 export const api = {
   simState: () => get<SimState>("/sim/state"),
   simScenarios: () => get<SimScenarios>("/sim/scenarios"),
@@ -239,6 +349,13 @@ export const api = {
   planApproveHigh: (min = 0.7) => post<SimState>("/plan/approve-high-confidence", { min }),
   planCustomGroup: (name: string, memberIds: string[], ctaCode: string | null) =>
     post<SimState>("/plan/custom-group", { name, member_ids: memberIds, cta_code: ctaCode }),
+  command: (day: number) => get<CommandView>("/command", { day }),
+  results: (day: number) => get<ResultsView>("/results", { day }),
+  applyToNext: () => post<AppliedProfile[]>("/results/apply"),
+  applied: () => get<AppliedProfile[]>("/results/applied"),
+  scenarios: (day: number) => get<Scenario[]>("/chat/scenarios", { day }),
+  chat: (id: string, day: number) => get<ChatView>(`/chat/${id}`, { day }),
+  chatSend: (id: string, text: string) => post<ChatView>(`/chat/${id}/message`, { text }),
   flagDecision: (responseId: string, decision: "Keep" | "Drop") =>
     post<SimState>(`/survey/flags/${encodeURIComponent(responseId)}`, { decision }),
 };

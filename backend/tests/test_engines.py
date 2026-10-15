@@ -71,9 +71,9 @@ def test_no_prompt_in_a_full_run_contains_hidden_traits(monkeypatch):
     seen = []
     real = client.complete
 
-    def spy(prompt_id, inputs, schema, fixture_key=None, mode=None):
+    def spy(prompt_id, inputs, schema, fixture_key=None, mode=None, **kw):
         seen.append(client.render(prompt_id, inputs))
-        return real(prompt_id, inputs, schema, fixture_key, mode)
+        return real(prompt_id, inputs, schema, fixture_key, mode, **kw)
 
     import app.agents.nodes as nodes
     monkeypatch.setattr(nodes, "complete", spy)

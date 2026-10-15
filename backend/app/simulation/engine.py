@@ -155,8 +155,9 @@ def decide(con: sqlite3.Connection, run_id: str, row_id: str, decision: str) -> 
         con.execute("UPDATE cta_plan SET status = ?, decided_at = ? WHERE run_id = ? AND row_id = ?", (decision, day, run_id, row_id))
         verb = "approved" if decision == "Approved" else "rejected"
         what = f"the follow-up for {row['group_name']}" if row["group_type"] != "individual_group" else "every personal follow-up"
-        emit(con, run_id, day, decision.upper(), "You", f"Rahul {verb} {what}",
-             row["distributor_id"])
+        rows = [row_id] + ([r[0] for r in con.execute("SELECT row_id FROM cta_plan WHERE run_id = ? AND group_type = 'individual'",
+                                                       (run_id,))] if targets else [])
+        emit(con, run_id, day, decision.upper(), "You", f"Rahul {verb} {what}", row["distributor_id"], payload={"row_ids": rows})
         _after_decision(con, run_id)
         con.commit()
 
@@ -197,7 +198,8 @@ def approve_high_confidence(con: sqlite3.Connection, run_id: str, minimum: float
         day = run["current_day"]
         for rid in ids:
             con.execute("UPDATE cta_plan SET status = 'Approved', decided_at = ? WHERE run_id = ? AND row_id = ?", (day, run_id, rid))
-        emit(con, run_id, day, "APPROVED", "You", f"Rahul approved {len(ids)} follow-ups with {round(minimum * 100)}%+ confidence")
+        emit(con, run_id, day, "APPROVED", "You", f"Rahul approved {len(ids)} follow-ups with {round(minimum * 100)}%+ confidence",
+             payload={"row_ids": ids})
         _after_decision(con, run_id)
         con.commit()
         return len(ids)

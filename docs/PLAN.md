@@ -474,4 +474,74 @@ with count-up) · Live feed (newest first, agent pills, slide-in). The shell now
     links here.
 22. Confidence colour: green ≥ 70 %, orange below, as in render 4.
 
-### Next: Phase 5 — Distributor view + Command centre + 360 (on Rishi's go).
+### Phase 5 — done (2026-10-15)
+**LLM.** Rishi's Gemini key is in the git-ignored `.env` (`LLM_MODE=replay`, `LLM_CHAT_LIVE=true`,
+`GEMINI_MODEL=gemini-2.5-flash`, thinking off → 2–3 s). The free tier allows **5 requests/minute**, so:
+- the client has a **429 circuit breaker** (no calls until Gemini's retry time; instant fallback);
+- chat classifies by keywords first and calls the LLM only for messages keywords can't place;
+- `complete(…, fallback=…)`: text built in code from computed numbers is the fallback, so numbers are always right;
+- **reply guard**: an LLM chat reply is used only if it's one clean paragraph with exactly the amounts the tool returned
+  (Gemini sometimes garbles ₹ — caught and replaced by the code-built reply).
+Gemini needs a timeout of at least 10 s (now 15 s). `tests/` always run in `mock`.
+
+**Backend**
+- `GET /command?day=`: greeting by sim time · 4 tiles · "Needs you today" ≤ 3, rule-built by stage (send nudge →
+  approve plan / review flags / call who asked → booked calls → results) · Emami AI 3 lines (code drafts from numbers,
+  `first_week_summary` only polishes) · progress by cohort.
+- `GET /chat/scenarios`, `GET /chat/{id}?day=` (WhatsApp conversation built from run tables: nudge + card, quick
+  replies, tapped reply, survey card, desk auto-replies, reminder, Day-8 follow-up (voice note bubble), calls, JOIN,
+  joined confirmation, live chat), `POST /chat/{id}/message`.
+- `agents/chat_graph.py`: LangGraph classify → act → reply. Tools in code: `enrol_me` (joins now; refreshes the
+  Day-30 sales row if it exists), `get_my_target`, `explain_scheme`, `request_asm_call` (books Rahul tomorrow 11:00).
+  Replies in the language they wrote in (EN / বাংলা / हिन्दी).
+- "Behind the conversation" = that distributor's events + the approval of their plan row, merged into plain lines
+  with agent badges. The 360 adds Festive status, "This scheme" milestones, the persona so far (language, best time,
+  replies, prefers, what worked; "Next time" from Day 30), and this cycle's follow-up. The cohort list and members
+  gained time-aware fields (Day-0 reply, flagged, joined day, learned language).
+- Tests: `test_distributor_view.py` (Maa Tara's conversation and timeline, scenarios, live chat join in Bengali, chat
+  helpers + guard, Command centre by stage, 360 time-aware). **55 pass.**
+
+**Frontend**
+- Command centre (render 1), Distributor view (render 5: scenarios + any distributor, profile card, phone with
+  WhatsApp bubbles, voice note, typing indicator, live "Type as distributor", agent timeline), Cohorts + 360 now
+  follow the cycle (render 2: "Joined Festive", "Replied on Day 0 · Festive Scheme · Language (was English)", "This
+  scheme", "What we've learned", "Next time"). Checked in a real browser, no console errors.
+
+**Assumptions added**
+23. A chat "JOIN" enrols the distributor at that moment (and replaces a later join the run had planned). This is a
+    presenter action, like an approval; determinism holds for the same inputs.
+24. On Day 0 before 10:00 the chat is closed (nothing has been sent yet).
+25. Emami AI's lines are code-written from the numbers; the LLM may only rephrase them (same count, same numbers).
+
+**Open question (parked for the partner review, 2026-10-15):** should a "JOIN" typed in the Distributor view
+enrol the distributor on the spot (current behaviour, assumption 23), or stay a demo-only reply that doesn't change
+the run? Untouched until Rishi decides.
+
+### Phase 6 — done (2026-10-15)
+- `GET /results?day=`: not ready before Day 30 (shows joined so far). From Day 30: headline ("51 of 86 joined. Up
+  from 45% last time."), the five questions from `engines/results.py` (joined by cohort vs Monsoon · beat / fell short +
+  October sales vs normal for joiners and non-joiners · same day / first week / after follow-up / never + median reply
+  and join times · Day-0 asks incl. no reply · join rate per follow-up), "What we learned" (3 lines written by code
+  from the numbers — biggest cohort move and its follow-up, weakest follow-up, sales — then polished by
+  `results_summary`), and four persona chips.
+- `POST /results/apply` saves all 86 learned personas into `next_cycle_profiles` (idempotent), logs a PERSONA event,
+  and returns a preview for Maa Tara, Annapurna and Nabadiganta. `GET /results/applied` re-reads it.
+- The persona agent now polishes each "Next time" line with `persona_next_time`. A guard keeps the rule-built line if
+  the LLM changes the language or the time.
+- Page (render 6): the five cards with animated bars, "What we learned" panel with chips and **Apply to the next
+  scheme** → "Saved for the next scheme" + three "Next time" lines that link to each 360.
+- Tests: `test_results.py` (not ready before Day 30, every card adds up to 86, rates sorted, apply saves and is
+  idempotent, the next-time guard). **59 pass.** Checked in a real browser, no console errors.
+
+Seed 42 at Day 30: 51 joined (59 %) vs 45 % · 41 beat the prediction, 10 fell short · joiners +18 % vs normal,
+non-joiners −1 % · same day 18 / first week 9 / after follow-up 24 / never 35 · voice note 64 %, quick reminder 56 %,
+call/visit 28 %, re-send 9 % · 3 → Bengali, 8 prefer a call, 14 evening, 10 visit.
+
+**Assumptions added**
+26. "Apply to next scheme" saves the profiles and shows what the next nudge will do. It does **not** start a new run or
+    change this run, so a Reset still reproduces the calibrated demo. (Next step if wanted: a new run's nudge agent
+    reads `next_cycle_profiles` for language and send time.)
+27. "What did they ask for on Day 0?" counts every reply, including flagged ones (it's what they said). The Survey
+    page's intent card leaves red-flagged answers out until kept.
+
+### Next: Phase 7 — Demo hardening (on Rishi's go).

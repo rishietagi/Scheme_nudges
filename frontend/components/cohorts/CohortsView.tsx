@@ -5,6 +5,7 @@ import { api, type CohortName } from "@/lib/api";
 import { isCohort } from "@/lib/cohorts";
 import { useViewDay } from "@/lib/sim";
 import { useApi } from "@/lib/useApi";
+import { dayLabel } from "@/lib/format";
 import { PageHeader } from "@/components/shell/PageHeader";
 import { Placeholder } from "@/components/cards/Placeholder";
 import { CohortCards } from "./CohortCards";
@@ -20,13 +21,15 @@ export function CohortsView() {
   const raw = params.get("cohort");
   const cohort: CohortName = isCohort(raw) ? raw : "Scheme-hesitant";
 
-  const cohorts = useApi(`cohorts:${day}`, () => api.cohorts(day));
-  const members = useApi(`members:${cohort}:${day}`, () => api.cohortMembers(cohort, day));
+  const dayKey = day.toFixed(2);
+  const cycle = day >= 0.42;
+  const cohorts = useApi(`cohorts:${dayKey}`, () => api.cohorts(day));
+  const members = useApi(`members:${cohort}:${dayKey}`, () => api.cohortMembers(cohort, day));
   // Keep the previous cohort's rows on screen until the new ones land (smooth swap, no empty flash).
   const shown = members.data;
   const fresh = shown?.cohort === cohort;
   const selectedId = params.get("id") ?? (fresh ? shown.items[0]?.distributor_id ?? null : null);
-  const detail = useApi(selectedId ? `360:${selectedId}:${day}` : null, () => api.distributor(selectedId!, day));
+  const detail = useApi(selectedId ? `360:${selectedId}:${dayKey}` : null, () => api.distributor(selectedId!, day));
 
   function update(next: Record<string, string | null>) {
     const p = new URLSearchParams(params.toString());
@@ -40,11 +43,11 @@ export function CohortsView() {
   return (
     <>
       <PageHeader
-        eyebrow={`Cohorts are set on Day 0 · rules ${cohorts.data?.rule_version ?? "v2.0"}`}
+        eyebrow={`Cohorts are set on Day 0 · rules ${cohorts.data?.rule_version ?? "v2.0"}${cycle ? ` · showing ${dayLabel(day).split(" · ")[0]}` : ""}`}
         title="Five cohorts, one follow-up each"
       />
       {cohorts.data ? (
-        <CohortCards cohorts={cohorts.data.cohorts} selected={cohort} onSelect={(c) => update({ cohort: c, id: null })} />
+        <CohortCards cohorts={cohorts.data.cohorts} selected={cohort} cycle={cycle} onSelect={(c) => update({ cohort: c, id: null })} />
       ) : (
         <Placeholder title={cohorts.error ? "Can't reach the simulator" : "Loading cohorts"} phase={1} lines={2} />
       )}
@@ -54,6 +57,7 @@ export function CohortsView() {
           rows={shown?.items ?? []}
           selectedId={selectedId}
           onSelect={(id) => update({ id })}
+          cycle={cycle}
         />
         <Distributor360 d={detail.data} />
       </div>

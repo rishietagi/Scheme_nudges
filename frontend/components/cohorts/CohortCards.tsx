@@ -11,10 +11,12 @@ export function CohortCards({
   cohorts,
   selected,
   onSelect,
+  cycle,
 }: {
   cohorts: CohortCard[];
   selected: CohortName;
   onSelect: (c: CohortName) => void;
+  cycle: boolean;
 }) {
   return (
     <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -47,12 +49,12 @@ export function CohortCards({
               <CountUp value={c.count} className="mt-1 font-display text-[40px] font-semibold leading-none text-ink tabular" />
               <span className="mt-3 flex-1 text-[14px] leading-snug text-muted">{c.description}</span>
               <span className="mt-4 flex items-center justify-between text-[13px] text-muted">
-                Joined last scheme
+                {cycle ? "Joined Festive" : "Joined last scheme"}
                 <span className="font-semibold text-ink tabular">
-                  {c.joined_last_scheme} / {c.count}
+                  {cycle ? c.joined_festive : c.joined_last_scheme} / {c.count}
                 </span>
               </span>
-              <ProgressBar value={c.count ? c.joined_last_scheme / c.count : 0} color={color} className="mt-2" />
+              <ProgressBar value={c.count ? (cycle ? c.joined_festive : c.joined_last_scheme) / c.count : 0} color={color} className="mt-2" />
             </motion.button>
           </StaggerItem>
         );

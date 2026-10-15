@@ -6,6 +6,7 @@ reacts: send, check, plan, execute, measure, learn. Code makes every number; the
 from __future__ import annotations
 
 import json
+import re
 import sqlite3
 from collections import Counter, defaultdict
 
@@ -259,7 +260,11 @@ def cta_agent(state: dict) -> dict:
     for r in rows:
         for child in r.children:
             emit(con, run_id, PLAN_AT, "PLAN_READY", "CTA agent",
-                 f"{child.reason} → Individual attention: {child.label}", child.distributor_id, False)
+                 f"{child.reason} → Individual attention: {child.label}", child.distributor_id, False, {"row_id": child.row_id})
+        if r.group_type in ("cohort", "custom"):
+            for did in r.member_ids:
+                emit(con, run_id, PLAN_AT, "PLAN_READY", "CTA agent", f"Not joined yet → {r.group_name} follow-up: {r.label.lower()}",
+                     did, False, {"row_id": r.row_id})
     con.execute("UPDATE loop_runs SET plan_built = 1 WHERE run_id = ?", (run_id,))
     return state
 
@@ -274,9 +279,26 @@ def approval_gate(state: dict) -> dict:
     if run_row(con, run_id)["autopilot"] and pending(con, run_id):
         con.execute("UPDATE cta_plan SET status = 'Approved', decided_at = ? WHERE run_id = ? AND status = 'Pending'",
                     (PLAN_AT, run_id))
-        emit(con, run_id, PLAN_AT, "APPROVED", "Autopilot", "Autopilot approved every follow-up")
+        ids = [r[0] for r in con.execute("SELECT row_id FROM cta_plan WHERE run_id = ?", (run_id,))]
+        emit(con, run_id, PLAN_AT, "APPROVED", "Autopilot", "Autopilot approved every follow-up", payload={"row_ids": ids})
     state["decided"] = pending(con, run_id) == 0
     return state
+
+
+class NextTime(BaseModel):
+    next_time: str
+
+
+def polish_next_time(p: dict) -> str:
+    """The LLM may rephrase the rule-built line; it must keep the language and the time, or the rule stands."""
+    rule = p["next_time"]
+    inputs = {"rule": rule, "language": p["language"], "best_time": p["best_time"], "prefers": p["prefers"], "what_worked": p["what_worked"]}
+    out = complete("persona_next_time", inputs, NextTime, fallback={"next_time": rule}).next_time.strip().rstrip(".")
+    hour = re.search(r"\d{1,2} (am|pm)", rule)
+    keeps = out and p["language"] in out if p["language"] in rule else bool(out)
+    if hour:
+        keeps = keeps and hour.group(0) in out
+    return out if keeps and len(out) <= 90 else rule
 
 
 # ------------------------------------------------------------------------------------------------ Day 8 → 30
@@ -379,6 +401,7 @@ def persona_agent(state: dict) -> dict:
     fs = facts(con, run_id, LAST)
     learned = [persona.compute(f, LAST) for f in fs.values()]
     for p in learned:
+        p["next_time"] = polish_next_time(p)
         con.execute("INSERT INTO personas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     (run_id, p["distributor_id"], p["language"], p["language_on_file"], int(p["language_changed"]), p["best_time"],
                      p["best_hour"], p["reply_speed"], p["reply_hours"], p["prefers"], p["what_worked"], p["next_time"], LAST))

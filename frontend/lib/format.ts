@@ -30,6 +30,11 @@ function trim(x: number): string {
   return x.toFixed(1).replace(/\.0$/, "");
 }
 
+/** "Maa Tara Distributors'" / "Pal Brothers'" / "Ruplekha Traders'" / "Bose Distribution's" */
+export function possessive(name: string): string {
+  return name.endsWith("s") ? `${name}'` : `${name}'s`;
+}
+
 export function pct(x: number): string {
   return `${Math.round(x * 100)}%`;
 }

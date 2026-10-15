@@ -1,53 +1,75 @@
-"""Distributor list + Distributor 360 (Day-0 profile; this cycle's journey and persona arrive in later phases)."""
+"""Distributor list + Distributor 360: Day-0 profile, this cycle's milestones and what we've learned so far."""
 from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException
 
+from app.api import stories
+from app.api.sim import run_id
 from app.db import queries
 from app.db.conn import db
-from app.models import Distributor360, DistributorList, DistributorRow
+from app.db.run_queries import Fact, facts
+from app.models import Distributor360, DistributorList, DistributorRow, Milestone, PersonaView
+from app.simulation import engine
+from app.simulation.clock import day_label
 
 router = APIRouter(prefix="/distributors", tags=["distributors"])
 
 
-def to_row(r: dict) -> DistributorRow:
+def view_day(con, day: float | None) -> tuple[str, float]:
+    rid = run_id(con)
+    cur = engine.state(con, rid)["day"]
+    return rid, cur if day is None else max(0.0, min(day, cur))
+
+
+def to_row(r: dict, f: Fact | None = None, day: float = 0.0) -> DistributorRow:
+    extra = {}
+    if f is not None:
+        p = stories.persona_view(f, day)
+        extra = dict(intent=f.latest["q1_intent"] if f.latest else None, flagged=f.red_flagged,
+                     joined_day=int(f.enrol["sim_day"]) if f.enrol else None, language_now=p["language"],
+                     language_changed=p["language_changed"])
     return DistributorRow(
-        distributor_id=r["distributor_id"],
-        name=r["name"],
-        owner_name=r["owner_name"],
-        town=r["town"],
-        classification=r["classification"],
-        language_on_file=r["preferred_language"],
-        cohort=r["cohort"],
-        reasons=r["reasons"],
-        secondary_fytd_l=r["secondary_fytd_l"],
-        yoy_growth=r["yoy_growth"],
-        joined_last_scheme=bool(r["joined_last_scheme"]),
-        target_l=r["target_l"],
+        distributor_id=r["distributor_id"], name=r["name"], owner_name=r["owner_name"], town=r["town"],
+        classification=r["classification"], language_on_file=r["preferred_language"], cohort=r["cohort"], reasons=r["reasons"],
+        secondary_fytd_l=r["secondary_fytd_l"], yoy_growth=r["yoy_growth"], joined_last_scheme=bool(r["joined_last_scheme"]),
+        target_l=r["target_l"], **extra,
     )
 
 
 @router.get("", response_model=DistributorList)
 def list_distributors(q: str | None = None, cohort: str | None = None, day: float | None = None) -> DistributorList:
     with db() as con:
+        rid, d = view_day(con, day)
         rows = queries.distributors(con)
+        fs = facts(con, rid, d)
     if cohort:
         rows = [r for r in rows if r["cohort"] == cohort]
     if q:
         needle = q.lower()
         rows = [r for r in rows if needle in r["name"].lower() or needle in r["town"].lower() or needle in r["owner_name"].lower()]
-    return DistributorList(day=day or 0.0, cohort=cohort, total=len(rows), items=[to_row(r) for r in rows])
+    return DistributorList(day=d, cohort=cohort, total=len(rows), items=[to_row(r, fs[r["distributor_id"]], d) for r in rows])
 
 
 @router.get("/{distributor_id}", response_model=Distributor360)
 def get_distributor(distributor_id: str, day: float | None = None) -> Distributor360:
     with db() as con:
         d = queries.distributor(con, distributor_id)
-    if d is None:
-        raise HTTPException(404, "Distributor not found in Kolkata North")
+        if d is None:
+            raise HTTPException(404, "Distributor not found in Kolkata North")
+        rid, vd = view_day(con, day)
+        f = facts(con, rid, vd)[distributor_id]
+        sales = con.execute("SELECT * FROM october_sales WHERE run_id = ? AND distributor_id = ?", (rid, distributor_id)).fetchone()
+        from app.api.chat import this_cycle
+
+        cycle = this_cycle(con, rid, f) if vd >= 7.4 else None
     return Distributor360(
-        day=day or 0.0,
+        day=vd,
         language_on_file=d.pop("preferred_language"),
         key_account=d["classification"] == "A",
+        festive_joined=f.enrol is not None,
+        festive_join_label=day_label(f.enrol["sim_day"]).split(" · ")[0] if f.enrol else None,
+        this_cycle=cycle,
+        milestones=[Milestone(**m) for m in stories.milestones(f, dict(sales) if sales else None, vd)],
+        persona=PersonaView(**stories.persona_view(f, vd)),
         **d,
     )

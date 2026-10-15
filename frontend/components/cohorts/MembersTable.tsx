@@ -16,11 +16,13 @@ export function MembersTable({
   rows,
   selectedId,
   onSelect,
+  cycle,
 }: {
   cohort: string;
   rows: DistributorRow[];
   selectedId: string | null;
   onSelect: (id: string) => void;
+  cycle: boolean;
 }) {
   const [expandedFor, setExpandedFor] = useState<string | null>(null);
   const showAll = expandedFor === cohort;
@@ -34,7 +36,7 @@ export function MembersTable({
             {cohort} · {rows.length} distributors
           </h2>
           <p className="mt-0.5 text-[14px] text-muted">
-            Showing {visible.length} · why each one is in this cohort on Day 0
+            Showing {visible.length} · {cycle ? "how each one replied and what happened" : "why each one is in this cohort on Day 0"}
           </p>
         </div>
         <Link
@@ -50,8 +52,8 @@ export function MembersTable({
           <thead>
             <tr className="border-y border-card-border text-[12px] font-semibold uppercase tracking-[0.08em] text-muted">
               <th scope="col" className="w-[36%] px-6 py-3 font-semibold">Distributor</th>
-              <th scope="col" className="px-3 py-3 font-semibold">Why this cohort</th>
-              <th scope="col" className="px-3 py-3 font-semibold">Last scheme</th>
+              <th scope="col" className="px-3 py-3 font-semibold">{cycle ? "Replied on Day 0" : "Why this cohort"}</th>
+              <th scope="col" className="px-3 py-3 font-semibold">{cycle ? "Festive Scheme" : "Last scheme"}</th>
               <th scope="col" className="px-6 py-3 font-semibold">Language</th>
             </tr>
           </thead>
@@ -89,11 +91,29 @@ export function MembersTable({
                         </span>
                       </button>
                     </td>
-                    <td className="px-3 py-3.5 text-[13px] leading-snug text-muted">{r.reasons.join(" · ")}</td>
-                    <td className="px-3 py-3.5">
-                      {r.joined_last_scheme ? <Pill tone="green">Joined</Pill> : <Pill>Didn&apos;t join</Pill>}
-                    </td>
-                    <td className="px-6 py-3.5 text-[14px] text-ink">{r.language_on_file}</td>
+                    {cycle ? (
+                      <>
+                        <td className="px-3 py-3.5 text-[14px] text-ink">
+                          {r.intent ?? <span className="text-muted">No reply</span>}
+                          {r.flagged && <span className="block text-[12px] text-red">(flagged)</span>}
+                        </td>
+                        <td className="px-3 py-3.5">
+                          {r.joined_day !== null ? <Pill tone="green">Joined · Day {r.joined_day}</Pill> : <Pill>Not joined</Pill>}
+                        </td>
+                        <td className="px-6 py-3.5 text-[14px] text-ink">
+                          {r.language_now}
+                          {r.language_changed && <span className="block text-[12px] text-muted">(was {r.language_on_file})</span>}
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td className="px-3 py-3.5 text-[13px] leading-snug text-muted">{r.reasons.join(" · ")}</td>
+                        <td className="px-3 py-3.5">
+                          {r.joined_last_scheme ? <Pill tone="green">Joined</Pill> : <Pill>Didn&apos;t join</Pill>}
+                        </td>
+                        <td className="px-6 py-3.5 text-[14px] text-ink">{r.language_on_file}</td>
+                      </>
+                    )}
                   </motion.tr>
                 );
               })}

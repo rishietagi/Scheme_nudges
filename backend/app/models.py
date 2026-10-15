@@ -82,6 +82,8 @@ class TerritorySummary(BaseModel):
 
 
 class CohortCard(BaseModel):
+    joined_festive: int = 0
+    replied: int = 0
     name: str
     tag: str
     description: str
@@ -98,6 +100,11 @@ class CohortList(BaseModel):
 
 class DistributorRow(BaseModel):
     distributor_id: str
+    intent: str | None = None          # Day-0 reply (as of the day shown)
+    flagged: bool = False
+    joined_day: int | None = None
+    language_now: str | None = None    # persona language so far
+    language_changed: bool = False
     name: str
     owner_name: str
     town: str
@@ -159,6 +166,11 @@ class Distributor360(BaseModel):
     reward_text: str
     billing: list[MonthBilling]
     history: list[SchemeHistory]
+    festive_joined: bool = False
+    festive_join_label: str | None = None
+    this_cycle: str | None = None
+    milestones: list["Milestone"] = []
+    persona: "PersonaView | None" = None
 
 
 # ---------------------------------------------------------------- Survey (Phase 3)
@@ -283,3 +295,144 @@ class Candidate(BaseModel):
     cohort: str
     intent: str | None
     in_group: str | None
+
+
+# ---------------------------------------------------------------- Distributor view, Command centre, 360 (Phase 5)
+class Scenario(BaseModel):
+    distributor_id: str
+    title: str
+    subtitle: str
+    icon: str
+
+
+class Message(BaseModel):
+    id: str
+    sender: str                   # desk | distributor | system
+    kind: str                     # nudge | quick_replies | text | survey | voice | call | enrolled
+    sim_day: float
+    day_label: str
+    time_label: str
+    text: str
+    language: str | None = None
+    card: dict | None = None
+    options: list[str] | None = None
+    answers: list[dict] | None = None
+    seconds: int | None = None
+    tapped: bool | None = None
+    cta: str | None = None
+    note: str | None = None
+    live: bool | None = None
+
+
+class JourneyItem(BaseModel):
+    type: str
+    agent: str
+    sim_day: float
+    day_label: str
+    time_label: str
+    text: str
+
+
+class ChatView(BaseModel):
+    day: float
+    distributor_id: str
+    name: str
+    owner_name: str
+    town: str
+    initials: str
+    cohort: str
+    key_account: bool
+    language: str
+    language_changed: bool
+    billing_fytd: str
+    best_time: str
+    best_time_learned: bool
+    this_cycle: str
+    messages: list[Message]
+    journey: list[JourneyItem]
+
+
+class Tile(BaseModel):
+    key: str
+    label: str
+    value: int
+    sub: str
+
+
+class NeedItem(BaseModel):
+    tone: str                     # orange | red | blue
+    title: str
+    sub: str
+    href: str
+    action: str
+
+
+class SummaryLine(BaseModel):
+    text: str
+    bold: bool
+
+
+class CohortProgress(BaseModel):
+    name: str
+    color: str
+    distributors: int
+    replied: int
+    joined: int
+
+
+class CommandView(BaseModel):
+    day: float
+    day_label: str
+    greeting: str
+    eyebrow: str
+    tiles: list[Tile]
+    needs: list[NeedItem]
+    summary_label: str
+    summary: list[SummaryLine]
+    cohorts: list[CohortProgress]
+
+
+class PersonaView(BaseModel):
+    language: str
+    language_on_file: str
+    language_changed: bool
+    best_time: str | None
+    replies: str
+    prefers: str | None
+    what_worked: str | None
+    next_time: str | None
+
+
+class Milestone(BaseModel):
+    day_label: str
+    time_label: str | None
+    text: str
+
+
+Distributor360.model_rebuild()
+
+
+# ---------------------------------------------------------------- Day-30 results (Phase 6)
+class AppliedProfile(BaseModel):
+    distributor_id: str
+    name: str
+    cohort: str
+    language: str
+    prefers: str
+    next_time: str
+
+
+class ResultsView(BaseModel):
+    day: float
+    day_label: str
+    ready: bool
+    results_day_label: str
+    joined_so_far: int
+    total: int
+    headline: str | None = None
+    results: dict | None = None          # engines/results.compute output (five questions)
+    learned: list[SummaryLine] = []
+    chips: list[dict] = []
+    applied: bool
+    applied_at: str | None = None
+    run_scenario: str | None = None

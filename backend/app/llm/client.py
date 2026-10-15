@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import logging
 import os
 import time
@@ -39,6 +40,14 @@ FORBIDDEN = {
 
 class LeakError(ValueError):
     pass
+
+
+_cooldown_until = 0.0     # after a 429, skip live calls until the provider's retry time (fail fast to cache/fallback)
+
+
+def _retry_after(err: Exception) -> float:
+    m = re.search(r"retry in ([\d.]+)s|retryDelay': '(\d+)s", str(err))
+    return float(next(g for g in m.groups() if g)) if m else 30.0
 
 
 def _keys(obj) -> set[str]:
@@ -107,14 +116,18 @@ def _call_provider(prompt: str, schema: type[BaseModel]) -> str:
     return r.text or ""
 
 
-def complete(prompt_id: str, inputs: dict, schema: type[T], fixture_key: str | None = None, mode: str | None = None) -> T:
+def complete(prompt_id: str, inputs: dict, schema: type[T], fixture_key: str | None = None, mode: str | None = None,
+             fallback: dict | None = None) -> T:
+    """`fallback` (optional) replaces the fixture: a code-built answer from computed numbers, so text that carries
+    numbers is always right even with no LLM."""
     leaked = _keys(inputs) & FORBIDDEN
     if leaked:
         raise LeakError(f"Refusing to send hidden traits to the LLM: {sorted(leaked)}")
     mode = mode or settings.llm_mode
     path = _cache_path(prompt_id, inputs)
 
-    if mode in ("live", "record"):
+    global _cooldown_until
+    if mode in ("live", "record") and time.time() >= _cooldown_until:
         prompt = render(prompt_id, inputs)
         for attempt in range(2):                         # one retry
             try:
@@ -124,9 +137,19 @@ def complete(prompt_id: str, inputs: dict, schema: type[T], fixture_key: str | N
                     path.write_text(out.model_dump_json(indent=2), encoding="utf-8")
                 return out
             except Exception as e:                       # timeouts, 429s, bad JSON: fall back, never break the demo
-                log.warning("LLM %s attempt %d failed: %s", prompt_id, attempt + 1, e)
-                if "429" in str(e) and attempt == 0:
-                    time.sleep(2)
+                log.warning("LLM %s attempt %d failed: %s", prompt_id, attempt + 1, str(e)[:160])
+                if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                    _cooldown_until = time.time() + _retry_after(e)
+                    break
     if mode != "mock" and path.exists():
         return schema.model_validate_json(path.read_text(encoding="utf-8"))
+    if fallback is not None:
+        return schema.model_validate(fallback)
     return schema.model_validate(fixture(prompt_id, fixture_key))
+
+
+def chat_mode() -> str:
+    """Live typing in the Distributor view may call the LLM even when the rest of the demo replays from cache."""
+    if settings.llm_mode == "mock":
+        return "mock"
+    return "live" if os.getenv("LLM_CHAT_LIVE", "false").lower() == "true" else settings.llm_mode

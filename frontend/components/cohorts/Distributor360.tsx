@@ -26,9 +26,63 @@ export function Distributor360({ d }: { d: D360 | undefined }) {
             <div className="mt-5 grid grid-cols-3 gap-2.5">
               <Stat label="Billing FYTD" value={formatINR(d.secondary_fytd_l)} />
               <Stat label="October target" value={formatINR(d.target_l)} />
-              <Stat label="Festive Scheme" value="Not yet" muted />
+              {d.festive_joined ? (
+                <div className="rounded-xl bg-green-soft px-3 py-3">
+                  <p className="text-[12px] text-green-text">Festive Scheme</p>
+                  <p className="mt-0.5 font-display text-[20px] font-semibold text-green-text">Joined</p>
+                </div>
+              ) : (
+                <Stat label="Festive Scheme" value="Not yet" muted />
+              )}
             </div>
 
+            {d.milestones.length > 0 ? <ThisScheme d={d} /> : <DayZero d={d} />}
+
+            <Learned d={d} />
+          </motion.div>
+        ) : (
+          <motion.p key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-16 text-center text-[15px] text-muted">
+            Pick a distributor to see their 360.
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
+
+function ThisScheme({ d }: { d: D360 }) {
+  return (
+    <>
+      <h3 className="mt-6 text-[13px] font-semibold uppercase tracking-[0.08em] text-muted">This scheme</h3>
+      <ol className="mt-3">
+        {d.milestones.map((m, i) => (
+          <motion.li
+            key={`${m.day_label}:${m.text}`}
+            initial={{ opacity: 0, x: 8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, ease: EASE, delay: i * 0.06 }}
+            className="relative pb-4 pl-6 last:pb-0"
+          >
+            {i < d.milestones.length - 1 && <span className="absolute left-[5px] top-4 h-full w-px bg-card-border" aria-hidden />}
+            <span
+              className={`absolute left-0 top-1.5 size-[11px] rounded-full ${/join|beat/i.test(m.text) ? "bg-green-text" : "bg-emami-blue"}`}
+              aria-hidden
+            />
+            <p className="text-[13px] text-muted">
+              {m.day_label}
+              {m.time_label && ` · ${m.time_label}`}
+            </p>
+            <p className="text-[15px] text-ink">{m.text}</p>
+          </motion.li>
+        ))}
+      </ol>
+    </>
+  );
+}
+
+function DayZero({ d }: { d: D360 }) {
+  return (
+    <>
             <h3 className="mt-6 text-[13px] font-semibold uppercase tracking-[0.08em] text-muted">Why this cohort</h3>
             <ul className="mt-2 space-y-1.5">
               {d.reasons.map((r) => (
@@ -56,16 +110,7 @@ export function Distributor360({ d }: { d: D360 | undefined }) {
 
             <h3 className="mt-6 text-[13px] font-semibold uppercase tracking-[0.08em] text-muted">Billing, last 6 months</h3>
             <Sparkbars d={d} />
-
-            <Learned d={d} />
-          </motion.div>
-        ) : (
-          <motion.p key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-16 text-center text-[15px] text-muted">
-            Pick a distributor to see their 360.
-          </motion.p>
-        )}
-      </AnimatePresence>
-    </section>
+    </>
   );
 }
 
@@ -121,12 +166,14 @@ function Sparkbars({ d }: { d: D360 }) {
 
 /** Persona panel. On Day 0 the system only knows the file; it learns from this cycle's behaviour. */
 function Learned({ d }: { d: D360 }) {
-  const rows = [
-    { icon: Globe, label: "Language", value: d.language_on_file, note: "on file" },
-    { icon: Clock, label: "Best time", value: d.reply_window, note: "on file" },
-    { icon: MessageCircle, label: "Replies", value: "Not yet" },
-    { icon: Mic, label: "Prefers", value: "Not yet" },
+  const p = d.persona;
+  const rows: { icon: typeof Globe; label: string; value: string; note?: string }[] = [
+    { icon: Globe, label: "Language", value: p?.language ?? d.language_on_file, note: p?.language_changed ? `was ${p.language_on_file}` : p?.best_time ? undefined : "on file" },
+    { icon: Clock, label: "Best time", value: p?.best_time ?? d.reply_window, note: p?.best_time ? undefined : "on file" },
+    { icon: MessageCircle, label: "Replies", value: p?.replies ?? "Not yet" },
+    { icon: Mic, label: "Prefers", value: p?.prefers ?? "Not yet" },
   ];
+  if (p?.what_worked) rows.push({ icon: Check, label: "What worked", value: p.what_worked });
   return (
     <div className="mt-6 rounded-2xl bg-navy-800 p-5 text-white">
       <p className="flex items-center gap-2 text-[14px] font-semibold text-orange-light">
@@ -144,9 +191,21 @@ function Learned({ d }: { d: D360 }) {
           </li>
         ))}
       </ul>
-      <p className="mt-3 rounded-xl bg-white/[0.06] px-3.5 py-2.5 text-[14px] text-white/80">
-        Fills in from this cycle&apos;s replies and follow-ups.
-      </p>
+      {p?.next_time ? (
+        <motion.p
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: EASE }}
+          className="mt-3 rounded-xl bg-white/[0.08] px-3.5 py-3 text-[15px] text-white"
+        >
+          <span className="font-semibold text-orange-light">Next time: </span>
+          {p.next_time}.
+        </motion.p>
+      ) : (
+        <p className="mt-3 rounded-xl bg-white/[0.06] px-3.5 py-2.5 text-[14px] text-white/80">
+          Fills in from this cycle&apos;s replies and follow-ups. The &ldquo;next time&rdquo; rule comes on Day 30.
+        </p>
+      )}
     </div>
   );
 }
