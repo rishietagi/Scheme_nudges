@@ -1,28 +1,25 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { authConfig, same, SESSION_COOKIE, sessionToken } from "@/lib/session";
 
-// Password gate for the hosted review copy: when DEMO_PASSWORD is set (on the server only), every page and API call
-// asks for a shared username/password (browser login prompt). Locally it's unset, so nothing changes.
-export function proxy(request: NextRequest) {
-  const password = process.env.DEMO_PASSWORD;
-  if (!password) return NextResponse.next();
-  const user = process.env.DEMO_USER || "emami";
-  const header = request.headers.get("authorization") ?? "";
-  if (header.startsWith("Basic ")) {
-    try {
-      const [u, ...rest] = atob(header.slice(6)).split(":");
-      if (u === user && rest.join(":") === password) return NextResponse.next();
-    } catch {
-      // fall through to the prompt
-    }
+// Sign-in gate for the hosted review copy (see lib/session.ts). Pages without a valid session go to /login; API calls
+// get a 401. With no DEMO_PASSWORD (local development) everything is open.
+export async function proxy(request: NextRequest) {
+  const auth = authConfig();
+  if (!auth) return NextResponse.next();
+  const cookie = request.cookies.get(SESSION_COOKIE)?.value ?? "";
+  if (cookie && same(cookie, await sessionToken(auth.user, auth.password))) return NextResponse.next();
+
+  const { pathname, search } = request.nextUrl;
+  if (pathname.startsWith("/api/")) {
+    return NextResponse.json({ detail: "Sign in first" }, { status: 401 });
   }
-  return new NextResponse("Sign in to view the Emami Distributor Experience Platform (concept prototype).", {
-    status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="Emami DX prototype", charset="UTF-8"' },
-  });
+  const login = new URL("/login", request.url);
+  if (pathname !== "/") login.searchParams.set("next", `${pathname}${search}`);
+  return NextResponse.redirect(login);
 }
 
 export const config = {
-  // Everything except the health check and Next's own static files and icons.
-  matcher: ["/((?!healthz|brand/|_next/static|_next/image|favicon.ico).*)"],
+  // Everything except the sign-in page and its handlers, the health check, the logo files and Next's own assets.
+  matcher: ["/((?!login|auth/|healthz|brand/|_next/static|_next/image|favicon.ico).*)"],
 };

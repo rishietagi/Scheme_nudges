@@ -4,14 +4,14 @@ One free **Render** web service runs the whole app from the `Dockerfile`:
 - the website (Next.js) on Render's public port;
 - the API (FastAPI) privately inside the same container — the website forwards `/api/*` to it.
 
-There is one URL and one password. AI text comes from the hand-written fixtures (no Gemini key on the server), and a fresh server opens on a finished Day-30 cycle.
+There is one URL and an in-app **Sign in** page (username + password). AI text comes from the hand-written fixtures (no Gemini key on the server), and a fresh server opens on a finished Day-30 cycle.
 
 ## One-time setup (about 10 minutes)
 
 1. **Push this repo to GitHub.** The repo must include `Dockerfile`, `render.yaml`, `.dockerignore`, `deploy/start.sh`, `frontend/proxy.ts` and the data in `backend/data/` (`emami_dx.sqlite`, `csv/`). `.env` is never shipped: `.gitignore` and `.dockerignore` keep it out.
 2. Sign in at **https://render.com** with GitHub. The free plan needs no card.
 3. **New + → Blueprint** and pick this repository. Render reads `render.yaml` and proposes one service, `emami-dx-prototype` (Docker, Free).
-4. When asked for **`DEMO_PASSWORD`**, type the password reviewers will use. The username is `emami`; you can change `DEMO_USER` in the service's Environment tab.
+4. When asked for **`DEMO_PASSWORD`**, type the password reviewers will use. The username is **`emami`**; you can change `DEMO_USER` in the service's Environment tab. Reviewers sign in on the app's own page, not a browser pop-up, so it works in locked-down corporate browsers such as KPMG's Edge. A session lasts 7 days; changing the password signs everyone out.
 5. **Apply.** The first build takes about 5–8 minutes. When the service shows **Live**, open its `https://emami-dx-prototype.onrender.com` URL (Render shows the exact one) and sign in.
 
 Every push to the default branch redeploys automatically (`autoDeploy: true`).
@@ -48,7 +48,7 @@ docker run -p 10000:10000 -e DEMO_PASSWORD=secret emami-dx      # open http://lo
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `DEMO_PASSWORD` | — (required) | The shared password. Leave it empty to make the site public. |
+| `DEMO_PASSWORD` | — (required) | The shared password for the in-app sign-in page. Leave it empty to make the site public. |
 | `DEMO_USER` | `emami` | The shared username. |
 | `SIM_START_DAY` | `30` | The day a fresh server opens on (`0` = start like the live demo). |
 | `LLM_MODE` | `mock` | `mock` = fixtures only. To use live Gemini, set `LLM_MODE=live` and add `GEMINI_API_KEY` + `GEMINI_MODEL`. The free tier allows 5 requests/minute shared by everyone. |

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { SignOut } from "./SignOut";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -99,6 +100,7 @@ export function Sidebar({ onNavigate, layoutId = "nav-active" }: { onNavigate?: 
           <p className="text-[14px] font-semibold">Rahul Sen</p>
           <p className="text-[12px] text-white/60">ASM · Kolkata North</p>
         </div>
+        <SignOut />
       </div>
     </div>
   );

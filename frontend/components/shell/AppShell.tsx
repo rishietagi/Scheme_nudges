@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, MotionConfig } from "motion/react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { SimProvider } from "@/lib/sim";
@@ -10,6 +11,9 @@ import { Sidebar } from "./Sidebar";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  // The sign-in page stands alone: no sidebar, and no simulator calls before there's a session.
+  if (pathname === "/login") return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 
   return (
     <MotionConfig reducedMotion="user">

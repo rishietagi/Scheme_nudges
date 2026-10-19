@@ -181,8 +181,12 @@ a Bengali voice note around 1 pm".
 - **Setup:** one free Render Docker web service (`Dockerfile`, `render.yaml`, `deploy/start.sh`, `.dockerignore`).
   Next.js standalone serves on `$PORT`; FastAPI runs on 127.0.0.1:8000 inside the container; `/api/*` is forwarded
   (next.config `rewrites`).
-- **Gate:** `frontend/proxy.ts` asks for a password when `DEMO_PASSWORD` is set. `/healthz` and `/brand/*` stay
-  open, because the image optimizer fetches the logo without the user's credentials.
+- **Gate:** an in-app sign-in page replaced the browser login prompt, which KPMG's Edge blocked.
+  - `/login` posts to `/auth/login`, which sets an HttpOnly session cookie (an HMAC of the credentials, 7 days).
+  - `frontend/proxy.ts` sends pages without a session to `/login?next=…` and answers `/api/*` with 401.
+  - Sign out is in the sidebar user card.
+  - `/healthz` and `/brand/*` stay open.
+  - Tested in Microsoft Edge against the container.
 - **Server settings:** `LLM_MODE=mock` (no key) and `SIM_START_DAY=30` (a fresh server opens on a finished cycle).
 - **Tested locally** with 512 MB / 0.1 CPU limits:
   - boots in about 50 s;
