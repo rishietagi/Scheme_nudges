@@ -43,17 +43,19 @@ export function LoginForm() {
   }
 
   return (
-    <div className="grid min-h-screen bg-bg lg:grid-cols-[1fr_1.1fr]">
+    <div className="fixed inset-0 grid overflow-y-auto bg-bg lg:grid-cols-[1fr_1.1fr]">
       <div className="hidden flex-col justify-between bg-navy-900 p-12 text-white lg:flex">
         <div>
           <Image src="/brand/emami-logo-reverse.png" alt="Emami" width={120} height={110} className="h-auto w-[120px]" priority />
           <p className="mt-4 text-[17px] font-semibold">Distributor Experience Platform</p>
         </div>
         <div className="max-w-md">
-          <h2 className="font-display text-[34px] font-semibold leading-tight">Every scheme: a nudge, a survey, the right next action — and a 30-day check.</h2>
+          <h2 className="font-display text-[34px] font-semibold leading-tight">
+            Know every distributor. Strengthen every relationship.
+          </h2>
           <p className="mt-4 text-[16px] leading-relaxed text-white/75">
-            Cohorts from business potential and performance, a survey for each cohort, next best actions you approve, and
-            results that feed the next quarter.
+            Distributor cohorts built from business potential and performance, surveys that measure the relationship, and a
+            next best action for each distributor — approved by you, tracked over 30 days, and carried into the next quarter.
           </p>
         </div>
         <p className="text-[13px] text-white/50">Concept prototype · synthetic data · built by KPMG for Emami</p>

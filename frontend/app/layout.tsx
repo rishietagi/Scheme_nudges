@@ -11,7 +11,7 @@ const devanagari = Noto_Sans_Devanagari({ variable: "--font-devanagari", subsets
 
 export const metadata: Metadata = {
   title: "Emami — Distributor Experience Platform",
-  description: "Concept prototype on synthetic data: nudge, survey, follow-up and 30-day check for every scheme.",
+  description: "Concept prototype on synthetic data: distributor cohorts from business potential and performance, relationship surveys, and a next best action for every distributor.",
   icons: { icon: "/brand/emami-logo.png" },
 };
 
