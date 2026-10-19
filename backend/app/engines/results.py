@@ -3,12 +3,12 @@ from __future__ import annotations
 
 import statistics
 
+from app.content.terms import intent_labels
 from app.db.run_queries import Fact
+from app.engines.cohorts import DISPLAY_ORDER as COHORTS
 from app.engines.cta_planner import SHORT
 from app.rules.loader import survey_rules
 from app.simulation.behaviour import CTA_AT
-
-COHORTS = ["Champions", "Growth builders", "Scheme-hesitant", "At-risk", "Dormant"]
 
 
 def intents() -> list[str]:
@@ -72,5 +72,6 @@ def compute(facts: dict[str, Fact], sales: dict[str, dict], last_scheme_joined: 
         "median_first_reply_hours": round(statistics.median(first_reply_h), 1) if first_reply_h else None,
         "median_join_days_after_follow_up": round(statistics.median(join_after), 1) if join_after else None,
         "asked": asked,
+        "asked_labels": {**intent_labels(intents()), "No reply": "No reply"},
         "follow_ups": worked,
     }

@@ -7,6 +7,8 @@ import math
 import sqlite3
 
 from app.agents.nodes import ASM, inr, lang_of
+from app.content.terms import intent_label
+from app.db import queries
 from app.db.run_queries import Fact
 from app.engines import persona as persona_engine
 from app.engines.cta_planner import SHORT
@@ -16,9 +18,9 @@ DESK = {  # auto replies from the (simulated) Emami Distributor Desk
     "thanks": {"English": "Thanks! Five quick questions — it takes a minute.",
                "Bengali": "ধন্যবাদ! পাঁচটা ছোট প্রশ্ন — এক মিনিট লাগবে।",
                "Hindi": "धन्यवाद! पाँच छोटे सवाल — एक मिनट लगेगा।"},
-    "I've enrolled": {"English": "Great — you're in. We've noted it in DMS.", "Bengali": "দারুণ — আপনি যোগ দিয়েছেন। DMS-এ লিখে রাখলাম।",
-                      "Hindi": "बढ़िया — आप जुड़ गए हैं। DMS में दर्ज कर लिया है।"},
-    "I'll enrol": {"English": "Great — reply JOIN whenever you're ready.", "Bengali": "দারুণ — তৈরি হলে JOIN লিখে উত্তর দিন।",
+    "I've enrolled": {"English": "Great — your participation is noted in DMS.", "Bengali": "দারুণ — আপনার অংশগ্রহণ DMS-এ লিখে রাখলাম।",
+                      "Hindi": "बढ़िया — आपकी भागीदारी DMS में दर्ज कर ली है।"},
+    "I'll enrol": {"English": "Great — reply JOIN whenever you're ready to participate.", "Bengali": "দারুণ — তৈরি হলে JOIN লিখে উত্তর দিন।",
                    "Hindi": "बढ़िया — जब तैयार हों, JOIN लिखकर जवाब दें।"},
     "Explain again": {"English": "Thanks — we'll send a simpler explanation.", "Bengali": "ধন্যবাদ — আরও সহজ করে বুঝিয়ে পাঠাব।",
                       "Hindi": "धन्यवाद — और आसान तरीके से समझाकर भेजेंगे।"},
@@ -26,15 +28,9 @@ DESK = {  # auto replies from the (simulated) Emami Distributor Desk
                            "Hindi": "धन्यवाद — बांग्ला में समझाकर भेजेंगे।"},
     "Talk to my ASM": {"English": f"Sure — {ASM} will get in touch.", "Bengali": "অবশ্যই — রাহুল যোগাযোগ করবেন।",
                        "Hindi": "ज़रूर — राहुल संपर्क करेंगे।"},
-    "joined": {"English": "You're in the Festive Scheme. Your target is {target}. All the best for October!",
-               "Bengali": "আপনি ফেস্টিভ স্কিমে যোগ দিয়েছেন। আপনার টার্গেট {target}। অক্টোবরের জন্য শুভেচ্ছা!",
-               "Hindi": "आप फेस्टिव स्कीम से जुड़ गए हैं। आपका टारगेट {target} है। अक्टूबर के लिए शुभकामनाएँ!"},
-}
-INTENT_LABEL = {
-    "Bengali": {"I've enrolled": "আমি যোগ দিয়েছি", "I'll enrol": "আমি যোগ দেব", "Explain again": "আবার বুঝিয়ে বলুন",
-                "Explain in Bengali": "বাংলায় বুঝিয়ে বলুন", "Talk to my ASM": "আমার ASM-এর সঙ্গে কথা বলব"},
-    "Hindi": {"I've enrolled": "जुड़ चुके हैं", "I'll enrol": "जुड़ना है", "Explain again": "फिर से समझाइए",
-              "Explain in Bengali": "बांग्ला में समझाइए", "Talk to my ASM": "ASM से बात करनी है"},
+    "joined": {"English": "You're now participating in the Festive Scheme. Your target is {target}; slab payouts come as a credit note. All the best for October!",
+               "Bengali": "আপনি এখন ফেস্টিভ স্কিমে অংশ নিচ্ছেন। আপনার টার্গেট {target}; স্ল্যাবের পেআউট ক্রেডিট নোটে আসবে। অক্টোবরের জন্য শুভেচ্ছা!",
+               "Hindi": "अब आप फेस्टिव स्कीम में शामिल हैं। आपका टारगेट {target} है; स्लैब पेआउट क्रेडिट नोट से मिलेगा। अक्टूबर के लिए शुभकामनाएँ!"},
 }
 INTENTS = ["I've enrolled", "I'll enrol", "Explain again", "Explain in Bengali", "Talk to my ASM"]
 
@@ -50,7 +46,18 @@ def _msg(i: int, sender: str, kind: str, day: float, text: str = "", **extra) ->
 
 
 def label(intent: str, lang: str) -> str:
-    return INTENT_LABEL.get(lang, {}).get(intent, intent)
+    return intent_label(intent, lang)
+
+
+def survey_answers(con: sqlite3.Connection, run_id: str, cohort: str, resp: dict) -> list[dict]:
+    """[{q: short label, a: answer}] in the order the cohort's survey asked them (intent and comment left out)."""
+    out = []
+    for q in queries.run_survey(con, run_id).get(cohort, []):
+        if q.type == "rating_1_5" and q.id in resp["answers"]:
+            out.append({"q": q.short or q.topic, "a": f"{resp['answers'][q.id]} of 5"})
+        elif q.type == "single_choice" and resp.get("q6"):
+            out.append({"q": q.short or "Would help", "a": resp["q6"]})
+    return out
 
 
 def conversation(con: sqlite3.Connection, run_id: str, f: Fact, day: float) -> list[dict]:
@@ -61,9 +68,9 @@ def conversation(con: sqlite3.Connection, run_id: str, f: Fact, day: float) -> l
     if "nudge" in nudges:
         n = nudges["nudge"]
         out.append((n["sent_at"], "desk", "nudge", n["text"], {"language": lang0, "card": {
-            "target": inr(f.target_l), "hit": "+3% margin on focus SKUs", "stretch": inr(f.stretch_l), "beat": "+4% and ₹10,000 bonus"}}))
-        out.append((n["sent_at"] + 1e-6, "desk", "quick_replies", {"English": "What would you like to do?",
-                    "Bengali": "আপনি কী করতে চান?", "Hindi": "आप क्या करना चाहेंगे?"}[lang0],
+            "target": inr(f.target_l), "hit": "+3% margin on focus SKUs", "stretch": inr(f.stretch_l), "beat": "+4% and ₹10,000 credit note"}}))
+        out.append((n["sent_at"] + 1e-6, "desk", "quick_replies", {"English": "Will you participate?",
+                    "Bengali": "আপনি কি অংশ নেবেন?", "Hindi": "क्या आप शामिल होंगे?"}[lang0],
                     {"options": [label(i, lang0) for i in INTENTS]}))
     if "reminder" in nudges:
         out.append((nudges["reminder"]["sent_at"], "desk", "text", nudges["reminder"]["text"], {}))
@@ -73,10 +80,7 @@ def conversation(con: sqlite3.Connection, run_id: str, f: Fact, day: float) -> l
         t = first["submitted_at"]
         out.append((t - first["survey_seconds"] / 86400 - 2e-6, "distributor", "text", label(first["q1_intent"], lang0), {"tapped": True}))
         out.append((t - first["survey_seconds"] / 86400 - 1e-6, "desk", "text", DESK["thanks"][lang0], {}))
-        answers = [{"q": q, "a": f"{first[k]} of 5"} for q, k in (("Clear", "q2"), ("Helps", "q3"), ("Target", "q4"), ("Payouts", "q5"))
-                   if first[k] is not None]
-        if first["q6"]:
-            answers.append({"q": "Wants", "a": first["q6"]})
+        answers = survey_answers(con, run_id, f.cohort, first)
         out.append((t, "distributor", "survey", first["q7_text"] or "", {"answers": answers, "seconds": first["survey_seconds"]}))
         reply = DESK.get(first["q1_intent"], {}).get(lang0)
         if reply and not (first["q1_intent"] == "I've enrolled" and not (f.enrol and f.enrol["sim_day"] <= t + 1e-4)):
@@ -132,8 +136,9 @@ def journey(con: sqlite3.Connection, run_id: str, f: Fact, day: float) -> list[d
             continue
         if r["type"] == "REPLY" and f.responses:
             first = f.responses[0]
-            clarity = f" · clarity {first['q2']} of 5" if first["q2"] is not None else ""
-            r["text"] = f"Replied: {first['q1_intent']}{clarity}"
+            clear = first["answers"].get("SCHEME_CLEAR")
+            clarity = f" · clarity {clear} of 5" if clear is not None else ""
+            r["text"] = f"Replied: {intent_label(first['q1_intent'])}{clarity}"
         if r["type"] == "ENROLLED":
             rest = r["text"].replace(f.name, "").strip()
             r["text"] = rest[:1].upper() + rest[1:] + " · written to DMS (simulated)"
@@ -173,7 +178,8 @@ def milestones(f: Fact, sales: dict | None, day: float) -> list[dict]:
     out = []
     if f.responses:
         r = f.responses[0]
-        out.append((r["submitted_at"], f"Asked: {r['q1_intent']}" if r["q1_intent"] != "I've enrolled" else "Said: I've enrolled"))
+        said = intent_label(r["q1_intent"])
+        out.append((r["submitted_at"], f"Asked: {said}" if r["q1_intent"] not in ("I've enrolled", "I'll enrol") else f"Said: {said}"))
     elif f.nudge_at is not None and day >= 7:
         out.append((7.0, "Didn't reply to the nudge or the reminder"))
     for d in f.deliveries:
@@ -182,7 +188,7 @@ def milestones(f: Fact, sales: dict | None, day: float) -> list[dict]:
     for c in f.calls:
         out.append((c["sim_day"], f"{'Visit' if c['kind'] == 'visit' else 'Call'} from {ASM}: {c['outcome'].lower()}"))
     if f.enrol:
-        out.append((f.enrol["sim_day"], "Joined the scheme"))
+        out.append((f.enrol["sim_day"], "Started participating in the scheme"))
     if sales and day >= 30:
         verdict = "beat" if sales["hit_prediction"] else ("short of" if f.enrol else "vs")
         noun = "prediction" if f.enrol else "forecast"

@@ -1,29 +1,60 @@
-# Cohort rules — evaluated in order, first match wins. Computed AS OF DAY 0 (1 Oct 2026), before the nudge,
-# so a cohort never depends on how a distributor reacts to the current scheme.
-# Mirrors Gen.apply_rules() in backend/scripts/generate_data.py; tests re-apply these to all 1,104 distributors.
-# Thresholds are placeholders until Emami confirms the criteria — keep them config, not code.
-version: v2.0
+# Cohort rules v4 — a 2×2 of BUSINESS POTENTIAL (the distributor's geography) vs DISTRIBUTOR PERFORMANCE,
+# computed AS OF DAY 0 (1 Oct 2026), before any survey. Surveys enrich a cohort; they never decide it.
+#
+#                         High performance        Low performance
+#   High potential   |  Invest / Expand       |  Replace / Reassess   |
+#   Low potential    |  Protect               |  Exit / Watchlist     |
+#
+# Business potential (Rs lakh / month) = Emami potential of the distributor's town (modelled TAM x Emami fair share,
+#   from data/csv/market_potential.csv) x the share of the town's outlets this distributor covers.
+# Performance (0–100) = weighted average of four pillar scores:
+#   growth   — secondary sales YoY vs the FMCG market: 50 = growing with the market, +10 pts ahead = 100
+#   schemes  — schemes qualified (target achieved) out of the last 3
+#   focus    — focus-product share of secondary sales vs the focus target
+#   delivery — on-time-in-full deliveries to retailers (OTIF, Jul–Sep): floor = 0, ceiling = 100
+# The Cohort rules page edits thresholds, weights and pillar targets (saved in the app's config table, applied from
+# the next cycle). This file holds the defaults; backend/scripts/generate_data.py mirrors them.
+version: v4.0
 as_of: "2026-10-01"
-features:
-  yoy_growth: secondary Apr–Sep 2026 vs Apr–Sep 2025
-  consecutive_down_months: trailing months (from Sep 2026 backwards) where secondary < previous month
-  sku_range_delta_qoq: avg unique SKUs billed Jul–Sep minus Apr–Jun
-  focus_share_q2: focus-SKU revenue / secondary revenue, Jul–Sep 2026
-  days_since_last_invoice: Day 0 minus last invoice date
-  past_schemes_joined: how many of the last 3 schemes (Year-end Mar, Summer Apr–Jun, Monsoon Jul–Sep) they joined
-cohorts:
-  - name: Dormant
-    tag: Re-engage
-    when: days_since_last_invoice > 30
-  - name: At-risk
-    tag: Rescue
-    when: consecutive_down_months >= 2 OR sku_range_delta_qoq <= -5
-  - name: Champions
-    tag: Reward
-    when: yoy_growth > 0.10 AND focus_share_q2 > 0.35
-  - name: Scheme-hesitant
-    tag: Explain
-    when: yoy_growth >= 0 AND past_schemes_joined <= 1
-  - name: Growth builders
-    tag: Stretch
-    when: otherwise          # healthy and a regular scheme joiner
+
+thresholds:
+  potential_high:   {value: 4.5, min: 1,  max: 20,  label: "High business potential from", unit: "₹ L/month"}
+  performance_high: {value: 50,  min: 20, max: 80,  label: "High performance from a score of", unit: "/ 100"}
+  market_growth:    {value: 3,   min: -5, max: 15,  label: "FMCG market growth (growth score 50)", unit: "%"}
+  focus_target:     {value: 35,  min: 10, max: 60,  label: "Focus-product share that scores 100", unit: "%"}
+  otif_floor:       {value: 70,  min: 40, max: 90,  label: "OTIF that scores 0", unit: "%"}
+  otif_ceiling:     {value: 95,  min: 80, max: 100, label: "OTIF that scores 100", unit: "%"}
+
+weights:                          # must add up to 100
+  growth:   {value: 25, label: "Sales growth", explain: "Secondary sales YoY vs the FMCG market (NielsenIQ India, Q1 2026: +3.0%)."}
+  schemes:  {value: 25, label: "Scheme qualification", explain: "How many of the last 3 schemes they qualified for (hit the target)."}
+  focus:    {value: 25, label: "Focus-product sales", explain: "Focus SKUs as a share of their secondary sales, Jul–Sep."}
+  delivery: {value: 25, label: "Delivery efficacy", explain: "Orders delivered to retailers on time and in full (OTIF), Jul–Sep."}
+
+benchmark: "Market growth: FMCG value +3.0% YoY (NielsenIQ India, Q1 2026). Business potential: modelled TAM (households × penetration × spend × Emami fair share) — synthetic for this demo."
+
+axes:
+  potential:   {label: Business potential, high: High potential, low: Low potential}
+  performance: {label: Distributor performance, high: High performance, low: Low performance}
+
+cohorts:                          # display order
+  - name: Invest / Expand
+    cell: {high_potential: true, high_performance: true}
+    tag: Grow
+    color: blue
+    definition: Big market and performing well. Put money behind them and widen their coverage.
+  - name: Replace / Reassess
+    cell: {high_potential: true, high_performance: false}
+    tag: Fix
+    color: orange
+    definition: Big market, but under-delivering. Fix what's holding them back — or find a better partner.
+  - name: Protect
+    cell: {high_potential: false, high_performance: true}
+    tag: Keep
+    color: cyan
+    definition: Small market, run well. Keep them loyal and efficient; don't over-invest.
+  - name: Exit / Watchlist
+    cell: {high_potential: false, high_performance: false}
+    tag: Watch
+    color: red
+    definition: Small market and under-delivering. Watch closely; consider consolidating the territory.

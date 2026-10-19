@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { api, type CohortName, type FlagItem, type Language } from "@/lib/api";
-import { isCohort } from "@/lib/cohorts";
+import { DEFAULT_COHORT, isCohort } from "@/lib/cohorts";
 import { useSim, useViewDay } from "@/lib/sim";
 import { useApi } from "@/lib/useApi";
 import { Card } from "@/components/cards/Card";
@@ -23,7 +23,7 @@ export function SurveyView() {
   const [version, setVersion] = useState(0);
 
   const rawCohort = params.get("cohort");
-  const cohort: CohortName = isCohort(rawCohort) ? rawCohort : "Scheme-hesitant";
+  const cohort: CohortName = isCohort(rawCohort) ? rawCohort : DEFAULT_COHORT;
   const rawLang = params.get("lang") as Language | null;
   const lang: Language = rawLang && LANGS.includes(rawLang) ? rawLang : "English";
   const dayKey = day.toFixed(2);

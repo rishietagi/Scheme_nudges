@@ -6,11 +6,10 @@ send_day: 0
 close_day: 7
 
 nudge_brief:                     # tone + angle per cohort; the Message agent turns this into EN/BN/HI text
-  Champions: Thank them, show the stretch slab and the bonus. Short.
-  Growth builders: Show their personal target and what they earn at slab 1 and slab 2.
-  Scheme-hesitant: Explain the scheme in 3 lines with their own target. No PDF. Offer Bengali and ASM.
-  At-risk: Lead with help, not targets. Offer an ASM call first.
-  Dormant: Short check-in. One line on the scheme, one tap to talk to the ASM.
+  Invest / Expand: Thank them as a partner. Show their target, slab 1 and the stretch slab with the credit note. Short.
+  Replace / Reassess: Explain the scheme in 3 lines with their own target. No PDF. Offer Bengali and ASM.
+  Protect: Appreciate their consistency. Their target and slab 1 in one line; keep it light.
+  Exit / Watchlist: Short check-in. One line on the scheme, one tap to talk to the ASM.
 
 questions:
   - id: Q1
@@ -38,11 +37,10 @@ questions:
     type: single_choice
     text: What would help you most right now?
     options_by_cohort:
-      Champions: [Faster payouts, More focus-SKU stock, Higher slab bonus, Nothing, all good]
-      Growth builders: [Clear slab examples, Stock on time, Credit support, ASM visit]
-      Scheme-hesitant: [Simpler explanation, Explanation in Bengali, Lower target, Better margin]
-      At-risk: [ASM visit, Credit support, Faster payouts, Better margin]
-      Dormant: [Better margin, Credit terms, Stock availability, Call me]
+      Invest / Expand: [Faster payouts, Clear slab examples, Higher slab bonus, ASM visit]
+      Replace / Reassess: [Simpler explanation, Explanation in Bengali, ASM visit, Credit support]
+      Protect: [Faster payouts, Stock on time, Clear slab examples, Better margin]
+      Exit / Watchlist: [Better margin, Credit terms, Stock availability, Call me]
   - id: Q7
     type: open_text
     optional: true

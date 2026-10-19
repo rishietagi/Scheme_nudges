@@ -1,0 +1,282 @@
+# CX question bank for the Survey generator. Built on the KPMG India CX survey (three journey buckets and the
+# experience parameters under each), plus the use cases raised in the partner review. The generator only ever picks
+# from this bank (or from a must-ask question the business writes); the LLM may reword a picked question, never invent one.
+#
+# Trade schemes are ONE use case here — the worked example for this cycle — not the organising idea.
+buckets:
+  Overall: How does it feel to work with Emami overall?
+  Onboarding: Was the onboarding transparent and hassle-free?
+  Engagement: Did Emami make it easy for me to do business with them?
+  Retention: Did Emami appreciate my business and make it a rewarding experience?
+
+use_cases:                       # why: one plain line the generator shows for an AI-picked question
+  Trade schemes: {why: "checks the current scheme is understood and worth participating in"}
+  Relationship with SO/ASM: {why: "tests how well Rahul and the sales team support them"}
+  Credit: {why: "credit and payments are a common pain when billing slips"}
+  Query resolution: {why: "shows whether problems get solved quickly"}
+  Business insights: {why: "checks we help them grow, not just sell to them"}
+  Financial returns: {why: "checks the business is worth it for them"}
+  New products: {why: "tests appetite for new and focus products"}
+  Orders & delivery: {why: "spots friction in ordering, delivery and stock"}
+
+cohort_focus:                    # which use cases matter most for each cohort (first = most important)
+  Invest / Expand: [Financial returns, Business insights, New products, Trade schemes]
+  Replace / Reassess: [Trade schemes, Relationship with SO/ASM, Orders & delivery, Query resolution]
+  Protect: [Orders & delivery, Financial returns, Credit, Relationship with SO/ASM]
+  Exit / Watchlist: [Relationship with SO/ASM, Credit, Orders & delivery, Financial returns]
+
+# type: quick_reply (the scheme intent, options from survey.yaml Q1) · rating_1_5 · single_choice (options by cohort,
+# from survey.yaml Q6) · open_text. `pick_first` items are what the AI reaches for first when it fills a survey.
+questions:
+  - id: SCHEME_INTENT
+    type: quick_reply
+    short: Wants
+    bucket: Engagement
+    use_case: Trade schemes
+    topic: The current scheme — what they want to do
+    text: Have you seen the Festive Scheme? Will you participate?
+    bn: ফেস্টিভ স্কিম দেখেছেন? আপনি কী করতে চান?
+    hi: क्या आपने फेस्टिव स्कीम देखी? आप क्या करना चाहेंगे?
+  - id: DEALER_SCORE
+    type: rating_1_5
+    short: Overall
+    bucket: Overall
+    use_case: Relationship with SO/ASM
+    topic: Overall ease of doing business (dealer score)
+    text: Overall, how easy is Emami to do business with?
+    bn: সব মিলিয়ে, Emami-র সঙ্গে ব্যবসা করা কতটা সহজ?
+    hi: कुल मिलाकर, Emami के साथ कारोबार करना कितना आसान है?
+  - id: HELP_MOST
+    type: single_choice
+    short: Would help
+    bucket: Engagement
+    use_case: Trade schemes
+    topic: What would help most right now
+    pick_first: true
+    text: What would help you most right now?
+    bn: এখন কোনটা আপনাকে সবচেয়ে বেশি সাহায্য করবে?
+    hi: अभी आपको सबसे ज़्यादा किस चीज़ से मदद मिलेगी?
+
+  # --- Trade schemes (ability to understand schemes)
+  - id: SCHEME_CLEAR
+    type: rating_1_5
+    short: Scheme clarity
+    bucket: Engagement
+    use_case: Trade schemes
+    topic: Clarity of the scheme
+    text: How clear is the scheme to you?
+    bn: স্কিমটা আপনার কাছে কতটা পরিষ্কার?
+    hi: स्कीम आपको कितनी साफ़ समझ आई?
+  - id: SCHEME_HELPS
+    type: rating_1_5
+    short: Scheme value
+    bucket: Engagement
+    use_case: Trade schemes
+    topic: Value of the scheme to their business
+    text: How much will this scheme help your business?
+    bn: এই স্কিম আপনার ব্যবসায় কতটা সাহায্য করবে?
+    hi: यह स्कीम आपके कारोबार में कितनी मदद करेगी?
+  - id: SCHEME_TARGET
+    type: rating_1_5
+    short: Reaching target
+    bucket: Engagement
+    use_case: Trade schemes
+    topic: Confidence in reaching the target
+    text: How confident are you of reaching your target?
+    bn: টার্গেট পূরণ করতে পারবেন বলে কতটা নিশ্চিত?
+    hi: टारगेट पूरा करने को लेकर आप कितने आश्वस्त हैं?
+  - id: SCHEME_TERMS
+    type: rating_1_5
+    short: Scheme terms
+    bucket: Onboarding
+    use_case: Trade schemes
+    topic: Negotiations on trade schemes and product discounts
+    text: How fair are the scheme and discount terms you get?
+    bn: স্কিম আর ডিসকাউন্টের শর্ত আপনার কাছে কতটা ন্যায্য?
+    hi: स्कीम और डिस्काउंट की शर्तें आपको कितनी उचित लगती हैं?
+
+  # --- Relationship with SO/ASM
+  - id: SALES_TEAM
+    type: rating_1_5
+    short: SO / ASM support
+    bucket: Engagement
+    use_case: Relationship with SO/ASM
+    topic: Coordination support from the regional sales team
+    text: How well do your SO and ASM support you?
+    bn: আপনার SO আর ASM আপনাকে কতটা সাহায্য করেন?
+    hi: आपके SO और ASM आपकी कितनी मदद करते हैं?
+  - id: BUSINESS_PLAN
+    type: rating_1_5
+    short: Business plan
+    bucket: Onboarding
+    use_case: Relationship with SO/ASM
+    topic: Joint business plan sign-off
+    text: How well does Emami plan your business targets with you?
+    bn: Emami আপনার সঙ্গে বসে ব্যবসার টার্গেট কতটা ভালোভাবে ঠিক করে?
+    hi: Emami आपके साथ मिलकर कारोबार के टारगेट कितनी अच्छी तरह तय करता है?
+  - id: SETUP_SUPPORT
+    type: rating_1_5
+    short: Set-up support
+    bucket: Onboarding
+    use_case: Relationship with SO/ASM
+    topic: Support during onboarding and business set-up
+    text: How well did Emami support you when you started?
+    bn: শুরু করার সময় Emami আপনাকে কতটা সাহায্য করেছিল?
+    hi: शुरुआत में Emami ने आपकी कितनी मदद की?
+
+  # --- Credit
+  - id: CREDIT_TERMS
+    type: rating_1_5
+    short: Credit terms
+    bucket: Engagement
+    use_case: Credit
+    topic: Credit facilities and penalties
+    text: How fair are your credit terms and penalties?
+    bn: আপনার ক্রেডিটের শর্ত আর জরিমানা কতটা ন্যায্য?
+    hi: आपकी क्रेडिट की शर्तें और पेनल्टी कितनी उचित हैं?
+  - id: BALANCE_CONFIRM
+    type: rating_1_5
+    short: Balance check
+    bucket: Retention
+    use_case: Credit
+    topic: Balance confirmation
+    text: How easy is it to confirm your balance with Emami?
+    bn: Emami-র সঙ্গে ব্যালান্স মেলানো কতটা সহজ?
+    hi: Emami के साथ बैलेंस मिलाना कितना आसान है?
+  - id: RECEIVABLES
+    type: rating_1_5
+    short: Receivables
+    bucket: Retention
+    use_case: Credit
+    topic: Stock check and sign-off on receivables and payables
+    text: How smooth is signing off what you owe and are owed?
+    bn: পাওনা আর দেনার হিসেব মেলানো কতটা সহজ?
+    hi: लेन-देन का हिसाब मिलाना कितना आसान है?
+
+  # --- Query resolution
+  - id: QUERY_SPEED
+    type: rating_1_5
+    short: Problems solved
+    bucket: Engagement
+    use_case: Query resolution
+    topic: Ease of query resolution
+    text: When you raise a problem, how quickly is it solved?
+    bn: কোনো সমস্যা জানালে কত তাড়াতাড়ি তার সমাধান হয়?
+    hi: कोई समस्या बताने पर कितनी जल्दी उसका हल होता है?
+  - id: RETURNS
+    type: rating_1_5
+    short: Returns
+    bucket: Engagement
+    use_case: Query resolution
+    topic: Ease of sales returns
+    text: How easy are returns and damaged-stock claims?
+    bn: রিটার্ন আর নষ্ট মালের দাবি কতটা সহজ?
+    hi: रिटर्न और खराब माल के क्लेम कितने आसान हैं?
+  - id: EXPIRED_STOCK
+    type: rating_1_5
+    short: Expired stock
+    bucket: Onboarding
+    use_case: Query resolution
+    topic: SLAs on expired products
+    text: How well are expired products taken back?
+    bn: মেয়াদোত্তীর্ণ মাল কতটা ভালোভাবে ফেরত নেওয়া হয়?
+    hi: एक्सपायर्ड माल कितनी अच्छी तरह वापस लिया जाता है?
+
+  # --- Business insights
+  - id: BEAT_PLANNING
+    type: rating_1_5
+    short: Beat plan
+    bucket: Engagement
+    use_case: Business insights
+    topic: Beat planning and productivity
+    text: How useful is the beat plan for your salesmen?
+    bn: আপনার সেলসম্যানদের জন্য বিট প্ল্যান কতটা কাজের?
+    hi: आपके सेल्समैन के लिए बीट प्लान कितना काम का है?
+  - id: RETAILER_FEEDBACK
+    type: rating_1_5
+    short: Retailer feedback
+    bucket: Retention
+    use_case: Business insights
+    topic: Dealer and retailer feedback
+    text: How well does Emami act on what your retailers tell you?
+    bn: আপনার রিটেলারদের কথা Emami কতটা কাজে লাগায়?
+    hi: आपके रिटेलर की बातों पर Emami कितना ध्यान देता है?
+
+  # --- Financial returns
+  - id: INCENTIVE_PAYOUT
+    type: rating_1_5
+    short: Payouts
+    bucket: Retention
+    use_case: Financial returns
+    topic: Scheme payouts — credit notes and claims
+    text: How happy are you with how scheme payouts (credit notes) are settled?
+    bn: স্কিমের পেআউট (ক্রেডিট নোট) যেভাবে মেটানো হয়, তাতে আপনি কতটা খুশি?
+    hi: स्कीम पेआउट (क्रेडिट नोट) जिस तरह सेटल होते हैं, उससे आप कितने संतुष्ट हैं?
+  - id: SCHEME_REIMBURSE
+    type: rating_1_5
+    short: Claims paid
+    bucket: Retention
+    use_case: Financial returns
+    topic: Trade scheme reimbursement
+    text: How quickly are your scheme claims settled?
+    bn: স্কিমের দাবির টাকা কত তাড়াতাড়ি ফেরত পান?
+    hi: स्कीम के क्लेम का पैसा कितनी जल्दी वापस मिलता है?
+  - id: ROI_TRACKING
+    type: rating_1_5
+    short: Earnings view
+    bucket: Retention
+    use_case: Financial returns
+    topic: Service turnaround and ROI tracking
+    text: How clearly can you see what you earn from Emami?
+    bn: Emami থেকে কত আয় হচ্ছে তা কতটা পরিষ্কার দেখতে পান?
+    hi: Emami से आपकी कितनी कमाई हो रही है, यह कितना साफ़ दिखता है?
+
+  # --- New products
+  - id: NEW_PRODUCTS
+    type: rating_1_5
+    short: New products
+    bucket: Engagement
+    use_case: New products
+    topic: New-product purchase and adoption
+    text: How easy is it to start selling new Emami products?
+    bn: Emami-র নতুন প্রোডাক্ট বিক্রি শুরু করা কতটা সহজ?
+    hi: Emami के नए प्रोडक्ट बेचना शुरू करना कितना आसान है?
+
+  # --- Orders & delivery
+  - id: ORDER_EASE
+    type: rating_1_5
+    short: Ordering
+    bucket: Engagement
+    use_case: Orders & delivery
+    topic: Ease of placing an order
+    text: How easy is it to place an order?
+    bn: অর্ডার দেওয়া কতটা সহজ?
+    hi: ऑर्डर देना कितना आसान है?
+  - id: DELIVERY
+    type: rating_1_5
+    short: Delivery
+    bucket: Engagement
+    use_case: Orders & delivery
+    topic: Delivery tracking, updates and packaging quality
+    text: How happy are you with delivery updates and packaging?
+    bn: ডেলিভারির খবর আর প্যাকেজিং নিয়ে আপনি কতটা খুশি?
+    hi: डिलीवरी की जानकारी और पैकेजिंग से आप कितने संतुष्ट हैं?
+  - id: STOCK_NORMS
+    type: rating_1_5
+    short: Stock norms
+    bucket: Onboarding
+    use_case: Orders & delivery
+    topic: Mutually aligned stock norms
+    text: How fair are the stock levels Emami asks you to hold?
+    bn: Emami যে পরিমাণ স্টক রাখতে বলে, তা কতটা ন্যায্য?
+    hi: Emami जितना स्टॉक रखने को कहता है, वह कितना उचित है?
+
+  - id: COMMENT
+    type: open_text
+    short: Comment
+    bucket: Overall
+    use_case: Relationship with SO/ASM
+    topic: Anything else
+    text: Anything else you'd like to tell us?
+    bn: আর কিছু বলতে চান?
+    hi: और कुछ बताना चाहेंगे?

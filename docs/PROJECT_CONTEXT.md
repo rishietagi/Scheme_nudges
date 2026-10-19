@@ -1,5 +1,13 @@
 # Project Context — Emami Distributor Experience Platform (POC) · closed-loop edition
 
+> **Updates:**
+> - **2026-10-16:** the survey is generated per cohort and the product is a platform (`docs/PLAN.md` §13–§14).
+> - **2026-10-19:** cohorts are a configurable 2×2 of business potential × performance (Invest / Expand · Replace /
+>   Reassess · Protect · Exit / Watchlist), the Cohorts page is the landing page, and next best actions can be
+>   accepted, modified or rejected (§15).
+>
+> Where this file and PLAN §13–§15 disagree, the PLAN wins.
+
 > Read this fully before planning. `CLAUDE.md` holds the working rules; this file holds the *what* and *why*.
 > Also read: `docs/SIMULATION_SPEC.md` (the loop simulator — the engine behind the whole demo), `docs/DATA_DICTIONARY.md`,
 > the rule files in `backend/app/rules/`, and the renders in `docs/renders/`.

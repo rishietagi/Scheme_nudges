@@ -23,10 +23,10 @@ const OFFLINE_STATE: SimState = {
   playing: false,
   speed_seconds_per_day: 2,
   steps: [
-    { key: "nudge", label: "Nudge + survey", day: 0, day_label: dayLabel(0) },
-    { key: "plan", label: "Plan + approve", day: 7, day_label: dayLabel(7) },
-    { key: "send", label: "Follow-ups sent", day: 8, day_label: dayLabel(8) },
-    { key: "results", label: "Results + learn", day: 30, day_label: dayLabel(30) },
+    { key: "nudge", label: "Cohorts + survey", day: 0, day_label: dayLabel(0) },
+    { key: "plan", label: "Next best actions", day: 7, day_label: dayLabel(7) },
+    { key: "send", label: "Actions sent", day: 8, day_label: dayLabel(8) },
+    { key: "results", label: "Results + refresh", day: 30, day_label: dayLabel(30) },
   ],
 };
 

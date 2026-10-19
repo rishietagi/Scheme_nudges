@@ -93,7 +93,7 @@ def test_anchors_behave_as_scripted(default_run):
     assert persona["DST-0002"]["prefers"] == "Voice note"
     # Ruplekha: 19 s, all 5s, says enrolled but isn't → red flag → ASM call → joins Day 15
     ru = "DST-0006"
-    assert f[ru].latest["survey_seconds"] == 19 and {f[ru].latest[q] for q in ("q2", "q3", "q4", "q5")} == {5}
+    assert f[ru].latest["survey_seconds"] == 19 and set(f[ru].latest["answers"].values()) == {5} and len(f[ru].latest["answers"]) >= 3
     assert flags(ru) == ["CONTRADICTION", "STRAIGHT_LINE", "TOO_FAST"] and f[ru].red_flagged
     assert plan[ru]["cta_code"] == "ASM_CALL" and join_day(ru) == 15 and f[ru].enrol["path"] == "after_asm_call"
     # Pal Brothers: Talk to my ASM in 1.5 h, key account, ASM call, never joins — margin, not scheme
@@ -134,8 +134,9 @@ def test_pauses_for_approval_then_continues():
     assert engine.advance(con, rid, 30) == PLAN_AT
     s = engine.state(con, rid)
     assert s["waiting_for_approval"] and s["stage"] == "APPROVAL" and s["pending_rows"] >= 5
-    engine.approve_high_confidence(con, rid, 0.7)
-    assert engine.advance(con, rid, 30) == PLAN_AT                     # rows below 70% still need a decision
+    first = con.execute("SELECT row_id FROM cta_plan WHERE run_id=? AND status='Pending' AND group_type='cohort'", (rid,)).fetchone()[0]
+    engine.decide(con, rid, first, "Approved")
+    assert engine.advance(con, rid, 30) == PLAN_AT                     # the rest still need a decision
     for (row_id,) in con.execute("SELECT row_id FROM cta_plan WHERE run_id=? AND status='Pending' AND group_type!='individual_group'", (rid,)):
         engine.decide(con, rid, row_id, "Approved")
     assert engine.advance(con, rid, 30) == 30
@@ -173,8 +174,8 @@ def test_numbers_at_a_day_are_sql_over_rows_up_to_that_day(default_run):
 # ------------------------------------------------------------------------------------------------ decisions matter
 def test_rejecting_a_cohort_cta_lowers_its_joins():
     approve, rid_a = full_run()
-    reject, rid_r = full_run(reject=["cohort:Scheme-hesitant"])
-    joins = lambda con, rid: sum(1 for f in facts(con, rid, 30).values() if f.cohort == "Scheme-hesitant" and f.enrol)  # noqa: E731
+    reject, rid_r = full_run(reject=["cohort:Replace / Reassess"])
+    joins = lambda con, rid: sum(1 for f in facts(con, rid, 30).values() if f.cohort == "Replace / Reassess" and f.enrol)  # noqa: E731
     assert joins(reject, rid_r) < joins(approve, rid_a)
 
 

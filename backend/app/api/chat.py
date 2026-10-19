@@ -18,7 +18,7 @@ from app.simulation import engine
 
 router = APIRouter(prefix="/chat", tags=["chat"])
 SCENARIOS = [("DST-0001", "Maa Tara · Bengali", "bengali"), ("DST-0006", "Ruplekha · flagged", "flag"), ("DST-0005", "Pal Brothers · ASM", "call")]
-ASKED = {"I've enrolled": "Said enrolled", "I'll enrol": "Will enrol", "Explain again": "Asked to explain again",
+ASKED = {"I've enrolled": "Said participating", "I'll enrol": "Will participate", "Explain again": "Asked to explain again",
          "Explain in Bengali": "Asked for Bengali", "Talk to my ASM": "Asked for Rahul"}
 
 
@@ -33,7 +33,7 @@ def story_line(f: Fact) -> str:
         parts.append({"VOICE_EXPLAINER": "voice note", "ASM_CALL": "call", "QUICK_REMINDER": "reminder", "EXPLAIN_SIMPLE": "simple card",
                       "RE_NUDGE": "re-send", "SLAB_PROGRESS": "slab update"}[code])
     if f.enrol:
-        parts.append("joined")
+        parts.append("participating")
     elif f.calls and "margin" in (f.calls[-1]["outcome"] or ""):
         parts.append("margin issue")
     return " → ".join(parts)
@@ -41,7 +41,7 @@ def story_line(f: Fact) -> str:
 
 def this_cycle(con, rid: str, f: Fact) -> str:
     if f.enrol and f.enrol["sim_day"] < PLAN_AT:
-        return "Joined before the follow-ups"
+        return "Participating before the actions"
     row = con.execute(
         "SELECT group_type, group_name, label FROM cta_plan WHERE run_id = ? AND group_type != 'individual_group' "
         "AND member_ids_json LIKE ?", (rid, f'%"{f.distributor_id}"%')).fetchall()

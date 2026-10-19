@@ -23,7 +23,8 @@ def test_the_five_questions_add_up():
     run()
     r = client.get("/results").json()
     x = r["results"]
-    assert r["headline"] == f"{x['joined']} of 86 joined. Up from 45% last time."
+    assert r["headline"] == f"{x['joined']} of 86 are participating. Up from 45% last time."
+    assert x["asked_labels"]["I've enrolled"] == "Already participating" and x["asked_labels"]["I'll enrol"] == "Will participate"
     assert sum(c["joined"] for c in x["joined_by_cohort"]) == x["joined"] and sum(c["total"] for c in x["joined_by_cohort"]) == 86
     assert x["beat_prediction"] + x["fell_short"] == x["joined"] and x["sales_lift_joined"] > x["sales_lift_not_joined"]
     assert sum(x["speed"].values()) == 86 and x["speed"]["Never"] == 86 - x["joined"]
@@ -31,9 +32,21 @@ def test_the_five_questions_add_up():
     assert all(0 <= f["joined"] <= f["received"] for f in x["follow_ups"])
     rates = [f["rate"] for f in x["follow_ups"]]
     assert rates == sorted(rates, reverse=True)
-    assert len(r["learned"]) == 3 and any("13 of 19" in l["text"] or "joined" in l["text"] for l in r["learned"])
+    assert len(r["learned"]) == 3 and any("participat" in l["text"] for l in r["learned"])
     assert [c["label"] for c in r["chips"]] == ["now get Bengali", "prefer a call from Rahul", "reply best in the evening",
                                                 "to get a visit, not WhatsApp"]
+
+
+def test_next_quarter_refreshes_cohorts_from_october():
+    run()
+    q = client.get("/results").json()["next_quarter"]
+    assert [c["name"] for c in q["cohorts"]] == ["Invest / Expand", "Replace / Reassess", "Protect", "Exit / Watchlist"]
+    assert sum(c["now"] for c in q["cohorts"]) == sum(c["next"] for c in q["cohorts"]) == 86
+    assert q["moved"] == sum(m["count"] for m in q["moves"]) > 0
+    up = next(m for m in q["moves"] if (m["from_cohort"], m["to_cohort"]) == ("Replace / Reassess", "Invest / Expand"))
+    assert up["count"] >= 1                                                    # qualified in Festive → performance up
+    assert 1 <= q["dealer_score"] <= 5 and all(c["dealer_score"] for c in q["cohorts"])
+    assert "next_cohorts" not in q
 
 
 def test_apply_to_next_scheme_saves_every_persona():

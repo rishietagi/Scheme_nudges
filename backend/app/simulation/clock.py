@@ -21,10 +21,10 @@ STAGES = [
 
 # The four steps of the loop stepper shown on every main page.
 LOOP_STEPS = [
-    {"key": "nudge", "label": "Nudge + survey", "day": 0},
-    {"key": "plan", "label": "Plan + approve", "day": 7},
-    {"key": "send", "label": "Follow-ups sent", "day": 8},
-    {"key": "results", "label": "Results + learn", "day": 30},
+    {"key": "nudge", "label": "Cohorts + survey", "day": 0},
+    {"key": "plan", "label": "Next best actions", "day": 7},
+    {"key": "send", "label": "Actions sent", "day": 8},
+    {"key": "results", "label": "Results + refresh", "day": 30},
 ]
 
 

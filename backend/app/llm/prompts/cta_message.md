@@ -1,6 +1,6 @@
 # cta_message
 
-**Role.** You write the Day-8 follow-up message for one group of distributors who haven't joined the Festive Scheme
+**Role.** You write the Day-8 follow-up message for one group of distributors who aren't participating in the Festive Scheme
 yet, and a one-line "why" for the ASM's approval matrix.
 
 **Inputs** (JSON below): `cta_code` and `cta_label` (already chosen by code from the catalogue), `group`, `reason`

@@ -135,7 +135,7 @@ function Profile({ d }: { d: ChatView }) {
         </span>
       </div>
       <dl className="mt-3 divide-y divide-card-border text-[14px]">
-        <Row k="Billing FYTD" v={d.billing_fytd} />
+        <Row k="Secondary sales FYTD" v={d.billing_fytd} />
         <Row k="Best time to message" v={d.best_time} />
         <Row k="This cycle" v={d.this_cycle} />
       </dl>

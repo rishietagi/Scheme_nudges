@@ -9,16 +9,16 @@ checks:
     label: Filled in under 30 seconds
   - code: STRAIGHT_LINE
     severity: red
-    rule: Q2..Q5 all answered and all the same value
+    rule: 3+ rating questions answered and all the same value
     label: Same rating for every question
   - code: INCOMPLETE
     severity: red
-    rule: fewer than 3 of Q1..Q6 answered
+    rule: fewer than 3 questions answered (the optional comment doesn't count)
     label: Answered fewer than 3 questions
   - code: CONTRADICTION
     severity: amber
-    rule: (Q1 == "I've enrolled" AND not enrolled in DMS at submit time) OR (Q2 >= 4 AND Q1 == "Explain again")
-    label: Answers don't match (e.g. says enrolled but isn't)
+    rule: (intent == "I've enrolled" AND not enrolled in DMS at submit time) OR (scheme clarity >= 4 AND intent == "Explain again")
+    label: Answers don't match (e.g. says participating but isn't in DMS)
   - code: DUPLICATE
     severity: amber
     rule: more than one submission from the same distributor; keep the latest

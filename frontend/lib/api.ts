@@ -56,9 +56,9 @@ export async function get<T>(path: string, query?: Query): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-export async function post<T>(path: string, body?: unknown, query?: Query): Promise<T> {
+export async function post<T>(path: string, body?: unknown, query?: Query, method: "POST" | "PUT" | "DELETE" = "POST"): Promise<T> {
   const res = await fetch(url(path, query), {
-    method: "POST",
+    method,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body ?? {}),
   });
@@ -66,7 +66,8 @@ export async function post<T>(path: string, body?: unknown, query?: Query): Prom
   return res.json() as Promise<T>;
 }
 
-export type CohortName = "Champions" | "Growth builders" | "Scheme-hesitant" | "At-risk" | "Dormant";
+// Cohort names are fixed in backend/app/rules/cohorts.yaml (the business edits thresholds and definitions).
+export type CohortName = "Invest / Expand" | "Replace / Reassess" | "Protect" | "Exit / Watchlist";
 export type CohortColor = "blue" | "cyan" | "orange" | "red" | "grey";
 
 export type TerritorySummary = {
@@ -98,9 +99,106 @@ export type CohortCard = {
   color: CohortColor;
   count: number;
   joined_last_scheme: number;
+  high_potential: boolean;
+  high_performance: boolean;
+  kpis: { potential_l: number; current_l: number; avg_score: number; pillars: Record<Pillar, number>; billing_fytd_l: number } | null;
 };
 
-export type CohortList = { day: number; rule_version: string; cohorts: CohortCard[] };
+export type Pillar = "growth" | "schemes" | "focus" | "delivery";
+export type AxisInfo = { label: string; high: string; low: string; rule: string };
+export type WeightOut = { key: Pillar; label: string; explain: string; value: number; default: number };
+export type CohortPoint = { distributor_id: string; name: string; town: string; cohort: CohortName; potential_l: number; score: number };
+
+export type CohortRules = {
+  potential: AxisInfo;
+  performance: AxisInfo;
+  pillars_rule: string;
+  benchmark: string;
+  potential_high: number;
+  performance_high: number;
+  weights: WeightOut[];
+  points: CohortPoint[];
+};
+
+export type CohortList = CohortRules & { day: number; rule_version: string; cohorts: CohortCard[] };
+
+export type Threshold = { key: string; label: string; unit: string; value: number; default: number; min: number; max: number };
+
+export type CohortCount = {
+  name: CohortName;
+  color: CohortColor;
+  count: number;
+  definition: string;
+  high_potential: boolean;
+  high_performance: boolean;
+};
+
+export type CohortConfig = CohortRules & {
+  version: string;
+  thresholds: Threshold[];
+  cohorts: CohortCount[];
+  customised: boolean;
+  saved_at: string | null;
+  moves: { from_cohort: CohortName; to_cohort: CohortName; count: number; names: string[] }[];
+  current_run_differs: boolean;
+};
+
+export type QuestionSource = "must_all" | "must_cohort" | "ai" | "comment";
+
+export type GeneratedQuestion = {
+  id: string;
+  type: "quick_reply" | "rating_1_5" | "single_choice" | "open_text";
+  bucket: string;
+  use_case: string;
+  topic: string;
+  short: string;
+  text: Record<Language, string>;
+  source: QuestionSource;
+  why: string | null;
+  locked: boolean;
+};
+
+export type MustAsk = { id: string; scope: string; locked?: boolean; text?: string | null };
+
+export type SurveyConfig = {
+  use_case: string;
+  use_case_detail: string;
+  questions_per_survey: number;
+  min_questions: number;
+  max_questions: number;
+  must_ask: MustAsk[];
+  buckets: Record<string, string>;
+  use_cases: string[];
+  bank: { id: string; type: string; bucket: string; use_case: string; topic: string; text: string }[];
+  cohorts: CohortCount[];
+  questionnaires: Record<CohortName, GeneratedQuestion[]>;
+  customised: boolean;
+  saved_at: string | null;
+  current_run_differs: boolean;
+};
+
+export type SurveyConfigIn = { questions_per_survey: number; must_ask: MustAsk[] };
+
+export type CohortConfigIn = { thresholds: Record<string, number>; definitions: Record<string, string>; weights: Record<string, number> };
+
+export type Scorecard = {
+  potential: {
+    town: string;
+    town_potential_l: number;
+    town_tam_l: number;
+    outlets_covered: number;
+    coverage_share: number;
+    potential_l: number;
+    current_l: number;
+    headroom_l: number;
+    threshold_l: number;
+    high: boolean;
+  };
+  pillars: { key: Pillar; label: string; explain: string; raw: string; score: number; weight: number }[];
+  score: number;
+  threshold: number;
+  high: boolean;
+};
 
 export type DistributorRow = {
   distributor_id: string;
@@ -125,6 +223,7 @@ export type DistributorRow = {
 export type DistributorList = { day: number; cohort: CohortName | null; total: number; items: DistributorRow[] };
 
 export type Distributor360 = DistributorRow & {
+  scorecard: Scorecard | null;
   day: number;
   key_account: boolean;
   partner_since: number;
@@ -203,18 +302,6 @@ export type ChatView = {
 
 export type Scenario = { distributor_id: string; title: string; subtitle: string; icon: "bengali" | "flag" | "call" };
 
-export type CommandView = {
-  day: number;
-  day_label: string;
-  greeting: string;
-  eyebrow: string;
-  tiles: { key: "replied" | "joined" | "waiting" | "individual"; label: string; value: number; sub: string }[];
-  needs: { tone: "orange" | "red" | "blue"; title: string; sub: string; href: string; action: string }[];
-  summary_label: string;
-  summary: { text: string; bold: boolean }[];
-  cohorts: { name: CohortName; color: CohortColor; distributors: number; replied: number; joined: number }[];
-};
-
 export type Language = "English" | "Bengali" | "Hindi";
 
 export type SurveyQuestions = {
@@ -228,7 +315,16 @@ export type SurveyQuestions = {
   nudge_text: string;
   nudge_note: string;
   nudge_sent: boolean;
-  questions: { id: string; type: string; text: string; tag: string | null; options: { value: string; label: string }[] }[];
+  questions: {
+    id: string;
+    type: string;
+    text: string;
+    tag: string | null;
+    options: { value: string; label: string }[];
+    source: QuestionSource;
+    why: string | null;
+    bucket: string;
+  }[];
 };
 
 export type FlagItem = { response_id: string; distributor_id: string; name: string; reason: string; codes: string[]; decision: "Keep" | "Drop" | null };
@@ -248,16 +344,26 @@ export type SurveyResults = {
   flagged: FlagItem[];
   to_check: FlagItem[];
   intents: Record<string, number>;
+  intent_labels?: Record<string, string>;
   no_reply: number;
   left_out: number;
-  ratings: { question: string; label: string; pct: number | null; answered: number }[];
+  ratings: { question: string; label: string; pct: number | null; answered: number; bucket: string; average: number | null; asked_in: string[] }[];
   themes: { theme: string; label: string; count: number }[];
   comments: number;
+  dealer_score: ScoreItem | null;
+  buckets: ScoreItem[];
+  dealer_by_cohort: ScoreItem[];
 };
+
+export type ScoreItem = { name: string; headline: string; average: number | null; pct: number | null; answered: number };
 
 export type PlanStatus = "Pending" | "Approved" | "Rejected";
 
+export type CatalogueItem = { code: string; label: string; description: string; template: Partial<Record<Language, string>> };
+
 export type PlanRow = {
+  cohort_note: string | null;
+  survey_note: string | null;
   row_id: string;
   group_type: "cohort" | "custom" | "individual_group" | "individual";
   group_name: string;
@@ -268,11 +374,16 @@ export type PlanRow = {
   reason: string;
   why: string | null;
   members: number;
-  confidence: number | null;
   priority: "High" | "Medium" | "Low";
   status: PlanStatus;
   preview: Partial<Record<Language, string>>;
   children: PlanRow[];
+  template: Partial<Record<Language, string>>;
+  revenue_at_stake_l: number;
+  priority_note: string;
+  modified: boolean;
+  was_label: string | null;
+  note: string | null;
 };
 
 export type PlanView = {
@@ -303,6 +414,7 @@ export type ResultsData = {
   median_first_reply_hours: number | null;
   median_join_days_after_follow_up: number | null;
   asked: Record<string, number>;
+  asked_labels?: Record<string, string>;
   follow_ups: { cta_code: string; label: string; received: number; joined: number; rate: number }[];
 };
 
@@ -319,6 +431,14 @@ export type ResultsView = {
   chips: { value: number; label: string }[];
   applied: boolean;
   applied_at: string | null;
+  next_quarter: NextQuarter | null;
+};
+
+export type NextQuarter = {
+  cohorts: { name: CohortName; color: CohortColor; now: number; next: number; dealer_score: number | null }[];
+  dealer_score: number | null;
+  moves: { from_cohort: CohortName; to_cohort: CohortName; count: number; names: string[] }[];
+  moved: number;
 };
 
 export type AppliedProfile = { distributor_id: string; name: string; cohort: string; language: string; prefers: string; next_time: string };
@@ -342,20 +462,30 @@ export const api = {
   surveyQuestions: (cohort: CohortName, lang: Language, day: number) => get<SurveyQuestions>("/survey/questions", { cohort, lang, day }),
   surveyResults: (day: number) => get<SurveyResults>("/survey/results", { day }),
   plan: (day: number) => get<PlanView>("/plan", { day }),
-  planCatalogue: () => get<{ code: string; label: string }[]>("/plan/catalogue"),
+  planCatalogue: (rowId?: string) => get<CatalogueItem[]>("/plan/catalogue", { row_id: rowId }),
   planCandidates: () => get<Candidate[]>("/plan/candidates"),
   planDecide: (rowId: string, decision: "Approved" | "Rejected") =>
     post<SimState>(`/plan/rows/${encodeURIComponent(rowId)}/decision`, { decision }),
-  planApproveHigh: (min = 0.7) => post<SimState>("/plan/approve-high-confidence", { min }),
+  planAcceptAll: () => post<SimState>("/plan/accept-all"),
+  planModify: (rowId: string, body: { cta_code: string; text_en?: string; text_bn?: string; note?: string }) =>
+    post<SimState>(`/plan/rows/${encodeURIComponent(rowId)}/modify`, body),
+  planRestore: (rowId: string) => post<SimState>(`/plan/rows/${encodeURIComponent(rowId)}/restore`),
   planCustomGroup: (name: string, memberIds: string[], ctaCode: string | null) =>
     post<SimState>("/plan/custom-group", { name, member_ids: memberIds, cta_code: ctaCode }),
-  command: (day: number) => get<CommandView>("/command", { day }),
   results: (day: number) => get<ResultsView>("/results", { day }),
   applyToNext: () => post<AppliedProfile[]>("/results/apply"),
   applied: () => get<AppliedProfile[]>("/results/applied"),
   scenarios: (day: number) => get<Scenario[]>("/chat/scenarios", { day }),
   chat: (id: string, day: number) => get<ChatView>(`/chat/${id}`, { day }),
   chatSend: (id: string, text: string) => post<ChatView>(`/chat/${id}/message`, { text }),
+  cohortConfig: () => get<CohortConfig>("/config/cohorts"),
+  cohortConfigPreview: (body: CohortConfigIn) => post<CohortConfig>("/config/cohorts/preview", body),
+  cohortConfigSave: (body: CohortConfigIn) => post<CohortConfig>("/config/cohorts", body, undefined, "PUT"),
+  cohortConfigReset: () => post<CohortConfig>("/config/cohorts", undefined, undefined, "DELETE"),
+  surveyConfig: () => get<SurveyConfig>("/config/survey"),
+  surveyConfigPreview: (body: SurveyConfigIn) => post<SurveyConfig>("/config/survey/preview", body),
+  surveyConfigSave: (body: SurveyConfigIn) => post<SurveyConfig>("/config/survey", body, undefined, "PUT"),
+  surveyConfigReset: () => post<SurveyConfig>("/config/survey", undefined, undefined, "DELETE"),
   flagDecision: (responseId: string, decision: "Keep" | "Drop") =>
     post<SimState>(`/survey/flags/${encodeURIComponent(responseId)}`, { decision }),
 };

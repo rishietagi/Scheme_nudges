@@ -21,7 +21,7 @@ def test_territory_summary():
 def test_distributor_360_maa_tara():
     d = client.get("/distributors/DST-0001").json()
     assert d["name"] == "Maa Tara Distributors" and d["owner_name"] == "Biswajit Das" and d["town"] == "Barasat"
-    assert d["key_account"] is True and d["cohort"] == "Scheme-hesitant"
+    assert d["key_account"] is True and d["cohort"] == "Replace / Reassess"
     assert d["secondary_fytd_l"] == 38.2 and d["target_l"] == 7.8
     assert d["language_on_file"] == "Bengali"
     assert len(d["billing"]) == 18 and len(d["history"]) == 3

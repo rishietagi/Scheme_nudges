@@ -10,25 +10,40 @@
     "territories": 14,
     "active_skus": 112,
     "focus_skus": 20,
-    "cohorts": {
+    "archetypes": {
       "Champions": 170,
       "Growth builders": 305,
       "Scheme-hesitant": 221,
       "At-risk": 225,
       "Dormant": 183
     },
+    "cohorts": {
+      "Invest / Expand": 90,
+      "Protect": 441,
+      "Replace / Reassess": 61,
+      "Exit / Watchlist": 512
+    },
     "rule_mismatches_outside_kn_fixed_by_rules": 0
   },
   "kolkata_north": {
     "asm": "Rahul Sen",
     "distributors": 86,
-    "cohorts": {
+    "archetypes": {
       "Champions": 14,
       "Growth builders": 22,
       "Scheme-hesitant": 19,
       "At-risk": 18,
       "Dormant": 13
     },
+    "cohorts": {
+      "Invest / Expand": 21,
+      "Protect": 21,
+      "Replace / Reassess": 23,
+      "Exit / Watchlist": 21
+    },
+    "business_potential_l_month": 470.1,
+    "current_secondary_l_month": 304.2,
+    "avg_performance_score": 54.2,
     "secondary_fytd_l": 1840.0,
     "secondary_fytd_display": "₹18.4 Cr",
     "yoy_growth_pct": 9.2,
@@ -50,7 +65,10 @@
     "anchors": {
       "Maa Tara Distributors": {
         "distributor_id": "DST-0001",
-        "cohort": "Scheme-hesitant",
+        "cohort": "Replace / Reassess",
+        "archetype": "Scheme-hesitant",
+        "business_potential_l_month": 15.69,
+        "performance_score": 33.8,
         "classification": "A",
         "fytd_l": 38.2,
         "qoq": -0.1182,
@@ -72,7 +90,10 @@
       },
       "Sarkar & Sons": {
         "distributor_id": "DST-0002",
-        "cohort": "Scheme-hesitant",
+        "cohort": "Replace / Reassess",
+        "archetype": "Scheme-hesitant",
+        "business_potential_l_month": 5.41,
+        "performance_score": 47.5,
         "classification": "B",
         "fytd_l": 29.6,
         "qoq": -0.041,
@@ -94,7 +115,10 @@
       },
       "Ma Kali Enterprises": {
         "distributor_id": "DST-0003",
-        "cohort": "Scheme-hesitant",
+        "cohort": "Invest / Expand",
+        "archetype": "Scheme-hesitant",
+        "business_potential_l_month": 12.86,
+        "performance_score": 55.2,
         "classification": "A",
         "fytd_l": 33.11,
         "qoq": -0.0197,
@@ -116,7 +140,10 @@
       },
       "Debnath Agencies": {
         "distributor_id": "DST-0004",
-        "cohort": "Scheme-hesitant",
+        "cohort": "Replace / Reassess",
+        "archetype": "Scheme-hesitant",
+        "business_potential_l_month": 4.62,
+        "performance_score": 44.0,
         "classification": "B",
         "fytd_l": 24.79,
         "qoq": 0.0105,
@@ -138,7 +165,10 @@
       },
       "Pal Brothers": {
         "distributor_id": "DST-0005",
-        "cohort": "Scheme-hesitant",
+        "cohort": "Protect",
+        "archetype": "Scheme-hesitant",
+        "business_potential_l_month": 4.42,
+        "performance_score": 52.6,
         "classification": "A",
         "fytd_l": 41.49,
         "qoq": 0.0298,
@@ -160,7 +190,10 @@
       },
       "Ruplekha Traders": {
         "distributor_id": "DST-0006",
-        "cohort": "Scheme-hesitant",
+        "cohort": "Exit / Watchlist",
+        "archetype": "Scheme-hesitant",
+        "business_potential_l_month": 3.6,
+        "performance_score": 35.8,
         "classification": "B",
         "fytd_l": 21.89,
         "qoq": -0.0611,
@@ -182,7 +215,10 @@
       },
       "Annapurna Distributors": {
         "distributor_id": "DST-0007",
-        "cohort": "Scheme-hesitant",
+        "cohort": "Protect",
+        "archetype": "Scheme-hesitant",
+        "business_potential_l_month": 4.27,
+        "performance_score": 50.9,
         "classification": "B",
         "fytd_l": 27.4,
         "qoq": 0.0206,
@@ -204,7 +240,10 @@
       },
       "Shree Durga Agencies": {
         "distributor_id": "DST-0008",
-        "cohort": "Growth builders",
+        "cohort": "Invest / Expand",
+        "archetype": "Growth builders",
+        "business_potential_l_month": 15.44,
+        "performance_score": 79.8,
         "classification": "A",
         "fytd_l": 52.69,
         "qoq": 0.1401,
@@ -226,7 +265,10 @@
       },
       "Bose Distribution": {
         "distributor_id": "DST-0009",
-        "cohort": "Champions",
+        "cohort": "Invest / Expand",
+        "archetype": "Champions",
+        "business_potential_l_month": 9.14,
+        "performance_score": 98.7,
         "classification": "A",
         "fytd_l": 58.41,
         "qoq": 0.2201,
@@ -248,7 +290,10 @@
       },
       "Ganguly Traders": {
         "distributor_id": "DST-0010",
-        "cohort": "At-risk",
+        "cohort": "Replace / Reassess",
+        "archetype": "At-risk",
+        "business_potential_l_month": 9.04,
+        "performance_score": 27.1,
         "classification": "B",
         "fytd_l": 26.21,
         "qoq": -0.2097,
@@ -270,7 +315,10 @@
       },
       "Nabadiganta Enterprises": {
         "distributor_id": "DST-0011",
-        "cohort": "Dormant",
+        "cohort": "Replace / Reassess",
+        "archetype": "Dormant",
+        "business_potential_l_month": 6.12,
+        "performance_score": 12.2,
         "classification": "C",
         "fytd_l": 8.87,
         "qoq": -0.5339,

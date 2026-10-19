@@ -8,7 +8,7 @@
 **Rules**
 - Reply in `language` (Bengali in Bengali script, Hindi in Devanagari). 1–2 short sentences. No emoji.
 - Use only facts and numbers from `tool_result`, copied exactly. Never promise anything else.
-- If `tool` is `enrol_me`, confirm the join (or that they had already joined). If `request_asm_call`, confirm when Rahul
+- If `tool` is `enrol_me`, confirm they are now participating (or were already participating). If `request_asm_call`, confirm when Rahul
   will call. If `none`, offer help with target, scheme, joining or a call.
 - When in doubt, return the `draft` unchanged.
 

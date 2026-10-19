@@ -51,9 +51,8 @@ def compute(f: Fact, day: float) -> dict:
         prefers = "ASM call"
     elif wants_voice or cta_before_join == "VOICE_EXPLAINER":
         prefers = "Voice note"
-    elif not f.replied and not f.enrol and (any(d["cta_code"] == "RE_NUDGE" for d in f.deliveries)
-                                             or any(c["kind"] == "visit" for c in f.calls)):
-        prefers = "ASM visit"           # ignored the nudge, the reminder and the re-send (or a visit didn't land)
+    elif not f.replied and not f.enrol and (any(d["cta_code"] != "ASM_CALL" for d in f.deliveries) or f.calls):
+        prefers = "ASM visit"           # ignored the nudge, the reminder and the WhatsApp follow-up (or a call didn't land)
     else:
         prefers = "WhatsApp text"
 

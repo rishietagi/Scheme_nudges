@@ -98,7 +98,7 @@ export function MembersTable({
                           {r.flagged && <span className="block text-[12px] text-red">(flagged)</span>}
                         </td>
                         <td className="px-3 py-3.5">
-                          {r.joined_day !== null ? <Pill tone="green">Joined · Day {r.joined_day}</Pill> : <Pill>Not joined</Pill>}
+                          {r.joined_day !== null ? <Pill tone="green">Participating · Day {r.joined_day}</Pill> : <Pill>Not participating</Pill>}
                         </td>
                         <td className="px-6 py-3.5 text-[14px] text-ink">
                           {r.language_now}
@@ -109,7 +109,7 @@ export function MembersTable({
                       <>
                         <td className="px-3 py-3.5 text-[13px] leading-snug text-muted">{r.reasons.join(" · ")}</td>
                         <td className="px-3 py-3.5">
-                          {r.joined_last_scheme ? <Pill tone="green">Joined</Pill> : <Pill>Didn&apos;t join</Pill>}
+                          {r.joined_last_scheme ? <Pill tone="green">Took part</Pill> : <Pill>Didn&apos;t take part</Pill>}
                         </td>
                         <td className="px-6 py-3.5 text-[14px] text-ink">{r.language_on_file}</td>
                       </>

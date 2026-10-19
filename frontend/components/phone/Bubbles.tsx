@@ -60,15 +60,15 @@ export function Bubble({ m }: { m: Message }) {
         {m.kind === "voice" && <VoiceNote />}
         {m.kind === "enrolled" && (
           <p className="mb-1 flex items-center gap-1.5 text-[13px] font-semibold text-green-text">
-            <CircleCheck className="size-4" aria-hidden /> Joined · Festive Scheme
+            <CircleCheck className="size-4" aria-hidden /> Participating · Festive Scheme
           </p>
         )}
         {m.kind === "survey" ? <Survey m={m} /> : m.text && <p className="whitespace-pre-line">{m.text}</p>}
         {m.card && (
           <dl className="mt-2 space-y-1.5 rounded-lg bg-[#F0F2F5] p-2.5 text-[13px]">
             <Row k="Your October target" v={m.card.target} strong />
-            <Row k="Hit it" v={m.card.hit} />
-            <Row k={`Reach ${m.card.stretch}`} v={m.card.beat} />
+            <Row k="Slab 1 · target" v={m.card.hit} />
+            <Row k={`Slab 2 · ${m.card.stretch}`} v={m.card.beat} />
           </dl>
         )}
         {m.note && <p className="mt-1 text-[11px] text-[#667781]">{m.note}</p>}

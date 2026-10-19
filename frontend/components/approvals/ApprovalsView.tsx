@@ -13,6 +13,7 @@ import { LoopStepper } from "@/components/loop-stepper/LoopStepper";
 import { PageHeader } from "@/components/shell/PageHeader";
 import { CustomGroupDialog } from "./CustomGroupDialog";
 import { MatrixTable } from "./MatrixTable";
+import { ModifyDialog } from "./ModifyDialog";
 
 export function ApprovalsView() {
   const { day, live } = useViewDay();
@@ -24,7 +25,8 @@ export function ApprovalsView() {
   const p = plan.data;
   // Decisions stay open on Day 7 until the clock moves on (Play / Next stage).
   const locked = !live || !p || p.day > 7.4168;
-  const canBulk = !!p && p.rows.some((r) => r.status === "Pending" && (r.confidence ?? 0) >= 0.7);
+  const canBulk = !!p && p.rows.some((r) => r.status === "Pending");
+  const [editing, setEditing] = useState<PlanRow | null>(null);
 
   async function act(fn: () => Promise<Parameters<typeof apply>[0]>) {
     setError(null);
@@ -37,16 +39,17 @@ export function ApprovalsView() {
   }
 
   const decide = (row: PlanRow, d: "Approved" | "Rejected") => act(() => api.planDecide(row.row_id, d));
+  const restore = (row: PlanRow) => act(() => api.planRestore(row.row_id));
 
   return (
     <>
-      <PageHeader eyebrow={`Follow-up plan · ${p?.plan_day_label ?? "Day 7 · Thu 8 Oct"}`} title="Approve the follow-ups" />
+      <PageHeader eyebrow={`Next best actions · cohort + survey · ${p?.plan_day_label ?? "Day 7 · Thu 8 Oct"}`} title="Accept, modify or reject the next best actions" />
       <LoopStepper />
 
       {!p ? null : !p.ready ? (
         <Card className="grid min-h-60 place-items-center p-8 text-center">
           <div>
-            <p className="font-display text-[19px] font-semibold text-ink">The follow-up plan is ready on Day 7 at 10:00</p>
+            <p className="font-display text-[19px] font-semibold text-ink">The next best actions are ready on Day 7 at 10:00</p>
             <p className="mt-1 text-[14px] text-muted">
               It uses every survey answer that passed the sanity checks.{" "}
               <Link href="/simulation" className="font-semibold text-emami-blue hover:underline">
@@ -69,17 +72,17 @@ export function ApprovalsView() {
               >
                 {p.sent ? (
                   <>
-                    <strong className="font-semibold">Follow-ups went out on Day 8 · {p.send_label}.</strong> Results show on the Day-30 page.
+                    <strong className="font-semibold">Actions went out on Day 8 · {p.send_label}.</strong> Results show on the Day-30 page.
                   </>
                 ) : p.decided ? (
                   <>
-                    <strong className="font-semibold">All decided.</strong> Approved follow-ups go out tomorrow, <strong className="font-semibold">{p.send_label}</strong>, in
+                    <strong className="font-semibold">All decided.</strong> Accepted actions go out tomorrow, <strong className="font-semibold">{p.send_label}</strong>, in
                     each distributor&apos;s own language. You can still change a decision until the clock moves on.
                   </>
                 ) : (
                   <>
-                    <strong className="font-semibold">{p.not_joined} distributors haven&apos;t joined yet.</strong> Each cohort gets one follow-up; {p.individual}{" "}
-                    people get a personal one. Approved follow-ups go out tomorrow, <strong className="font-semibold">{p.send_label}</strong>, in each
+                    <strong className="font-semibold">{p.not_joined} distributors aren&apos;t participating yet.</strong> Each cohort gets one next best action, chosen from its performance and its survey answers;{" "}
+                    {p.individual} people get a personal one. Accept, modify or reject each. Accepted actions go out tomorrow, <strong className="font-semibold">{p.send_label}</strong>, in each
                     distributor&apos;s own language.
                   </>
                 )}
@@ -91,11 +94,11 @@ export function ApprovalsView() {
                   type="button"
                   whileTap={{ scale: 0.97 }}
                   disabled={locked || !canBulk}
-                  onClick={() => act(() => api.planApproveHigh(0.7))}
+                  onClick={() => act(api.planAcceptAll)}
                   className="flex min-h-12 items-center gap-2 rounded-xl bg-navy-800 px-5 text-[15px] font-semibold text-white hover:bg-navy-900 disabled:opacity-40"
                 >
                   <Check className="size-5" aria-hidden />
-                  Approve all 70%+
+                  Accept all remaining
                 </motion.button>
               )}
               {p.decided && !p.sent && (
@@ -117,7 +120,7 @@ export function ApprovalsView() {
             </div>
           </Card>
 
-          <MatrixTable rows={p.rows} locked={locked} onDecide={decide} />
+          <MatrixTable rows={p.rows} locked={locked} onDecide={decide} onModify={setEditing} onRestore={restore} />
 
           {error && (
             <p className="mt-3 text-[14px] text-red" role="alert">
@@ -125,12 +128,19 @@ export function ApprovalsView() {
             </p>
           )}
           <p className="mt-4 text-[14px] text-muted">
-            Confidence = how many in the group asked for this kind of help × how many answers passed the sanity checks. Priority = sales at stake.
-            Click a follow-up to read the message.
+            Priority = sales at stake (predicted uplift of those not participating yet), ranked into thirds. Click an action to read the
+            message; ✎ to change it.
           </p>
         </>
       )}
 
+      <ModifyDialog
+        row={editing}
+        onClose={() => setEditing(null)}
+        onSave={async (body) => {
+          if (editing) await act(() => api.planModify(editing.row_id, body));
+        }}
+      />
       <CustomGroupDialog
         open={dialog}
         onClose={() => setDialog(false)}

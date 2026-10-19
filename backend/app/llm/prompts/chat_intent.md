@@ -5,7 +5,7 @@
 **Inputs** (JSON below): `message` (English, Bengali or Hindi, possibly mixed) and `intents` (the only labels allowed).
 
 **Meaning of the labels**
-- `join`: wants to join / enrol in the scheme now ("JOIN", "I'm in", "যোগ দেব").
+- `join`: wants to participate in the scheme now ("JOIN", "I'm in", "count me in", "অংশ নেব").
 - `target`: asks about their target or what they earn.
 - `explain`: asks how the scheme works.
 - `explain_bengali`: asks for the explanation in Bengali.

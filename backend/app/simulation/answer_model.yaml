@@ -1,0 +1,26 @@
+# SIMULATOR ONLY — how simulated distributors rate each bank question (mean on 1–5, before noise N(0, 0.7)).
+# Anchored loosely on the "Emami" column of the KPMG India CX survey (slides 4–6). Never shown in the UI, returned by
+# the API or sent to the LLM; the app only ever sees the simulated answers.
+cohort_offset: {Invest / Expand: 0.3, Protect: 0.2, Replace / Reassess: -0.2, Exit / Watchlist: -0.6}
+custom_mean: 3.6                 # a must-ask question the business wrote itself
+means:
+  DEALER_SCORE: 3.7
+  SCHEME_TERMS: 3.4
+  SALES_TEAM: 3.0                # coordination support from the regional sales team (Emami 3.0)
+  BUSINESS_PLAN: 3.7
+  SETUP_SUPPORT: 3.0
+  CREDIT_TERMS: 4.2
+  BALANCE_CONFIRM: 4.0
+  RECEIVABLES: 3.0               # sign-off on receivables and payables (Emami 3.0)
+  QUERY_SPEED: 3.4
+  RETURNS: 3.8
+  EXPIRED_STOCK: 4.0
+  BEAT_PLANNING: 4.0
+  RETAILER_FEEDBACK: 4.0
+  SCHEME_REIMBURSE: 3.0          # trade scheme reimbursement (Emami 3.0)
+  ROI_TRACKING: 4.0
+  NEW_PRODUCTS: 3.6
+  ORDER_EASE: 4.0
+  DELIVERY: 4.0
+  STOCK_NORMS: 3.0               # mutually aligned stock norms (Emami 3.0)
+# SCHEME_CLEAR, SCHEME_HELPS, SCHEME_TARGET and INCENTIVE_PAYOUT follow SIMULATION_SPEC §3 (understanding, cohort base).

@@ -8,10 +8,9 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
-from app.rules.loader import sanity_rules, survey_rules
+from app.rules.loader import sanity_rules
 
-RATINGS = ("q2", "q3", "q4", "q5")
-ANSWERS = ("q1_intent", "q2", "q3", "q4", "q5", "q6")
+CLARITY = "SCHEME_CLEAR"          # "How clear is the scheme to you?" (if the cohort was asked it)
 
 
 @dataclass(frozen=True)
@@ -26,11 +25,22 @@ def _catalogue() -> dict[str, dict]:
 
 
 def _question_texts() -> list[str]:
-    return [q["text"].lower() for q in survey_rules()["questions"]]
+    from app.engines.survey_generator import bank
+
+    return [q["text"].lower() for q in bank()["questions"]]
+
+
+def ratings(resp: dict) -> dict[str, int]:
+    return {k: v for k, v in (resp.get("answers") or {}).items() if v is not None}
 
 
 def answered(resp: dict) -> int:
-    return sum(resp.get(k) not in (None, "") for k in ANSWERS)
+    """Questions answered (the comment doesn't count)."""
+    return sum(resp.get(k) not in (None, "") for k in ("q1_intent", "q6")) + len(ratings(resp))
+
+
+def asked(resp: dict) -> int:
+    return resp.get("questions_asked") or answered(resp)
 
 
 def _junk(text: str) -> bool:
@@ -49,13 +59,13 @@ def check(resp: dict, *, enrolled_at_submit: bool, is_duplicate: bool) -> list[F
     hits: list[str] = []
     if resp["survey_seconds"] < 30:
         hits.append("TOO_FAST")
-    ratings = [resp.get(k) for k in RATINGS]
-    if all(v is not None for v in ratings) and len(set(ratings)) == 1:
+    rated = list(ratings(resp).values())
+    if len(rated) >= 3 and len(set(rated)) == 1:
         hits.append("STRAIGHT_LINE")
     if answered(resp) < 3:
         hits.append("INCOMPLETE")
-    q1, q2 = resp.get("q1_intent"), resp.get("q2")
-    if (q1 == "I've enrolled" and not enrolled_at_submit) or (q1 == "Explain again" and q2 is not None and q2 >= 4):
+    q1, clear = resp.get("q1_intent"), ratings(resp).get(CLARITY)
+    if (q1 == "I've enrolled" and not enrolled_at_submit) or (q1 == "Explain again" and clear is not None and clear >= 4):
         hits.append("CONTRADICTION")
     if is_duplicate:
         hits.append("DUPLICATE")
@@ -89,9 +99,9 @@ def short_reason(codes: list[str], resp: dict) -> str:
         elif c == "STRAIGHT_LINE":
             parts.append("Same rating for every question" if len(codes) == 1 else "same rating everywhere")
         elif c == "INCOMPLETE":
-            parts.append(f"answered {answered(resp)} of 6 questions")
+            parts.append(f"answered {answered(resp)} of {asked(resp)} questions")
         elif c == "CONTRADICTION":
-            parts.append("says enrolled but isn't" if resp.get("q1_intent") == "I've enrolled" else "answers don't match")
+            parts.append("says participating but isn't" if resp.get("q1_intent") == "I've enrolled" else "answers don't match")
         elif c == "DUPLICATE":
             parts.append("submitted twice")
         elif c == "JUNK_TEXT":

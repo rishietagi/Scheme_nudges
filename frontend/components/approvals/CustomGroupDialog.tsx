@@ -82,7 +82,7 @@ function Dialog({ onClose, onCreate }: { onClose: () => void; onCreate: (name: s
             <h2 id="cg-title" className="font-display text-[21px] font-semibold text-ink">
               Custom group
             </h2>
-            <p className="text-[14px] text-muted">Pick distributors who haven&apos;t joined. They leave their cohort row and get this follow-up.</p>
+            <p className="text-[14px] text-muted">Pick distributors who aren&apos;t participating yet. They leave their cohort row and get this follow-up.</p>
           </div>
           <button type="button" onClick={onClose} aria-label="Close" className="grid size-10 shrink-0 place-items-center rounded-xl hover:bg-bg">
             <X className="size-5" aria-hidden />

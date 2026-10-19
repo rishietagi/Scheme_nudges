@@ -49,9 +49,10 @@ CREATE TABLE IF NOT EXISTS survey_responses (
   started_at REAL NOT NULL,
   submitted_at REAL NOT NULL,
   survey_seconds INTEGER NOT NULL,
-  q1_intent TEXT,
-  q2 INTEGER, q3 INTEGER, q4 INTEGER, q5 INTEGER,
-  q6 TEXT,
+  q1_intent TEXT,                           -- the scheme quick reply (must-ask #1, drives the next best action)
+  q6 TEXT,                                  -- "What would help you most?" (if asked)
+  answers_json TEXT NOT NULL DEFAULT '{}',  -- {question_id: 1–5} for every rating question answered
+  questions_asked INTEGER NOT NULL DEFAULT 0,
   q7_text TEXT,
   q7_language TEXT,
   q7_theme TEXT,
@@ -94,6 +95,9 @@ CREATE TABLE IF NOT EXISTS cta_plan (
   created_at REAL NOT NULL,
   decided_at REAL,
   sort_order INTEGER NOT NULL,
+  modified INTEGER NOT NULL DEFAULT 0,      -- Rahul changed Emami AI's suggestion (action and/or message)
+  original_json TEXT,                       -- Emami AI's suggestion, to show "was …" and to restore it
+  note TEXT,                                -- Rahul's note on the change
   PRIMARY KEY (run_id, row_id)
 );
 
@@ -170,4 +174,33 @@ CREATE TABLE IF NOT EXISTS next_cycle_profiles (
   next_time TEXT NOT NULL,
   from_run_id TEXT NOT NULL,
   applied_at TEXT NOT NULL
+);
+
+-- Business configuration saved from the Set-up pages (yaml files are the defaults). Applies from the next cycle.
+CREATE TABLE IF NOT EXISTS config (
+  key TEXT PRIMARY KEY,                     -- cohorts | survey
+  json TEXT NOT NULL,
+  saved_at TEXT NOT NULL
+);
+
+-- Each run's cohorts, fixed at Reset with the rules in force then (so saving new rules never shifts a running cycle).
+CREATE TABLE IF NOT EXISTS run_cohorts (
+  run_id TEXT NOT NULL,
+  distributor_id TEXT NOT NULL,
+  cohort TEXT NOT NULL,
+  high_potential INTEGER NOT NULL,
+  high_performance INTEGER NOT NULL,
+  potential_l REAL NOT NULL,                -- Rs lakh / month of Emami potential in their catchment
+  performance_score REAL NOT NULL,          -- 0–100
+  pillars_json TEXT NOT NULL,               -- {growth, schemes, focus, delivery}: 0–100 each
+  reasons TEXT NOT NULL,                    -- " · "-joined plain phrases
+  PRIMARY KEY (run_id, distributor_id)
+);
+
+-- The configuration each run started with (cohort rules, survey settings), as JSON.
+CREATE TABLE IF NOT EXISTS run_config (
+  run_id TEXT NOT NULL,
+  key TEXT NOT NULL,
+  json TEXT NOT NULL,
+  PRIMARY KEY (run_id, key)
 );

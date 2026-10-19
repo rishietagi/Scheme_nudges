@@ -7,6 +7,7 @@ import type { Distributor360 as D360 } from "@/lib/api";
 import { initials } from "@/lib/cohorts";
 import { formatINR } from "@/lib/format";
 import { EASE } from "@/components/motion/Motion";
+import { Scorecard } from "./Scorecard";
 
 const MONTH = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -24,17 +25,19 @@ export function Distributor360({ d }: { d: D360 | undefined }) {
           >
             <Header d={d} />
             <div className="mt-5 grid grid-cols-3 gap-2.5">
-              <Stat label="Billing FYTD" value={formatINR(d.secondary_fytd_l)} />
+              <Stat label="Secondary sales FYTD" value={formatINR(d.secondary_fytd_l)} />
               <Stat label="October target" value={formatINR(d.target_l)} />
               {d.festive_joined ? (
                 <div className="rounded-xl bg-green-soft px-3 py-3">
                   <p className="text-[12px] text-green-text">Festive Scheme</p>
-                  <p className="mt-0.5 font-display text-[20px] font-semibold text-green-text">Joined</p>
+                  <p className="mt-0.5 font-display text-[20px] font-semibold text-green-text">Participating</p>
                 </div>
               ) : (
                 <Stat label="Festive Scheme" value="Not yet" muted />
               )}
             </div>
+
+            {d.scorecard && <Scorecard s={d.scorecard} cohort={d.cohort} />}
 
             {d.milestones.length > 0 ? <ThisScheme d={d} /> : <DayZero d={d} />}
 
@@ -83,27 +86,18 @@ function ThisScheme({ d }: { d: D360 }) {
 function DayZero({ d }: { d: D360 }) {
   return (
     <>
-            <h3 className="mt-6 text-[13px] font-semibold uppercase tracking-[0.08em] text-muted">Why this cohort</h3>
-            <ul className="mt-2 space-y-1.5">
-              {d.reasons.map((r) => (
-                <li key={r} className="flex items-start gap-2 text-[15px] text-ink">
-                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-emami-blue" aria-hidden />
-                  {r}
-                </li>
-              ))}
-            </ul>
-
             <h3 className="mt-6 text-[13px] font-semibold uppercase tracking-[0.08em] text-muted">Last 3 schemes</h3>
             <div className="mt-2 flex flex-wrap gap-2">
               {d.history.map((h) => (
                 <span
                   key={h.scheme}
                   className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[13px] font-medium ${
-                    h.enrolled ? "bg-green-soft text-green-text" : "bg-[#EEF1F5] text-muted"
+                    h.achieved ? "bg-green-soft text-green-text" : h.enrolled ? "bg-orange-soft text-amber" : "bg-[#EEF1F5] text-muted"
                   }`}
                 >
                   {h.enrolled ? <Check className="size-3.5" aria-hidden /> : <X className="size-3.5" aria-hidden />}
                   {h.scheme.split(" · ")[0]}
+                  <span className="font-normal">· {h.achieved ? "qualified" : h.enrolled ? "took part" : "skipped"}</span>
                 </span>
               ))}
             </div>

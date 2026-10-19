@@ -7,6 +7,7 @@ import { useSim } from "@/lib/sim";
 import { timeLabel } from "@/lib/format";
 import { LoopStepper } from "@/components/loop-stepper/LoopStepper";
 import { Card } from "@/components/cards/Card";
+import { InfoTip } from "@/components/cards/InfoTip";
 import { CountUp, EASE } from "@/components/motion/Motion";
 
 const MARKS = [
@@ -18,13 +19,13 @@ const MARKS = [
 export function LoopPanel() {
   const { state } = useSim();
   const c = state.counters;
-  const counters: { label: string; value: number; icon: LucideIcon; tone: string }[] = [
-    { label: "Sent", value: c.sent, icon: Send, tone: "bg-blue-soft text-emami-blue" },
-    { label: "Replied", value: c.replied, icon: MessageCircle, tone: "bg-blue-soft text-emami-blue" },
-    { label: "Flagged", value: c.flagged, icon: Flag, tone: "bg-red-soft text-red" },
-    { label: "Joined", value: c.joined, icon: CheckCheck, tone: "bg-green-soft text-green-text" },
-    { label: "Follow-ups sent", value: c.follow_ups, icon: Users, tone: "bg-orange-soft text-amber" },
-    { label: "Beat prediction", value: c.beat_prediction, icon: TrendingUp, tone: "bg-green-soft text-green-text" },
+  const counters: { label: string; value: number; icon: LucideIcon; tone: string; hint: string }[] = [
+    { label: "Sent", value: c.sent, icon: Send, tone: "bg-blue-soft text-emami-blue", hint: "Distributors who got the Day-0 message and survey." },
+    { label: "Replied", value: c.replied, icon: MessageCircle, tone: "bg-blue-soft text-emami-blue", hint: "Distributors who sent the survey back." },
+    { label: "Flagged", value: c.flagged, icon: Flag, tone: "bg-red-soft text-red", hint: "Survey answers that failed a red sanity check (too fast, same rating everywhere, too few answers)." },
+    { label: "Participating", value: c.joined, icon: CheckCheck, tone: "bg-green-soft text-green-text", hint: "Distributors participating in the Festive Scheme so far (DMS, simulated)." },
+    { label: "Actions sent", value: c.follow_ups, icon: Users, tone: "bg-orange-soft text-amber", hint: "Next best actions delivered on Day 8: messages, voice notes, calls and visits." },
+    { label: "Beat predicted uplift", value: c.beat_prediction, icon: TrendingUp, tone: "bg-green-soft text-green-text", hint: "Participants whose October sales reached the uplift predicted for them (shown on Day 30)." },
   ];
 
   return (
@@ -98,10 +99,15 @@ export function LoopPanel() {
       </Card>
 
       <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3">
-        {counters.map(({ label, value, icon: Icon, tone }) => (
+        {counters.map(({ label, value, icon: Icon, tone, hint }) => (
           <Card key={label} className="p-4">
             <div className="flex items-center justify-between gap-2">
-              <p className="text-[13px] text-muted">{label}</p>
+              <p className="flex items-center gap-1 text-[13px] text-muted">
+                {label}
+                <InfoTip label={`What "${label}" counts`} align="left">
+                  {hint}
+                </InfoTip>
+              </p>
               <span className={`grid size-8 place-items-center rounded-lg ${tone}`}>
                 <Icon className="size-4" aria-hidden />
               </span>

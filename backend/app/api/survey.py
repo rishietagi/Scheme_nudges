@@ -17,15 +17,18 @@ from app.db.run_queries import facts
 from app.engines import sanity_checks, themes
 from app.engines.cohorts import DISPLAY_ORDER
 from app.llm.client import complete
-from app.models import (Choice, FlagItem, Question, RatingItem, SanitySummary, SimState, SurveyQuestions, SurveyResults,
-                        ThemeItem)
+from app.content.terms import intent_labels
+from app.db import queries
+from app.engines.survey_generator import bank
+from app.models import (Choice, FlagItem, Question, RatingItem, SanitySummary, ScoreItem, SimState, SurveyQuestions,
+                        SurveyResults, ThemeItem)
 from app.rules.loader import survey_rules
 from app.simulation import engine
 from app.simulation.behaviour import NUDGE_AT, SURVEY_CLOSE
 from app.simulation.clock import day_label
 
 router = APIRouter(prefix="/survey", tags=["survey"])
-RATING_LABELS = {"q2": "It's clear to me", "q3": "It helps my business", "q4": "I can reach my target", "q5": "Happy with payouts"}
+TYPE_TAG = {"quick_reply": None, "rating_1_5": "1–5", "single_choice": "For this cohort", "open_text": "Optional"}
 
 
 @lru_cache
@@ -35,7 +38,7 @@ def i18n() -> dict:
 
 
 def _t(lang: str, kind: str, key: str, default: str) -> str:
-    return i18n().get(lang, {}).get(kind, {}).get(key, default) if lang != "English" else default
+    return i18n().get(lang, {}).get(kind, {}).get(key) or i18n().get("English", {}).get(kind, {}).get(key, default)
 
 
 def _day(con, day: float | None) -> tuple[str, float]:
@@ -45,7 +48,7 @@ def _day(con, day: float | None) -> tuple[str, float]:
 
 
 @router.get("/questions", response_model=SurveyQuestions)
-def questions(cohort: str = "Scheme-hesitant", lang: Literal["English", "Bengali", "Hindi"] = "English",
+def questions(cohort: str = "Replace / Reassess", lang: Literal["English", "Bengali", "Hindi"] = "English",
               day: float | None = None) -> SurveyQuestions:
     if cohort not in DISPLAY_ORDER:
         raise HTTPException(404, f"Unknown cohort {cohort!r}")
@@ -56,16 +59,19 @@ def questions(cohort: str = "Scheme-hesitant", lang: Literal["English", "Bengali
         example = fs[0]
         inputs = {"kind": "nudge", "cohort": cohort, "brief": rules["nudge_brief"][cohort], "scheme": scheme_text(con), "language": lang}
         text = fill(complete("nudge_message", inputs, Text, fixture_key=f"{cohort}|{lang}").text, example, lang)
+        sent_qs = queries.run_survey(con, rid)[cohort]
     bn = sum(lang_of(f.language_on_file) == "Bengali" for f in fs)
     sent = d >= NUDGE_AT
     note = (f"Sent Day 0 · 10:00 to {len(fs)} distributors ({bn} in Bengali)" if sent
             else "Goes out Day 0 · 10:00")
+    q1 = next(q for q in rules["questions"] if q["id"] == "Q1")
+    q6 = next(q for q in rules["questions"] if q["id"] == "Q6")
     qs = []
-    for q in rules["questions"]:
-        opts = q.get("options") or q.get("options_by_cohort", {}).get(cohort) or []
-        tag = {"rating_1_5": "1–5", "single_choice": "For this cohort", "open_text": "Optional"}.get(q["type"])
-        qs.append(Question(id=q["id"], type=q["type"], text=_t(lang, "questions", q["id"], q["text"]), tag=tag,
-                           options=[Choice(value=o, label=_t(lang, "options", o, o)) for o in opts]))
+    for q in sent_qs:
+        opts = q1["options"] if q.type == "quick_reply" else q6["options_by_cohort"].get(cohort, []) if q.type == "single_choice" else []
+        qs.append(Question(id=q.id, type=q.type, text=q.text.get(lang) or q.text["English"], tag=TYPE_TAG.get(q.type),
+                           options=[Choice(value=o, label=_t(lang, "options", o, o)) for o in opts],
+                           source=q.source, why=q.why, bucket=q.bucket))
     return SurveyQuestions(day=d, cohort=cohort, language=lang, languages=list(LANGS), cohorts=DISPLAY_ORDER,
                            members=len(fs), example_distributor=example.name, nudge_text=text, nudge_note=note,
                            nudge_sent=sent, questions=qs)
@@ -77,6 +83,7 @@ def results(day: float | None = None) -> SurveyResults:
     with db() as con:
         rid, d = _day(con, day)
         fs = list(facts(con, rid, d).values())
+        sent = queries.run_survey(con, rid)
     replied = [f for f in fs if f.replied]
     counted = [f for f in replied if f.counted]
 
@@ -97,11 +104,7 @@ def results(day: float | None = None) -> SurveyResults:
                         codes=[x["code"] for x in fl], decision=f.decision())
         (flagged if status[f.distributor_id] == "Flagged" else check).append(item)
 
-    ratings = []
-    for q, label in RATING_LABELS.items():
-        vals = [f.latest[q] for f in counted if f.latest[q] is not None]
-        ratings.append(RatingItem(question=q.upper(), label=label, pct=round(sum(v >= 4 for v in vals) / len(vals), 4) if vals else None,
-                                  answered=len(vals)))
+    ratings, buckets, dealer, by_cohort = _ratings(counted, sent, bank()["buckets"])
 
     comments = [{"id": f.latest["response_id"], "text": f.latest["q7_text"], "tag": f.latest["q7_theme"]}
                 for f in counted if f.latest["q7_text"] and not any(x["code"] == "JUNK_TEXT" for x in f.latest_flags())]
@@ -121,12 +124,46 @@ def results(day: float | None = None) -> SurveyResults:
         flagged=flagged,
         to_check=check,
         intents={i: sum(1 for f in counted if f.latest["q1_intent"] == i) for i in intents},
+        intent_labels=intent_labels(intents),
         no_reply=len(fs) - len(replied),
         left_out=len(replied) - len(counted),
         ratings=ratings,
         themes=[ThemeItem(**t) for t in themes.count(comments)[:3]],
         comments=len(comments),
+        dealer_score=dealer,
+        buckets=buckets,
+        dealer_by_cohort=by_cohort,
     )
+
+
+def _score(name: str, vals: list[int], headline: str = "") -> ScoreItem:
+    return ScoreItem(name=name, headline=headline, answered=len(vals),
+                     average=round(sum(vals) / len(vals), 2) if vals else None,
+                     pct=round(sum(v >= 4 for v in vals) / len(vals), 4) if vals else None)
+
+
+def _ratings(counted: list, sent: dict, headlines: dict[str, str]):
+    """Per question, per CX bucket, the dealer score overall and by cohort — over answers that count."""
+    meta: dict[str, dict] = {}
+    for cohort, qs in sent.items():
+        for q in qs:
+            if q.type == "rating_1_5":
+                m = meta.setdefault(q.id, {"label": q.short or q.topic, "text": q.text["English"], "bucket": q.bucket, "asked_in": []})
+                m["asked_in"].append(cohort)
+    vals: dict[str, list[int]] = {k: [] for k in meta}
+    for f in counted:
+        for k, v in f.latest["answers"].items():
+            if k in vals:
+                vals[k].append(v)
+    items = [RatingItem(question=k, label=m["text"], bucket=m["bucket"], asked_in=m["asked_in"], answered=len(vals[k]),
+                        pct=_score(k, vals[k]).pct, average=_score(k, vals[k]).average) for k, m in meta.items()]
+    items.sort(key=lambda r: (r.pct if r.pct is not None else 2, r.question))
+    buckets = [_score(b, [v for k, m in meta.items() if m["bucket"] == b for v in vals[k]], h)
+               for b, h in headlines.items() if b != "Overall" and any(m["bucket"] == b for m in meta.values())]
+    dealer = _score("Dealer score", vals["DEALER_SCORE"], headlines.get("Overall", "")) if "DEALER_SCORE" in vals else None
+    by_cohort = [_score(c, [f.latest["answers"]["DEALER_SCORE"] for f in counted
+                            if f.cohort == c and "DEALER_SCORE" in f.latest["answers"]]) for c in sent] if dealer else []
+    return items, buckets, dealer, by_cohort
 
 
 class FlagDecisionIn(BaseModel):

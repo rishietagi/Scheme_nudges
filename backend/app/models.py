@@ -81,6 +81,14 @@ class TerritorySummary(BaseModel):
     cohorts: dict[str, int]
 
 
+class CohortKpis(BaseModel):
+    potential_l: float                 # Rs lakh / month of Emami potential in their catchments (sum)
+    current_l: float                   # Rs lakh / month of secondary sales now, Jul–Sep average (sum)
+    avg_score: float                   # average performance score
+    pillars: dict[str, float]          # average pillar scores
+    billing_fytd_l: float
+
+
 class CohortCard(BaseModel):
     joined_festive: int = 0
     replied: int = 0
@@ -90,12 +98,178 @@ class CohortCard(BaseModel):
     color: str
     count: int
     joined_last_scheme: int
+    high_potential: bool = False
+    high_performance: bool = False
+    kpis: CohortKpis | None = None
+
+
+class AxisInfo(BaseModel):
+    label: str
+    high: str
+    low: str
+    rule: str                          # plain words, with the thresholds filled in
+
+
+class WeightOut(BaseModel):
+    key: str
+    label: str
+    explain: str
+    value: float
+    default: float
+
+
+class CohortPoint(BaseModel):
+    distributor_id: str
+    name: str
+    town: str
+    cohort: str
+    potential_l: float
+    score: float
 
 
 class CohortList(BaseModel):
     day: float
     rule_version: str
     cohorts: list[CohortCard]
+    potential: AxisInfo | None = None
+    performance: AxisInfo | None = None
+    pillars_rule: str = ""
+    benchmark: str = ""
+    potential_high: float = 0
+    performance_high: float = 0
+    weights: list[WeightOut] = []
+    points: list[CohortPoint] = []
+
+
+class ThresholdOut(BaseModel):
+    key: str
+    label: str
+    unit: str
+    value: float
+    default: float
+    min: float
+    max: float
+
+
+class CohortCount(BaseModel):
+    name: str
+    color: str
+    count: int
+    definition: str
+    high_potential: bool
+    high_performance: bool
+
+
+class CohortMove(BaseModel):
+    from_cohort: str
+    to_cohort: str
+    count: int
+    names: list[str]
+
+
+class CohortConfig(BaseModel):
+    version: str
+    thresholds: list[ThresholdOut]
+    weights: list[WeightOut]
+    cohorts: list[CohortCount]
+    potential: AxisInfo
+    performance: AxisInfo
+    pillars_rule: str = ""
+    benchmark: str = ""
+    potential_high: float = 0
+    performance_high: float = 0
+    points: list[CohortPoint] = []
+    customised: bool                   # saved edits differ from the yaml defaults
+    saved_at: str | None = None
+    moves: list[CohortMove] = []       # vs the cohorts the current cycle uses
+    current_run_differs: bool = False  # the saved rules aren't the ones the running cycle started with
+
+
+class BankQuestion(BaseModel):
+    id: str
+    type: str
+    bucket: str
+    use_case: str
+    topic: str
+    text: str
+
+
+class GeneratedQuestion(BaseModel):
+    id: str
+    type: str
+    bucket: str
+    use_case: str
+    topic: str
+    short: str = ""
+    text: dict[str, str]
+    source: str                        # must_all | must_cohort | ai | comment
+    why: str | None = None
+    locked: bool = False
+
+
+class MustAskOut(BaseModel):
+    id: str
+    scope: str
+    locked: bool = False
+    text: str | None = None
+
+
+class SurveyConfig(BaseModel):
+    use_case: str
+    use_case_detail: str
+    questions_per_survey: int
+    min_questions: int
+    max_questions: int
+    must_ask: list[MustAskOut]
+    buckets: dict[str, str]            # bucket -> headline question
+    use_cases: list[str]
+    bank: list[BankQuestion]
+    cohorts: list[CohortCount]
+    questionnaires: dict[str, list[GeneratedQuestion]]
+    customised: bool
+    saved_at: str | None = None
+    current_run_differs: bool = False
+
+
+class SurveyConfigIn(BaseModel):
+    questions_per_survey: int = 7
+    must_ask: list[MustAskOut] = []
+
+
+class CohortConfigIn(BaseModel):
+    thresholds: dict[str, float] = {}
+    definitions: dict[str, str] = {}
+    weights: dict[str, float] = {}
+
+
+class PillarOut(BaseModel):
+    key: str
+    label: str
+    explain: str
+    raw: str                           # the measured value, e.g. "+3% YoY"
+    score: float                       # 0–100
+    weight: float                      # %
+
+
+class PotentialOut(BaseModel):
+    town: str
+    town_potential_l: float            # Emami potential of the whole town, Rs lakh / month
+    town_tam_l: float                  # modelled category TAM of the town, Rs lakh / month
+    outlets_covered: int
+    coverage_share: float              # share of the town's outlets this distributor covers
+    potential_l: float                 # their catchment's potential
+    current_l: float                   # their secondary sales now (Jul–Sep monthly average)
+    headroom_l: float
+    threshold_l: float
+    high: bool
+
+
+class Scorecard(BaseModel):
+    potential: PotentialOut
+    pillars: list[PillarOut]
+    score: float
+    threshold: float
+    high: bool
 
 
 class DistributorRow(BaseModel):
@@ -171,6 +345,7 @@ class Distributor360(BaseModel):
     this_cycle: str | None = None
     milestones: list["Milestone"] = []
     persona: "PersonaView | None" = None
+    scorecard: Scorecard | None = None
 
 
 # ---------------------------------------------------------------- Survey (Phase 3)
@@ -185,6 +360,9 @@ class Question(BaseModel):
     text: str
     tag: str | None
     options: list[Choice]
+    source: str = "must_all"      # must_all | must_cohort | ai | comment
+    why: str | None = None
+    bucket: str = ""
 
 
 class SurveyQuestions(BaseModel):
@@ -221,6 +399,17 @@ class RatingItem(BaseModel):
     label: str
     pct: float | None             # share who said 4 or 5
     answered: int
+    bucket: str = ""
+    average: float | None = None  # 1–5
+    asked_in: list[str] = []      # cohorts whose survey had it
+
+
+class ScoreItem(BaseModel):
+    name: str                     # a CX bucket or a cohort
+    headline: str = ""
+    average: float | None         # 1–5
+    pct: float | None             # share of answers that were 4 or 5
+    answered: int
 
 
 class ThemeItem(BaseModel):
@@ -243,12 +432,16 @@ class SurveyResults(BaseModel):
     sanity: SanitySummary
     flagged: list[FlagItem]       # red — left out until kept
     to_check: list[FlagItem]      # amber — counted, worth a look
-    intents: dict[str, int]       # among answers that count
+    intents: dict[str, int]       # among answers that count (keyed by the stored intent value)
+    intent_labels: dict[str, str] = {}   # stored value -> what people read ("Already participating")
     no_reply: int
     left_out: int                 # flagged answers not (yet) kept
-    ratings: list[RatingItem]
+    ratings: list[RatingItem]     # every rating question asked, lowest share of 4–5 first
     themes: list[ThemeItem]
     comments: int
+    dealer_score: ScoreItem | None = None      # "Overall, how easy is Emami to do business with?"
+    buckets: list[ScoreItem] = []              # Onboarding · Engagement · Retention
+    dealer_by_cohort: list[ScoreItem] = []
 
 
 # ---------------------------------------------------------------- Approval matrix (Phase 4)
@@ -263,11 +456,18 @@ class PlanRow(BaseModel):
     reason: str                   # what the answers showed
     why: str | None               # one line from the LLM
     members: int
-    confidence: float | None
     priority: str
     status: str                   # Pending | Approved | Rejected (as of the day shown)
     preview: dict[str, str]       # message as it will go out, for one member (English / Bengali)
     children: list["PlanRow"]
+    cohort_note: str | None = None   # what performance data says about the group (the cohort)
+    survey_note: str | None = None   # what their survey answers added (drives the next best action)
+    template: dict[str, str] = {}    # the message with {owner_first}/{target} placeholders, for Modify
+    revenue_at_stake_l: float = 0.0
+    priority_note: str = ""          # e.g. "₹8.5 L at stake · 1st of 5 groups → High"
+    modified: bool = False           # Rahul changed Emami AI's suggestion
+    was_label: str | None = None     # Emami AI's original action, when modified
+    note: str | None = None
 
 
 class PlanView(BaseModel):
@@ -286,6 +486,8 @@ class PlanView(BaseModel):
 class CatalogueItem(BaseModel):
     code: str
     label: str
+    description: str = ""          # who it's for (ctas.yaml)
+    template: dict[str, str] = {}  # Emami AI's draft message for a given row (when row_id is passed)
 
 
 class Candidate(BaseModel):
@@ -352,44 +554,9 @@ class ChatView(BaseModel):
     journey: list[JourneyItem]
 
 
-class Tile(BaseModel):
-    key: str
-    label: str
-    value: int
-    sub: str
-
-
-class NeedItem(BaseModel):
-    tone: str                     # orange | red | blue
-    title: str
-    sub: str
-    href: str
-    action: str
-
-
 class SummaryLine(BaseModel):
     text: str
     bold: bool
-
-
-class CohortProgress(BaseModel):
-    name: str
-    color: str
-    distributors: int
-    replied: int
-    joined: int
-
-
-class CommandView(BaseModel):
-    day: float
-    day_label: str
-    greeting: str
-    eyebrow: str
-    tiles: list[Tile]
-    needs: list[NeedItem]
-    summary_label: str
-    summary: list[SummaryLine]
-    cohorts: list[CohortProgress]
 
 
 class PersonaView(BaseModel):
@@ -436,3 +603,4 @@ class ResultsView(BaseModel):
     applied: bool
     applied_at: str | None = None
     run_scenario: str | None = None
+    next_quarter: dict | None = None     # engines/next_cycle.next_quarter (cohorts refreshed + dealer score), minus ids

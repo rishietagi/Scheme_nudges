@@ -7,7 +7,7 @@ ctas:
   QUICK_REMINDER:  {label: "3-line reminder with their personal target", for: "said I'll enrol / understood but not enrolled"}
   EXPLAIN_SIMPLE:  {label: "Simple explainer card with an earnings example", for: "said Explain again / low clarity"}
   VOICE_EXPLAINER: {label: "Voice note + simple card, in their language", for: "asked Explain in Bengali / Explain again, or persona prefers voice"}
-  ASM_CALL:        {label: "ASM calls within 48 hours", for: "asked for ASM, At-risk, key accounts"}
+  ASM_CALL:        {label: "ASM calls within 48 hours", for: "asked for ASM, Replace / Reassess (big market, under-delivering), key accounts"}
   RE_NUDGE:        {label: "Short re-send at their usual reply time", for: no response}
 
 # How the cohort CTA is chosen (code, not LLM):
@@ -20,7 +20,7 @@ individual_attention:            # anyone matching one of these leaves the cohor
   - Asked "Talk to my ASM"
   - Key account (classification A) and not enrolled by Day 7
   - Response red-flagged by sanity checks
-  - At-risk and no response by Day 7
+  - Under-delivering (low performance), sales down 4+ months, class A/B, and no response by Day 7
 priority:                        # shown as High / Medium / Low
   High: revenue at stake (sum of predicted uplift of not-enrolled members) in the top third of rows
   Medium: middle third

@@ -4,6 +4,7 @@ Only public Day-0 fields + run tables — never the hidden traits.
 """
 from __future__ import annotations
 
+import json
 import sqlite3
 from dataclasses import dataclass, field
 
@@ -25,6 +26,8 @@ class Fact:
     predicted_l: float
     stretch_l: float
     target_l: float
+    high_potential: bool = False                             # potential axis of the 2×2
+    high_performance: bool = False                           # performance axis of the 2×2
     nudge_at: float | None = None
     reminder_at: float | None = None
     responses: list[dict] = field(default_factory=list)      # submitted by `day`, oldest first
@@ -72,13 +75,16 @@ def facts(con: sqlite3.Connection, run_id: str, day: float) -> dict[str, Fact]:
     for r in queries.distributors(con):
         did = r["distributor_id"]
         out[did] = Fact(did, r["name"], r["owner_name"], r["town"], r["cohort"], r["classification"], r["preferred_language"],
-                        down[did], r["baseline_forecast_l"], r["predicted_sales_if_enrolled_l"], stretch[did], r["target_l"])
+                        down[did], r["baseline_forecast_l"], r["predicted_sales_if_enrolled_l"], stretch[did], r["target_l"],
+                        high_potential=r["high_potential"], high_performance=r["high_performance"])
 
     for n in con.execute("SELECT distributor_id, kind, sent_at FROM nudges WHERE run_id = ? AND sent_at <= ?", (run_id, day)):
         setattr(out[n["distributor_id"]], "nudge_at" if n["kind"] == "nudge" else "reminder_at", n["sent_at"])
     for s in con.execute("SELECT * FROM survey_responses WHERE run_id = ? AND submitted_at <= ? ORDER BY submitted_at",
                          (run_id, day)):
-        out[s["distributor_id"]].responses.append(dict(s))
+        resp = dict(s)
+        resp["answers"] = json.loads(resp.pop("answers_json") or "{}")
+        out[s["distributor_id"]].responses.append(resp)
     # A duplicate only becomes "latest" once its second copy has arrived by `day`.
     for f in out.values():
         if f.responses and not any(x["is_latest"] for x in f.responses):

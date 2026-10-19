@@ -8,6 +8,7 @@ is the reveal pointer every page reads up to.
 """
 from __future__ import annotations
 
+import json
 import sqlite3
 import threading
 import uuid
@@ -44,6 +45,8 @@ def reset(con: sqlite3.Connection, seed: int, scenario: str, autopilot: bool) ->
             "VALUES (?,?,?,?,?,0,'NUDGE',?)",
             (run_id, seed, scenario, int(autopilot), queries.CURRENT_SCHEME, datetime.now(timezone.utc).isoformat()),
         )
+        rules = queries.snapshot_cohorts(con, run_id)  # this cycle's cohorts and survey, with the settings saved so far
+        queries.snapshot_survey(con, run_id, rules)
         loop_graph.run(con, run_id, "day0")
         con.commit()
         return run_id
@@ -120,8 +123,8 @@ STATUS = {
     "REMINDER": "Survey open · reminder sent",
     "APPROVAL": "Waiting for your approval",
     "PLAN": "Approved · goes out Day 8",
-    "SEND_CTA": "Follow-ups sent",
-    "CONVERT": "Follow-ups sent",
+    "SEND_CTA": "Actions sent",
+    "CONVERT": "Actions sent",
     "LEARN": "Results ready · loop closed",
 }
 
@@ -187,22 +190,75 @@ def add_custom_group(con: sqlite3.Connection, run_id: str, name: str, member_ids
         return name
 
 
-def approve_high_confidence(con: sqlite3.Connection, run_id: str, minimum: float = 0.7) -> int:
+def _open_plan(con: sqlite3.Connection, run_id: str) -> sqlite3.Row:
+    run = run_row(con, run_id)
+    if not run["plan_built"] or run["segment_b_built"]:
+        raise SimError("No next-best-action plan is waiting for a decision")
+    return run
+
+
+def accept_all(con: sqlite3.Connection, run_id: str) -> int:
+    """Accept every suggestion still pending (people inside Individual attention included)."""
     with LOCK:
-        run = run_row(con, run_id)
-        if not run["plan_built"] or run["segment_b_built"]:
-            raise SimError("No follow-up plan is waiting for approval")
+        run = _open_plan(con, run_id)
         ids = [r[0] for r in con.execute(
-            "SELECT row_id FROM cta_plan WHERE run_id = ? AND status = 'Pending' AND group_type != 'individual_group' "
-            "AND confidence >= ?", (run_id, minimum))]
+            "SELECT row_id FROM cta_plan WHERE run_id = ? AND status = 'Pending' AND group_type != 'individual_group'", (run_id,))]
         day = run["current_day"]
         for rid in ids:
             con.execute("UPDATE cta_plan SET status = 'Approved', decided_at = ? WHERE run_id = ? AND row_id = ?", (day, run_id, rid))
-        emit(con, run_id, day, "APPROVED", "You", f"Rahul approved {len(ids)} follow-ups with {round(minimum * 100)}%+ confidence",
-             payload={"row_ids": ids})
+        emit(con, run_id, day, "APPROVED", "You", f"Rahul accepted the remaining {len(ids)} suggestions", payload={"row_ids": ids})
         _after_decision(con, run_id)
         con.commit()
         return len(ids)
+
+
+def modify(con: sqlite3.Connection, run_id: str, row_id: str, cta_code: str, text_en: str | None, text_bn: str | None,
+           note: str | None) -> None:
+    """Rahul changes Emami AI's suggestion (the action and/or the message) and accepts it in the same step."""
+    from app.agents.nodes import cta_texts
+    from app.engines import cta_planner
+
+    if cta_code not in cta_planner.catalogue():
+        raise SimError(f"{cta_code!r} isn't in the action catalogue")
+    with LOCK:
+        run = _open_plan(con, run_id)
+        row = con.execute("SELECT * FROM cta_plan WHERE run_id = ? AND row_id = ?", (run_id, row_id)).fetchone()
+        if row is None or row["group_type"] == "individual_group":
+            raise SimError("Pick a cohort row or a person to modify")
+        original = row["original_json"] or json.dumps({k: row[k] for k in (
+            "cta_code", "cta_variant", "label", "text_en", "text_bn", "text_hi", "why")}, ensure_ascii=False)
+        drafted = cta_texts(con, cta_code, row["group_name"], row["reason"]) if cta_code != row["cta_code"] else None
+        en = (text_en or "").strip() or (drafted["English"].text if drafted else row["text_en"])
+        bn = (text_bn or "").strip() or (drafted["Bengali"].text if drafted else row["text_bn"])
+        hi = drafted["Hindi"].text if drafted else row["text_hi"]
+        variant = (row["cta_variant"] or "call") if cta_code == "ASM_CALL" else None
+        label = cta_planner.DISPLAY[cta_code] if cta_code != row["cta_code"] else row["label"]
+        day = run["current_day"]
+        con.execute("UPDATE cta_plan SET cta_code = ?, cta_variant = ?, label = ?, text_en = ?, text_bn = ?, text_hi = ?, "
+                    "modified = 1, original_json = ?, note = ?, status = 'Approved', decided_at = ? WHERE run_id = ? AND row_id = ?",
+                    (cta_code, variant, label, en, bn, hi, original, (note or "").strip() or None, day, run_id, row_id))
+        was = json.loads(original)["label"]
+        what = "the message" if cta_code == json.loads(original)["cta_code"] else f"{was.lower()} → {label.lower()}"
+        emit(con, run_id, day, "MODIFIED", "You", f"Rahul changed the action for {row['group_name']}: {what}",
+             row["distributor_id"], payload={"row_ids": [row_id]})
+        _after_decision(con, run_id)
+        con.commit()
+
+
+def restore(con: sqlite3.Connection, run_id: str, row_id: str) -> None:
+    """Back to Emami AI's suggestion, undecided."""
+    with LOCK:
+        _open_plan(con, run_id)
+        row = con.execute("SELECT * FROM cta_plan WHERE run_id = ? AND row_id = ?", (run_id, row_id)).fetchone()
+        if row is None or not row["modified"]:
+            raise SimError("Nothing to restore")
+        o = json.loads(row["original_json"])
+        con.execute("UPDATE cta_plan SET cta_code = ?, cta_variant = ?, label = ?, text_en = ?, text_bn = ?, text_hi = ?, why = ?, "
+                    "modified = 0, original_json = NULL, note = NULL, status = 'Pending', decided_at = NULL "
+                    "WHERE run_id = ? AND row_id = ?",
+                    (o["cta_code"], o["cta_variant"], o["label"], o["text_en"], o["text_bn"], o["text_hi"], o["why"], run_id, row_id))
+        _after_decision(con, run_id)
+        con.commit()
 
 
 def flag_decision(con: sqlite3.Connection, run_id: str, response_id: str, decision: str) -> None:

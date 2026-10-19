@@ -1,6 +1,8 @@
 import type { CohortColor, CohortName } from "./api";
 
-export const COHORT_ORDER: CohortName[] = ["Champions", "Growth builders", "Scheme-hesitant", "At-risk", "Dormant"];
+// The 2×2 in display order (backend/app/rules/cohorts.yaml v4). Colours follow the design tokens.
+export const COHORT_ORDER: CohortName[] = ["Invest / Expand", "Replace / Reassess", "Protect", "Exit / Watchlist"];
+export const DEFAULT_COHORT: CohortName = "Replace / Reassess";
 
 export const COHORT_HEX: Record<CohortColor, string> = {
   blue: "var(--emami-blue)",
@@ -11,11 +13,10 @@ export const COHORT_HEX: Record<CohortColor, string> = {
 };
 
 const BY_NAME: Record<CohortName, CohortColor> = {
-  Champions: "blue",
-  "Growth builders": "cyan",
-  "Scheme-hesitant": "orange",
-  "At-risk": "red",
-  Dormant: "grey",
+  "Invest / Expand": "blue",
+  "Replace / Reassess": "orange",
+  Protect: "cyan",
+  "Exit / Watchlist": "red",
 };
 
 export function cohortColor(name: CohortName): string {

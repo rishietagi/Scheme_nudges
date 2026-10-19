@@ -6,12 +6,31 @@ import { ChevronDown, MessageSquareText } from "lucide-react";
 import type { PlanRow } from "@/lib/api";
 import { Card } from "@/components/cards/Card";
 import { EASE } from "@/components/motion/Motion";
-import { ConfidenceBar, DecisionButtons, GroupDot, PriorityPill } from "./Bits";
+import { InfoTip } from "@/components/cards/InfoTip";
+import { DecisionButtons, GroupDot, ModifiedNote, PriorityPill } from "./Bits";
 
 type Decide = (row: PlanRow, d: "Approved" | "Rejected") => void;
+type Act = (row: PlanRow) => void;
 
-/** Group · Who · Follow-up · Confidence · Priority · Decision. Nothing else. */
-export function MatrixTable({ rows, locked, onDecide }: { rows: PlanRow[]; locked: boolean; onDecide: Decide }) {
+export const PRIORITY_RULE =
+  "Priority = sales at stake: the predicted uplift (₹) of the people in this row who aren't participating yet — what " +
+  "October should add if they join. Rows are ranked by it: the top third are High, the middle third Medium, the bottom " +
+  "third Low. People in Individual attention are ranked among themselves.";
+
+/** Group · Who · Next best action · Priority · Decision. Each action shows what drove it: cohort + survey. */
+export function MatrixTable({
+  rows,
+  locked,
+  onDecide,
+  onModify,
+  onRestore,
+}: {
+  rows: PlanRow[];
+  locked: boolean;
+  onDecide: Decide;
+  onModify: Act;
+  onRestore: Act;
+}) {
   const [open, setOpen] = useState<string | null>(null);
   const [showPeople, setShowPeople] = useState(true);
   const ia = rows.find((r) => r.group_type === "individual_group");
@@ -23,19 +42,39 @@ export function MatrixTable({ rows, locked, onDecide }: { rows: PlanRow[]; locke
           <colgroup>
             <col className="w-[20%]" />
             <col className="w-[7%]" />
-            <col className="w-[33%]" />
-            <col className="w-[17%]" />
-            <col className="w-[10%]" />
+            <col className="w-[43%]" />
             <col className="w-[13%]" />
+            <col className="w-[17%]" />
           </colgroup>
           <thead>
             <tr className="border-b border-card-border text-[12px] font-semibold uppercase tracking-[0.08em] text-muted">
               <th scope="col" className="px-6 py-4">Group</th>
               <th scope="col" className="px-3 py-4">Who</th>
-              <th scope="col" className="px-3 py-4">Follow-up</th>
-              <th scope="col" className="px-3 py-4">Confidence</th>
-              <th scope="col" className="px-3 py-4">Priority</th>
-              <th scope="col" className="px-6 py-4 text-right">Decision</th>
+              <th scope="col" className="px-3 py-4">
+                <span className="flex items-center gap-1">
+                  Next best action
+                  <InfoTip label="How the next best action is chosen" align="left">
+                    Emami AI starts from the cohort (business potential × performance) and adds what the survey said: each
+                    distributor&apos;s answer points to one action, and the cohort gets the one most of them point to. Code picks
+                    the action from a fixed catalogue; the AI only writes the message. Click an action to read the message.
+                  </InfoTip>
+                </span>
+              </th>
+              <th scope="col" className="px-3 py-4">
+                <span className="flex items-center gap-1">
+                  Priority
+                  <InfoTip label="How priority is worked out">{PRIORITY_RULE}</InfoTip>
+                </span>
+              </th>
+              <th scope="col" className="px-6 py-4 text-right">
+                <span className="inline-flex items-center gap-1">
+                  Decision
+                  <InfoTip label="What accept, modify and reject do" align="right">
+                    ✓ Accept sends Emami AI&apos;s suggestion. ✎ Modify lets you pick another action or change the message, then
+                    accepts it. ✗ Reject sends nothing to this group. You can change your mind until the clock moves past Day 7.
+                  </InfoTip>
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -75,24 +114,29 @@ export function MatrixTable({ rows, locked, onDecide }: { rows: PlanRow[]; locke
                             {r.label}
                             <MessageSquareText className="size-3.5 text-muted opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />
                           </span>
-                          <span className="block text-[13px] text-muted">{r.reason}</span>
+                          {r.cohort_note ? <Drivers cohort={r.cohort_note} survey={r.survey_note} /> : <span className="block text-[13px] text-muted">{r.reason}</span>}
                         </button>
                       )}
+                      {!isIa && <ModifiedNote row={r} locked={locked} onRestore={() => onRestore(r)} />}
                     </td>
                     <td className="px-3 py-4">
-                      <ConfidenceBar value={r.confidence} />
-                    </td>
-                    <td className="px-3 py-4">
-                      <PriorityPill p={r.priority} />
+                      <PriorityPill p={r.priority} note={r.priority_note} />
                     </td>
                     <td className="px-6 py-4">
-                      <DecisionButtons status={r.status} name={r.group_name} disabled={locked} onDecide={(d) => onDecide(r, d)} />
+                      <DecisionButtons
+                        status={r.status}
+                        modified={r.modified}
+                        name={r.group_name}
+                        disabled={locked}
+                        onDecide={(d) => onDecide(r, d)}
+                        onModify={isIa ? undefined : () => onModify(r)}
+                      />
                     </td>
                   </motion.tr>
                   <AnimatePresence initial={false}>
                     {expanded && (
                       <tr className="border-b border-card-border bg-bg/60">
-                        <td colSpan={6} className="p-0">
+                        <td colSpan={5} className="p-0">
                           <motion.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
@@ -135,7 +179,7 @@ export function MatrixTable({ rows, locked, onDecide }: { rows: PlanRow[]; locke
                 transition={{ duration: 0.35, ease: EASE }}
                 className="overflow-hidden"
               >
-                <People people={ia.children} locked={locked} onDecide={onDecide} />
+                <People people={ia.children} locked={locked} onDecide={onDecide} onModify={onModify} onRestore={onRestore} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -147,7 +191,19 @@ export function MatrixTable({ rows, locked, onDecide }: { rows: PlanRow[]; locke
 
 const FIRST = 5;
 
-function People({ people, locked, onDecide }: { people: PlanRow[]; locked: boolean; onDecide: Decide }) {
+function People({
+  people,
+  locked,
+  onDecide,
+  onModify,
+  onRestore,
+}: {
+  people: PlanRow[];
+  locked: boolean;
+  onDecide: Decide;
+  onModify: Act;
+  onRestore: Act;
+}) {
   const [all, setAll] = useState(false);
   const shown = all ? people : people.slice(0, FIRST);
   const rest = people.slice(FIRST);
@@ -160,18 +216,31 @@ function People({ people, locked, onDecide }: { people: PlanRow[]; locked: boole
             layout
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="grid grid-cols-1 items-center gap-3 border-b border-card-border px-5 py-3.5 last:border-0 md:grid-cols-[1.3fr_1.2fr_64px_90px_auto]"
+            className="grid grid-cols-1 items-center gap-3 border-b border-card-border px-5 py-3.5 last:border-0 md:grid-cols-[1.2fr_1.4fr_120px_auto]"
           >
             <span>
               <span className="block text-[16px] font-semibold text-ink">{p.group_name}</span>
-              <span className="block text-[13px] text-muted">{p.reason}</span>
+              <span className="block text-[13px] text-muted">
+                {p.reason}
+                {p.cohort_note ? ` · ${p.cohort_note}` : ""}
+              </span>
             </span>
-            <span className="text-[15px] text-ink">{p.label}</span>
-            <span className="text-[16px] font-semibold text-ink tabular md:text-right">{p.confidence !== null ? `${Math.round(p.confidence * 100)}%` : "–"}</span>
+            <span className="text-[15px] text-ink">
+              {p.label}
+              <ModifiedNote row={p} locked={locked} onRestore={() => onRestore(p)} />
+            </span>
             <span className="md:text-right">
-              <PriorityPill p={p.priority} />
+              <PriorityPill p={p.priority} note={p.priority_note} />
             </span>
-            <DecisionButtons status={p.status} name={p.group_name} disabled={locked} size="sm" onDecide={(d) => onDecide(p, d)} />
+            <DecisionButtons
+              status={p.status}
+              modified={p.modified}
+              name={p.group_name}
+              disabled={locked}
+              size="sm"
+              onDecide={(d) => onDecide(p, d)}
+              onModify={() => onModify(p)}
+            />
           </motion.li>
         ))}
       </ul>
@@ -216,5 +285,23 @@ function Preview({ row }: { row: PlanRow }) {
         </div>
       )}
     </div>
+  );
+}
+
+/** "Cohort + survey → next best action": the two inputs behind a row, one short line each. */
+function Drivers({ cohort, survey }: { cohort: string; survey: string | null }) {
+  return (
+    <span className="mt-1 block space-y-0.5 text-[13px] leading-snug">
+      <span className="block text-muted">
+        <span className="mr-1.5 inline-block w-14 font-semibold text-ink/70">Cohort</span>
+        {cohort}
+      </span>
+      {survey && (
+        <span className="block text-muted">
+          <span className="mr-1.5 inline-block w-14 font-semibold text-ink/70">Survey</span>
+          {survey}
+        </span>
+      )}
+    </span>
   );
 }

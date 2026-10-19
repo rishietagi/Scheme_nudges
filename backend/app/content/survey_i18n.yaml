@@ -1,5 +1,13 @@
 # Display translations of rules/survey.yaml for the Survey page's language toggle (hand-written, synthetic demo).
-# The data always stores the English labels (the five intents are the same everywhere); this file is display only.
+# The data always stores the five intent VALUES from rules/survey.yaml ("I've enrolled", "I'll enrol", …) — they are
+# codes shared with the Day-0 data. This file is display only: what distributors and the ASM actually read, in FMCG
+# trade terms (a distributor *participates* in a scheme).
+English:
+  options:
+    "I've enrolled": Already participating
+    "I'll enrol": Will participate
+  questions:
+    Q1: Have you seen the Festive Scheme? Will you participate?
 Bengali:
   questions:
     Q1: ফেস্টিভ স্কিম দেখেছেন? আপনি কী করতে চান?
@@ -10,8 +18,8 @@ Bengali:
     Q6: এখন কোনটা আপনাকে সবচেয়ে বেশি সাহায্য করবে?
     Q7: আর কিছু বলতে চান?
   options:
-    "I've enrolled": আমি যোগ দিয়েছি
-    "I'll enrol": আমি যোগ দেব
+    "I've enrolled": আমি অংশ নিচ্ছি
+    "I'll enrol": আমি অংশ নেব
     Explain again: আবার বুঝিয়ে বলুন
     Explain in Bengali: বাংলায় বুঝিয়ে বলুন
     Talk to my ASM: আমার ASM-এর সঙ্গে কথা বলব
@@ -40,8 +48,8 @@ Hindi:
     Q6: अभी आपको सबसे ज़्यादा किस चीज़ से मदद मिलेगी?
     Q7: और कुछ बताना चाहेंगे?
   options:
-    "I've enrolled": जुड़ चुके हैं
-    "I'll enrol": जुड़ना है
+    "I've enrolled": पहले से शामिल हैं
+    "I'll enrol": शामिल होंगे
     Explain again: फिर से समझाइए
     Explain in Bengali: बांग्ला में समझाइए
     Talk to my ASM: ASM से बात करनी है

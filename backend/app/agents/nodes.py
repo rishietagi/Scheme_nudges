@@ -12,6 +12,7 @@ from collections import Counter, defaultdict
 
 from pydantic import BaseModel
 
+from app.content.terms import trade_terms
 from app.db import queries
 from app.db.run_queries import Fact, facts
 from app.engines import cta_planner, persona, results, sanity_checks
@@ -26,8 +27,8 @@ PLAN_AT = at(7, 10)               # Day 7 10:00 — plan ready, approval gate
 ASM = cta_planner.ASM_FIRST_NAME
 LANGS = ("English", "Bengali", "Hindi")
 INTENT_TEXT = {
-    "I've enrolled": "said they've enrolled",
-    "I'll enrol": "said they'll enrol",
+    "I've enrolled": "said they're already participating",
+    "I'll enrol": "said they'll participate",
     "Explain again": "asked for the scheme to be explained again",
     "Explain in Bengali": "asked for an explanation in Bengali",
     "Talk to my ASM": f"asked to talk to {ASM}",
@@ -91,7 +92,7 @@ def lang_of(language: str) -> str:
 
 
 def scheme_text(con: sqlite3.Connection) -> str:
-    return con.execute("SELECT rules_text FROM world.schemes WHERE scheme_id = ?", (queries.CURRENT_SCHEME,)).fetchone()[0]
+    return trade_terms(con.execute("SELECT rules_text FROM world.schemes WHERE scheme_id = ?", (queries.CURRENT_SCHEME,)).fetchone()[0])
 
 
 def run_row(con: sqlite3.Connection, run_id: str) -> sqlite3.Row:
@@ -139,11 +140,12 @@ def survey_agent(state: dict) -> dict:
     run = run_row(con, run_id)
     hidden = traits.load(con, queries.TERRITORY_ID, run["scenario"])
     fs = facts(con, run_id, 0)
+    sent = {c: [{"id": q.id, "type": q.type} for q in qs] for c, qs in queries.run_survey(con, run_id).items()}
     events: list[tuple] = []
     first_reply: dict[str, float] = {}
 
     for did, f in fs.items():
-        b = behaviour.day0(run["seed"], did, hidden[did], f.cohort)
+        b = behaviour.day0(run["seed"], did, hidden[did], f.cohort, sent[f.cohort])
         if b.enrol_day is not None:
             con.execute("INSERT INTO enrolments VALUES (?,?,?,?,?)", (run_id, did, b.enrol_day, b.enrol_path, None))
             # A hair after the reply that announced it, so the feed reads in order.
@@ -156,13 +158,16 @@ def survey_agent(state: dict) -> dict:
         for i, sub in enumerate(copies):
             rid = f"{did}:{i + 1}"
             row = {"response_id": rid, "distributor_id": did, "started_at": sub - rp.survey_seconds / 86400,
-                   "submitted_at": sub, "survey_seconds": rp.survey_seconds, "q1_intent": rp.q1, "q2": rp.q2, "q3": rp.q3,
-                   "q4": rp.q4, "q5": rp.q5, "q6": rp.q6, "q7_text": rp.q7_text, "q7_language": rp.q7_language,
-                   "q7_theme": rp.q7_theme, "is_duplicate": int(len(copies) > 1), "is_latest": int(i == len(copies) - 1)}
+                   "submitted_at": sub, "survey_seconds": rp.survey_seconds, "q1_intent": rp.q1, "q6": rp.q6,
+                   "answers_json": json.dumps(rp.answers), "questions_asked": rp.asked, "q7_text": rp.q7_text,
+                   "q7_language": rp.q7_language, "q7_theme": rp.q7_theme, "is_duplicate": int(len(copies) > 1),
+                   "is_latest": int(i == len(copies) - 1)}
             con.execute(
                 """INSERT INTO survey_responses VALUES (:run_id,:response_id,:distributor_id,:started_at,:submitted_at,
-                   :survey_seconds,:q1_intent,:q2,:q3,:q4,:q5,:q6,:q7_text,:q7_language,:q7_theme,:is_duplicate,:is_latest)""",
+                   :survey_seconds,:q1_intent,:q6,:answers_json,:questions_asked,:q7_text,:q7_language,:q7_theme,
+                   :is_duplicate,:is_latest)""",
                 {"run_id": run_id, **row})
+            row["answers"] = rp.answers
             enrolled = b.enrol_day is not None and b.enrol_day <= sub
             flags = sanity_checks.check(row, enrolled_at_submit=enrolled, is_duplicate=i > 0)
             for fl in flags:
@@ -206,7 +211,7 @@ def members_at(con: sqlite3.Connection, run_id: str, day: float) -> tuple[list[c
             f.distributor_id, f.name, f.cohort, f.classification, f.enrol is not None, f.replied,
             latest["q1_intent"] if latest else None, latest["q6"] if latest else None,
             latest["q7_theme"] if latest else None, persona.compute(f, day)["language"], f.red_flagged,
-            f.consecutive_down_months, f.uplift_l))
+            f.consecutive_down_months, f.uplift_l, f.high_potential, f.high_performance))
     clean: dict[str, float] = {}
     for c in DISPLAY_ORDER:
         replied = [f for f in fs.values() if f.cohort == c and f.replied]
@@ -217,8 +222,8 @@ def members_at(con: sqlite3.Connection, run_id: str, day: float) -> tuple[list[c
 def cta_agent(state: dict) -> dict:
     con, run_id = state["con"], state["run_id"]
     # Rebuilding (e.g. after a custom group is added) keeps every decision already made.
-    kept = {r["row_id"]: (r["status"], r["decided_at"]) for r in con.execute(
-        "SELECT row_id, status, decided_at FROM cta_plan WHERE run_id = ? AND status != 'Pending'", (run_id,))}
+    kept = {r["row_id"]: dict(r) for r in con.execute(
+        "SELECT * FROM cta_plan WHERE run_id = ? AND (status != 'Pending' OR modified = 1)", (run_id,))}
     rebuild = con.execute("SELECT plan_built FROM loop_runs WHERE run_id = ?", (run_id,)).fetchone()[0]
     con.execute("DELETE FROM cta_plan WHERE run_id = ?", (run_id,))
     custom = [json.loads(r[0]) for r in con.execute(
@@ -238,7 +243,7 @@ def cta_agent(state: dict) -> dict:
     def insert(row: cta_planner.PlanRow) -> None:
         t = texts(row) if row.cta_code else None
         con.execute(
-            "INSERT INTO cta_plan VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO cta_plan VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,NULL,NULL)",
             (run_id, row.row_id, row.group_type, row.group_name, row.parent_row_id, row.distributor_id, row.cta_code,
              row.cta_variant, row.label, t["English"].text if t else None, t["Bengali"].text if t else None,
              t["Hindi"].text if t else None, len(row.member_ids), json.dumps(row.member_ids), row.confidence, row.priority,
@@ -248,8 +253,14 @@ def cta_agent(state: dict) -> dict:
         insert(r)
         for child in r.children:
             insert(child)
-    for row_id, (status, decided_at) in kept.items():
-        con.execute("UPDATE cta_plan SET status = ?, decided_at = ? WHERE run_id = ? AND row_id = ?", (status, decided_at, run_id, row_id))
+    for row_id, k in kept.items():
+        con.execute("UPDATE cta_plan SET status = ?, decided_at = ? WHERE run_id = ? AND row_id = ?",
+                    (k["status"], k["decided_at"], run_id, row_id))
+        if k["modified"]:
+            con.execute("UPDATE cta_plan SET cta_code = ?, cta_variant = ?, label = ?, text_en = ?, text_bn = ?, text_hi = ?, "
+                        "why = ?, modified = 1, original_json = ?, note = ? WHERE run_id = ? AND row_id = ?",
+                        (k["cta_code"], k["cta_variant"], k["label"], k["text_en"], k["text_bn"], k["text_hi"], k["why"],
+                         k["original_json"], k["note"], run_id, row_id))
     if rebuild:
         return state
     n_cohort = sum(r.group_type in ("cohort", "custom") for r in rows)
@@ -263,10 +274,18 @@ def cta_agent(state: dict) -> dict:
                  f"{child.reason} → Individual attention: {child.label}", child.distributor_id, False, {"row_id": child.row_id})
         if r.group_type in ("cohort", "custom"):
             for did in r.member_ids:
-                emit(con, run_id, PLAN_AT, "PLAN_READY", "CTA agent", f"Not joined yet → {r.group_name} follow-up: {r.label.lower()}",
+                emit(con, run_id, PLAN_AT, "PLAN_READY", "CTA agent", f"Not participating yet → {r.group_name} next best action: {r.label.lower()}",
                      did, False, {"row_id": r.row_id})
     con.execute("UPDATE loop_runs SET plan_built = 1 WHERE run_id = ?", (run_id,))
     return state
+
+
+def cta_texts(con: sqlite3.Connection, cta_code: str, group: str, reason: str) -> dict[str, CtaText]:
+    """Emami AI's message for a given action, in every language (also used when Rahul switches the action)."""
+    scheme = scheme_text(con)
+    return {lang: complete("cta_message", {"cta_code": cta_code, "cta_label": cta_planner.DISPLAY[cta_code], "group": group,
+                                          "reason": reason, "scheme": scheme, "language": lang},
+                           CtaText, fixture_key=f"{cta_code}|{lang}") for lang in LANGS}
 
 
 def pending(con: sqlite3.Connection, run_id: str) -> int:
@@ -354,7 +373,7 @@ def execution_agent(state: dict) -> dict:
             con.execute("INSERT INTO enrolments VALUES (?,?,?,?,?)", (run_id, did, join, path, r["cta_code"] if approved else None))
             how = {"after_asm_call": f" after {ASM}'s {'visit' if (r['cta_variant'] == 'visit') else 'call'}",
                    "after_cta": f" after the {cta_planner.SHORT[r['cta_code']].lower()}", "self": ""}[path]
-            events.append((join, "ENROLLED", "Execution", f"{f.name} joined the scheme{how}", did, True))
+            events.append((join, "ENROLLED", "Execution", f"{f.name} started participating in the scheme{how}", did, True))
 
     for r in plan_rows:
         langs = sent.get(r["row_id"])
@@ -392,7 +411,7 @@ def results_agent(state: dict) -> dict:
     r = results.compute(fs, sales, queries.territory(con)["joined_last_scheme"])
     pct = round(100 * r["joined"] / r["total"])
     emit(con, run_id, LAST, "RESULTS", "Results agent",
-         f"Day-30 results ready: {r['joined']} of {r['total']} joined ({pct}%) · {r['beat_prediction']} beat their predicted sales boost")
+         f"Day-30 results ready: {r['joined']} of {r['total']} participating ({pct}%) · {r['beat_prediction']} beat their predicted uplift")
     return state
 
 

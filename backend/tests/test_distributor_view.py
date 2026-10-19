@@ -33,8 +33,8 @@ def test_maa_tara_story_on_the_phone_and_behind_it():
 def test_scenarios_describe_what_happened():
     run_to(30)
     s = {x["distributor_id"]: x["subtitle"] for x in client.get("/chat/scenarios").json()}
-    assert s["DST-0001"] == "Asked for Bengali → voice note → joined"
-    assert s["DST-0006"].startswith("19-second survey") and s["DST-0006"].endswith("joined")
+    assert s["DST-0001"] == "Asked for Bengali → voice note → participating"
+    assert s["DST-0006"].startswith("19-second survey") and s["DST-0006"].endswith("participating")
     assert s["DST-0005"] == "Asked for Rahul → call → margin issue"
 
 
@@ -63,21 +63,6 @@ def test_chat_helpers():
     assert safe("Your target is ₹6.3 L; reach ₹7.9 L for +4% and ₹10,000.", {"target": "₹6.3 L", "stretch": "₹7.9 L"})
 
 
-def test_command_centre_follows_the_loop():
-    run_to(0, autopilot=False)
-    c = client.get("/command").json()
-    assert c["greeting"] == "Good morning, Rahul" and c["needs"][0]["title"] == "Send the Festive nudge"
-    client.post("/sim/advance", json={"to_day": 30})                              # stops at the Day-7 gate
-    c = client.get("/command").json()
-    tiles = {t["key"]: t for t in c["tiles"]}
-    assert tiles["replied"]["value"] == 60 and tiles["joined"]["value"] == 27
-    assert tiles["waiting"]["value"] == 6 and tiles["individual"]["value"] == 11
-    assert [n["title"] for n in c["needs"]][:1] == ["Approve the follow-up plan"] and len(c["needs"]) <= 3
-    assert c["summary_label"] == "Emami AI · first week in short" and len(c["summary"]) == 3
-    assert sum(p["distributors"] for p in c["cohorts"]) == 86
-    assert client.get("/command", params={"day": 3}).json()["tiles"][0]["value"] < 60
-
-
 def test_360_is_time_aware():
     run_to(30)
     d30 = client.get("/distributors/DST-0007").json()
@@ -85,8 +70,8 @@ def test_360_is_time_aware():
     assert d30["persona"]["next_time"] and d30["milestones"][-1]["text"].startswith("₹")
     d0 = client.get("/distributors/DST-0007", params={"day": 0.1}).json()
     assert not d0["festive_joined"] and d0["persona"]["language"] == "English" and d0["persona"]["next_time"] is None
-    rows = client.get("/cohorts/Scheme-hesitant/distributors").json()["items"]
-    an = next(r for r in rows if r["distributor_id"] == "DST-0007")
+    rows = client.get("/cohorts/Protect/distributors").json()["items"]
+    an = next(r for r in rows if r["distributor_id"] == "DST-0007")          # Annapurna: small market, run well
     assert an["intent"] == "Explain in Bengali" and an["joined_day"] == 9 and an["language_changed"]
-    sh = next(c for c in client.get("/cohorts").json()["cohorts"] if c["name"] == "Scheme-hesitant")
-    assert sh["joined_festive"] >= 10 and sh["replied"] <= 19
+    sh = next(c for c in client.get("/cohorts").json()["cohorts"] if c["name"] == "Replace / Reassess")
+    assert sh["joined_festive"] >= 8 and sh["replied"] <= 23

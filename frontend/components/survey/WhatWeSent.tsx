@@ -1,7 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { MessageCircle } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, MessageCircle, Sparkles } from "lucide-react";
 import type { CohortName, Language, SurveyQuestions } from "@/lib/api";
 import { COHORT_ORDER } from "@/lib/cohorts";
 import { Card } from "@/components/cards/Card";
@@ -109,17 +110,40 @@ export function WhatWeSent({
             )}
 
             <ol className="mt-2">
-              {rest.map((q) => (
+              {rest.map((q, i) => (
                 <li key={q.id} className="flex items-start gap-3 border-b border-card-border py-3.5 last:border-0">
-                  <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-bg text-[13px] font-semibold text-ink">{q.id.slice(1)}</span>
-                  <p className="flex-1 text-[15px] text-ink">
-                    {q.text}
-                    {q.type === "single_choice" && <span className="text-muted"> {q.options.map((o) => o.label).join(" · ")}</span>}
-                  </p>
+                  <span
+                    className={`grid size-7 shrink-0 place-items-center rounded-lg text-[13px] font-semibold ${
+                      q.source === "ai" ? "bg-blue-soft text-emami-blue" : "bg-bg text-ink"
+                    }`}
+                  >
+                    {i + 2}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[15px] text-ink">
+                      {q.text}
+                      {q.type === "single_choice" && <span className="text-muted"> {q.options.map((o) => o.label).join(" · ")}</span>}
+                    </p>
+                    {q.source !== "comment" && (
+                      <p className="mt-1 text-[12px] text-muted">
+                        {q.source === "ai" ? (
+                          <span className="inline-flex items-center gap-1 font-semibold text-emami-blue">
+                            <Sparkles className="size-3" aria-hidden /> Emami AI
+                          </span>
+                        ) : (
+                          <span className="font-semibold text-amber">Must ask{q.source === "must_cohort" ? ` · ${cohort}` : ""}</span>
+                        )}
+                        {q.bucket && q.bucket !== "Overall" ? ` · ${q.bucket}` : ""}
+                      </p>
+                    )}
+                  </div>
                   {q.tag && <span className="shrink-0 rounded-full bg-bg px-2.5 py-0.5 text-[12px] font-medium text-muted">{q.tag}</span>}
                 </li>
               ))}
             </ol>
+            <Link href="/setup/survey" className="mt-2 inline-flex min-h-11 items-center gap-1 text-[14px] font-semibold text-emami-blue hover:underline">
+              Change the survey for the next cycle <ArrowRight className="size-4" aria-hidden />
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

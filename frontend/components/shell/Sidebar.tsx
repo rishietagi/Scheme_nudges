@@ -14,7 +14,7 @@ export function Sidebar({ onNavigate, layoutId = "nav-active" }: { onNavigate?: 
 
   return (
     <div className="flex h-full flex-col bg-navy-900 px-4 pb-5 pt-7 text-white">
-      <Link href="/" onClick={onNavigate} className="block px-2" aria-label="Emami — Distributor Experience Platform, home">
+      <Link href="/cohorts" onClick={onNavigate} className="block px-2" aria-label="Emami — Distributor Experience Platform, home">
         <Image src="/brand/emami-logo-reverse.png" alt="Emami" width={92} height={83} priority className="h-auto w-[92px]" />
         <p className="mt-2 text-[13px] font-semibold leading-tight text-white/90">
           Distributor Experience
@@ -72,7 +72,7 @@ export function Sidebar({ onNavigate, layoutId = "nav-active" }: { onNavigate?: 
 
       {/* Scheme status: where the loop is right now */}
       <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3.5">
-        <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-white/50">Festive Scheme · Oct</p>
+        <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-white/50">Q3 cycle · Festive</p>
         <motion.p
           key={state.day_label}
           initial={{ opacity: 0, y: 4 }}

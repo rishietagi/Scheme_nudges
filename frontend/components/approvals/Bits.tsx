@@ -1,51 +1,75 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Check, X } from "lucide-react";
+import { Check, Pencil, Undo2, X } from "lucide-react";
 import type { PlanRow, PlanStatus } from "@/lib/api";
 import { cohortColor, isCohort } from "@/lib/cohorts";
-import { EASE } from "@/components/motion/Motion";
+import { InfoTip } from "@/components/cards/InfoTip";
 
+/** Accept · Modify · Reject. Modify opens the editor (different action and/or message); saving it also accepts. */
 export function DecisionButtons({
   status,
+  modified = false,
   name,
   disabled,
   onDecide,
+  onModify,
   size = "md",
 }: {
   status: PlanStatus;
+  modified?: boolean;
   name: string;
   disabled: boolean;
   onDecide: (d: "Approved" | "Rejected") => void;
+  onModify?: () => void;
   size?: "md" | "sm";
 }) {
   const box = size === "md" ? "size-11" : "size-10";
-  const on = (s: PlanStatus) => status === s;
+  const accepted = status === "Approved" && !modified;
+  const rejected = status === "Rejected";
   return (
     <div className="flex justify-end gap-2">
       <motion.button
         type="button"
         whileTap={{ scale: 0.92 }}
-        aria-label={`Approve ${name}`}
-        aria-pressed={on("Approved")}
+        aria-label={`Accept the suggestion for ${name}`}
+        title="Accept"
+        aria-pressed={accepted}
         disabled={disabled}
         onClick={() => onDecide("Approved")}
         className={`grid ${box} place-items-center rounded-xl transition-colors disabled:cursor-not-allowed ${
-          on("Approved") ? "bg-green-text text-white" : "bg-green-soft text-green-text hover:brightness-95"
-        } ${on("Rejected") ? "opacity-40" : ""}`}
+          accepted ? "bg-green-text text-white" : "bg-green-soft text-green-text hover:brightness-95"
+        } ${rejected || modified ? "opacity-40" : ""}`}
       >
         <Check className="size-5" strokeWidth={2.25} aria-hidden />
       </motion.button>
+      {onModify && (
+        <motion.button
+          type="button"
+          whileTap={{ scale: 0.92 }}
+          aria-label={`Modify the suggestion for ${name}`}
+          title="Modify"
+          aria-pressed={modified}
+          disabled={disabled}
+          onClick={onModify}
+          className={`grid ${box} place-items-center rounded-xl transition-colors disabled:cursor-not-allowed ${
+            modified ? "bg-emami-blue text-white" : "bg-blue-soft text-emami-blue hover:brightness-95"
+          } ${rejected || accepted ? "opacity-40" : ""}`}
+        >
+          <Pencil className="size-[18px]" strokeWidth={2.25} aria-hidden />
+        </motion.button>
+      )}
       <motion.button
         type="button"
         whileTap={{ scale: 0.92 }}
-        aria-label={`Reject ${name}`}
-        aria-pressed={on("Rejected")}
+        aria-label={`Reject the suggestion for ${name}`}
+        title="Reject"
+        aria-pressed={rejected}
         disabled={disabled}
         onClick={() => onDecide("Rejected")}
         className={`grid ${box} place-items-center rounded-xl transition-colors disabled:cursor-not-allowed ${
-          on("Rejected") ? "bg-red text-white" : "bg-red-soft text-red hover:brightness-95"
-        } ${on("Approved") ? "opacity-40" : ""}`}
+          rejected ? "bg-red text-white" : "bg-red-soft text-red hover:brightness-95"
+        } ${status === "Approved" ? "opacity-40" : ""}`}
       >
         <X className="size-5" strokeWidth={2.25} aria-hidden />
       </motion.button>
@@ -53,32 +77,37 @@ export function DecisionButtons({
   );
 }
 
-export function PriorityPill({ p }: { p: PlanRow["priority"] }) {
+export function PriorityPill({ p, note }: { p: PlanRow["priority"]; note?: string }) {
   const cls = { High: "bg-red-soft text-red", Medium: "bg-orange-soft text-amber", Low: "bg-[#EEF1F5] text-muted" }[p];
-  return <span className={`inline-flex rounded-full px-2.5 py-1 text-[13px] font-medium ${cls}`}>{p}</span>;
+  return (
+    <span className="inline-flex items-center gap-1">
+      <span className={`inline-flex rounded-full px-2.5 py-1 text-[13px] font-medium ${cls}`}>{p}</span>
+      {note && (
+        <InfoTip label={`Why ${p.toLowerCase()} priority`} align="right">
+          {note}
+        </InfoTip>
+      )}
+    </span>
+  );
 }
 
-export function ConfidenceBar({ value }: { value: number | null }) {
-  if (value === null)
-    return (
-      <span className="flex items-center gap-3">
-        <span className="h-2 w-28 rounded-full bg-track" />
-        <span className="w-10 text-right font-semibold text-ink">–</span>
-      </span>
-    );
-  const color = value >= 0.7 ? "var(--green-text)" : "var(--orange)";
+/** Shown under an action Rahul changed: what Emami AI had suggested, his note, and a way back. */
+export function ModifiedNote({ row, locked, onRestore }: { row: PlanRow; locked: boolean; onRestore: () => void }) {
+  if (!row.modified) return null;
   return (
-    <span className="flex items-center gap-3">
-      <span className="h-2 w-28 overflow-hidden rounded-full bg-track">
-        <motion.span
-          className="block h-full origin-left rounded-full"
-          style={{ backgroundColor: color }}
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: value }}
-          transition={{ duration: 0.7, ease: EASE }}
-        />
-      </span>
-      <span className="w-10 text-right font-semibold text-ink tabular">{Math.round(value * 100)}%</span>
+    <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px]">
+      <span className="rounded-full bg-blue-soft px-2 py-0.5 font-semibold text-emami-blue">Modified by you</span>
+      {row.was_label && <span className="text-muted">Emami AI suggested: {row.was_label.toLowerCase()}</span>}
+      {row.note && <span className="text-muted">· “{row.note}”</span>}
+      {!locked && (
+        <button
+          type="button"
+          onClick={onRestore}
+          className="inline-flex min-h-8 items-center gap-1 font-semibold text-emami-blue hover:underline"
+        >
+          <Undo2 className="size-3.5" aria-hidden /> Restore suggestion
+        </button>
+      )}
     </span>
   );
 }

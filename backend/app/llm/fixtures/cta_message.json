@@ -1,15 +1,15 @@
 {
   "QUICK_REMINDER|English": {
-    "text": "Hi {owner_first}, a quick reminder: your Festive target is {target}. Hit it for +3% margin on focus SKUs. Reply JOIN and we'll enrol you today.",
-    "why": "They said they'd enrol — a short nudge with their own number usually closes it."
+    "text": "Hi {owner_first}, a quick reminder: your Festive target is {target}. Hit it for +3% margin on focus SKUs. Reply JOIN to participate from today.",
+    "why": "They said they'll participate — a short nudge with their own number usually closes it."
   },
   "QUICK_REMINDER|Bengali": {
-    "text": "নমস্কার {owner_first}, ছোট্ট করে মনে করিয়ে দিই: ফেস্টিভ টার্গেট {target}। পূরণ করলে ফোকাস SKU-তে +৩% মার্জিন। আজই যোগ দিতে JOIN লিখে উত্তর দিন।",
-    "why": "They said they'd enrol — a short nudge with their own number usually closes it."
+    "text": "নমস্কার {owner_first}, ছোট্ট করে মনে করিয়ে দিই: ফেস্টিভ টার্গেট {target}। পূরণ করলে ফোকাস SKU-তে +৩% মার্জিন। আজই অংশ নিতে JOIN লিখে উত্তর দিন।",
+    "why": "They said they'll participate — a short nudge with their own number usually closes it."
   },
   "QUICK_REMINDER|Hindi": {
-    "text": "नमस्ते {owner_first} जी, छोटी-सी याद: फेस्टिव टारगेट {target}। पूरा करने पर फोकस SKU पर +3% मार्जिन। आज ही जुड़ने के लिए JOIN लिखकर जवाब दें।",
-    "why": "They said they'd enrol — a short nudge with their own number usually closes it."
+    "text": "नमस्ते {owner_first} जी, छोटी-सी याद: फेस्टिव टारगेट {target}। पूरा करने पर फोकस SKU पर +3% मार्जिन। आज ही शामिल होने के लिए JOIN लिखकर जवाब दें।",
+    "why": "They said they'll participate — a short nudge with their own number usually closes it."
   },
   "EXPLAIN_SIMPLE|English": {
     "text": "{owner_first}, here is the Festive Scheme on one card: target {target} → +3% margin. Reach {stretch} → +4% and ₹10,000. Example: sell {target} and earn about {earn_hit} extra.",
@@ -24,15 +24,15 @@
     "why": "They asked for it to be explained again — one card with their own numbers."
   },
   "VOICE_EXPLAINER|English": {
-    "text": "{owner_first}, here's a 45-second voice note on the Festive Scheme, with a simple card: target {target} → +3% margin · {stretch} → +4% and ₹10,000. Reply JOIN to enrol.",
+    "text": "{owner_first}, here's a 45-second voice note on the Festive Scheme, with a simple card: target {target} → +3% margin · {stretch} → +4% and ₹10,000. Reply JOIN to participate.",
     "why": "Most asked for a simpler explanation, many in Bengali — a voice note in their language fits best."
   },
   "VOICE_EXPLAINER|Bengali": {
-    "text": "{owner_first}, ফেস্টিভ স্কিম নিয়ে ৪৫ সেকেন্ডের একটা ভয়েস নোট আর একটা সহজ কার্ড পাঠালাম: টার্গেট {target} → +৩% মার্জিন · {stretch} → +৪% আর ₹১০,০০০। যোগ দিতে JOIN লিখুন।",
+    "text": "{owner_first}, ফেস্টিভ স্কিম নিয়ে ৪৫ সেকেন্ডের একটা ভয়েস নোট আর একটা সহজ কার্ড পাঠালাম: টার্গেট {target} → +৩% মার্জিন · {stretch} → +৪% আর ₹১০,০০০। অংশ নিতে JOIN লিখুন।",
     "why": "Most asked for a simpler explanation, many in Bengali — a voice note in their language fits best."
   },
   "VOICE_EXPLAINER|Hindi": {
-    "text": "{owner_first} जी, फेस्टिव स्कीम पर 45 सेकंड का वॉइस नोट और एक आसान कार्ड भेजा है: टारगेट {target} → +3% मार्जिन · {stretch} → +4% और ₹10,000। जुड़ने के लिए JOIN लिखें।",
+    "text": "{owner_first} जी, फेस्टिव स्कीम पर 45 सेकंड का वॉइस नोट और एक आसान कार्ड भेजा है: टारगेट {target} → +3% मार्जिन · {stretch} → +4% और ₹10,000। शामिल होने के लिए JOIN लिखें।",
     "why": "Most asked for a simpler explanation, many in Bengali — a voice note in their language fits best."
   },
   "ASM_CALL|English": {
@@ -60,19 +60,19 @@
     "why": "They never opened the nudge — a short re-send at their usual reply time."
   },
   "SLAB_PROGRESS|English": {
-    "text": "{owner_first}, you're in the Festive Scheme. Reach {stretch} for +4% margin and a ₹10,000 bonus.",
-    "why": "Already enrolled — showing the next slab keeps momentum."
+    "text": "{owner_first}, you're participating in the Festive Scheme. Reach {stretch} for +4% margin and a ₹10,000 credit note.",
+    "why": "Already participating — showing the next slab keeps momentum."
   },
   "SLAB_PROGRESS|Bengali": {
-    "text": "{owner_first}, আপনি ফেস্টিভ স্কিমে আছেন। {stretch} ছুঁলে +৪% মার্জিন আর ₹১০,০০০ বোনাস।",
-    "why": "Already enrolled — showing the next slab keeps momentum."
+    "text": "{owner_first}, আপনি ফেস্টিভ স্কিমে আছেন। {stretch} ছুঁলে +৪% মার্জিন আর ₹১০,০০০ ক্রেডিট নোট।",
+    "why": "Already participating — showing the next slab keeps momentum."
   },
   "SLAB_PROGRESS|Hindi": {
-    "text": "{owner_first} जी, आप फेस्टिव स्कीम में हैं। {stretch} पर +4% मार्जिन और ₹10,000 बोनस।",
-    "why": "Already enrolled — showing the next slab keeps momentum."
+    "text": "{owner_first} जी, आप फेस्टिव स्कीम में हैं। {stretch} पर +4% मार्जिन और ₹10,000 क्रेडिट नोट।",
+    "why": "Already participating — showing the next slab keeps momentum."
   },
   "default": {
-    "text": "Hi {owner_first}, a quick reminder: your Festive target is {target}. Hit it for +3% margin on focus SKUs. Reply JOIN and we'll enrol you today.",
-    "why": "They said they'd enrol — a short nudge with their own number usually closes it."
+    "text": "Hi {owner_first}, a quick reminder: your Festive target is {target}. Hit it for +3% margin on focus SKUs. Reply JOIN to participate from today.",
+    "why": "They said they'll participate — a short nudge with their own number usually closes it."
   }
 }

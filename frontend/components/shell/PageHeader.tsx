@@ -51,7 +51,7 @@ export function ViewToggle() {
   const pathname = usePathname();
   const distributor = pathname.startsWith("/distributor");
   const options = [
-    { href: "/", label: "ASM workspace", active: !distributor },
+    { href: "/cohorts", label: "ASM workspace", active: !distributor },
     { href: "/distributor", label: "Distributor view", active: distributor },
   ];
   return (

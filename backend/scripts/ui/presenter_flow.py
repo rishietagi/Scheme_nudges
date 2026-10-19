@@ -22,6 +22,7 @@ with sync_playwright() as p:
     errors = []
     page.on("console", lambda m: errors.append(m.text) if m.type == "error" else None)
     page.on("pageerror", lambda e: errors.append(str(e)))
+    post("/sim/reset", {"seed": 42, "autopilot": False})        # the presenter flow starts with approvals by hand
     page.goto("http://localhost:3000/simulation")
     page.wait_for_timeout(1500)
     page.get_by_role("button", name="Reset to Day 0").click()
@@ -32,15 +33,21 @@ with sync_playwright() as p:
     page.wait_for_timeout(1200)
     page.screenshot(path=f"{OUT}/flow-approval.png", full_page=True)
     print("gate:", page.locator("text=Day 7").first.inner_text())
-    s = post("/plan/approve-high-confidence")
-    print("pending after 70%+:", s["pending_rows"])
-    plan_rows = ["cohort:Growth builders", "cohort:At-risk", "cohort:Champions"]
-    for rid in plan_rows:
-        try:
-            s = post(f"/plan/rows/{urllib.parse.quote(rid)}/decision", {"decision": "Approved"})
-        except Exception as e:  # noqa: BLE001
-            print("skip", rid, e)
+    # Modify one suggestion through the UI: Exit / Watchlist -> Rahul calls, with a note; accept the rest.
+    page.goto("http://localhost:3000/approvals")
+    page.get_by_role("button", name="Modify the suggestion for Exit / Watchlist").click()
+    page.get_by_role("radio", name="Rahul calls within 48 hours").click()
+    page.get_by_placeholder("e.g. I know them — a call works better").fill("I know these accounts")
+    page.wait_for_timeout(600)
+    page.screenshot(path=f"{OUT}/flow-modify.png", full_page=False)
+    page.get_by_role("button", name="Save and accept").click()
+    page.wait_for_timeout(800)
+    page.get_by_role("button", name="Accept all remaining").click()
+    page.wait_for_timeout(800)
+    page.screenshot(path=f"{OUT}/flow-decided.png", full_page=True)
+    s = post("/sim/play", {"speed_seconds_per_day": 1})
     print("waiting:", s["waiting_for_approval"], "playing:", s["playing"])
+    page.goto("http://localhost:3000/simulation")
     page.get_by_text("Results ready · loop closed").first.wait_for(timeout=40000)
     page.wait_for_timeout(1500)
     page.screenshot(path=f"{OUT}/flow-day30.png", full_page=True)

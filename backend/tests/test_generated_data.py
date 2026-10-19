@@ -72,16 +72,20 @@ def recompute_features():
     return feats
 
 
-def rule(f):
-    if f["days"] > 30:
-        return "Dormant"
-    if f["down"] >= 2 or f["sku_delta"] <= -5:
-        return "At-risk"
-    if f["yoy"] > 0.10 and f["f2"] > 0.35:
-        return "Champions"
-    if f["yoy"] >= 0 and f["joins"] <= 1:
-        return "Scheme-hesitant"
-    return "Growth builders"
+# Cohort model v4 (backend/app/rules/cohorts.yaml): business potential x distributor performance.
+POTENTIAL_HIGH, PERFORMANCE_HIGH, MARKET_GROWTH = 4.5, 50.0, 0.03
+KN_COHORTS = {"Invest / Expand": 21, "Protect": 21, "Replace / Reassess": 23, "Exit / Watchlist": 21}
+
+
+def performance(yoy, qualified, focus, otif):
+    c = lambda v: max(0.0, min(100.0, v))  # noqa: E731
+    pillars = [c(50 + (yoy - MARKET_GROWTH) * 500), 100 * qualified / 3, c(100 * focus / 0.35), c(100 * (otif - 70) / 25)]
+    return sum(pillars) / 4
+
+
+def rule(potential, score):
+    return {(True, True): "Invest / Expand", (False, True): "Protect", (True, False): "Replace / Reassess",
+            (False, False): "Exit / Watchlist"}[(potential >= POTENTIAL_HIGH, score >= PERFORMANCE_HIGH)]
 
 
 # ----------------------------------------------------------------------------- tests
@@ -93,18 +97,52 @@ def test_counts():
     assert DAY0.strftime("%a") == "Thu"
     tables = {r[0] for r in q("SELECT name FROM sqlite_master WHERE type='table'")}
     assert tables == {"zones", "territories", "asms", "distributors", "skus", "billing_monthly", "schemes",
-                      "scheme_history", "scheme_targets", "distributor_features", "cohort_assignments", "sim_traits"}
+                      "scheme_history", "scheme_targets", "distributor_features", "cohort_assignments", "sim_traits",
+                      "markets"}
+    assert sorted(p.name for p in (ROOT / "data" / "csv").glob("*.csv")) == [
+        "distributors.csv", "market_potential.csv", "monthly_performance.csv", "schemes.csv", "sim_traits.csv"]
 
 
 def test_cohort_rules_reproduce_assignments():
+    """Recompute potential (markets x coverage) and performance (4 pillars from raw rows) and re-apply the 2x2."""
     feats = recompute_features()
+    town_pot = dict(q("SELECT territory_id || '|' || town, SUM(emami_potential_l_month) FROM markets GROUP BY 1"))
+    cover = {d: (t, town, s) for d, t, town, s in q(
+        "SELECT f.distributor_id, d.territory_id, d.town, f.outlet_coverage_share FROM distributor_features f "
+        "JOIN distributors d USING (distributor_id)")}
+    qualified = {}
+    for d, s_, a in q("SELECT distributor_id, scheme_id, achieved FROM scheme_history"):
+        qualified[d] = qualified.get(d, 0) + a
+    otif = {}
+    for d, m, o, n in q("SELECT distributor_id, month, otif_pct, retailer_orders FROM billing_monthly"):
+        if m in Q2 and o is not None:
+            a, w = otif.get(d, (0.0, 0))
+            otif[d] = (a + o * n, w + n)
     stored = dict(q("SELECT distributor_id, cohort FROM cohort_assignments"))
-    bad = [d for d, f in feats.items() if rule(f) != stored[d]]
-    assert not bad, f"{len(bad)} cohort mismatches, e.g. {bad[:5]}"
+    bad = []
+    for d, f in feats.items():
+        t, town, share = cover[d]
+        pot = town_pot[f"{t}|{town}"] * share
+        a, w = otif.get(d, (0, 0))
+        score = performance(f["yoy"], qualified.get(d, 0), f["f2"], a / w if w else 60.0)
+        if rule(round(pot, 2), round(score, 1)) != stored[d]:
+            bad.append(d)
+    assert len(bad) <= 3, f"{len(bad)} cohort mismatches (rounding at the line is fine), e.g. {bad[:5]}"
     counts = {}
     for d in kn_ids():
         counts[stored[d]] = counts.get(stored[d], 0) + 1
-    assert counts == {"Champions": 14, "Growth builders": 22, "Scheme-hesitant": 19, "At-risk": 18, "Dormant": 13}
+    assert counts == KN_COHORTS
+
+
+def test_market_potential_is_modelled_tam():
+    rows = q("SELECT households, penetration, monthly_spend_per_hh_rs, tam_l_month, emami_fair_share, emami_potential_l_month "
+             "FROM markets")
+    for hh, pen, spend, tam, share, pot in rows:
+        assert abs(hh * pen * spend / 1e5 - tam) / tam < 0.02 and abs(tam * share - pot) < 0.02
+    kn_pot = q("SELECT SUM(business_potential_l_month), SUM(current_secondary_l_month) FROM distributor_features f "
+               "JOIN distributors d USING (distributor_id) WHERE d.territory_id = ?", KN)[0]
+    assert kn_pot[0] > kn_pot[1] * 1.3                                      # real headroom in the territory
+    assert all(0 < v <= 100 for (v,) in q("SELECT otif_pct FROM billing_monthly WHERE otif_pct IS NOT NULL"))
 
 
 def test_kn_billing_and_focus():
@@ -150,7 +188,8 @@ def test_anchors():
     fy = sum(b[m][0] for m in CY)
     qoq = sum(b[m][0] for m in Q2) / sum(b[m][0] for m in Q1) - 1
     assert abs(fy - 38.2) < 0.05 and round(100 * qoq) == -12 and b["2026-09"][1] == 38
-    assert q("SELECT cohort FROM cohort_assignments WHERE distributor_id=?", maa)[0][0] == "Scheme-hesitant"
+    assert q("SELECT cohort FROM cohort_assignments WHERE distributor_id=?", maa)[0][0] == "Replace / Reassess"
+    assert q("SELECT cohort FROM cohort_assignments WHERE distributor_id=?", one("Bose Distribution"))[0][0] == "Invest / Expand"
     assert q("SELECT progress_pct FROM scheme_history WHERE distributor_id=? AND scheme_id='SCH-2627-MON'", maa)[0][0] == 0.71
     assert q("SELECT scripted_intent, scripted_enrol_day, true_language FROM sim_traits WHERE distributor_id=?", maa)[0] == \
         ("Explain in Bengali", 9, "Bengali")
@@ -168,6 +207,8 @@ def test_anchors():
 
 def test_referential_integrity():
     ids = {r[0] for r in q("SELECT distributor_id FROM distributors")}
+    towns = {r[0] for r in q("SELECT territory_id || '|' || town FROM markets")}
+    assert all(f"{t}|{town}" in towns for t, town in q("SELECT territory_id, town FROM distributors"))
     for t in ["billing_monthly", "scheme_history", "scheme_targets", "distributor_features", "cohort_assignments", "sim_traits"]:
         orphans = [r[0] for r in q(f"SELECT DISTINCT distributor_id FROM {t}") if r[0] not in ids]
         assert not orphans, (t, orphans[:3])

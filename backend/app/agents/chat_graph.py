@@ -25,29 +25,29 @@ INTENTS = ["join", "target", "explain", "explain_bengali", "talk_to_asm", "thank
 KEYWORDS = [  # (intent, pattern) — first match wins
     ("explain_bengali", r"bangla|bengali|বাংলা"),
     ("talk_to_asm", r"\basm\b|call|rahul|phone|ফোন|রাহুল|কল|कॉल|फोन|राहुल"),
-    ("join", r"\bjoin\b|enrol|enroll|sign me|যোগ দে|যোগ দি|জয়েন|जुड़|जॉइन|ज्वाइन"),
+    ("join", r"\bjoin\b|enrol|enroll|particip|opt in|count me in|sign me|অংশ নে|শামিল|যোগ দে|যোগ দি|জয়েন|जुड़|जॉइन|ज्वाइन"),
     ("target", r"target|how much|kitna|টার্গেট|কত|टारगेट|कितना"),
     ("explain", r"explain|understand|what is|scheme|slab|বুঝ|স্কিম|समझ|स्कीम"),
     ("thanks", r"thank|thanks|\bok\b|ধন্যবাদ|धन्यवाद|शुक्रिया"),
 ]
 REPLIES = {
-    ("join", "new"): {"English": "Done, {first} — you're in the Festive Scheme. Your October target is {target}; hit it for +3% margin on focus SKUs.",
-                      "Bengali": "হয়ে গেছে, {first} — আপনি ফেস্টিভ স্কিমে যোগ দিয়েছেন। অক্টোবরের টার্গেট {target}; পূরণ করলে ফোকাস SKU-তে +৩% মার্জিন।",
-                      "Hindi": "हो गया, {first} जी — आप फेस्टिव स्कीम से जुड़ गए हैं। अक्टूबर का टारगेट {target}; पूरा करने पर फोकस SKU पर +3% मार्जिन।"},
-    ("join", "already"): {"English": "You're already in, {first} — you joined on {since}. Your target is {target}.",
+    ("join", "new"): {"English": "Done, {first} — you're now participating in the Festive Scheme. Your October target is {target}; hit it for +3% margin on focus SKUs.",
+                      "Bengali": "হয়ে গেছে, {first} — আপনি এখন ফেস্টিভ স্কিমে অংশ নিচ্ছেন। অক্টোবরের টার্গেট {target}; পূরণ করলে ফোকাস SKU-তে +৩% মার্জিন।",
+                      "Hindi": "हो गया, {first} जी — अब आप फेस्टिव स्कीम में शामिल हैं। अक्टूबर का टारगेट {target}; पूरा करने पर फोकस SKU पर +3% मार्जिन।"},
+    ("join", "already"): {"English": "You're already participating, {first} — since {since}. Your target is {target}.",
                           "Bengali": "আপনি আগেই যোগ দিয়েছেন, {first} — {since}। আপনার টার্গেট {target}।",
                           "Hindi": "आप पहले से जुड़े हैं, {first} जी — {since}। आपका टारगेट {target} है।"},
-    ("target", ""): {"English": "Your October target is {target}. Hit it: +3% margin on focus SKUs. Reach {stretch}: +4% and a ₹10,000 bonus.",
-                     "Bengali": "অক্টোবরের টার্গেট {target}। পূরণ করলে ফোকাস SKU-তে +৩% মার্জিন। {stretch} হলে +৪% আর ₹১০,০০০ বোনাস।",
-                     "Hindi": "अक्टूबर का टारगेट {target}। पूरा करने पर फोकस SKU पर +3% मार्जिन। {stretch} पर +4% और ₹10,000 बोनस।"},
-    ("explain", ""): {"English": "In short: buy {target} in October and you earn +3% margin on focus SKUs (about {earn_hit}). Reach {stretch} and it's +4% plus ₹10,000. Reply JOIN to enrol.",
-                      "Bengali": "সংক্ষেপে: অক্টোবরে {target}-এর মাল নিলে ফোকাস SKU-তে +৩% মার্জিন (প্রায় {earn_hit})। {stretch} হলে +৪% আর ₹১০,০০০। যোগ দিতে JOIN লিখুন।",
-                      "Hindi": "संक्षेप में: अक्टूबर में {target} का माल लें तो फोकस SKU पर +3% मार्जिन (लगभग {earn_hit})। {stretch} पर +4% और ₹10,000। जुड़ने के लिए JOIN लिखें।"},
+    ("target", ""): {"English": "Your October target is {target}. Hit it: +3% margin on focus SKUs. Reach {stretch}: +4% and a ₹10,000 credit note.",
+                     "Bengali": "অক্টোবরের টার্গেট {target}। পূরণ করলে ফোকাস SKU-তে +৩% মার্জিন। {stretch} হলে +৪% আর ₹১০,০০০ ক্রেডিট নোট।",
+                     "Hindi": "अक्टूबर का टारगेट {target}। पूरा करने पर फोकस SKU पर +3% मार्जिन। {stretch} पर +4% और ₹10,000 क्रेडिट नोट।"},
+    ("explain", ""): {"English": "In short: buy {target} in October and you earn +3% margin on focus SKUs (about {earn_hit}). Reach {stretch} and it's +4% plus a ₹10,000 credit note. Reply JOIN to participate.",
+                      "Bengali": "সংক্ষেপে: অক্টোবরে {target}-এর মাল নিলে ফোকাস SKU-তে +৩% মার্জিন (প্রায় {earn_hit})। {stretch} হলে +৪% আর ₹১০,০০০। অংশ নিতে JOIN লিখুন।",
+                      "Hindi": "संक्षेप में: अक्टूबर में {target} का माल लें तो फोकस SKU पर +3% मार्जिन (लगभग {earn_hit})। {stretch} पर +4% और ₹10,000। शामिल होने के लिए JOIN लिखें।"},
     ("talk_to_asm", ""): {"English": "Sure — Rahul will call you tomorrow around 11 am.",
                           "Bengali": "অবশ্যই — রাহুল কাল সকাল ১১টা নাগাদ ফোন করবেন।",
                           "Hindi": "ज़रूर — राहुल कल सुबह 11 बजे के आसपास कॉल करेंगे।"},
     ("thanks", ""): {"English": "Happy to help, {first}!", "Bengali": "সাহায্য করতে পেরে ভালো লাগল, {first}!", "Hindi": "मदद करके अच्छा लगा, {first} जी!"},
-    ("other", ""): {"English": "I can help with your target, the scheme, joining, or a call from Rahul. What would you like?",
+    ("other", ""): {"English": "I can help with your target, the scheme, participating, or a call from Rahul. What would you like?",
                     "Bengali": "টার্গেট, স্কিম, যোগ দেওয়া বা রাহুলের ফোন — কোনটা নিয়ে সাহায্য চান?",
                     "Hindi": "टारगेट, स्कीम, जुड़ना या राहुल की कॉल — किसमें मदद चाहिए?"},
 }
@@ -137,7 +137,7 @@ def act(state: ChatState) -> ChatState:
 def _enrol(con: sqlite3.Connection, rid: str, f: Fact, day: float) -> None:
     """Join from the chat, now. Replaces any later join the run had planned; refreshes Day-30 rows if they exist."""
     con.execute("INSERT OR REPLACE INTO enrolments VALUES (?,?,?,?,?)", (rid, f.distributor_id, day, "self", None))
-    emit(con, rid, day, "ENROLLED", "Execution", f"{f.name} joined the scheme from the chat", f.distributor_id)
+    emit(con, rid, day, "ENROLLED", "Execution", f"{f.name} started participating in the scheme from the chat", f.distributor_id)
     if con.execute("SELECT 1 FROM october_sales WHERE run_id = ? AND distributor_id = ?", (rid, f.distributor_id)).fetchone():
         run = con.execute("SELECT seed, scenario FROM loop_runs WHERE run_id = ?", (rid,)).fetchone()
         t = traits.load(con, queries.TERRITORY_ID, run["scenario"])[f.distributor_id]

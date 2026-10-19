@@ -47,6 +47,8 @@ class Member:
     red_flagged: bool
     consecutive_down_months: int
     uplift_l: float                   # predicted if enrolled − baseline
+    high_potential: bool = False      # big market (Invest / Expand, Replace / Reassess)
+    high_performance: bool = False    # performing (Invest / Expand, Protect)
 
 
 @dataclass
@@ -75,7 +77,8 @@ def catalogue() -> list[str]:
 def need(m: Member) -> str:
     """The CTA this member's own answers point to."""
     if not m.replied:
-        return "ASM_CALL" if m.cohort == "At-risk" else "RE_NUDGE"
+        # Big market but under-delivering (Replace / Reassess) is worth a call from Rahul; others get a re-send.
+        return "ASM_CALL" if m.high_potential and not m.high_performance else "RE_NUDGE"
     if m.intent == "Explain in Bengali":
         return "VOICE_EXPLAINER"
     if m.intent == "Explain again":
@@ -89,7 +92,7 @@ def matching(m: Member) -> set[str]:
     """Follow-ups that fit this member's need (SIMULATION_SPEC §3 'CTA effect')."""
     if not m.replied:
         ok = {"RE_NUDGE"}
-        if m.cohort == "At-risk" or m.classification == "A":
+        if not m.high_performance or m.classification == "A":
             ok.add("ASM_CALL")
         return ok
     ok = {
@@ -108,7 +111,7 @@ def _personal(m: Member) -> tuple[str, str | None, str, str, float] | None:
     """(cta, variant, label, reason, confidence) if this member needs individual attention, else None."""
     margin = m.q6 == "Better margin" or m.comment_theme == "margin"
     if m.red_flagged:
-        reason = "Survey flagged · says enrolled but isn't" if m.intent == "I've enrolled" else "Survey flagged"
+        reason = "Survey flagged · says participating but isn't" if m.intent == "I've enrolled" else "Survey flagged"
         return "ASM_CALL", "call", f"{ASM_FIRST_NAME} calls to check", reason, 0.80
     if m.intent == "Talk to my ASM":
         who = "Key account · asked to talk to you" if m.classification == "A" else "Asked to talk to you"
@@ -123,10 +126,10 @@ def _personal(m: Member) -> tuple[str, str | None, str, str, float] | None:
         if n == "EXPLAIN_SIMPLE":
             return n, None, f"Simple card + {ASM_FIRST_NAME} calls", "Key account · asked to explain again", 0.78
         if n == "QUICK_REMINDER":
-            return n, None, "Reminder with their target", "Key account · not joined yet", 0.78
+            return n, None, "Reminder with their target", "Key account · not participating yet", 0.78
         return "ASM_CALL", "call", f"{ASM_FIRST_NAME} calls", "Key account · no reply", 0.74
-    if m.cohort == "At-risk" and not m.replied and m.consecutive_down_months >= 4 and m.classification in ("A", "B"):
-        return "ASM_CALL", "visit", f"{ASM_FIRST_NAME} visits this week", "At-risk · no reply", 0.72
+    if not m.high_performance and not m.replied and m.consecutive_down_months >= 4 and m.classification in ("A", "B"):
+        return "ASM_CALL", "visit", f"{ASM_FIRST_NAME} visits this week", "Under-delivering, sales falling · no reply", 0.72
     return None
 
 
@@ -148,14 +151,15 @@ def _cohort_cta(group: list[Member], order: list[str]) -> tuple[str, int]:
 
 def _cohort_reason(cta: str, n: int, m: int, cohort: str, members: list[Member]) -> str:
     if cta == "QUICK_REMINDER":
-        return f"{n} of {m} said “I'll enrol”"
+        return f"{n} of {m} said “Will participate”"
     if cta in ("VOICE_EXPLAINER", "EXPLAIN_SIMPLE"):
         return f"{n} of {m} asked for it to be explained again"
     if cta == "RE_NUDGE":
         return f"{n} of {m} never replied"
     if cta == "ASM_CALL":
         silent = sum(not x.replied for x in members)
-        return f"Billing falling; {silent} didn't reply" if cohort == "At-risk" else f"{n} of {m} asked for a call"
+        under = members and members[0].high_potential and not members[0].high_performance
+        return f"Big market, under-delivering; {silent} didn't reply" if under else f"{n} of {m} asked for a call"
     return f"{n} of {m} point to this"
 
 

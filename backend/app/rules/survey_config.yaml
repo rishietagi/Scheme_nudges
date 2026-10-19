@@ -1,0 +1,14 @@
+# Survey generator defaults (the Survey generator page edits these; saved edits live in the app's config table and
+# apply from the next cycle). Each cohort gets: must-ask for everyone → must-ask for that cohort → Emami AI fills the
+# rest from survey_bank.yaml, up to `questions_per_survey`. The optional comment always comes last and isn't counted.
+use_case:
+  name: Trade scheme
+  detail: Festive Scheme · Oct 2026
+questions_per_survey: 7          # the business picks 5–10
+min_questions: 5
+max_questions: 10
+must_ask:                        # scope: all | a cohort name. `locked` can't be removed (it drives the next best action)
+  - {id: SCHEME_INTENT, scope: all, locked: true}
+  - {id: DEALER_SCORE, scope: all}
+  - {id: SCHEME_CLEAR, scope: Replace / Reassess}
+comment_last: true

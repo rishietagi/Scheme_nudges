@@ -4,7 +4,7 @@ from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import chat, cohorts, command, distributors, plan, results, sim, survey, territory
+from app.api import chat, cohorts, distributors, plan, results, setup, sim, survey, territory
 from app.config import settings
 from app.models import Health
 
@@ -15,7 +15,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-for r in (sim.router, plan.router, survey.router, command.router, chat.router, results.router, territory.router, cohorts.router, distributors.router):
+for r in (sim.router, plan.router, survey.router, chat.router, results.router, territory.router, cohorts.router, distributors.router, setup.router):
     app.include_router(r)
 
 

@@ -18,7 +18,7 @@ def test_sim_state_after_reset():
     s = client.post("/sim/reset", json={}).json()
     assert s["day_label"] == "Day 0 · Thu 1 Oct" and s["stage"] == "NUDGE" and s["counters"]["sent"] == 0
     assert client.get("/sim/state").json()["run_id"] == s["run_id"]
-    assert [x["label"] for x in s["steps"]] == ["Nudge + survey", "Plan + approve", "Follow-ups sent", "Results + learn"]
+    assert [x["label"] for x in s["steps"]] == ["Cohorts + survey", "Next best actions", "Actions sent", "Results + refresh"]
 
 
 def test_day_labels_have_correct_weekdays():

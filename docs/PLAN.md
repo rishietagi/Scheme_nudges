@@ -1,7 +1,7 @@
 # PLAN — Emami Distributor Experience Platform (POC)
 
-Status (2026-10-15): **Phases 0–6 done; Phase 7 left.** Partner-review changes pending. See `docs/logs.md` for the
-hand-off log (environment, decisions, gotchas, open questions).
+Status (2026-10-19): **Phases 0–6 + §13 partner review + §14 terminology + §15 potential × performance cohorts done; Phase 7 left.** See `docs/logs.md` for the
+hand-off log (environment, decisions, gotchas, open questions). §13 supersedes the 5-cohort design in §0–§12.
 Source of truth: `PROJECT_CONTEXT.md` > renders. Numbers always come from the simulator.
 
 ---
@@ -546,3 +546,211 @@ call/visit 28 %, re-send 9 % · 3 → Bengali, 8 prefer a call, 14 evening, 10 v
     page's intent card leaves red-flagged answers out until kept.
 
 ### Next: Phase 7 — Demo hardening (on Rishi's go).
+
+
+---
+
+## 13. Partner review (2026-10-16) — platform, not a scheme tool
+
+**Feedback** (Ashish, Akshay, Devika): a reusable distributor-experience platform —
+*performance data → configurable cohort rules → cohorts → cohort-specific survey → responses → next best action →
+execution → results → next quarter*. Cohorts come from performance data; the survey **enriches** the cohort and drives
+the NBA, it never redefines it. Trade schemes are one use case (the worked example). A Survey generator with business
+controls (must-ask questions for everyone or one cohort, AI fills the rest, 5–10 questions), built on the KPMG CX survey
+buckets (Onboarding / Engagement / Retention). Quarterly loop with a dealer score.
+
+**Rishi's calls:** 2×2 = momentum × engagement; survey fully live through the loop.
+
+### What changed
+| Area | Change | Files |
+|---|---|---|
+| Cohorts | `cohorts.yaml` v3.0: four cohorts on a 2×2. *Slipping* = down ≥ 2 months in a row, SKU range down ≥ 5/month, or YoY < 0 %. *Engaged* = joined ≥ 2 of the last 3 programmes. No invoice > 30 days → Reassess. Grow with (growing, engaged) · Develop (growing, not engaged) · Invest in (slipping, engaged) · Reassess (slipping, not engaged). KN = **36 / 19 / 9 / 22**. Each has a definition + tag + colour. | `rules/cohorts.yaml`, `engines/cohorts.py`, `rules/loader.py` |
+| Config | Business edits saved in a `config` table (yaml = defaults, Reset to default). Each run snapshots its cohorts (`run_cohorts`) and survey (`run_config`) at Reset, so **edits apply from the next cycle** and pages never shift mid-run. | `db/config_store.py`, `db/queries.py`, `db/schema.sql`, `api/setup.py` |
+| Cohort rules page | `/setup/cohorts`: thresholds in plain words, definitions, live 2×2 preview with "N would move", Save for next cycle. | `components/setup/CohortRulesView.tsx`, `components/cohorts/CohortMatrix.tsx` |
+| Cohorts page | Performance dashboard: the 2×2 (count, definition, FYTD / YoY / focus share, joined bar) + "How cohorts are set". | `components/cohorts/CohortCards.tsx` |
+| Survey bank | 26 questions: the KPMG CX parameters (slides 4–6) per bucket + use cases (schemes, SO/ASM, credit, query resolution, business insights, financial returns, new products, orders & delivery), EN/BN/HI, short labels, per-cohort focus. | `rules/survey_bank.yaml`, `rules/survey_config.yaml` |
+| Survey generator | Per cohort: must-ask (everyone) → must-ask (this cohort) → Emami AI fills to N from the bank (focus use cases first, spread so one use case doesn't dominate). The LLM (`survey_questions`) only rewords the English and writes the "why"; guard + fallback to the bank. Page `/setup/survey`: 5–10 dropdown, must-ask list (bank or own wording, scope), tabs per cohort with Must ask / Emami AI · why tags, Publish for next cycle. | `engines/survey_generator.py`, `llm/prompts/survey_questions.md`, `components/setup/SurveyGeneratorView.tsx` |
+| Loop | The simulator answers each cohort's questionnaire (`answer_model.yaml`, simulator-only, loosely the deck's Emami scores). Responses keep intent / "help most" / comment as columns + `answers_json`. Sanity checks are generic (straight line = 3+ equal ratings; incomplete < 3 answered; contradiction uses scheme clarity if asked). | `simulation/behaviour.py`, `simulation/answer_model.yaml`, `engines/sanity_checks.py`, `agents/nodes.py` |
+| Survey page | What we sent = the run's questionnaire with tags; "How they rate Emami" = dealer score + % 4–5 per bucket + 3 weakest questions (Show all). | `api/survey.py`, `components/survey/*` |
+| Next best action | Approval matrix column renamed; each cohort row shows **Cohort** (2×2 cell) and **Survey** (what the answers said + lowest-rated question). The planner uses the axis flags instead of cohort names (Invest in non-repliers → Rahul calls; others → re-send; slipping + down 4+ months + A/B + no reply → visit). | `api/plan.py`, `engines/cta_planner.py`, `components/approvals/MatrixTable.tsx` |
+| Framing | Stepper: Cohorts + survey · Next best actions · Actions sent · Results + refresh. Command centre: one-line platform strip (Performance data → … → Next quarter). Headers say "Q3 FY27 cycle · use case: Festive Scheme". | `simulation/clock.py`, `components/loop-stepper/PlatformStrip.tsx` |
+| Next quarter | Results page card: cohorts re-set from October (programmes joined incl. Festive, down-month streak Oct vs Sep, dormancy reset on join) + dealer score per cohort; "Apply to the next cycle" also saves the next-cycle cohorts. | `engines/next_cycle.py`, `api/results.py` |
+
+### Calibration (seed 42, typical, approve-all) — unchanged where it matters
+Replied 60 · median 5.6 h · 4 red / 6 amber · intents 27/10/12/7/4 · joined Day 7 = 27 · Day 30 = 51 (59 %) · beat 41.
+Plan: Grow with 14 (quick reminder, 35 %) · Develop 12 (voice note, 70 %) · Individual attention 11 · Invest in 6 (quick
+reminder, 33 %) · Reassess 16 (re-send, 54 %). Personas 4 → Bengali, 5 prefer a call, 14 evening, 13 visit. Dealer
+score 3.8. Next quarter: 17 move (6 Develop → Grow with, incl. Maa Tara). Anchors unchanged (Maa Tara is in Develop).
+
+### Assumptions added
+28. The 2×2 (axes, thresholds, names) is ours until Devika sends the deck with the four cohort definitions. Names are
+    fixed in `cohorts.yaml`; the business edits thresholds and definitions in the app.
+29. The provided Day-0 data is untouched: `cohort_assignments` keeps v2.0 (5 cohorts) for reference; the app computes
+    v3.0 from `distributor_features`.
+30. Saved cohort rules / survey apply from the next Reset. Bumping the runs schema (now v3) rebuilds `runs.sqlite`,
+    which also clears saved Set-up edits.
+31. The scheme quick reply is locked must-ask #1 (it drives the NBA). Defaults: "Overall, how easy is Emami to do
+    business with?" for everyone (the dealer score) and "How clear is the scheme?" for Develop. 7 questions + comment.
+32. Emami AI picks only from the bank; the LLM rewords English and writes the why; BN/HI come from the bank's
+    hand-written translations. Previews use cache/fallback only (no live calls); Reset uses the configured mode.
+33. Ratings come from a simulator-only answer model; only `behaviour.py` reads it (test-enforced).
+34. The CTA catalogue is unchanged; "next best action" is the UI word for it.
+35. The next-quarter refresh changes only programmes joined, the down-month streak and dormancy; YoY and SKU range stay
+    as on Day 0. It is a preview — it doesn't start a new run.
+36. Other use cases (credit, ASM relationship, …) exist as bank questions and survey results; their own journeys are
+    not built (per the meeting: one end-to-end trade-scheme example, the rest at a high level).
+
+### Open questions
+- Devika's deck: the real four cohort definitions / 2×2 axes and the CX survey questions per bucket → swap into
+  `cohorts.yaml` / `survey_bank.yaml`.
+- Renders 1–6 still show five cohorts and the old wording; the app now differs on purpose.
+- Grow with's NBA confidence is low (35 %) because the merged cohort's needs are mixed; fine for the demo, or split the
+  row by intent?
+
+
+---
+
+## 14. FMCG terminology + research-based cohort logic (2026-10-16)
+
+Rishi asked for industry terms in place of app-made ones (e.g. "I'll enrol / I've enrolled") and for the cohort logic
+to follow external research. **Cohort names unchanged.**
+
+### Sources
+- Scheme mechanics (slabs, circulars, credit notes, claim settlement against secondary data):
+  [Grant Thornton — GST on post-sale discounts](https://www.grantthornton.in/globalassets/1.-member-firms/india/assets/pdfs/implications-of-gst-on-post-sale-discounts_jan-2023.pdf),
+  [Terra Insight — retro credit notes](https://www.terra-insight.com/insights/retro-credit-note-fmcg-scheme-quarter-end/),
+  [Kirana Club — distributor terms sheet](https://kirana.club/resources/fmcg-distributor-terms-sheet).
+- Primary / secondary sales, trade schemes:
+  [mAssist](https://blog.massistcrm.com/primary-secondary-tertiary-sales-fmcg),
+  [Rework — trade promotion management](https://resources.rework.com/libraries/fmcg-distribution-growth/trade-promotion-management)
+  (baseline vs uplift, claim settlement TAT).
+- Participation: Emami's own field "6. Participation" (DATA_DICTIONARY);
+  [BI Worldwide/Kantar](https://www.biworldwide.com/en-in/our-work/insights-lab/channel-partner-engagement-research-insights-2023-fmcg/)
+  ("participating outlets"; ~⅓ of FMCG channel partners least engaged).
+- Market benchmark: [NielsenIQ India FMCG Quarterly Snapshot Q1 2026](https://develop.nielseniq.com/wp-content/uploads/sites/4/2026/05/NIQ-India-FMCG-Quarterly-Snapshot_Q126-JFM26-Deck_For-INT-Circulation-Copy-1-1.pdf)
+  — value +3.0 %, volume +0.9 %.
+- Distributor experience: [KPMG India CX Report 2025 — FMCG](https://kpmg.com/in/en/insights/2025/03/india-cx-report-2025/fmcg.html)
+  (32/48/20 % onboarding/engagement/retention; trade scheme reimbursement a hygiene factor; 49 % might switch).
+
+### Terminology (display only — stored values/codes unchanged)
+| Was | Now |
+|---|---|
+| I've enrolled / I'll enrol (quick replies) | **Already participating / Will participate** (BN আমি অংশ নিচ্ছি / অংশ নেব · HI पहले से शामिल हैं / शामिल होंगे) |
+| joined the scheme / Joined · Day 9 / Did they join? | **started participating / Participating · Day 9 / Did they participate?** |
+| Billing FYTD | **Secondary sales FYTD** |
+| predicted sales boost · sales vs normal | **predicted uplift · secondary sales vs baseline** |
+| Hit it / Beat it by 25% · ₹10,000 bonus | **Slab 1 (target) / Slab 2 (target +25%) · ₹10,000 credit note** |
+| incentives are paid · claims paid back | **scheme payouts (credit notes) are settled · claims settled** |
+| No invoice for N days · SKU range shrank | **No billing for N days · lines billed down** |
+| programmes | **schemes** (scheme participation) |
+
+How: `app/content/terms.py` (`intent_label`, `trade_terms`) + an `English:` block in `content/survey_i18n.yaml`. The
+stored intent values stay the five in `rules/survey.yaml` (the provided `sim_traits` and tests use them as codes); APIs
+add `intent_labels` / `asked_labels` maps. The provided scheme text ("Hit target … bonus") is reworded at the API with
+`trade_terms`. `tests/test_terminology.py` scans every page's API response for "enrol", "sales boost" and "bonus".
+
+### Cohort logic
+- Growth floor 0 % → **3 %** = FMCG market value growth (NielsenIQ Q1 2026). Growing slower than the market = losing
+  share = *slipping*. Rules v3.1; the "How cohorts are set" panel and Cohort rules page show the benchmark.
+- Kolkata North: **36 / 15 / 9 / 26** (was 36 / 19 / 9 / 22). Company-wide 37 / 14 / 16 / 33 %.
+- Sarkar & Sons (+2 % YoY), Debnath (+1 %), Ruplekha (0 %) move Develop → Reassess. Every anchor keeps its join day;
+  Sarkar now gets the Reassess re-send rather than the Develop voice note and still participates from Day 10.
+- Seed 42: replied 60 · 27 by Day 7 · **50** by Day 30 (58 %) · 41 beat their predicted uplift · 11 individual attention.
+  Next quarter: 14 change cohort; dealer score 3.8.
+
+### Assumptions added
+37. "Participate" is the scheme verb (industry usage + Emami's "Participation" field). "Joined" remains only in internal
+    names (`joined`, `enrolments` table) and the provided data.
+38. The market benchmark is a single number from the latest NielsenIQ quarter; the business can change it on the
+    Cohort rules page.
+
+
+---
+
+## 15. Potential × performance cohorts, regenerated data, editable next best actions (2026-10-19)
+
+Rishi's changes:
+- **Cohorts page is the landing page.** The Command centre is gone.
+- **Cohorts** = business potential of the geography × distributor performance. Performance = sales growth, scheme
+  qualification, focus-product sales and delivery efficacy.
+- **New names:**
+  - Invest / Expand (high potential, high performance)
+  - Replace / Reassess (high potential, low performance)
+  - Protect (low potential, high performance)
+  - Exit / Watchlist (low potential, low performance)
+- **Regenerated data**, with a modelled TAM per geography, in ≤ 5 CSVs.
+- **Cohort rules page** rebuilt and a 2×2 view on Cohorts.
+- **Next best actions:** accept / modify / reject, no confidence score, a priority ⓘ, and more explainability throughout.
+
+### Data (`scripts/generate_data.py`, seed 42)
+- **New tables and columns:**
+  - `markets`: 118 towns × 5 categories — households × penetration × spend = TAM; × Emami fair share = potential;
+  - distributor catchments: outlet coverage share → business potential and headroom;
+  - delivery columns on `billing_monthly`: retailer orders, OTIF, fill rate, delivery days;
+  - four pillar scores + performance score in `distributor_features`;
+  - v4 cohorts in `cohort_assignments`.
+- **Originals unchanged:** new data uses its own random stream, so billing, schemes, targets and simulator traits are
+  identical. The old cohort names survive only as internal generation "archetypes".
+- **Output:** five CSVs (`distributors`, `monthly_performance`, `schemes`, `market_potential`, `sim_traits`) plus the
+  SQLite. `test_generated_data.py` recomputes TAM, potential, pillars and cohorts from raw rows.
+- **KN potential:** ₹470 L/month modelled vs ₹304 L/month current secondary.
+
+### Model (`rules/cohorts.yaml` v4.0, `engines/cohorts.py`)
+- **Cut-offs:** potential ≥ ₹4.5 L/month; performance ≥ 50.
+- **Pillars:**
+  - growth: 50 = with the market (+3%), +10 pts = 100;
+  - schemes qualified: N of 3;
+  - focus share: vs 35%;
+  - OTIF: 70% → 0, 95% → 100.
+- **Weights:** 25% each.
+- **Editable on Cohort rules:** thresholds, weights (re-scaled to 100), pillar targets and definitions. Live preview
+  (2×2, scatter, who moves) and Save for next cycle.
+- **Kolkata North:** **21 / 23 / 21 / 21**.
+- **Anchors:**
+  - Maa Tara: Replace / Reassess. Barasat, ₹15.7 L potential vs ₹6.0 L sold, score 34.
+  - Bose and Shree Durga: Invest / Expand.
+  - Ganguly and dormant Nabadiganta: Replace / Reassess.
+  - Pal Brothers and Annapurna: Protect.
+  - Ruplekha: Exit / Watchlist.
+- **Planner hooks:** Replace / Reassess non-repliers → Rahul calls; others → re-send. Low performance + down 4+ months
+  + A/B + no reply → visit.
+- **Persona:** ignored the nudge, the reminder and any WhatsApp follow-up (or an unanswered call) → "Skip WhatsApp — Rahul visits".
+
+### Pages
+- **Cohorts** (landing, `/` redirects here):
+  - platform strip;
+  - 2×2 with ⓘ on each axis; cells show potential, current sales, average score and participation;
+  - "How cohorts are set";
+  - **scatter** of all 86 (click → 360);
+  - members table;
+  - 360 with a **scorecard**: potential breakdown with TAM / fair share / coverage / headroom, and four pillar bars with
+    raw values and weights, each with an ⓘ.
+- **Next best actions:**
+  - columns Group · Who · Next best action (Cohort / Survey drivers) · Priority ⓘ · Decision (✓ Accept · ✎ Modify · ✗ Reject);
+  - Modify dialog: catalogue with "for", Emami AI's draft per action, EN / বাংলা message, note;
+  - modified rows show "Emami AI suggested …" and "Restore suggestion";
+  - "Accept all remaining".
+  - Backend: `POST /plan/rows/{id}/modify|restore`, `POST /plan/accept-all`, `GET /plan/catalogue?row_id=`. Modifications
+    survive plan rebuilds. Execution uses the modified action and text. A `MODIFIED` event is logged.
+- **Explainability:**
+  - `InfoTip` component;
+  - every Results card;
+  - Survey: replies, sanity checks, intents, ratings;
+  - Simulation counters;
+  - Next-quarter refresh rules;
+  - priority pill per row ("₹8.5 L at stake · 1st of 5 groups → High").
+
+### Calibration (seed 42, approve-all)
+- Replied 60 · 27 by Day 7 · **50** by Day 30 · 41 beat · 11 individual attention.
+- Personas: 2 → Bengali, 5 prefer a call, 14 evening, 22 visit.
+- Next quarter: 11 move (7 Replace / Reassess → Invest / Expand).
+
+### Assumptions added
+39. TAM, fair shares, populations and outlet densities are synthetic and modelled (no real census or market data). The
+    cut-offs (₹4.5 L, 50) sit near the territory medians so all four cells are meaningful.
+40. Delivery efficacy = OTIF to retailers (Jul–Sep), which the generator writes per month. Real Emami data would come
+    from DMS / SFA.
+41. Next-quarter refresh changes only sales growth (October) and scheme qualification (Festive). Potential and OTIF stay
+    as on Day 0.
+42. Confidence is still computed internally (it's in `cta_plan`) but is no longer shown or used for bulk accept.
+43. The Command centre (and `/command`) is removed; its "Needs you today" and AI summary are not carried over.

@@ -21,11 +21,12 @@ CTA_AT = at(8, 10)            # Day 8 10:00
 LAST = 30.0
 
 WINDOWS = {"Morning": (9, 12), "Afternoon": (12, 16), "Evening": (17, 21)}
-RATING_BASE = {"Champions": 4.4, "Growth builders": 4.0, "Scheme-hesitant": 3.4, "At-risk": 3.0, "Dormant": 2.6}
+RATING_BASE = {"Invest / Expand": 4.2, "Protect": 3.9, "Replace / Reassess": 3.2, "Exit / Watchlist": 2.9}
 Q6_FOR_INTENT = {
-    "Explain in Bengali": {"Scheme-hesitant": "Explanation in Bengali"},
-    "Explain again": {"Scheme-hesitant": "Simpler explanation", "Growth builders": "Clear slab examples"},
-    "Talk to my ASM": {"Growth builders": "ASM visit", "At-risk": "ASM visit", "Dormant": "Call me"},
+    "Explain in Bengali": {"Replace / Reassess": "Explanation in Bengali"},
+    "Explain again": {"Replace / Reassess": "Simpler explanation", "Invest / Expand": "Clear slab examples",
+                      "Protect": "Clear slab examples"},
+    "Talk to my ASM": {"Invest / Expand": "ASM visit", "Replace / Reassess": "ASM visit", "Exit / Watchlist": "Call me"},
 }
 
 # Anchor details the script needs beyond the trait columns (PROJECT_CONTEXT §4).
@@ -77,15 +78,13 @@ class Reply:
     submitted_at: float
     survey_seconds: int
     q1: str | None
-    q2: int | None
-    q3: int | None
-    q4: int | None
-    q5: int | None
+    answers: dict[str, int]                 # rating question id -> 1–5 (only the ones answered)
     q6: str | None
     q7_text: str | None
     q7_language: str | None
     q7_theme: str | None
     after_reminder: bool
+    asked: int = 0                          # questions on their survey (comment excluded)
     duplicate_at: float | None = None
 
 
@@ -135,42 +134,68 @@ def _rate(r: random.Random, mean: float) -> int:
     return int(min(5, max(1, round(mean + r.gauss(0, 0.7)))))
 
 
-def survey(seed: int, did: str, t: dict, cohort: str, q1: str, submitted_at: float, after_reminder: bool) -> Reply:
+@lru_cache
+def answer_model() -> dict:
+    with open(Path(__file__).with_name("answer_model.yaml"), encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def _mean(qid: str, t: dict, cohort: str) -> float:
+    """How this distributor tends to rate a question (spec §3 for the scheme questions, answer_model for the rest)."""
+    if qid == "SCHEME_CLEAR":
+        return 1 + 4 * t["understanding"]
+    if qid == "SCHEME_HELPS":
+        return RATING_BASE.get(cohort, 3.4)
+    if qid == "SCHEME_TARGET":
+        return RATING_BASE.get(cohort, 3.4) - 0.4
+    if qid == "INCENTIVE_PAYOUT":
+        return 3.2
+    m = answer_model()
+    return m["means"].get(qid, m["custom_mean"]) + m["cohort_offset"].get(cohort, 0.0)
+
+
+def survey(seed: int, did: str, t: dict, cohort: str, q1: str, submitted_at: float, after_reminder: bool,
+           questions: list[dict]) -> Reply:
+    """Answers the questionnaire this cohort was sent. `questions` = [{id, type}] in order (comment included)."""
     r = rng(seed, did, "survey")
     extra = ANCHOR_EXTRA.get(did, {})
     flags = (t["scripted_flags"] or "").split("|")
     anchor = is_anchor(t)
     low_effort = ("STRAIGHT_LINE" in flags) if anchor else r.random() < t["low_effort_prob"]
+    ratings = [q["id"] for q in questions if q["type"] == "rating_1_5"]
+    has_choice = any(q["type"] == "single_choice" for q in questions)
+    has_comment = any(q["type"] == "open_text" for q in questions)
+    asked = sum(q["type"] != "open_text" for q in questions)
     options = _q6_options(cohort)
 
     if low_effort:
         same = r.choice([3, 4, 5]) if not anchor else 5
         partial = not anchor and r.random() < 0.3
         seconds = t["scripted_survey_seconds"] or r.randint(8, 28)
-        comment = (r.choice(text_bank()["junk"]), "English", None) if r.random() < 0.35 else None
-        if partial:
-            return Reply(submitted_at, seconds, q1, same, None, None, None, None, *(comment or (None, None, None)), after_reminder)
-        return Reply(submitted_at, seconds, q1, same, same, same, same, r.choice(options), *(comment or (None, None, None)), after_reminder)
+        comment = (r.choice(text_bank()["junk"]), "English", None) if r.random() < 0.35 and has_comment else None
+        if partial:                          # gave up after the first rating
+            return Reply(submitted_at, seconds, q1, {ratings[0]: same} if ratings else {}, None,
+                         *(comment or (None, None, None)), after_reminder, asked)
+        return Reply(submitted_at, seconds, q1, {q: same for q in ratings}, r.choice(options) if has_choice else None,
+                     *(comment or (None, None, None)), after_reminder, asked)
 
-    q2 = _rate(r, 1 + 4 * t["understanding"])
-    q3 = _rate(r, RATING_BASE[cohort])
-    q4 = _rate(r, RATING_BASE[cohort] - 0.4)
-    q5 = _rate(r, 3.2)
-    if q2 == q3 == q4 == q5:                 # careful respondents rarely give one number to everything
-        q5 = max(1, min(5, q5 + r.choice([-1, 1])))
-    if anchor and q1.startswith("Explain"):
-        q2 = 2
-    q6 = extra.get("q6") or Q6_FOR_INTENT.get(q1, {}).get(cohort) or r.choice(options)
+    answers = {q: _rate(r, _mean(q, t, cohort)) for q in ratings}
+    if len(answers) >= 3 and len(set(answers.values())) == 1:   # careful respondents rarely give one number to everything
+        last = ratings[-1]
+        answers[last] = max(1, min(5, answers[last] + r.choice([-1, 1])))
+    if anchor and q1.startswith("Explain") and "SCHEME_CLEAR" in answers:
+        answers["SCHEME_CLEAR"] = 2
+    q6 = (extra.get("q6") or Q6_FOR_INTENT.get(q1, {}).get(cohort) or r.choice(options)) if has_choice else None
     seconds = t["scripted_survey_seconds"] or int(round(110 * r.lognormvariate(0, 0.35)))
-    if "comment" in extra:
+    if "comment" in extra and has_comment:
         text, lang, theme = extra["comment"]
-    elif not anchor and r.random() < 0.35:
-        theme = _theme(r, q1, q4, q5)
+    elif not anchor and has_comment and r.random() < 0.35:
+        theme = _theme(r, q1, answers.get("SCHEME_TARGET", 3), answers.get("INCENTIVE_PAYOUT", 3))
         lang = "Bengali" if t["true_language"] == "Bengali" else "English"
         text = r.choice(text_bank()["themes"][theme]["bn" if lang == "Bengali" else "en"])
     else:
         text = lang = theme = None
-    return Reply(submitted_at, seconds, q1, q2, q3, q4, q5, q6, text, lang, theme, after_reminder)
+    return Reply(submitted_at, seconds, q1, answers, q6, text, lang, theme, after_reminder, asked)
 
 
 def _q6_options(cohort: str) -> list[str]:
@@ -180,12 +205,12 @@ def _q6_options(cohort: str) -> list[str]:
     return q6["options_by_cohort"][cohort]
 
 
-def _theme(r: random.Random, q1: str, q4: int, q5: int) -> str:
+def _theme(r: random.Random, q1: str, target: int, payouts: int) -> str:
     if q1.startswith("Explain") and r.random() < 0.8:
         return "explain_simple"
-    if q4 <= 2:
+    if target <= 2:
         return "target_high"
-    if q5 <= 2:
+    if payouts <= 2:
         return "payouts_slow"
     if q1 == "Talk to my ASM" and r.random() < 0.6:
         return "margin"
@@ -193,13 +218,13 @@ def _theme(r: random.Random, q1: str, q4: int, q5: int) -> str:
     return r.choices(themes, weights)[0]
 
 
-def day0(seed: int, did: str, t: dict, cohort: str) -> Day0:
+def day0(seed: int, did: str, t: dict, cohort: str, questions: list[dict]) -> Day0:
     """Everything this distributor does between the nudge and the Day-7 plan."""
     when, after_reminder = reply_time(seed, did, t)
     if when is None:
         return Day0(reply=None)
     q1 = intent(seed, did, t)
-    reply = survey(seed, did, t, cohort, q1, when, after_reminder)
+    reply = survey(seed, did, t, cohort, q1, when, after_reminder, questions)
     r = rng(seed, did, "pre-cta")
     if not is_anchor(t) and r.random() < 0.02:
         reply.duplicate_at = when + r.uniform(3, 30) / 1440

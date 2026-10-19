@@ -1,5 +1,6 @@
 """Hidden truth stays hidden: no sim_traits column or value ever leaves the simulator."""
 import json
+from urllib.parse import quote
 import re
 from pathlib import Path
 
@@ -34,8 +35,9 @@ def responses() -> list:
     client.post("/sim/reset", json={"autopilot": True})
     client.post("/sim/advance", json={"to_day": 30})
     paths = ["/health", "/sim/state", "/sim/events?limit=1000", "/sim/scenarios", "/territory/summary", "/cohorts", "/distributors"]
-    paths += [f"/cohorts/{c}/distributors" for c in ["Champions", "Growth builders", "Scheme-hesitant", "At-risk", "Dormant"]]
+    paths += [f"/cohorts/{quote(c, safe='')}/distributors" for c in ["Invest / Expand", "Replace / Reassess", "Protect", "Exit / Watchlist"]]
     paths += [f"/distributors/DST-{i:04d}" for i in range(1, 12)]
+    paths += ["/config/cohorts", "/config/survey", "/survey/results", "/plan", "/results"]
     return [client.get(p).json() for p in paths]
 
 
@@ -46,6 +48,7 @@ def test_no_trait_column_in_any_response():
         assert not (all_keys(body) & cols)
         text = json.dumps(body, ensure_ascii=False)
         assert "scripted" not in text and "sim_traits" not in text
+        assert "cohort_offset" not in text and "custom_mean" not in text          # simulator-only answer model
 
 
 def test_no_trait_notes_in_any_response():
@@ -56,6 +59,11 @@ def test_no_trait_notes_in_any_response():
         con.close()
     blob = json.dumps(responses(), ensure_ascii=False)
     assert notes and not any(n in blob for n in notes)
+
+
+def test_only_the_simulator_reads_the_answer_model():
+    readers = [p for p in APP.rglob("*.py") if "answer_model" in p.read_text(encoding="utf-8")]
+    assert [p.name for p in readers] == ["behaviour.py"], readers
 
 
 def test_only_the_simulator_reads_sim_traits():

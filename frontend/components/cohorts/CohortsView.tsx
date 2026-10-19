@@ -2,12 +2,13 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { api, type CohortName } from "@/lib/api";
-import { isCohort } from "@/lib/cohorts";
+import { DEFAULT_COHORT, isCohort } from "@/lib/cohorts";
 import { useViewDay } from "@/lib/sim";
 import { useApi } from "@/lib/useApi";
 import { dayLabel } from "@/lib/format";
 import { PageHeader } from "@/components/shell/PageHeader";
 import { Placeholder } from "@/components/cards/Placeholder";
+import { PlatformStrip } from "@/components/loop-stepper/PlatformStrip";
 import { CohortCards } from "./CohortCards";
 import { Distributor360 } from "./Distributor360";
 import { MembersTable } from "./MembersTable";
@@ -19,7 +20,7 @@ export function CohortsView() {
   const pathname = usePathname();
 
   const raw = params.get("cohort");
-  const cohort: CohortName = isCohort(raw) ? raw : "Scheme-hesitant";
+  const cohort: CohortName = isCohort(raw) ? raw : DEFAULT_COHORT;
 
   const dayKey = day.toFixed(2);
   const cycle = day >= 0.42;
@@ -43,11 +44,19 @@ export function CohortsView() {
   return (
     <>
       <PageHeader
-        eyebrow={`Cohorts are set on Day 0 · rules ${cohorts.data?.rule_version ?? "v2.0"}${cycle ? ` · showing ${dayLabel(day).split(" · ")[0]}` : ""}`}
-        title="Five cohorts, one follow-up each"
+        eyebrow={`Q3 FY27 cycle · cohorts set on Day 0 from business potential and performance · rules ${cohorts.data?.rule_version ?? "v4.0"}${cycle ? ` · showing ${dayLabel(day).split(" · ")[0]}` : ""}`}
+        title="Where to invest, fix, protect or exit"
       />
+      <PlatformStrip day={day} />
       {cohorts.data ? (
-        <CohortCards cohorts={cohorts.data.cohorts} selected={cohort} cycle={cycle} onSelect={(c) => update({ cohort: c, id: null })} />
+        <CohortCards
+          data={cohorts.data}
+          selected={cohort}
+          cycle={cycle}
+          onSelect={(c) => update({ cohort: c, id: null })}
+          selectedId={selectedId}
+          onPick={(pt) => update({ cohort: pt.cohort, id: pt.distributor_id })}
+        />
       ) : (
         <Placeholder title={cohorts.error ? "Can't reach the simulator" : "Loading cohorts"} phase={1} lines={2} />
       )}

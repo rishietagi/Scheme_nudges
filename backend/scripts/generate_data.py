@@ -4,9 +4,21 @@ Synthetic data generator — Emami Distributor Experience Platform (POC), closed
 
 Deterministic (SEED=42). Standard library only. Writes the WORLD AS IT IS ON DAY 0 (Thu 1 Oct 2026), the day the
 Festive Scheme goes live and the nudge + survey is sent:
-  backend/data/emami_dx.sqlite     all tables
-  backend/data/csv/<table>.csv     one CSV per table
+  backend/data/emami_dx.sqlite     all tables (tidy, for the app)
+  backend/data/csv/                FIVE combined CSVs for people:
+      distributors.csv             one row per distributor: hierarchy, profile, market, Day-0 features,
+                                   performance pillars + score, business potential, cohort, Festive target
+      monthly_performance.csv      distributor x month: primary, secondary, lines, focus sales, retailer
+                                   orders, OTIF, fill rate, delivery days
+      schemes.csv                  scheme details x each distributor's participation and achievement
+      market_potential.csv         town x category: households, outlets, modelled TAM, Emami fair share
+      sim_traits.csv               hidden simulator truth (never shown in the app)
   backend/data/summary.json        headline metrics the UI and tests rely on
+
+Cohorts (rules v4.0, mirrored from backend/app/rules/cohorts.yaml) are a 2x2 of BUSINESS POTENTIAL in the
+distributor's geography (modelled TAM x Emami fair share x the distributor's outlet coverage) vs DISTRIBUTOR
+PERFORMANCE (sales growth vs market, scheme qualification, focus-product share, delivery OTIF).
+The five generation "archetypes" below (Champions ... Dormant) only shape the synthetic behaviour; they are not cohorts.
 
 It does NOT generate survey answers, CTAs, enrolments or Day-30 results: the loop SIMULATOR produces those at runtime
 from the hidden `sim_traits` table (see docs/SIMULATION_SPEC.md).
@@ -32,7 +44,7 @@ SEED = 42
 DAY0 = date(2026, 10, 1)                 # Thursday · Festive Scheme live, nudge + survey sent
 DEMO_TODAY = DAY0                         # kept for backwards compatibility
 DATA_AS_OF = date(2026, 9, 30)           # monthly billing is complete through Sep 2026
-RULE_VERSION = "v2.0"
+RULE_VERSION = "v4.0"
 KN = "TER-01"                             # Kolkata North
 
 # --------------------------------------------------------------------------- calendar
@@ -55,7 +67,54 @@ SEASON = {4: 1.05, 5: 1.12, 6: 1.05, 7: 0.92, 8: 0.95, 9: 1.02,
 def mnum(ym: str) -> int:
     return int(ym[5:])
 
-COHORTS = ["Champions", "Growth builders", "Scheme-hesitant", "At-risk", "Dormant"]
+COHORTS = ["Champions", "Growth builders", "Scheme-hesitant", "At-risk", "Dormant"]   # generation archetypes only
+
+# --------------------------------------------------------------------------- cohort model v4 (mirror of cohorts.yaml)
+V4_COHORTS = ["Invest / Expand", "Protect", "Replace / Reassess", "Exit / Watchlist"]
+V4 = dict(potential_high=4.5,            # Rs lakh / month of Emami potential in the distributor's catchment
+          performance_high=50.0,         # composite performance score 0-100
+          weights=dict(growth=25, schemes=25, focus=25, delivery=25),
+          market_growth=0.03,            # NielsenIQ India FMCG value growth, Q1 2026
+          focus_target=0.35, otif_floor=70.0, otif_ceiling=95.0)
+
+
+def pillar_scores(yoy: float, achieved: int, focus: float, otif: float, p: dict = V4) -> dict:
+    """0-100 per pillar. 50 on growth = growing with the market; 100 = 10 pts ahead or more."""
+    clamp = lambda v: max(0.0, min(100.0, v))  # noqa: E731
+    return dict(
+        growth=round(clamp(50 + (yoy - p["market_growth"]) * 500), 1),
+        schemes=round(100 * achieved / 3, 1),
+        focus=round(clamp(100 * focus / p["focus_target"]), 1),
+        delivery=round(clamp(100 * (otif - p["otif_floor"]) / (p["otif_ceiling"] - p["otif_floor"])), 1),
+    )
+
+
+def v4_cohort(potential_l: float, score: float, p: dict = V4) -> str:
+    hi_pot, hi_perf = potential_l >= p["potential_high"], score >= p["performance_high"]
+    return {(True, True): "Invest / Expand", (False, True): "Protect",
+            (True, False): "Replace / Reassess", (False, False): "Exit / Watchlist"}[(hi_pot, hi_perf)]
+
+# --------------------------------------------------------------------------- market potential (modelled TAM)
+# Synthetic, modelled numbers — not census data. Population per town; Kolkata North sized by hand so the story holds.
+KN_TOWN_POP = {
+    "Barasat": 290_000, "Dum Dum": 230_000, "Shyambazar": 190_000, "Baranagar": 250_000, "Sodepur": 170_000,
+    "Madhyamgram": 200_000, "Panihati": 120_000, "Belgharia": 105_000, "Khardah": 95_000, "Titagarh": 115_000,
+    "Barrackpore": 150_000, "Lake Town": 120_000, "Kestopur": 85_000, "Baguiati": 95_000, "Birati": 65_000,
+    "Agarpara": 80_000, "Bagbazar": 55_000, "Cossipore": 70_000, "Sinthee": 50_000, "Ultadanga": 75_000,
+    "Dunlop": 55_000, "Naihati": 210_000, "Shyamnagar": 90_000,
+}
+HH_SIZE = 4.3
+# category: (penetration, monthly spend per buying household Rs, Emami fair share)
+CATEGORIES = {
+    "Hair oils & hair care": (0.86, 160, 0.33),
+    "Pain balms & rubs": (0.55, 40, 0.40),
+    "Antiseptic & winter care": (0.60, 45, 0.30),
+    "Skin care & men's grooming": (0.48, 140, 0.15),
+    "Ayurvedic & OTC health": (0.40, 70, 0.12),
+}
+ZONE_SPEND = {"Kolkata": 1.00, "South Bengal": 0.78, "North Bengal": 0.72}
+OUTLETS_PER_10K = 46                     # kirana / chemist / cosmetic outlets per 10,000 people
+NETWORK_COVERAGE = 0.90                  # share of a town's outlets reached by Emami's distributors
 
 # --------------------------------------------------------------------------- geography
 TERRITORIES = [
@@ -273,8 +332,11 @@ class Gen:
         self.used_names: set[str] = set(ANCHORS)
         self.t: dict[str, list[dict]] = {k: [] for k in [
             "zones", "territories", "asms", "distributors", "skus", "billing_monthly", "schemes",
-            "scheme_history", "scheme_targets", "distributor_features", "cohort_assignments", "sim_traits"]}
+            "scheme_history", "scheme_targets", "distributor_features", "cohort_assignments", "sim_traits",
+            "markets"]}
         self.d: dict[str, dict] = {}       # distributor id -> working record
+        # New data (markets, delivery) uses its own stream so the original tables stay byte-identical.
+        self.mrng = random.Random(f"{seed}:markets")
 
     # ------------------------------------------------------------------ names
     def person(self) -> str:
@@ -785,9 +847,6 @@ class Gen:
             if c != x["cohort"]:
                 mism.append((i, x["rec"]["territory_id"], x["cohort"], c))
                 x["cohort"] = c                       # rules are the source of truth outside KN
-            self.t["cohort_assignments"].append(dict(distributor_id=i, as_of=DAY0.isoformat(),
-                                                     rule_version=RULE_VERSION, cohort=c,
-                                                     reasons=" · ".join(reasons)))
         kn_mism = [m for m in mism if m[1] == KN]
         assert not kn_mism, f"Kolkata North cohort mismatches: {kn_mism[:5]}"
         for tid, *_ in TERRITORIES:
@@ -797,6 +856,105 @@ class Gen:
                 q = k / len(ids)
                 self.d[i]["rec"]["classification"] = "A" if q < 0.2 else ("B" if q < 0.6 else "C")
         return mism
+
+    # ------------------------------------------------------------------ markets + catchment potential
+    def markets(self):
+        """Modelled TAM per town x category, then each distributor's share of its town's outlets."""
+        r = self.mrng
+        zone_of = {t[0]: t[2] for t in TERRITORIES}
+        for tid, tname, zone, asm, n, towns in TERRITORIES:
+            for k, town in enumerate(towns):
+                if tid == KN:
+                    pop = KN_TOWN_POP[town]
+                else:
+                    big = k == 0 or r.random() < 0.25
+                    pop = int(round(r.uniform(180_000, 520_000) if big else r.uniform(35_000, 160_000), -3))
+                hh = int(pop / HH_SIZE)
+                outlets = int(pop / 10_000 * OUTLETS_PER_10K)
+                spend = ZONE_SPEND[zone] * (1.0 if tid == KN else r.uniform(0.9, 1.1))
+                for cat, (pen, rs, share) in CATEGORIES.items():
+                    tam_l = hh * pen * rs * spend / 1e5                 # Rs lakh per month
+                    self.t["markets"].append(dict(
+                        territory_id=tid, town=town, zone=zone, population=pop, households=hh, retail_outlets=outlets,
+                        category=cat, penetration=pen, monthly_spend_per_hh_rs=round(rs * spend),
+                        tam_l_month=r2(tam_l), emami_fair_share=share, emami_potential_l_month=r2(tam_l * share),
+                        source="Synthetic, modelled: households x penetration x spend; fair share = Emami target share"))
+        town_pot = {}
+        for m in self.t["markets"]:
+            key = (m["territory_id"], m["town"])
+            town_pot[key] = town_pot.get(key, 0) + m["emami_potential_l_month"]
+        town_outlets = {(m["territory_id"], m["town"]): m["retail_outlets"] for m in self.t["markets"]}
+        # Distributors in a town split its outlets: bigger, older distributors cover more, but not proportionally.
+        by_town: dict[tuple, list[str]] = {}
+        for i, x in self.d.items():
+            by_town.setdefault((x["rec"]["territory_id"], x["rec"]["town"]), []).append(i)
+        for key, ids in by_town.items():
+            w = {i: max(0.2, self.d[i]["f"]["secondary_fytd_l"]) ** 0.45 * r.uniform(0.7, 1.3) for i in ids}
+            tot = sum(w.values())
+            for i in ids:
+                share = NETWORK_COVERAGE * w[i] / tot
+                pot = town_pot[key] * share
+                cur = self.d[i]["f"]["q2_secondary_l"] / 3
+                self.d[i]["f"].update(
+                    town_emami_potential_l_month=r2(town_pot[key]),
+                    outlets_covered=int(round(town_outlets[key] * share)),
+                    outlet_coverage_share=round(share, 4),
+                    business_potential_l_month=r2(pot),
+                    current_secondary_l_month=r2(cur),
+                    headroom_l_month=r2(pot - cur))
+        for k in set(by_town) - set(town_pot):
+            pass
+
+    # ------------------------------------------------------------------ delivery to retailers (per month)
+    def delivery(self):
+        r = self.mrng
+        base = {"Champions": 92.0, "Growth builders": 88.5, "Scheme-hesitant": 82.0, "At-risk": 77.0, "Dormant": 71.0}
+        anchor_otif = {"Maa Tara Distributors": 79.0, "Bose Distribution": 94.0, "Shree Durga Agencies": 90.5,
+                       "Ganguly Traders": 74.0, "Pal Brothers": 86.0, "Nabadiganta Enterprises": 68.0}
+        rows = {}
+        for row in self.t["billing_monthly"]:
+            rows.setdefault(row["distributor_id"], []).append(row)
+        for i, x in self.d.items():
+            mean = anchor_otif.get(x["anchor"], base[x["cohort"]] + r.uniform(-4, 4))
+            for row in rows[i]:
+                s = row["secondary_value_l"]
+                if s <= 0:
+                    row.update(retailer_orders=0, otif_pct=None, fill_rate_pct=None, avg_delivery_days=None)
+                    continue
+                otif = max(55.0, min(99.0, mean + r.gauss(0, 2.2)))
+                row.update(retailer_orders=max(1, round(s * 1e5 / r.uniform(3800, 5200))),
+                           otif_pct=round(otif, 1),
+                           fill_rate_pct=round(min(99.5, otif + r.uniform(2, 6)), 1),
+                           avg_delivery_days=round(1.0 + (96 - otif) / 11 + r.uniform(-0.2, 0.2), 1))
+
+    # ------------------------------------------------------------------ performance pillars + v4 cohort
+    def performance(self):
+        rows = {}
+        for row in self.t["billing_monthly"]:
+            rows.setdefault(row["distributor_id"], {})[row["month"]] = row
+        achieved = {}
+        for h in self.t["scheme_history"]:
+            achieved[h["distributor_id"]] = achieved.get(h["distributor_id"], 0) + h["achieved"]
+        self.t["cohort_assignments"] = []
+        for i, x in self.d.items():
+            f = x["f"]
+            q2 = [rows[i][m] for m in Q2]
+            vol = sum(rr["retailer_orders"] for rr in q2)
+            otif = (sum(rr["otif_pct"] * rr["retailer_orders"] for rr in q2 if rr["otif_pct"] is not None) / vol) if vol else V4["otif_floor"] - 10
+            f.update(schemes_qualified_last3=achieved.get(i, 0), otif_q2_pct=round(otif, 1))
+            sc = pillar_scores(f["yoy_growth"], f["schemes_qualified_last3"], f["focus_share_q2"], f["otif_q2_pct"])
+            w = V4["weights"]
+            score = round(sum(sc[k] * w[k] for k in w) / sum(w.values()), 1)
+            f.update(growth_score=sc["growth"], schemes_score=sc["schemes"], focus_score=sc["focus"],
+                     delivery_score=sc["delivery"], performance_score=score)
+            c = v4_cohort(f["business_potential_l_month"], score)
+            x["v4"] = c
+            reasons = [f"{'High' if f['business_potential_l_month'] >= V4['potential_high'] else 'Low'} potential: "
+                       f"Rs {f['business_potential_l_month']:.1f} L/month in {x['rec']['town']}",
+                       f"Performance {score:.0f}/100 (growth {sc['growth']:.0f} · schemes {sc['schemes']:.0f} · "
+                       f"focus {sc['focus']:.0f} · delivery {sc['delivery']:.0f})"]
+            self.t["cohort_assignments"].append(dict(distributor_id=i, as_of=DAY0.isoformat(), rule_version=RULE_VERSION,
+                                                     cohort=c, reasons=" · ".join(reasons)))
 
     # ------------------------------------------------------------------ summary
     def summary(self, mism) -> dict:
@@ -814,7 +972,9 @@ class Gen:
         for i in kn:
             a = self.d[i]["anchor"]
             if a:
-                anchors[a] = dict(distributor_id=i, cohort=self.d[i]["cohort"], classification=self.d[i]["rec"]["classification"],
+                anchors[a] = dict(distributor_id=i, cohort=self.d[i]["v4"], archetype=self.d[i]["cohort"],
+                                  business_potential_l_month=F[i]["business_potential_l_month"],
+                                  performance_score=F[i]["performance_score"], classification=self.d[i]["rec"]["classification"],
                                   fytd_l=F[i]["secondary_fytd_l"], qoq=F[i]["qoq_growth"], yoy=F[i]["yoy_growth"],
                                   unique_skus_sep=F[i]["unique_skus_sep"], focus_share_q2=F[i]["focus_share_q2"],
                                   past_schemes_joined=F[i]["past_schemes_joined"],
@@ -829,10 +989,15 @@ class Gen:
             "day30": (DAY0 + timedelta(days=30)).isoformat(), "data_as_of": DATA_AS_OF.isoformat(),
             "current_scheme": CURRENT_SCHEME,
             "company": {"distributors": len(self.d), "territories": len(TERRITORIES), "active_skus": 112, "focus_skus": 20,
-                        "cohorts": {c: sum(1 for x in self.d.values() if x["cohort"] == c) for c in COHORTS},
+                        "archetypes": {c: sum(1 for x in self.d.values() if x["cohort"] == c) for c in COHORTS},
+                        "cohorts": {c: sum(1 for x in self.d.values() if x["v4"] == c) for c in V4_COHORTS},
                         "rule_mismatches_outside_kn_fixed_by_rules": len(mism)},
             "kolkata_north": {
-                "asm": "Rahul Sen", "distributors": len(kn), "cohorts": cohorts,
+                "asm": "Rahul Sen", "distributors": len(kn), "archetypes": cohorts,
+                "cohorts": {c: sum(1 for i in kn if self.d[i]["v4"] == c) for c in V4_COHORTS},
+                "business_potential_l_month": round(sum(F[i]["business_potential_l_month"] for i in kn), 1),
+                "current_secondary_l_month": round(sum(F[i]["current_secondary_l_month"] for i in kn), 1),
+                "avg_performance_score": round(sum(F[i]["performance_score"] for i in kn) / len(kn), 1),
                 "secondary_fytd_l": round(fy, 1), "secondary_fytd_display": fmt_inr_l(fy),
                 "yoy_growth_pct": round(100 * (fy / ly - 1), 1), "focus_share_q2_pct": round(100 * f2, 1),
                 "joined_last_scheme_monsoon": sum(mon.values()),
@@ -858,6 +1023,9 @@ class Gen:
         mism = self.cohorts()
         self.targets()
         self.traits()
+        self.delivery()
+        self.markets()
+        self.performance()
         return self.summary(mism)
 
 
@@ -890,10 +1058,6 @@ def write(gen: Gen, summary: dict, out: Path):
         con.execute(f'CREATE TABLE "{name}" ({", ".join(f"{c} {typ(c)}" for c in cols)})')
         con.executemany(f'INSERT INTO "{name}" VALUES ({",".join("?" * len(cols))})',
                         [[row.get(c) for c in cols] for row in rows])
-        with open(out / "csv" / f"{name}.csv", "w", newline="", encoding="utf-8") as fh:
-            w = csv.DictWriter(fh, fieldnames=cols)
-            w.writeheader()
-            w.writerows(rows)
     con.executescript("""
         CREATE INDEX ix_bill ON billing_monthly(distributor_id, month);
         CREATE INDEX ix_dist_ter ON distributors(territory_id);
@@ -902,7 +1066,53 @@ def write(gen: Gen, summary: dict, out: Path):
     """)
     con.commit()
     con.close()
+    write_csvs(gen, out / "csv")
     (out / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def _csv(path: Path, rows: list[dict]):
+    cols: list[str] = []
+    for row in rows:
+        for k in row:
+            if k not in cols:
+                cols.append(k)
+    with open(path, "w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=cols)
+        w.writeheader()
+        w.writerows(rows)
+
+
+def write_csvs(gen: Gen, d: Path):
+    """Five combined CSVs (people read these; the app reads the SQLite)."""
+    for old in d.glob("*.csv"):
+        old.unlink()
+    T = gen.t
+    zone = {z["zone_id"]: z["name"] for z in T["zones"]}
+    ter = {t["territory_id"]: t for t in T["territories"]}
+    asm = {a["asm_id"]: a["name"] for a in T["asms"]}
+    feat = {f["distributor_id"]: f for f in T["distributor_features"]}
+    tgt = {t["distributor_id"]: t for t in T["scheme_targets"]}
+    coh = {c["distributor_id"]: c for c in T["cohort_assignments"]}
+    rows = []
+    for x in T["distributors"]:
+        i = x["distributor_id"]
+        t = ter[x["territory_id"]]
+        f = {k: v for k, v in feat[i].items() if k not in ("distributor_id", "as_of")}
+        g = {k: v for k, v in tgt[i].items() if k not in ("distributor_id",)}
+        rows.append({"distributor_id": i, "zone": zone[t["zone_id"]], "territory_id": x["territory_id"],
+                     "territory": t["name"], "asm": asm[x["asm_id"]],
+                     **{k: v for k, v in x.items() if k not in ("distributor_id", "territory_id", "asm_id")},
+                     **f, "cohort": coh[i]["cohort"], "cohort_reasons": coh[i]["reasons"],
+                     "rule_version": coh[i]["rule_version"], **{f"festive_{k}": v for k, v in g.items()}})
+    _csv(d / "distributors.csv", rows)
+    _csv(d / "monthly_performance.csv", T["billing_monthly"])
+    sch = {s["scheme_id"]: s for s in T["schemes"]}
+    _csv(d / "schemes.csv", [{**{f"scheme_{k}" if k != "scheme_id" else k: v for k, v in sch[h["scheme_id"]].items()},
+                              "distributor_id": h["distributor_id"], "participated": h["enrolled"],
+                              "progress_pct": h["progress_pct"], "qualified": h["achieved"]}
+                             for h in T["scheme_history"]])
+    _csv(d / "market_potential.csv", T["markets"])
+    _csv(d / "sim_traits.csv", T["sim_traits"])
 
 
 def main():
@@ -917,6 +1127,8 @@ def main():
     kn = summary["kolkata_north"]
     print(f"Wrote {args.out / 'emami_dx.sqlite'}")
     print(f"  distributors: {summary['company']['distributors']}  | Kolkata North: {kn['distributors']}  cohorts {kn['cohorts']}")
+    print(f"  KN potential Rs {kn['business_potential_l_month']} L/month vs current Rs {kn['current_secondary_l_month']} L/month"
+          f" · avg performance {kn['avg_performance_score']}")
     print(f"  FYTD secondary {kn['secondary_fytd_display']} ({kn['yoy_growth_pct']:+}% YoY) · focus share {kn['focus_share_q2_pct']}%")
     print(f"  joined last scheme (Monsoon) {kn['joined_last_scheme_monsoon']} ({kn['joined_last_scheme_pct']}%)")
     print(f"  simulator expected response rate {kn['sim_expected_response_rate_pct']}%")

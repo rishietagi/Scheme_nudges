@@ -6,17 +6,27 @@
 
 ---
 
-## Where things stand (2026-10-15, end of session 1)
+## Where things stand (2026-10-19, end of session 3 — see the session-3 entry below; §15 in PLAN)
 
-- **Phases 0–6 done** (scaffold · data + cohorts · simulator + Simulation tab · Survey · Approval matrix ·
-  Distributor view + Command centre + 360 · Day-30 results + persona learning). Only **Phase 7 (demo hardening)** is left.
-- `python tasks.py test` → **59 backend tests pass**, frontend lint + build clean. All 7 pages checked in a real browser
-  against renders 01–06, no console errors.
-- Rishi has looked at the app and **will bring changes from a partner review** — start the next session by asking for
-  that list. Don't start Phase 7 until he says.
-- App servers are **stopped**. Start with `python tasks.py dev` → http://localhost:3000 (API :8000).
+- **Phases 0–6 done, plus the partner-review changes** (PLAN.md §13). The demo now shows four cohorts on a configurable
+  performance 2×2: Grow with · Develop · Invest in · Reassess (KN 36 / 15 / 9 / 26 after the §14 market benchmark). It also has two Set-up pages
+  (Cohort rules, Survey generator), a generated per-cohort survey that the simulated loop answers, "next best action"
+  framing with cohort + survey drivers, and a Next-quarter card on Results.
+- `python tasks.py test` → **66 backend tests pass**, lint + build clean (10 routes). Every page checked in a real
+  browser, and `presenter_flow.py` passes with no console errors. The renders still show the old 5 cohorts; the app now
+  differs from them on purpose.
+- Only **Phase 7 (demo hardening)** is left. Wait for Rishi's go, and for Devika's deck (the real cohort definitions
+  and CX questions).
+- App servers are **stopped** (end of session 2). Start with `python tasks.py dev`. If you edit backend code while a
+  page holds the SSE stream open, restart the API by port, because `--reload` hangs.
+- Open questions from session 2b, both offered and waiting on Rishi:
+  - Priority could become expected uplift (₹ at stake × confidence) or use fixed ₹ thresholds instead of thirds.
+  - Confidence could apply the sanity-check factor only to members who replied.
+  - Other use cases: group survey results by use case, and add non-scheme next best actions.
 
 ### Open questions (waiting on Rishi / partner review)
+0. **Devika's deck**: the real four cohort definitions / 2×2 and the CX questions per bucket → edit `cohorts.yaml` and
+   `survey_bank.yaml` (both are config; no code change expected).
 1. **Chat "JOIN"** — typing "JOIN" / "আমি যোগ দিতে চাই" in the Distributor view enrols the distributor *at that moment*
    (replaces any later join the run planned; refreshes their Day-30 sales row). Keep, or make chat replies demo-only?
    (PLAN assumption 23.) Untouched until he decides.
@@ -32,7 +42,7 @@
 
 | Thing | Value |
 |---|---|
-| Repo | `C:\Users\rishi\Desktop\distributor` — **not a git repo; never run git** (Rishi does git himself) |
+| Repo | `C:\Users\rishi\Desktop\distributor` — a git repo, but **never run git** (Rishi does git himself) |
 | Python | conda env **`pmo-intel-engine`** (`C:\miniconda\envs\pmo-intel-engine\python.exe`, Py 3.11) — has fastapi, pydantic 2, langgraph 1.2.6, google-genai, openai, pyyaml, pytest. Don't pip-install into it without asking. |
 | Runner | `python tasks.py seed|dev|test|demo` (no `make`/`uv` on this machine; `Makefile` just wraps tasks.py). tasks.py sets `PYTHONUTF8=1`. |
 | Node | v24, Next.js **16.4** (App Router, Turbopack, Cache Components on — wrap `useSearchParams` users in Suspense; read `frontend/node_modules/next/dist/docs/` before Next API changes), Tailwind v4, `motion` 14, lucide-react 1.57, recharts 3 |
@@ -76,6 +86,9 @@
 - **Default seed 42** (seed 7 missed the bands). `backend/scripts/find_seed.py` / `sim_report.py` re-check calibration.
 
 ### Seed 42 numbers (what the demo shows)
+_Session 2: same headline numbers with the 4-cohort 2×2. The plan rows are Grow with · Develop (voice note 70 %) ·
+Individual attention 11 · Invest in · Reassess (re-send). The dealer score is 3.8; next quarter, 17 change cohort.
+Older cohort names below are from session 1._
 Day 7: 60 replied (70 %), median 5.6 h · 50 clean / 6 check / 4 flagged (Ruplekha 19 s) · intents 27/10/12/7/4 ·
 27 joined (31 %) · plan = Growth builders, Scheme-hesitant (voice note 70 %), Individual attention (11), At-risk, Champions,
 Dormant (re-send 91 %) · "Approve all 70%+" leaves Growth builders 31 %, At-risk 51 %, Champions 50 % to click.
@@ -111,7 +124,61 @@ a Bengali voice note around 1 pm".
 - **P6** Day-30 results (five cards, what we learned, chips), Apply to next scheme, LLM-polished "Next time" with guard.
 - Gave Rishi demo pointers; he ran the app, then asked to stop it and preserve context (this file).
 
+### 2026-10-16 — session 2 (partner-review changes)
+- Rishi shared the meeting notes and screenshots (Copilot summary + KPMG CX survey slides 2, 4–6). He asked for
+  cohorts named Invest in / Grow with / Reassess / Develop, with definitions, based on the existing data and
+  configurable, and for a configurable survey with must-ask ("pakka") questions.
+- His choices: **2×2 = momentum × engagement**; **survey fully live** through the loop.
+- Built PLAN.md §13 in five blocks:
+  - A: config-driven 2×2 + per-run snapshot + Cohort rules page + Cohorts dashboard;
+  - B: CX question bank + Survey generator engine and page;
+  - C: generic answers through the simulator, sanity checks, Survey page, phone and 360;
+  - D: next-best-action drivers, loop strip, stepper wording, Next-quarter card;
+  - E: tests and docs.
+- Seed 42 numbers held: 60 replied · 27 by Day 7 · 51 by Day 30 · 41 beat. Every anchor is unchanged.
+
+### Gotchas learned (session 2)
+- `uvicorn --reload` hangs while a browser holds the SSE stream open, so code changes don't load. Kill :8000 by port
+  and start uvicorn without `--reload`. The helper script used this session lived in the temp dir; recreate it if
+  needed.
+- After an edit, Next dev can log a one-off hydration warning on the first load (stale server render). Reload and it's
+  gone.
+- `CountUp` only animates when in view, so full-page Playwright screenshots show 0 for tiles below the fold. That's not
+  a bug.
+- `runs.sqlite` has a schema version (`PRAGMA user_version` = 3). An older file is rebuilt automatically, and saved
+  Set-up edits go with it.
+- Bash heredocs that contain `'''` break the tool. Put multi-line Python in a scratch file instead.
+
+### 2026-10-16 — session 2b (FMCG terminology + research-based cohort logic)
+- Researched Indian FMCG trade terms and benchmarks (PLAN.md §14 has the sources).
+- Distributors now *participate* in schemes: quick replies say "Already participating / Will participate", scheme
+  payouts are credit notes, slabs are named, and the app says secondary sales / predicted uplift / no billing.
+  Stored values are unchanged.
+- Cohort growth floor 0 % → 3 % (FMCG market growth, NielsenIQ Q1 2026). Kolkata North is now 36 / 15 / 9 / 26.
+  Seed 42: 60 / 27 / 50 / 41.
+- 69 backend tests (new `test_terminology.py`), lint and build are green. `presenter_flow.py` passes, with no console
+  errors.
+- Prompt wording changed, so the replay cache keys changed. The demo falls back to fixtures until Phase 7 re-records.
+
+### 2026-10-19 — session 3 (potential × performance cohorts, new data, editable actions)
+- PLAN.md §15 has the details.
+- **Data:** regenerated with a modelled TAM per town, distributor catchments, retailer delivery (OTIF) and four
+  performance pillars. Five combined CSVs instead of 12.
+- **Cohorts:** Invest / Expand 21 · Replace / Reassess 23 · Protect 21 · Exit / Watchlist 21.
+- **Pages:** Cohorts is the landing page, with a 2×2, a scatter and the 360 scorecard. The Command centre is removed.
+  Cohort rules has thresholds, weights and pillar targets.
+- **Next best actions:** Accept / Modify / Reject, no confidence, priority ⓘ. ⓘ tips across Survey, Results and
+  Simulation.
+- **Checks:** 72 backend tests, lint and build are green. `presenter_flow.py` now modifies a row through the UI. No
+  console errors on any page.
+- **Gotchas:**
+  - `redirect()` inside `app/page.tsx` breaks Cache Components validation in dev; use `redirects()` in `next.config.ts`.
+  - Cohort names contain "/", so cohort routes and plan-row routes use `{name:path}` / `{row_id:path}`, and the
+    frontend uses `encodeURIComponent`.
+  - Restart `next dev` after editing `next.config.ts`.
+
 ## Next
-1. Get Rishi's partner-review change list + the answers to the open questions above.
+1. Rishi reviews the new pages (Cohort rules, Survey generator, Cohorts, Approvals, Results → Next quarter) and shows
+   the partners. Swap in Devika's definitions when they arrive.
 2. Then Phase 7 (PLAN.md §1): throttled `record` of demo-path LLM calls (~12 s/call), offline `replay` check,
    `tasks.py demo` resets seed 42, `docs/DEMO_SCRIPT.md` (~8 min, §13), README (≤ 5 setup commands), final polish.
