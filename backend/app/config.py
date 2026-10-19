@@ -26,6 +26,9 @@ class Settings:
     sim_seed: int = int(os.getenv("SIM_SEED", "42"))
     sim_scenario: str = os.getenv("SIM_SCENARIO", "typical")
     sim_autopilot: bool = _bool("SIM_AUTOPILOT", False)
+    # Hosted review copy: a fresh server opens on this day of the default run (30 = a finished cycle, so every page
+    # has data). The Simulation tab's Reset still replays from Day 0. 0 = start at Day 0 (local demo).
+    sim_start_day: float = float(os.getenv("SIM_START_DAY", "0"))
     frontend_origin: str = os.getenv("FRONTEND_ORIGIN", "http://localhost:3000")
 
 

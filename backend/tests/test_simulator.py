@@ -216,3 +216,16 @@ def test_plan_rows_use_only_catalogue_ctas(default_run):
     assert codes <= set(catalogue())
     for (members_json, members) in con.execute("SELECT member_ids_json, members FROM cta_plan WHERE run_id=?", (rid,)):
         assert len(json.loads(members_json)) == members
+
+
+def test_hosted_copy_can_open_on_a_finished_cycle():
+    """SIM_START_DAY (hosted review copy): a fresh server builds the default run, plays it to that day with every
+    suggestion accepted, then hands control back (autopilot off) so Reset → Play still works."""
+    con = fresh()
+    object.__setattr__(settings, "sim_start_day", 30.0)
+    try:
+        run = engine.ensure_run(con, settings.sim_seed, "typical", autopilot=False)
+    finally:
+        object.__setattr__(settings, "sim_start_day", 0.0)
+    s = engine.state(con, run["run_id"])
+    assert s["day"] == 30 and not s["autopilot"] and s["counters"]["joined"] == 50

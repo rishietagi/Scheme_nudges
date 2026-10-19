@@ -1,0 +1,19 @@
+# Render Blueprint: one free Docker web service for the hosted review copy.
+# In Render: New + → Blueprint → pick this repo. Set DEMO_PASSWORD when asked.
+services:
+  - type: web
+    name: emami-dx-prototype
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: DEMO_USER
+        value: emami
+      - key: DEMO_PASSWORD
+        sync: false          # you type it in the Render dashboard; never committed
+      - key: LLM_MODE
+        value: mock
+      - key: SIM_START_DAY
+        value: "30"

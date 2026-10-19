@@ -1,0 +1,12 @@
+# Keep the image small and never ship secrets or local state.
+.git
+.env
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+backend/data/runs.sqlite*
+backend/tests
+frontend/node_modules
+frontend/.next
+frontend/tsconfig.tsbuildinfo
+docs

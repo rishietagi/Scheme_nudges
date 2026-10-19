@@ -53,11 +53,21 @@ def reset(con: sqlite3.Connection, seed: int, scenario: str, autopilot: bool) ->
 
 
 def ensure_run(con: sqlite3.Connection, seed: int, scenario: str, autopilot: bool) -> sqlite3.Row:
-    run = active(con)
-    if run is None:
-        reset(con, seed, scenario, autopilot)
+    """The active run; a fresh server creates one (and, for the hosted review copy, plays it to SIM_START_DAY with
+    every suggestion accepted, then hands control back)."""
+    from app.config import settings
+
+    with LOCK:
         run = active(con)
-    return run
+        if run is None:
+            start = max(0.0, min(settings.sim_start_day, LAST))
+            rid = reset(con, seed, scenario, autopilot or start > PLAN_AT)
+            if start > 0:
+                advance(con, rid, start)
+                con.execute("UPDATE loop_runs SET autopilot = ? WHERE run_id = ?", (int(autopilot), rid))
+                con.commit()
+            run = active(con)
+        return run
 
 
 def set_autopilot(con: sqlite3.Connection, run_id: str, on: bool) -> None:

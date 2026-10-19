@@ -1,5 +1,6 @@
-// The one place the frontend talks to the backend.
-export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+// The one place the frontend talks to the backend. Locally the API runs on :8000; in the hosted container it sits
+// behind the same origin at /api (next.config.ts forwards /api/* to it), so NEXT_PUBLIC_API_URL=/api.
+export const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000").replace(/\/$/, "");
 
 export type LoopStep = { key: "nudge" | "plan" | "send" | "results"; label: string; day: number; day_label: string };
 
@@ -45,9 +46,10 @@ export type SimScenarios = { scenarios: Record<string, string>; speeds: number[]
 type Query = Record<string, string | number | boolean | undefined | null>;
 
 function url(path: string, query?: Query): string {
-  const u = new URL(path, API_URL);
-  for (const [k, v] of Object.entries(query ?? {})) if (v !== undefined && v !== null) u.searchParams.set(k, String(v));
-  return u.toString();
+  const qs = new URLSearchParams();
+  for (const [k, v] of Object.entries(query ?? {})) if (v !== undefined && v !== null) qs.set(k, String(v));
+  const q = qs.toString();
+  return `${API_URL}${path}${q ? `?${q}` : ""}`;
 }
 
 export async function get<T>(path: string, query?: Query): Promise<T> {

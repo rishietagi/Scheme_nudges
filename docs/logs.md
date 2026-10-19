@@ -177,6 +177,22 @@ a Bengali voice note around 1 pm".
     frontend uses `encodeURIComponent`.
   - Restart `next dev` after editing `next.config.ts`.
 
+### 2026-10-19 — session 3b (hosted review copy)
+- **Setup:** one free Render Docker web service (`Dockerfile`, `render.yaml`, `deploy/start.sh`, `.dockerignore`).
+  Next.js standalone serves on `$PORT`; FastAPI runs on 127.0.0.1:8000 inside the container; `/api/*` is forwarded
+  (next.config `rewrites`).
+- **Gate:** `frontend/proxy.ts` asks for a password when `DEMO_PASSWORD` is set. `/healthz` and `/brand/*` stay
+  open, because the image optimizer fetches the logo without the user's credentials.
+- **Server settings:** `LLM_MODE=mock` (no key) and `SIM_START_DAY=30` (a fresh server opens on a finished cycle).
+- **Tested locally** with 512 MB / 0.1 CPU limits:
+  - boots in about 50 s;
+  - every page has no console errors;
+  - SSE works through the forward;
+  - Reset → Day 30 in about 45 s;
+  - memory about 150 MB.
+- **Steps for Rishi:** see `DEPLOY.md` (push to GitHub → Render Blueprint → set `DEMO_PASSWORD`).
+- **Not shared across wake-ups:** the shared run and saved Set-up edits reset whenever Render wakes the server.
+
 ## Next
 1. Rishi reviews the new pages (Cohort rules, Survey generator, Cohorts, Approvals, Results → Next quarter) and shows
    the partners. Swap in Devika's definitions when they arrive.
